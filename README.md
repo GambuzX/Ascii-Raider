@@ -1,6 +1,8 @@
-# LPOO_TG Project Name
+# ASCII Raider
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are. 
+> This project is a puzzle game based on 'Crypt Raider', where your objective in each level is to push one or more 'keys' to the 'exit door'.
+
+> Developed by [Manuel Coutinho](https://github.com/ManelCoutinho "ManelCoutinho") and [Mário Gil](https://github.com/GambuzX "GambuzX").
 
 ## Screenshots
 
