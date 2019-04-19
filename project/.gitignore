@@ -1,7 +1,6 @@
 **/out
 **/.idea 
-**/*.iml 
-
+**/*.iml
 .idea/
 .gradle/
 out/
