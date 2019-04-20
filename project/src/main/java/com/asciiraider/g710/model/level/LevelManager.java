@@ -1,8 +1,9 @@
-package com.asciiraider.g710.model.element;
+package com.asciiraider.g710.model.level;
 
 import java.util.List;
 import java.util.ArrayList;
 
+// TODO: continuar a testar
 public class LevelManager {
 
     private List<Level> levels = new ArrayList<>();
@@ -34,11 +35,9 @@ public class LevelManager {
         buildLevel(new LevelTwoBuilder());
     }
 
-    private void buildLevel(LevelBuilder levelBuilder) {
-        if (levelBuilder == null) {
-            System.out.println("Tried to use a null levelBuilder");
-            return;
-        }
+    private void buildLevel(LevelBuilder levelBuilder) throws IllegalArgumentException{
+        if (levelBuilder == null)
+            throw new IllegalArgumentException("Tried to use a null levelBuilder");
         levelDirector.buildFullLevel(levelBuilder);
         levels.add(levelBuilder.getResult());
     }
