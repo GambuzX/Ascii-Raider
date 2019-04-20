@@ -2,7 +2,7 @@ package com.asciiraider.g710.model.level;
 
 public class LevelDirector {
 
-    public void buildLevel(LevelBuilder levelBuilder) {
+    public void buildFullLevel(LevelBuilder levelBuilder) {
         levelBuilder.reset();
         levelBuilder.createWalls();
         levelBuilder.createSand();
