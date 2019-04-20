@@ -1,3 +1,5 @@
+package model;
+
 // TODO: ver se faz sentido X e Y n poder ser menor que 0
 public class Position {
 	private int x, y;

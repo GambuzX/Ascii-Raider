@@ -1,3 +1,7 @@
+package model;
+
+import view.Drawable;
+
 abstract public class Element implements Drawable {
 	private Position position;
 	// TODO: se calhar nao devia ser obrigatoriamente char
