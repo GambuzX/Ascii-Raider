@@ -1,4 +1,4 @@
-package model.element;
+package com.asciiraider.g710.model.element;
 
 // TODO: ver se faz sentido X e Y n poder ser menor que 0
 public class Position {
@@ -10,6 +10,11 @@ public class Position {
 
 		this.x = x;
 		this.y = y;
+	}
+
+	public Position(Position position){
+		this.x = position.getX();
+		this.y = position.getY();
 	}
 
 

@@ -1,11 +1,15 @@
-import static org.junit.Assert.*;
+package com.asciiraider.g710.model.element;
 
-import model.Position;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 
 public class PositionTest {
 	List<Position> positions;
@@ -29,23 +33,28 @@ public class PositionTest {
 	}
 
 	@Test
+	public void position3() throws IllegalArgumentException {
+		Position p1 = new Position(0, 0);
+	}
+
+	@Test
 	public void positionGet1() {
-		assertEquals(positions.get(0).getX(), 1);
-		assertEquals(positions.get(0).getY(), 2);
+		assertEquals(1, positions.get(0).getX());
+		assertEquals(2, positions.get(0).getY());
 	}
 
 	@Test
 	public void positionGet2() {
-		assertEquals(positions.get(2).getX(), 43);
-		assertEquals(positions.get(2).getY(), 12);
+		assertEquals(43, positions.get(2).getX());
+		assertEquals(12, positions.get(2).getY());
 	}
 
 	@Test
 	public void positionSet1() throws IllegalArgumentException {
 		positions.get(1).setX(23);
 		positions.get(1).setY(33);
-		assertEquals(positions.get(1).getX(), 23);
-		assertEquals(positions.get(1).getY(), 33);
+		assertEquals(23, positions.get(1).getX());
+		assertEquals(33, positions.get(1).getY());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -59,9 +68,31 @@ public class PositionTest {
 	}
 
 	@Test
-	public void positionEquals() {
+	public void positionSet4() throws IllegalArgumentException {
+		positions.get(1).setX(0);
+		positions.get(1).setY(0);
+		assertEquals(0, positions.get(1).getX());
+		assertEquals(0, positions.get(1).getY());
+	}
+
+	@Test
+	public void positionEquals1() {
 		positions.get(1).setX(1);
 		positions.get(1).setY(2);
 		assertTrue(positions.get(1).equals(positions.get(0)));
+	}
+
+	@Test
+	public void positionEquals2() {
+		positions.get(1).setX(1);
+		positions.get(1).setY(2);
+		assertTrue(positions.get(0).equals(positions.get(0)));
+	}
+
+	@Test
+	public void positionEquals3() {
+		positions.get(1).setX(1);
+		positions.get(1).setY(2);
+		assertFalse(positions.get(0).equals(4));
 	}
 }

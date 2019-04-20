@@ -1,6 +1,6 @@
-package model.level;
+package com.asciiraider.g710.model.level;
 
-import model.element.Element;
+import com.asciiraider.g710.model.element.Element;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +18,9 @@ public class Level {
 
     public void reset() {
         elements.clear();
+    }
+
+    public List<Element> getElements() {
+        return elements;
     }
 }

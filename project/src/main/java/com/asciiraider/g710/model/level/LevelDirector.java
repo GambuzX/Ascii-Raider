@@ -1,4 +1,4 @@
-package model.level;
+package com.asciiraider.g710.model.level;
 
 public class LevelDirector {
 

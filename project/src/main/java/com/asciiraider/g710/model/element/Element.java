@@ -1,8 +1,8 @@
-package model.element;
+package com.asciiraider.g710.model.element;
 
-import view.Drawable;
+import com.asciiraider.g710.view.Drawable;
 
-abstract public class Element implements Drawable {
+abstract public class Element implements Drawable, Cloneable {
 	private Position position;
 	// TODO: se calhar nao devia ser obrigatoriamente char
 	private char symbol;
@@ -37,5 +37,10 @@ abstract public class Element implements Drawable {
 	public void draw(){
 		// TODO: implentar
 		System.out.println("draw: to be implemented");
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

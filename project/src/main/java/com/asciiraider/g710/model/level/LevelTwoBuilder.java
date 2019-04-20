@@ -1,7 +1,6 @@
-package model.level;
+package com.asciiraider.g710.model.level;
 
-public class LevelOneBuilder extends LevelBuilder {
-
+public class LevelTwoBuilder extends LevelBuilder {
 
     @Override
     public void createWalls() {
