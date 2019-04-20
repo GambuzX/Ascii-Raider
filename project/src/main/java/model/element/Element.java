@@ -16,6 +16,10 @@ abstract public class Element implements Drawable {
 		return position;
 	}
 
+	public void setPosition(Position position){
+		this.position = position;
+	}
+
 	public char getSymbol() {
 		return symbol;
 	}

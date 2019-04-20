@@ -1,13 +1,6 @@
 package model.level;
 
-public class LevelTwoBuilder implements LevelBuilder {
-
-    private Level result = new Level();
-
-    @Override
-    public void reset() {
-        result.reset();
-    }
+public class LevelTwoBuilder extends LevelBuilder {
 
     @Override
     public void createWalls() {
@@ -54,7 +47,4 @@ public class LevelTwoBuilder implements LevelBuilder {
 
     }
 
-    public Level getResult() {
-        return result;
-    }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Level {
 
-    private List<Element> elements = new ArrayList<Element>();
+    private List<Element> elements = new ArrayList<>();
 
     public Level() {
 
@@ -17,6 +17,6 @@ public class Level {
     }
 
     public void reset() {
-        elements = new ArrayList<Element>();
+        elements.clear();
     }
 }
