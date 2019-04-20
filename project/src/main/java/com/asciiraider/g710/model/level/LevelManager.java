@@ -1,4 +1,4 @@
-package model.level;
+package com.asciiraider.g710.model.element;
 
 import java.util.List;
 import java.util.ArrayList;
