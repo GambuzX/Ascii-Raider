@@ -4,10 +4,9 @@ import com.asciiraider.g710.view.Drawable;
 
 abstract public class Element implements Drawable, Cloneable {
 	private Position position;
-	// TODO: se calhar nao devia ser obrigatoriamente char
-	private char symbol;
+	private Symbol symbol;
 
-	public Element(Position position, char symbol) {
+	public Element(Position position, Symbol symbol) {
 		this.position = position;
 		this.symbol = symbol;
 	}
@@ -20,7 +19,7 @@ abstract public class Element implements Drawable, Cloneable {
 		this.position = position;
 	}
 
-	public char getSymbol() {
+	public Symbol getSymbol() {
 		return symbol;
 	}
 

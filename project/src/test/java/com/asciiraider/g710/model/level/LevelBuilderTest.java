@@ -21,7 +21,7 @@ public class LevelBuilderTest {
 	@Test
 	public void horizontalLine() throws CloneNotSupportedException {
 		level.reset();
-		level.createHorizontalLine(new Wall(new Position(23, 32), 'W'), 4, new Position(1, 2));
+		level.createHorizontalLine(new Wall(new Position(23, 32)), 4, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		int xSum = 0;
 		for (int i = 0; i < elementList.size(); i++) {
@@ -35,7 +35,7 @@ public class LevelBuilderTest {
 	@Test
 	public void horizontalLineEdgeCase1() throws CloneNotSupportedException {
 		level.reset();
-		level.createHorizontalLine(new Wall(new Position(23, 32), 'W'), 0, new Position(1, 2));
+		level.createHorizontalLine(new Wall(new Position(23, 32)), 0, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		assertEquals(0, elementList.size());
 	}
@@ -48,7 +48,7 @@ public class LevelBuilderTest {
 	@Test
 	public void verticalLine() throws CloneNotSupportedException {
 		level.reset();
-		level.createVerticalLine(new Wall(new Position(3, 4), 'W'), 3, new Position(1, 2));
+		level.createVerticalLine(new Wall(new Position(3, 4)), 3, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		int ySum = 0;
 		for (int i = 0; i < elementList.size(); i++) {
@@ -62,7 +62,7 @@ public class LevelBuilderTest {
 	@Test
 	public void verticalLineEdgeCase() throws CloneNotSupportedException {
 		level.reset();
-		level.createVerticalLine(new Wall(new Position(3, 4), 'W'), 0, new Position(1, 2));
+		level.createVerticalLine(new Wall(new Position(3, 4)), 0, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		assertEquals(0, elementList.size());
 	}
@@ -75,7 +75,7 @@ public class LevelBuilderTest {
 	@Test
 	public void rectangle() throws CloneNotSupportedException {
 		level.reset();
-		level.createRectangle(new Wall(new Position(3, 4), 'W'), 3, 2, new Position(1, 2));
+		level.createRectangle(new Wall(new Position(3, 4)), 3, 2, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		int ySum = 0, xSum = 0;
 		for (int i = 0; i < elementList.size(); i++) {
@@ -92,7 +92,7 @@ public class LevelBuilderTest {
 	@Test
 	public void rectangleEdgeCase() throws CloneNotSupportedException {
 		level.reset();
-		level.createRectangle(new Wall(new Position(3, 4), 'W'), 0, 2, new Position(1, 2));
+		level.createRectangle(new Wall(new Position(3, 4)), 0, 2, new Position(1, 2));
 		List<Element> elementList = level.getResult().getElements();
 		assertEquals(0, elementList.size());
 	}
@@ -106,7 +106,7 @@ public class LevelBuilderTest {
 	@Test
 	public void reset() throws CloneNotSupportedException {
 		level.reset();
-		level.createHorizontalLine(new Wall(new Position(23, 32), 'W'), 5, new Position(1, 2));
+		level.createHorizontalLine(new Wall(new Position(23, 32)), 5, new Position(1, 2));
 		level.reset();
 		List<Element> elementList = level.getResult().getElements();
 		assertEquals(0, elementList.size());
