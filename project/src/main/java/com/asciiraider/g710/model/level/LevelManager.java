@@ -6,15 +6,17 @@ import java.util.ArrayList;
 // TODO: continuar a testar
 public class LevelManager {
 
+    private static LevelManager instance;
+
     private List<Level> levels = new ArrayList<>();
     private int currentLevel;
-
     private LevelDirector levelDirector;
 
-    public LevelManager() {
-        currentLevel = 0;
-        levelDirector = new LevelDirector();
-        buildAllLevels();
+    public static LevelManager getInstance() {
+        if (instance == null) {
+            instance = new LevelManager();
+        }
+        return instance;
     }
 
     public void resetLevel() {
@@ -29,6 +31,12 @@ public class LevelManager {
         return currentLevel;
     }
 
+
+    private LevelManager() {
+        currentLevel = 0;
+        levelDirector = new LevelDirector();
+        buildAllLevels();
+    }
 
     private void buildAllLevels() {
         buildLevel(new LevelOneBuilder());

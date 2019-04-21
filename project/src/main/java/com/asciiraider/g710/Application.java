@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("Hello World");
 
-        LevelManager levelManager = new LevelManager();
+        LevelManager levelManager = LevelManager.getInstance();
         Level currentLevel = levelManager.nextLevel();
 
     }
