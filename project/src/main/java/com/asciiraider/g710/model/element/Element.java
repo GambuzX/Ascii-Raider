@@ -2,7 +2,7 @@ package com.asciiraider.g710.model.element;
 
 import com.asciiraider.g710.view.Drawable;
 
-abstract public class Element implements Drawable, Cloneable {
+abstract public class Element implements Cloneable {
 	private Position position;
 	private Symbol symbol;
 
@@ -30,12 +30,6 @@ abstract public class Element implements Drawable, Cloneable {
 		Element element = (Element) o;
 		return getSymbol() == element.getSymbol() &&
 				getPosition().equals(element.getPosition());
-	}
-
-	@Override
-	public void draw(){
-		// TODO: implentar
-		System.out.println("draw: to be implemented");
 	}
 
 	@Override

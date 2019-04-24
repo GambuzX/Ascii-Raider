@@ -5,10 +5,18 @@ import java.security.InvalidParameterException;
 public class Symbol {
 
     private char ascii;
-    private String hexColor;
+    private String foregroundColor;
+    private String backgroundColor;
 
-    public Symbol(char ascii, String hexColor) throws InvalidParameterException {
-        setHexColor(hexColor);
+    public Symbol(char ascii, String foregroundColor) throws InvalidParameterException {
+        setForegroundColor(foregroundColor);
+        setBackgroundColor("#000000");
+        this.ascii = ascii;
+    }
+
+    public Symbol(char ascii, String foregroundColor, String backgroundColor) throws InvalidParameterException {
+        setForegroundColor(foregroundColor);
+        setBackgroundColor(backgroundColor);
         this.ascii = ascii;
     }
 
@@ -16,13 +24,22 @@ public class Symbol {
         return ascii;
     }
 
-    public String getHexColor() {
-        return hexColor;
+    public String getForegroundColor() {
+        return foregroundColor;
     }
 
-    public void setHexColor(String hexColor) throws InvalidParameterException {
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setForegroundColor(String hexColor) throws InvalidParameterException {
         if (!validHexColor(hexColor)) throw new InvalidParameterException("Invalid hex color");
-        this.hexColor = hexColor;
+        this.foregroundColor = hexColor;
+    }
+
+    public void setBackgroundColor(String hexColor) throws InvalidParameterException {
+        if (!validHexColor(hexColor)) throw new InvalidParameterException("Invalid hex color");
+        this.backgroundColor = hexColor;
     }
 
     private boolean validHexColor(String hexColor) {

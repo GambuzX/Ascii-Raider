@@ -10,12 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private final int lvlCount;
-
-	// TODO: ver isto de protected vs package-private
-	LevelBuilder(int lvlCount) {
-		this.lvlCount = lvlCount;
-	}
+	private static final int lvlCount = 2;
 
 	// TODO: ver isto de protected vs package-private
 	List<Level> buildAllLevels() {

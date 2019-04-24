@@ -12,7 +12,7 @@ public class LevelManager {
 
     public static LevelManager getInstance() {
         if (instance == null) {
-            instance = new LevelManager(2);
+            instance = new LevelManager();
         }
         return instance;
     }
@@ -30,9 +30,9 @@ public class LevelManager {
     }
 
 
-    private LevelManager(int numberLevels) {
+    private LevelManager() {
         currentLevel = 0;
-        lvlBuilder = new LevelBuilder(numberLevels);
+        lvlBuilder = new LevelBuilder();
         levels = lvlBuilder.buildAllLevels();
     }
 
