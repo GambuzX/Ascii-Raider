@@ -38,6 +38,12 @@ public class PositionTest {
 	}
 
 	@Test
+	public void position4() {
+		Position p1 = new Position(positions.get(1));
+		assertEquals(positions.get(1), p1);
+	}
+
+	@Test
 	public void positionGet1() {
 		assertEquals(1, positions.get(0).getX());
 		assertEquals(2, positions.get(0).getY());
