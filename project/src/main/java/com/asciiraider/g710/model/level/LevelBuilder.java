@@ -1,6 +1,7 @@
 package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.utilities.Position;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

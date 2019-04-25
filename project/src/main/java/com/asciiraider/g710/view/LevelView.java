@@ -1,8 +1,8 @@
 package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.element.Position;
-import com.asciiraider.g710.model.element.Symbol;
+import com.asciiraider.g710.model.utilities.Position;
+import com.asciiraider.g710.model.utilities.Symbol;
 import com.asciiraider.g710.model.level.Level;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.googlecode.lanterna.TerminalPosition;
@@ -58,8 +58,8 @@ public class LevelView {
         Position pos = ele.getPosition();
         Symbol sym = ele.getSymbol();
 
-        graphics.setForegroundColor(TextColor.Factory.fromString(sym.getForegroundColor()));
-        graphics.setBackgroundColor(TextColor.Factory.fromString(sym.getBackgroundColor()));
+        graphics.setForegroundColor(TextColor.Factory.fromString(sym.getForegroundColorString()));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(sym.getBackgroundColorString()));
         graphics.putString(new TerminalPosition(pos.getX(), pos.getY()), ""+sym.getAscii());
 
     }

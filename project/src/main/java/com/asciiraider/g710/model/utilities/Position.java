@@ -1,4 +1,4 @@
-package com.asciiraider.g710.model.element;
+package com.asciiraider.g710.model.utilities;
 
 // TODO: ver se faz sentido X e Y n poder ser menor que 0
 public class Position {
