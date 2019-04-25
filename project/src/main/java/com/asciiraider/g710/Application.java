@@ -14,24 +14,13 @@ public class Application {
         System.out.println("Hello World");
 
         LevelManager levelManager = LevelManager.getInstance();
-        Level currentLevel = levelManager.nextLevel();
 
-        LevelView view = null;
+        LevelView levelView = null;
         try {
-            view = new LevelView(currentLevel, 18, 12);
+            levelView = new LevelView(levelManager, 18, 12);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        while(true) {
-            try {
-                view.drawElements();
-                Thread.sleep(1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        levelView.handleCurrentLevel();
     }
 }

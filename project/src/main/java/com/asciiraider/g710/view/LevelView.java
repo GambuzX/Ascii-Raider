@@ -4,6 +4,7 @@ import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.element.Position;
 import com.asciiraider.g710.model.element.Symbol;
 import com.asciiraider.g710.model.level.Level;
+import com.asciiraider.g710.model.level.LevelManager;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -17,9 +18,9 @@ import java.util.List;
 
 public class LevelView {
     private final TerminalScreen screen;
-    private Level level;
+    private LevelManager levelManager;
 
-    public LevelView(Level level, int width, int height) throws IOException {
+    public LevelView(LevelManager levelManager, int width, int height) throws IOException {
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);
 
@@ -27,10 +28,26 @@ public class LevelView {
         screen.startScreen();
         screen.doResizeIfNecessary();
 
-        this.level = level;
+        this.levelManager = levelManager;
     }
 
-    public void drawElements() throws IOException {
+    public void handleCurrentLevel() {
+        Level currentLevel = levelManager.getCurrentLevel();
+
+        // TODO make while loop end when level ends
+        while(true) {
+            try {
+                drawElements(currentLevel);
+                Thread.sleep(1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void drawElements(Level level) throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
         List<Element> levelEles = level.getElements();
