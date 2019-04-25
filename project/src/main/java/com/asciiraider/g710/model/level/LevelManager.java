@@ -8,31 +8,41 @@ public class LevelManager {
     private static LevelManager instance;
     private LevelBuilder lvlBuilder;
     private List<Level> levels;
-    private int currentLevel;
+    private int currentLevelIndex;
+    private boolean finishedGame;
 
     public static LevelManager getInstance() {
         if (instance == null) {
-            instance = new LevelManager(2);
+            instance = new LevelManager();
         }
         return instance;
     }
 
     public void resetLevel() {
-        currentLevel = 0;
+        currentLevelIndex = 0;
     }
 
-    public Level nextLevel() {
-        return levels.get((currentLevel++) % levels.size());
+    public void nextLevel() {
+        if (currentLevelIndex >= levels.size()) finishedGame = true;
+        currentLevelIndex++;
     }
 
-    public int getCurrentLevel() {
-        return currentLevel;
+    public int getCurrentLevelIndex() {
+        return currentLevelIndex;
     }
 
+    public Level getCurrentLevel() {
+        return levels.get(currentLevelIndex % levels.size());
+    }
 
-    private LevelManager(int numberLevels) {
-        currentLevel = 0;
-        lvlBuilder = new LevelBuilder(numberLevels);
+    public boolean isGameFinished() {
+        return finishedGame;
+    }
+
+    private LevelManager() {
+        currentLevelIndex = 0;
+        finishedGame = false;
+        lvlBuilder = new LevelBuilder();
         levels = lvlBuilder.buildAllLevels();
     }
 
