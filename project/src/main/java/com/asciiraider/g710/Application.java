@@ -21,6 +21,13 @@ public class Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        levelView.handleCurrentLevel();
+        if (levelView == null) return;
+
+        while(!levelManager.isGameFinished()) {
+            levelView.handleCurrentLevel();
+            levelManager.nextLevel();
+        }
+
+        // You win, GG
     }
 }

@@ -1,7 +1,5 @@
 package com.asciiraider.g710.model.element;
 
-import com.asciiraider.g710.view.Drawable;
-
 abstract public class Element implements Cloneable {
 	private Position position;
 	private Symbol symbol;
