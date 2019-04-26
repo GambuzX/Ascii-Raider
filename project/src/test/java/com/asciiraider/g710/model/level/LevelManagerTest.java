@@ -10,14 +10,22 @@ public class LevelManagerTest {
 	@Test
 	public void currentLevel1(){
 		levelManager.resetLevel();
-		assertEquals(levelManager.getCurrentLevelIndex(), 0);
+		assertEquals(0, levelManager.getCurrentLevelIndex());
 	}
 
 	@Test
 	public void nextLevel1(){
 		levelManager.resetLevel();
+
 		levelManager.nextLevel();
-		assertEquals(levelManager.getCurrentLevelIndex(), 1);
+		assertEquals(1, levelManager.getCurrentLevelIndex());
+	}
+
+	@Test
+	public void nextLevel2(){
+
+		levelManager.nextLevel();
+		assertEquals(2, levelManager.getCurrentLevelIndex());
 	}
 
 	@Test
