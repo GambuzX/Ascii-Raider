@@ -1,5 +1,6 @@
 package com.asciiraider.g710;
 
+import com.asciiraider.g710.controller.LevelController;
 import com.asciiraider.g710.model.level.*;
 import com.asciiraider.g710.view.LevelView;
 
@@ -15,16 +16,21 @@ public class Application {
 
         LevelManager levelManager = LevelManager.getInstance();
 
+        LevelController levelController = new LevelController(levelManager);
         LevelView levelView = null;
         try {
-            levelView = new LevelView(levelManager, 18, 12);
+            levelView = new LevelView(levelController, 18, 12);
         } catch (IOException e) {
             e.printStackTrace();
         }
         if (levelView == null) return;
 
         while(!levelManager.isGameFinished()) {
-            levelView.handleCurrentLevel();
+            try {
+                levelView.handleCurrentLevel();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             levelManager.nextLevel();
         }
 
