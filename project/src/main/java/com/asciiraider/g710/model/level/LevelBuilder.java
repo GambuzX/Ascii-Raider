@@ -51,7 +51,9 @@ public class LevelBuilder {
 						newEle = new Boulder(pos);
 						break;
 					case 'P':
-						newEle = new Player(pos);
+						Player player = new Player(pos);
+						newEle = player;
+						newLevel.setPlayer(player);
 						break;
 					case 'E':
 						newEle = new Enemy(pos);

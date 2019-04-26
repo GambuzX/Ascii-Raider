@@ -50,4 +50,13 @@ public class LevelView {
         graphics.putString(new TerminalPosition(pos.getX(), pos.getY()), ""+sym.getAscii());
 
     }
+
+    public Event getKey() {
+        try {
+            return KeyPressEvent.handle(screen.readInput());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Event.OTHER;
+    }
 }
