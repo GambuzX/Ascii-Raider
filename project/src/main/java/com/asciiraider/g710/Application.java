@@ -17,17 +17,40 @@ public class Application {
 
         LevelView levelView = null;
         try {
-            levelView = new LevelView(levelManager, 18, 12, 48);
+            levelView = new LevelView(18, 12, 48);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         if (levelView == null) return;
 
+        LevelView finalLevelView = levelView;
+
+        /**
+         * Draw Cicle
+         */
+        // TODO: ve se gostas assim sem o LevelManager na view. ainda n sei onde por isto, mas tem de ser numa thread
+        Thread t = new Thread() {
+            @Override
+            public void run(){
+                while (true){
+                    try {
+                        finalLevelView.drawElements(levelManager.getCurrentLevel());
+                        Thread.sleep(100);
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(isInterrupted()) break;
+                }
+            }
+        };
+        t.start();
+        /*
         while(!levelManager.isGameFinished()) {
             levelView.handleCurrentLevel();
             levelManager.nextLevel();
         }
-
+*/
         // You win, GG
     }
 }

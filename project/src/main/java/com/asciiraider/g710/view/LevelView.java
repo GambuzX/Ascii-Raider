@@ -2,7 +2,6 @@ package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.Level;
-import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 import com.googlecode.lanterna.TerminalPosition;
@@ -20,9 +19,8 @@ import java.util.List;
 
 public class LevelView {
     private final TerminalScreen screen;
-    private LevelManager levelManager;
 
-    public LevelView(LevelManager levelManager, int width, int height, int size) throws IOException {
+    public LevelView(int width, int height, int size) throws IOException {
         Font font = new Font("DejaVu Sans Mono", Font.PLAIN,  size);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
 
@@ -32,22 +30,6 @@ public class LevelView {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
-
-        this.levelManager = levelManager;
-    }
-
-    public void handleCurrentLevel() {
-        Level currentLevel = levelManager.getCurrentLevel();
-
-        // TODO make while loop end when level ends
-        while(true) {
-            try {
-                drawElements(currentLevel);
-                Thread.sleep(1);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void drawElements(Level level) throws IOException {
