@@ -38,41 +38,36 @@ public class LevelBuilder {
 
 				char curr = levelLines.get(row).charAt(col);
 				Position pos = new Position(col, row);
-				Element newEle = null;
 
 				switch(curr) {
 					case 'W':
-						newEle = new Wall(pos);
+						newLevel.addWall(new Wall(pos));
 						break;
 					case 'S':
-						newEle = new StoneBlock(pos);
+						newLevel.addStoneBlock(new StoneBlock(pos));
 						break;
 					case 'B':
-						newEle = new Boulder(pos);
+						newLevel.addBoulder(new Boulder(pos));
 						break;
 					case 'P':
-						Player player = new Player(pos);
-						newEle = player;
-						newLevel.setPlayer(player);
+						newLevel.setPlayer(new Player(pos));
 						break;
 					case 'E':
-						newEle = new Enemy(pos);
+						newLevel.addEnemy(new Enemy(pos));
 						break;
 					case 'T':
-						newEle = new TNT(pos);
+						newLevel.addTNT(new TNT(pos));
 						break;
 					case 's':
-						newEle = new Sand(pos);
+						newLevel.addSandBlock(new Sand(pos));
 						break;
 					case 'K':
-						newEle = new LevelKey(pos);
+						newLevel.addKey(new LevelKey(pos));
 						break;
 					case 'D':
-						newEle = new ExitDoor(pos);
+						newLevel.setExitDoor(new ExitDoor(pos));
 						break;
 				}
-
-				if (newEle != null) newLevel.addElement(newEle);
 			}
 		}
 		return newLevel;
