@@ -17,7 +17,7 @@ public class Application {
 
         LevelView levelView = null;
         try {
-            levelView = new LevelView(levelManager, 18, 12);
+            levelView = new LevelView(levelManager, 18, 12, 48);
         } catch (IOException e) {
             e.printStackTrace();
         }
