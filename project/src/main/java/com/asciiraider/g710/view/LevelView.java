@@ -18,44 +18,44 @@ import java.io.IOException;
 import java.util.List;
 
 public class LevelView {
-    private final TerminalScreen screen;
-    public LevelView(int width, int height, int size) throws IOException {
-        Font font = new Font("DejaVu Sans Mono", Font.PLAIN,  size);
-        SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
+	private final TerminalScreen screen;
+	public LevelView(int width, int height, int size) throws IOException {
+		Font font = new Font("DejaVu Sans Mono", Font.PLAIN,  size);
+		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
 
-        Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-        screen = new TerminalScreen(terminal);
+		Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
+		screen = new TerminalScreen(terminal);
 
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();
-    }
+		screen.setCursorPosition(null);
+		screen.startScreen();
+		screen.doResizeIfNecessary();
+	}
 
-    public void drawElements(Level level) throws IOException {
-        screen.clear();
-        TextGraphics graphics = screen.newTextGraphics();
-        List<Element> levelEles = level.getElements();
-        for (Element ele : levelEles)
-            drawElement(ele, graphics);
-        screen.refresh();
-    }
+	public void drawElements(Level level) throws IOException {
+		screen.clear();
+		TextGraphics graphics = screen.newTextGraphics();
+		List<Element> levelEles = level.getElements();
+		for (Element ele : levelEles)
+			drawElement(ele, graphics);
+		screen.refresh();
+	}
 
-    private void drawElement(Element ele, TextGraphics graphics) {
-        Position pos = ele.getPosition();
-        Symbol sym = ele.getSymbol();
+	private void drawElement(Element ele, TextGraphics graphics) {
+		Position pos = ele.getPosition();
+		Symbol sym = ele.getSymbol();
 
-        graphics.setForegroundColor(TextColor.Factory.fromString(sym.getForegroundColorString()));
-        graphics.setBackgroundColor(TextColor.Factory.fromString(sym.getBackgroundColorString()));
-        graphics.putString(new TerminalPosition(pos.getX(), pos.getY()), ""+sym.getAscii());
+		graphics.setForegroundColor(TextColor.Factory.fromString(sym.getForegroundColorString()));
+		graphics.setBackgroundColor(TextColor.Factory.fromString(sym.getBackgroundColorString()));
+		graphics.putString(new TerminalPosition(pos.getX(), pos.getY()), ""+sym.getAscii());
 
-    }
+	}
 
-    public Event getKey() {
-        try {
-            return KeyPressEvent.handle(screen.readInput());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Event.OTHER;
-    }
+	public Event getKey() {
+		try {
+			return KeyPressEvent.handle(screen.readInput());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Event.OTHER;
+	}
 }
