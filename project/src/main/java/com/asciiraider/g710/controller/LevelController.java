@@ -49,7 +49,7 @@ public class LevelController {
     private boolean canMovePlayerTo(Position newPos, Position delimPos) {
         Level level = getCurrentLevel();
 
-        if (newPos == null || newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 17 || newPos.getY() > 11) return false;
+        if (newPos == null || newPos.getX() > 17 || newPos.getY() > 11) return false;
         if (level.getExitDoor().getPosition().equals(newPos)) return false;
         if (level.findWall(newPos) != null) return false;
 
@@ -85,7 +85,7 @@ public class LevelController {
         for (PhysicsElement physicsElement : level.getPhysicsElements()) {
             Position below = new Position(physicsElement.getPosition().getX(), physicsElement.getPosition().getY()+1);
             if (level.findElement(below) == null) {
-                physicsElement.drop();
+				physicsElement.drop();
             }
         }
     }

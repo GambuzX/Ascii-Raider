@@ -116,10 +116,12 @@ public class Level {
     }
 
     public Element findElement(Position pos) {
+
         for (Element element : getElements()) {
             if (element.getPosition().equals(pos)) {
                 return element;
             }
+
         }
         return null;
     }
