@@ -59,6 +59,22 @@ public class Application {
         };
         input_t.start();
 
+        Thread physics_t = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        levelController.handlePhysics();
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(isInterrupted()) break;
+                }
+            }
+        };
+        physics_t.start();
+
         /*
         while(!levelManager.isGameFinished()) {
             try {

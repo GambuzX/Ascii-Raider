@@ -80,4 +80,14 @@ public class LevelController {
         return levelManager.getCurrentLevel();
     }
 
+    public void handlePhysics() {
+        Level level = getCurrentLevel();
+        for (PhysicsElement physicsElement : level.getPhysicsElements()) {
+            Position below = new Position(physicsElement.getPosition().getX(), physicsElement.getPosition().getY()+1);
+            if (level.findElement(below) == null) {
+                physicsElement.drop();
+            }
+        }
+    }
+
 }

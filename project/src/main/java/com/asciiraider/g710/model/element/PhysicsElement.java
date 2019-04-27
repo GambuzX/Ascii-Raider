@@ -7,4 +7,8 @@ public abstract class PhysicsElement extends DestructibleElement {
     public PhysicsElement(Position position, Symbol symbol) {
         super(position, symbol);
     }
+
+    public void drop() {
+        setPosition(new Position(getPosition().getX(), getPosition().getY()+1));
+    }
 }

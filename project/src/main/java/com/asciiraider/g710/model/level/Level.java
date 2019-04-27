@@ -168,4 +168,12 @@ public class Level {
             }
         }
     }
+
+    public List<PhysicsElement> getPhysicsElements() {
+        List<PhysicsElement> physicsElements = new ArrayList<>();
+        physicsElements.addAll(boulders);
+        physicsElements.addAll(keys);
+        physicsElements.addAll(tnt);
+        return physicsElements;
+    }
 }
