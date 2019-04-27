@@ -20,7 +20,6 @@ public class Application {
         LevelView levelView = null;
         try {
             levelView = new LevelView(18, 12, 48);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

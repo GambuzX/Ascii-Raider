@@ -19,7 +19,6 @@ import java.util.List;
 
 public class LevelView {
     private final TerminalScreen screen;
-
     public LevelView(int width, int height, int size) throws IOException {
         Font font = new Font("DejaVu Sans Mono", Font.PLAIN,  size);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);

@@ -28,7 +28,6 @@ public class LevelController {
                 getCurrentLevel().getPlayer().moveLeft();
                 break;
         }
-
     }
 
     public Level getCurrentLevel() {
