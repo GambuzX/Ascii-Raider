@@ -1,7 +1,9 @@
 package com.asciiraider.g710.controller;
 
+import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.Level;
 import com.asciiraider.g710.model.level.LevelManager;
+import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
 public class LevelController {
@@ -14,20 +16,64 @@ public class LevelController {
     }
 
     public void handleKeyPress(Event event) {
+        Player player = getCurrentLevel().getPlayer();
+        Position newPos = null;
+        Position delimPos = null;
         switch (event){
             case UP_KEY:
-                getCurrentLevel().getPlayer().moveUp();
+                newPos = player.moveUp();
+                delimPos = new Position(newPos);
+                if (delimPos.getY() > 0) delimPos.setY(delimPos.getY()-1);
                 break;
             case DOWN_KEY:
-                getCurrentLevel().getPlayer().moveDown();
+                newPos = player.moveDown();
+                delimPos = new Position(newPos);
+                delimPos.setY(delimPos.getY()+1);
                 break;
             case RIGHT_KEY:
-                getCurrentLevel().getPlayer().moveRight();
+                newPos = player.moveRight();
+                delimPos = new Position(newPos);
+                delimPos.setX(delimPos.getX()+1);
                 break;
             case LEFT_KEY:
-                getCurrentLevel().getPlayer().moveLeft();
+                newPos = player.moveLeft();
+                delimPos = new Position(newPos);
+                if (delimPos.getX() > 0) delimPos.setX(delimPos.getX()-1);
                 break;
         }
+
+        if (canMovePlayerTo(newPos, delimPos))
+            player.setPosition(newPos);
+    }
+
+    private boolean canMovePlayerTo(Position newPos, Position delimPos) {
+        Level level = getCurrentLevel();
+
+        if (newPos == null || newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 17 || newPos.getY() > 11) return false;
+        if (level.getExitDoor().getPosition().equals(newPos)) return false;
+        if (level.findWall(newPos) != null) return false;
+
+        Boulder boulder = level.findBoulder(newPos);
+        if (boulder != null) {
+            if (level.findElement(delimPos) != null) return false;
+            boulder.setPosition(delimPos);
+            return true;
+        }
+
+        LevelKey key = level.findKey(newPos);
+        if (key != null) {
+            if (level.findElement(delimPos) != null) return false;
+            key.setPosition(delimPos);
+            return true;
+        }
+
+        Sand sandBlock = level.findSandBlock(newPos);
+        if (sandBlock != null) {
+            level.removeSandBlock(newPos);
+            return true;
+        }
+
+        return true;
     }
 
     public Level getCurrentLevel() {

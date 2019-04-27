@@ -1,6 +1,7 @@
 package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,6 @@ public class Level {
     private List<LevelKey> keys = new ArrayList<>();
     private List<TNT> tnt = new ArrayList<>();
     private List<Enemy> enemies = new ArrayList<>();
-
-    public Level() {
-
-    }
 
     public void reset() {
         player = null;
@@ -116,5 +113,59 @@ public class Level {
 
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
+    }
+
+    public Element findElement(Position pos) {
+        for (Element element : getElements()) {
+            if (element.getPosition().equals(pos)) {
+                return element;
+            }
+        }
+        return null;
+    }
+
+    public Wall findWall(Position pos) {
+        for(Wall wall : walls) {
+            if (wall.getPosition().equals(pos)) {
+                return wall;
+            }
+        }
+        return null;
+    }
+
+    public Boulder findBoulder(Position pos) {
+        for(Boulder boulder : boulders) {
+            if (boulder.getPosition().equals(pos)) {
+                return boulder;
+            }
+        }
+        return null;
+    }
+
+    public LevelKey findKey(Position pos) {
+        for(LevelKey key : keys) {
+            if (key.getPosition().equals(pos)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    public Sand findSandBlock(Position pos) {
+        for (Sand sand : sandBlocks) {
+            if (sand.getPosition().equals(pos)) {
+                return sand;
+            }
+        }
+        return null;
+    }
+
+    public void removeSandBlock(Position pos) {
+        for (Sand sandBlock : sandBlocks) {
+            if (sandBlock.getPosition().equals(pos)){
+                sandBlocks.remove(sandBlock);
+                break;
+            }
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.asciiraider.g710.model.element;
 
+import com.asciiraider.g710.model.utilities.Position;
+
 public interface Movable {
-    void moveUp();
-    void moveDown();
-    void moveLeft();
-    void moveRight();
+    Position moveUp();
+    Position moveDown();
+    Position moveLeft();
+    Position moveRight();
 }

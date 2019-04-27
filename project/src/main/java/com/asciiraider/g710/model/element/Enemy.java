@@ -12,30 +12,30 @@ public class Enemy extends DestructibleElement implements Movable, Explosive{
     }
 
     @Override
-    public void moveUp() {
+    public Position moveUp() {
         Position newPos = this.getPosition();
         newPos.setY(newPos.getY()-1);
-        this.setPosition(newPos);
+        return newPos;
     }
 
     @Override
-    public void moveDown() {
+    public Position moveDown() {
         Position newPos = this.getPosition();
         newPos.setY(newPos.getY()+1);
-        this.setPosition(newPos);
+        return newPos;
     }
 
     @Override
-    public void moveLeft() {
+    public Position moveLeft() {
         Position newPos = this.getPosition();
         newPos.setX(newPos.getX()-1);
-        this.setPosition(newPos);
+        return newPos;
     }
 
     @Override
-    public void moveRight() {
+    public Position moveRight() {
         Position newPos = this.getPosition();
         newPos.setX(newPos.getX()+1);
-        this.setPosition(newPos);
+        return newPos;
     }
 }

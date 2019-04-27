@@ -47,6 +47,7 @@ public class Application {
             }
         };
         draw_t.start();
+
         Thread input_t = new Thread() {
             @Override
             public void run(){
