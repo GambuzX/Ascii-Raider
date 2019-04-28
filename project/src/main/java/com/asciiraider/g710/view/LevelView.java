@@ -2,17 +2,12 @@ package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.Level;
-import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.model.utilities.Symbol;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,23 +27,14 @@ public class LevelView {
 		screen.doResizeIfNecessary();
 	}
 
-	public void drawElements(Level level) throws IOException {
+	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
+	public synchronized void drawElements(Level level) throws IOException {
 		screen.clear();
 		TextGraphics graphics = screen.newTextGraphics();
 		List<Element> levelEles = level.getElements();
 		for (Element ele : levelEles)
-			drawElement(ele, graphics);
+			ele.draw(graphics);
 		screen.refresh();
-	}
-
-	private void drawElement(@NotNull Element ele, @NotNull TextGraphics graphics) {
-		Position pos = ele.getPosition();
-		Symbol sym = ele.getSymbol();
-
-		graphics.setForegroundColor(TextColor.Factory.fromString(sym.getForegroundColorString()));
-		graphics.setBackgroundColor(TextColor.Factory.fromString(sym.getBackgroundColorString()));
-		graphics.putString(new TerminalPosition(pos.getX(), pos.getY()), ""+sym.getAscii());
-
 	}
 
 	public Event getKey() {

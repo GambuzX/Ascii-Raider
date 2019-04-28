@@ -23,22 +23,19 @@ public class LevelController {
 			case UP_KEY:
 				newPos = player.moveUp();
 				delimPos = new Position(newPos);
-				//if (delimPos.getY() > 0) delimPos.setY(delimPos.getY()-1);
 				break;
 			case DOWN_KEY:
 				newPos = player.moveDown();
-				delimPos = new Position(newPos);
-				delimPos.setY(delimPos.getY()+1);
+				delimPos = newPos.getBelow();
 				break;
 			case RIGHT_KEY:
 				newPos = player.moveRight();
-				delimPos = new Position(newPos);
-				delimPos.setX(delimPos.getX()+1);
+				delimPos = newPos.getRightSide();
 				break;
 			case LEFT_KEY:
 				newPos = player.moveLeft();
-				delimPos = new Position(newPos);
-				if (delimPos.getX() > 0) delimPos.setX(delimPos.getX()-1);
+				if (newPos.getX() > 0) delimPos = newPos.getLeftSide();
+				else delimPos = newPos;
 				break;
 		}
 
@@ -90,7 +87,7 @@ public class LevelController {
 	public void handlePhysics() {
 		Level level = getCurrentLevel();
 		for (PhysicsElement physicsElement : level.getPhysicsElements()) {
-			Position below = new Position(physicsElement.getPosition().getX(), physicsElement.getPosition().getY()+1);
+			Position below = physicsElement.getPosition().getBelow();
 			if (level.findElement(below) == null) {
 				physicsElement.drop();
 			}
@@ -98,13 +95,13 @@ public class LevelController {
 	}
 
 	public void handleKeyProgress(){
-		Position aboveDoor = new Position(getCurrentLevel().getExitDoor().getPosition().getX(), getCurrentLevel().getExitDoor().getPosition().getY() - 1);
+		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
 		getCurrentLevel().removeKey(aboveDoor);
 	}
 
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets
 	public boolean levelFinished(){
-		Position aboveDoor = new Position(getCurrentLevel().getExitDoor().getPosition().getX(), getCurrentLevel().getExitDoor().getPosition().getY() - 1);
+		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
 		return getCurrentLevel().getPlayer().getPosition().equals(aboveDoor) && getCurrentLevel().getKeys().size() == 0;
 	}
 }

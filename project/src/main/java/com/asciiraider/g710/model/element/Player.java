@@ -13,29 +13,21 @@ public class Player extends DestructibleElement implements Movable {
 
     @Override
     public Position moveUp() {
-        Position newPos = new Position(this.getPosition());
-        newPos.setY(newPos.getY()-1);
-        return newPos;
+         return this.getPosition().getAbove();
     }
 
     @Override
     public Position moveDown() {
-        Position newPos = new Position(this.getPosition());
-        newPos.setY(newPos.getY()+1);
-        return newPos;
+        return this.getPosition().getBelow();
     }
 
     @Override
     public Position moveLeft() {
-        Position newPos = new Position(this.getPosition());
-        newPos.setX(newPos.getX()-1);
-        return newPos;
+        return this.getPosition().getLeftSide();
     }
 
     @Override
     public Position moveRight() {
-        Position newPos = new Position(this.getPosition());
-        newPos.setX(newPos.getX()+1);
-        return newPos;
+        return this.getPosition().getRightSide();
     }
 }

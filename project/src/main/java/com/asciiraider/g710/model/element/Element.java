@@ -2,8 +2,11 @@ package com.asciiraider.g710.model.element;
 
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
-abstract public class Element implements Cloneable {
+abstract public class Element implements Cloneable, Drawable {
 	private Position position;
 	private Symbol symbol;
 
@@ -36,5 +39,12 @@ abstract public class Element implements Cloneable {
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+
+	@Override
+	public void draw(TextGraphics graphics) {
+		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
+		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
+		graphics.putString(new TerminalPosition(position.getX(), position.getY()), ""+symbol.getAscii());
 	}
 }

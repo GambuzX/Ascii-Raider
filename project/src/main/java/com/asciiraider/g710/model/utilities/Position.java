@@ -39,6 +39,24 @@ public class Position {
 		this.y = y;
 	}
 
+	// TODO: fazer controlo aqui do erro??
+	public Position getAbove() throws IllegalArgumentException{
+		return new Position(this.x, this.y - 1);
+	}
+
+	public Position getBelow(){
+		return new Position(this.x, this.y + 1);
+	}
+
+	public Position getRightSide() {
+		return new Position(this.x + 1, this.y);
+	}
+
+	public Position getLeftSide() throws IllegalArgumentException{
+		return new Position(this.x - 1, this.y);
+	}
+
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == null) return false;

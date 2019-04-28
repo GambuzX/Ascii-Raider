@@ -9,6 +9,6 @@ public abstract class PhysicsElement extends DestructibleElement {
     }
 
     public void drop() {
-        setPosition(new Position(getPosition().getX(), getPosition().getY()+1));
+        setPosition(this.getPosition().getBelow());
     }
 }
