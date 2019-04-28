@@ -5,7 +5,7 @@ import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
 public class LevelKey extends PhysicsElement{
-    private static final Symbol levelKeySymbol = new Symbol('⌾', new HexColorString("0000ff"));
+    private static final Symbol levelKeySymbol = new Symbol('✪', new HexColorString("0000ff"));
 
     public LevelKey(Position position) {
         super(position, levelKeySymbol);

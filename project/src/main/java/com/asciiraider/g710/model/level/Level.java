@@ -153,10 +153,9 @@ public class Level {
 		return null;
 	}
 
-	public void removeKey() {
-		Position aboveDoor = new Position(exitDoor.getPosition().getX(), exitDoor.getPosition().getY() - 1);
+	public void removeKey(Position pos) {
 		for (LevelKey levelKey : keys) {
-			if (levelKey.getPosition().equals(aboveDoor)){
+			if (levelKey.getPosition().equals(pos)){
 				keys.remove(levelKey);
 				break;
 			}

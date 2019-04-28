@@ -98,7 +98,8 @@ public class LevelController {
 	}
 
 	public void handleKeyProgress(){
-		getCurrentLevel().removeKey();
+		Position aboveDoor = new Position(getCurrentLevel().getExitDoor().getPosition().getX(), getCurrentLevel().getExitDoor().getPosition().getY() - 1);
+		getCurrentLevel().removeKey(aboveDoor);
 	}
 
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets

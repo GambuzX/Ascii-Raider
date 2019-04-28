@@ -12,6 +12,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class LevelView {
 		screen.refresh();
 	}
 
-	private void drawElement(Element ele, TextGraphics graphics) {
+	private void drawElement(@NotNull Element ele, @NotNull TextGraphics graphics) {
 		Position pos = ele.getPosition();
 		Symbol sym = ele.getSymbol();
 
