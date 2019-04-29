@@ -87,8 +87,6 @@ public class HexColorStringTest {
 		assertEquals("nao deveria funcionar", mockColor.getColor());
 	}
 
-
-	// TODO: ainda nao esta independente de isValidHexColor
 	@Test(expected = IllegalArgumentException.class)
 	public void hexColor1(){
 		HexColorString color = new HexColorString("qwe");

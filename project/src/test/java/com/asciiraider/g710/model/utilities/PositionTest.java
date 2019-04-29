@@ -99,4 +99,42 @@ public class PositionTest {
 		positions.get(1).setY(2);
 		assertFalse(positions.get(0).equals(4));
 	}
+
+	@Test
+	public void positionEquals4() {
+		assertFalse(positions.get(0).equals(null));
+	}
+
+	@Test
+	public void above1(){
+		assertEquals(new Position(2, 3), positions.get(1).getAbove());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void above2(){
+		positions.get(1).setY(0);
+		positions.get(1).getAbove();
+	}
+
+	@Test
+	public void below1(){
+		assertEquals(new Position(2, 5), positions.get(1).getBelow());
+	}
+
+	@Test
+	public void rightSide1(){
+		assertEquals(new Position(3, 4), positions.get(1).getRightSide());
+	}
+
+	@Test
+	public void leftSide1(){
+		assertEquals(new Position(1, 4), positions.get(1).getLeftSide());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void leftSide2(){
+		positions.get(1).setX(0);
+		positions.get(1).getLeftSide();
+	}
+
 }
