@@ -14,25 +14,25 @@ public class LevelBuilder {
 	private static final int lvlCount = 2;
 
 	// TODO: ver isto de protected vs package-private
-	List<Level> buildAllLevels() {
-		List<Level> levels = new ArrayList<>();
+	List<LevelModel> buildAllLevels() {
+		List<LevelModel> levelModels = new ArrayList<>();
 		for (int i = 1 ; i <= lvlCount; i++) {
 			try {
-				levels.add( buildLevel(i) );
+				levelModels.add( buildLevel(i) );
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		return levels;
+		return levelModels;
 	}
 
-	private Level buildLevel(int levelNumber) throws IOException {
+	private LevelModel buildLevel(int levelNumber) throws IOException {
 		List<String> levelLines = readLevelFile(levelNumber);
 		return buildLevelFromFile(levelLines);
 	}
 
-	private Level buildLevelFromFile(List<String> levelLines) {
-		Level newLevel = new Level();
+	private LevelModel buildLevelFromFile(List<String> levelLines) {
+		LevelModel newLevelModel = new LevelModel();
 		for (int row = 0; row < levelLines.size(); row++) {
 			for (int col = 0; col < levelLines.get(0).length(); col++) {
 
@@ -41,36 +41,36 @@ public class LevelBuilder {
 
 				switch(curr) {
 					case 'W':
-						newLevel.addWall(new Wall(pos));
+						newLevelModel.addWall(new Wall(pos));
 						break;
 					case 'S':
-						newLevel.addStoneBlock(new StoneBlock(pos));
+						newLevelModel.addStoneBlock(new StoneBlock(pos));
 						break;
 					case 'B':
-						newLevel.addBoulder(new Boulder(pos));
+						newLevelModel.addBoulder(new Boulder(pos));
 						break;
 					case 'P':
-						newLevel.setPlayer(new Player(pos));
+						newLevelModel.setPlayer(new Player(pos));
 						break;
 					case 'E':
-						newLevel.addEnemy(new Enemy(pos));
+						newLevelModel.addEnemy(new Enemy(pos));
 						break;
 					case 'T':
-						newLevel.addTNT(new TNT(pos));
+						newLevelModel.addTNT(new TNT(pos));
 						break;
 					case 's':
-						newLevel.addSandBlock(new Sand(pos));
+						newLevelModel.addSandBlock(new Sand(pos));
 						break;
 					case 'K':
-						newLevel.addKey(new LevelKey(pos));
+						newLevelModel.addKey(new LevelKey(pos));
 						break;
 					case 'D':
-						newLevel.setExitDoor(new ExitDoor(pos));
+						newLevelModel.setExitDoor(new ExitDoor(pos));
 						break;
 				}
 			}
 		}
-		return newLevel;
+		return newLevelModel;
 	}
 
 	private List<String> readLevelFile(int levelNumber) throws IOException {

@@ -7,7 +7,7 @@ public class LevelManager {
 
 	private static LevelManager instance;
 	private LevelBuilder lvlBuilder;
-	private List<Level> levels;
+	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
 	private boolean finishedGame;
 
@@ -31,8 +31,8 @@ public class LevelManager {
 		return currentLevelIndex;
 	}
 
-	public Level getCurrentLevel() {
-		return levels.get(currentLevelIndex % levels.size());
+	public LevelModel getCurrentLevel() {
+		return levelModels.get(currentLevelIndex % levelModels.size());
 	}
 
 	public boolean isGameFinished() {
@@ -43,7 +43,7 @@ public class LevelManager {
 		currentLevelIndex = 0;
 		finishedGame = false;
 		lvlBuilder = new LevelBuilder();
-		levels = lvlBuilder.buildAllLevels();
+		levelModels = lvlBuilder.buildAllLevels();
 	}
 
 }
