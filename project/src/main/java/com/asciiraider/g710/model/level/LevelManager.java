@@ -5,21 +5,21 @@ import java.util.List;
 // TODO: continuar a testar
 public class LevelManager {
 
-	private static LevelManager instance;
 	private LevelBuilder lvlBuilder;
 	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
 	private boolean finishedGame;
 
-	public static LevelManager getInstance() {
-		if (instance == null) {
-			instance = new LevelManager();
-		}
-		return instance;
+	public LevelManager() {
+		currentLevelIndex = 0;
+		finishedGame = false;
+		lvlBuilder = new LevelBuilder();
+		levelModels = lvlBuilder.buildAllLevels();
 	}
 
 	public void resetLevel() {
 		currentLevelIndex = 0;
+		levelModels = lvlBuilder.buildAllLevels();
 	}
 
 	public void nextLevel() {
@@ -39,11 +39,5 @@ public class LevelManager {
 		return finishedGame;
 	}
 
-	private LevelManager() {
-		currentLevelIndex = 0;
-		finishedGame = false;
-		lvlBuilder = new LevelBuilder();
-		levelModels = lvlBuilder.buildAllLevels();
-	}
 
 }

@@ -11,7 +11,6 @@ public class LevelController {
 	private LevelManager levelManager;
 
 	public LevelController(LevelManager levelManager) {
-
 		this.levelManager = levelManager;
 	}
 
