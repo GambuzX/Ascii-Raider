@@ -84,7 +84,7 @@ public class LevelController {
 		return true;
 	}
 
-	public void handlePhysics() {
+	public synchronized void handlePhysics() {
 		Level level = getCurrentLevel();
 		for (PhysicsElement physicsElement : level.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();

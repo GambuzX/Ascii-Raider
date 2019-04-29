@@ -2,7 +2,11 @@ package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.Level;
+import com.asciiraider.g710.model.utilities.Position;
+import com.asciiraider.g710.model.utilities.Symbol;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -33,9 +37,19 @@ public class LevelView {
 		TextGraphics graphics = screen.newTextGraphics();
 		List<Element> levelEles = level.getElements();
 		for (Element ele : levelEles)
-			ele.draw(graphics);
+			drawElement(graphics, ele);
 		screen.refresh();
 	}
+
+	public void drawElement(TextGraphics graphics, Element element) {
+		Symbol symbol = element.getSymbol();
+		Position position = element.getPosition();
+
+		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
+		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
+		graphics.putString(new TerminalPosition(position.getX(), position.getY()), ""+symbol.getAscii());
+	}
+
 
 	public Event getKey() {
 		try {

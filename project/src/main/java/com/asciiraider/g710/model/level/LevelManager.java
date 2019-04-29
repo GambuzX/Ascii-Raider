@@ -23,8 +23,9 @@ public class LevelManager {
 	}
 
 	public void nextLevel() {
-		if (currentLevelIndex >= levels.size()) finishedGame = true;
 		currentLevelIndex++;
+		System.out.println(currentLevelIndex);
+		if (currentLevelIndex >= levels.size()) finishedGame = true;
 	}
 
 	public int getCurrentLevelIndex() {
@@ -40,7 +41,7 @@ public class LevelManager {
 	}
 
 	private LevelManager() {
-		currentLevelIndex = 0;
+		currentLevelIndex = 1;
 		finishedGame = false;
 		lvlBuilder = new LevelBuilder();
 		levels = lvlBuilder.buildAllLevels();

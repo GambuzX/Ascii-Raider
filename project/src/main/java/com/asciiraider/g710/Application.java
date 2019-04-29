@@ -70,6 +70,7 @@ public class Application {
 					}
 					if(isInterrupted()) break;
 				}
+
 			}
 		};
 		draw_t.start();
@@ -79,6 +80,12 @@ public class Application {
 
 
 		physics_t.start();
+
+		while(!levelManager.isGameFinished()){}
+		draw_t.interrupt();
+		input_t.interrupt();
+		physics_t.interrupt();
+
 
         /*
         while(!levelManager.isGameFinished()) {
