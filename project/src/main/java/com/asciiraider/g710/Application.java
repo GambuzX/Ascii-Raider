@@ -14,7 +14,7 @@ public class Application {
 	private void run() {
 		System.out.println("Hello World");
 
-		LevelManager levelManager = LevelManager.getInstance();
+		LevelManager levelManager = new LevelManager();
 
 		LevelController levelController = new LevelController(levelManager);
 		LevelView levelView = null;
