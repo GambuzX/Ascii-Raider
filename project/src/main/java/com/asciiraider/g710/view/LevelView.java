@@ -32,13 +32,18 @@ public class LevelView extends View<LevelModel>{
 	}
 
 	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
-	public synchronized void draw(LevelModel levelModel) throws IOException {
+	public synchronized void draw(LevelModel levelModel) {
 		screen.clear();
 		TextGraphics graphics = screen.newTextGraphics();
 		List<Element> levelEles = levelModel.getElements();
 		for (Element ele : levelEles)
 			drawElement(graphics, ele);
-		screen.refresh();
+
+		try {
+			screen.refresh();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void drawElement(TextGraphics graphics, Element element) {
@@ -58,5 +63,13 @@ public class LevelView extends View<LevelModel>{
 			e.printStackTrace();
 		}
 		return Event.OTHER;
+	}
+
+	public void exit() {
+		try {
+			this.screen.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
