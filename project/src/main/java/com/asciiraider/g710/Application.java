@@ -35,23 +35,8 @@ public class Application {
 		Thread input_t = new Thread() {
 			@Override
 			public void run(){
-				while (true){
+				while (!levelManager.isGameFinished()) {
 					levelController.handleKeyPress(finalLevelView.getKey());
-					if(isInterrupted()) break;
-				}
-			}
-		};
-
-		Thread physics_t = new Thread() {
-			@Override
-			public void run() {
-				while (true) {
-					try {
-						levelController.handlePhysics();
-						Thread.sleep(300);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 					if(isInterrupted()) break;
 				}
 			}
@@ -60,7 +45,7 @@ public class Application {
 		Thread draw_t = new Thread() {
 			@Override
 			public void run(){
-				while (true){
+				while (!levelManager.isGameFinished()) {
 					try {
 						levelController.handleKeyProgress();
 						finalLevelView.drawElements(levelManager.getCurrentLevel());
@@ -73,6 +58,22 @@ public class Application {
 
 			}
 		};
+
+		Thread physics_t = new Thread() {
+			@Override
+			public void run() {
+				while (!levelManager.isGameFinished()) {
+					try {
+						levelController.handlePhysics();
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if(isInterrupted()) break;
+				}
+			}
+		};
+
 		draw_t.start();
 
 
@@ -81,22 +82,7 @@ public class Application {
 
 		physics_t.start();
 
-		while(!levelManager.isGameFinished()){}
-		draw_t.interrupt();
-		input_t.interrupt();
-		physics_t.interrupt();
 
-
-        /*
-        while(!levelManager.isGameFinished()) {
-            try {
-                levelView.handleCurrentLevel();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            levelManager.nextLevel();
-        }
-*/
 		// You win, GG
 	}
 }
