@@ -48,7 +48,7 @@ public class Application {
 				while (!levelManager.isGameFinished()) {
 					try {
 						levelController.handleKeyProgress();
-						finalLevelView.drawElements(levelManager.getCurrentLevel());
+						finalLevelView.draw(levelManager.getCurrentLevel());
 						Thread.sleep(100);
 					} catch (IOException | InterruptedException e) {
 						e.printStackTrace();

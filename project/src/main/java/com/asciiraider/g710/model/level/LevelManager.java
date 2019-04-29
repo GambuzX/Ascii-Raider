@@ -24,7 +24,7 @@ public class LevelManager {
 
 	public void nextLevel() {
 		currentLevelIndex++;
-		if (currentLevelIndex >= levels.size()) finishedGame = true;
+		if (currentLevelIndex >= levelModels.size()) finishedGame = true;
 	}
 
 	public int getCurrentLevelIndex() {
