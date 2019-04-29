@@ -1,7 +1,7 @@
 package com.asciiraider.g710.controller;
 
 import com.asciiraider.g710.model.element.*;
-import com.asciiraider.g710.model.level.Level;
+import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
@@ -46,49 +46,49 @@ public class LevelController {
 	}
 
 	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
-		Level level = getCurrentLevel();
+		LevelModel levelModel = getCurrentLevel();
 
 		if (newPos == null || newPos.getX() > 17 || newPos.getY() > 11) return false;
-		if (level.getExitDoor().getPosition().equals(newPos)) return false;
-		if (level.findWall(newPos) != null) return false;
+		if (levelModel.getExitDoor().getPosition().equals(newPos)) return false;
+		if (levelModel.findWall(newPos) != null) return false;
 
-		LevelKey key = level.findKey(newPos);
+		LevelKey key = levelModel.findKey(newPos);
 		if (key != null) {
 			return playerPhysicsElemnt(key, delimPos);
 		}
 
-		Boulder boulder = level.findBoulder(newPos);
+		Boulder boulder = levelModel.findBoulder(newPos);
 		if (boulder != null) {
 			return playerPhysicsElemnt(boulder, delimPos);
 		}
 
-		Sand sandBlock = level.findSandBlock(newPos);
+		Sand sandBlock = levelModel.findSandBlock(newPos);
 		if (sandBlock != null) {
-			level.removeSandBlock(newPos);
+			levelModel.removeSandBlock(newPos);
 			return true;
 		}
 
 		return true;
 	}
 
-	public Level getCurrentLevel() {
+	public LevelModel getCurrentLevel() {
 		return levelManager.getCurrentLevel();
 	}
 
 	// TODO: ver depois o sitio melhor
 	public boolean playerPhysicsElemnt(PhysicsElement element, Position delimPos){
-		Level level = getCurrentLevel();
-		if (level.findElement(delimPos) != null) return false;
+		LevelModel levelModel = getCurrentLevel();
+		if (levelModel.findElement(delimPos) != null) return false;
 		element.setPosition(delimPos);
 		handlePhysics();
 		return true;
 	}
 
 	public synchronized void handlePhysics() {
-		Level level = getCurrentLevel();
-		for (PhysicsElement physicsElement : level.getPhysicsElements()) {
+		LevelModel levelModel = getCurrentLevel();
+		for (PhysicsElement physicsElement : levelModel.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
-			if (level.findElement(below) == null) {
+			if (levelModel.findElement(below) == null) {
 				physicsElement.drop();
 			}
 		}

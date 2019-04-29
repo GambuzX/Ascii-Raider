@@ -63,7 +63,7 @@ public class Application {
 				while (true){
 					try {
 						levelController.handleKeyProgress();
-						finalLevelView.drawElements(levelManager.getCurrentLevel());
+						finalLevelView.draw(levelManager.getCurrentLevel());
 						Thread.sleep(100);
 					} catch (IOException | InterruptedException e) {
 						e.printStackTrace();

@@ -1,12 +1,13 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level {
+public class LevelModel extends Model {
 	private Player player;
 	private ExitDoor exitDoor;
 	private List<Wall> walls = new ArrayList<>();
