@@ -41,31 +41,49 @@ public class LevelBuilder {
 
 				switch(curr) {
 					case 'W':
-						newLevelModel.addWall(new Wall(pos));
+						Wall wall = new Wall(pos);
+						newLevelModel.addWall(wall);
+						newLevelModel.addElement(wall);
 						break;
 					case 'S':
-						newLevelModel.addStoneBlock(new StoneBlock(pos));
+						StoneBlock stoneBlock = new StoneBlock(pos);
+						newLevelModel.addStoneBlock(stoneBlock);
+						newLevelModel.addElement(stoneBlock);
 						break;
 					case 'B':
-						newLevelModel.addBoulder(new Boulder(pos));
+						Boulder boulder = new Boulder(pos);
+						newLevelModel.addBoulder(boulder);
+						newLevelModel.addElement(boulder);
 						break;
 					case 'P':
-						newLevelModel.setPlayer(new Player(pos));
+						Player player = new Player(pos);
+						newLevelModel.setPlayer(player);
+						newLevelModel.addElement(player);
 						break;
 					case 'E':
-						newLevelModel.addEnemy(new Enemy(pos));
+						Enemy enemy = new Enemy(pos);
+						newLevelModel.addEnemy(enemy);
+						newLevelModel.addElement(enemy);
 						break;
 					case 'T':
-						newLevelModel.addTNT(new TNT(pos));
+						TNT tnt = new TNT(pos);
+						newLevelModel.addTNT(tnt);
+						newLevelModel.addElement(tnt);
 						break;
 					case 's':
-						newLevelModel.addSandBlock(new Sand(pos));
+						Sand sand =  new Sand(pos);
+						newLevelModel.addSandBlock(sand);
+						newLevelModel.addElement(sand);
 						break;
 					case 'K':
-						newLevelModel.addKey(new LevelKey(pos));
+						LevelKey key = new LevelKey(pos);
+						newLevelModel.addKey(key);
+						newLevelModel.addElement(key);
 						break;
 					case 'D':
-						newLevelModel.setExitDoor(new ExitDoor(pos));
+						ExitDoor exitDoor = new ExitDoor(pos);
+						newLevelModel.setExitDoor(exitDoor);
+						newLevelModel.addElement(exitDoor);
 						break;
 				}
 			}

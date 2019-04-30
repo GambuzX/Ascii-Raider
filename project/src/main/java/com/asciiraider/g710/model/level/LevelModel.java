@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelModel extends Model {
+
+	private List<Element> elements = new ArrayList<>();
+
 	private Player player;
 	private ExitDoor exitDoor;
 	private List<Wall> walls = new ArrayList<>();
@@ -28,6 +31,10 @@ public class LevelModel extends Model {
 		keys.clear();
 		tnt.clear();
 		enemies.clear();
+	}
+
+	public void addElement(Element ele) {
+		elements.add(ele);
 	}
 
 	public List<Element> getElements() {

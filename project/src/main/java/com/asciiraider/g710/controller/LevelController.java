@@ -85,10 +85,13 @@ public class LevelController {
 
 	public synchronized void handlePhysics() {
 		LevelModel levelModel = getCurrentLevel();
-		for (PhysicsElement physicsElement : levelModel.getPhysicsElements()) {
-			Position below = physicsElement.getPosition().getBelow();
+
+		for (Element element : levelModel.getElements()) {
+			if (!(element instanceof PhysicsElement)) continue;
+
+			Position below = element.getPosition().getBelow();
 			if (levelModel.findElement(below) == null) {
-				physicsElement.drop();
+				((PhysicsElement) element).drop();
 			}
 		}
 	}
