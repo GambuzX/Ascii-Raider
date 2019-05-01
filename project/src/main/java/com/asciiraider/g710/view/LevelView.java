@@ -1,6 +1,7 @@
 package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
+import com.asciiraider.g710.model.level.LevelFacade;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
@@ -15,7 +16,6 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 
 public class LevelView extends View<LevelModel>{
 	private final TerminalScreen screen;
@@ -35,8 +35,11 @@ public class LevelView extends View<LevelModel>{
 	public synchronized void draw(LevelModel levelModel) {
 		screen.clear();
 		TextGraphics graphics = screen.newTextGraphics();
-		List<Element> levelEles = levelModel.getElements();
-		for (Element ele : levelEles)
+
+		// TODO: ver isto
+		LevelFacade levelModelF = new LevelFacade(levelModel);
+
+		for (Element ele : levelModelF.getElements())
 			drawElement(graphics, ele);
 
 		try {
