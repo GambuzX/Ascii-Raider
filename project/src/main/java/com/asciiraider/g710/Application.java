@@ -50,12 +50,12 @@ public class Application {
 						levelController.handleKeyProgress();
 						finalLevelView.draw(levelManager.getCurrentLevel());
 						Thread.sleep(100);
-					} catch (IOException | InterruptedException e) {
+					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 					if(isInterrupted()) break;
 				}
-
+				finalLevelView.exit();
 			}
 		};
 
