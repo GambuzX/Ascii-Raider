@@ -14,12 +14,16 @@ public class LevelManager {
 		currentLevelIndex = 0;
 		finishedGame = false;
 		lvlBuilder = new LevelBuilder();
-		levelModels = lvlBuilder.buildAllLevels();
+		levelModels = lvlBuilder.getLevels();
 	}
 
-	public void resetLevel() {
+	public void resetLevels() {
 		currentLevelIndex = 0;
-		levelModels = lvlBuilder.buildAllLevels();
+		levelModels = lvlBuilder.getLevels();
+	}
+
+	public void resetLevel(int levelIndex) {
+		levelModels.set(levelIndex, lvlBuilder.getLevel(levelIndex));
 	}
 
 	public void nextLevel() {

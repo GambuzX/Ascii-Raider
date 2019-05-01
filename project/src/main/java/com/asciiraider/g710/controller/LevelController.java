@@ -6,6 +6,9 @@ import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
+import java.util.List;
+import java.util.Random;
+
 public class LevelController {
 
 	private LevelManager levelManager;
@@ -47,18 +50,19 @@ public class LevelController {
 	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
 		LevelModel levelModel = getCurrentLevel();
 
-		if (newPos == null || newPos.getX() > 17 || newPos.getY() > 11) return false;
+		if (newPos == null || !insideBounds(newPos)) return false;
 		if (levelModel.getExitDoor().getPosition().equals(newPos)) return false;
 		if (levelModel.findWall(newPos) != null) return false;
+		if (levelModel.findStoneBlock(newPos) != null) return false;
 
 		LevelKey key = levelModel.findKey(newPos);
 		if (key != null) {
-			return playerPhysicsElemnt(key, delimPos);
+			return playerPhysicsElement(key, delimPos);
 		}
 
 		Boulder boulder = levelModel.findBoulder(newPos);
 		if (boulder != null) {
-			return playerPhysicsElemnt(boulder, delimPos);
+			return playerPhysicsElement(boulder, delimPos);
 		}
 
 		Sand sandBlock = levelModel.findSandBlock(newPos);
@@ -70,12 +74,12 @@ public class LevelController {
 		return true;
 	}
 
-	public LevelModel getCurrentLevel() {
+	private LevelModel getCurrentLevel() {
 		return levelManager.getCurrentLevel();
 	}
 
 	// TODO: ver depois o sitio melhor
-	public boolean playerPhysicsElemnt(PhysicsElement element, Position delimPos){
+	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
 		LevelModel levelModel = getCurrentLevel();
 		if (levelModel.findElement(delimPos) != null) return false;
 		element.setPosition(delimPos);
@@ -96,6 +100,25 @@ public class LevelController {
 	public void handleKeyProgress(){
 		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
 		getCurrentLevel().removeKey(aboveDoor);
+	}
+
+	public void moveEnemies() {
+		LevelModel levelModel = getCurrentLevel();
+		for (Enemy enemy : levelModel.getEnemies()) {
+			List<Position> adj = levelModel.getAdjacentEmptyPositions(enemy.getPosition());
+			for (Position pos : adj) {
+				if (!insideBounds(pos)) {
+					adj.remove(pos);
+				}
+			}
+			if (adj.size()==0) return;
+
+			enemy.move(adj.get(new Random().nextInt(adj.size())));
+		}
+	}
+
+	private boolean insideBounds(Position pos) {
+		return pos.getX() >= 0 && pos.getX() < 17 && pos.getY() >= 0 && pos.getY() < 12;
 	}
 
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets

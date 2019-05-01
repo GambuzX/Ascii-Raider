@@ -12,9 +12,22 @@ import java.util.List;
 
 public class LevelBuilder {
 	private static final int lvlCount = 3;
+	private List<LevelModel> levels = new ArrayList<>();
+
+	public LevelBuilder() {
+		this.buildAllLevels();
+	}
+
+	public List<LevelModel> getLevels() {
+		return levels;
+	}
+
+	public LevelModel getLevel(int levelNumber) {
+		return levels.get(levelNumber%levels.size());
+	}
 
 	// TODO: ver isto de protected vs package-private
-	List<LevelModel> buildAllLevels() {
+	private void buildAllLevels() {
 		List<LevelModel> levelModels = new ArrayList<>();
 		for (int i = 1 ; i <= lvlCount; i++) {
 			try {
@@ -23,7 +36,7 @@ public class LevelBuilder {
 				e.printStackTrace();
 			}
 		}
-		return levelModels;
+		levels = levelModels;
 	}
 
 	private LevelModel buildLevel(int levelNumber) throws IOException {

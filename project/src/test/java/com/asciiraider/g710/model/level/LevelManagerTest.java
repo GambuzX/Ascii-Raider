@@ -5,17 +5,17 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class LevelManagerTest {
-	private LevelManager levelManager = LevelManager.getInstance();
+	private LevelManager levelManager = new LevelManager();
 
 	@Test
 	public void currentLevel1(){
-		levelManager.resetLevel();
+		levelManager.resetLevels();
 		assertEquals(0, levelManager.getCurrentLevelIndex());
 	}
 
 	@Test
 	public void nextLevel1(){
-		levelManager.resetLevel();
+		levelManager.resetLevels();
 
 		levelManager.nextLevel();
 		assertEquals(1, levelManager.getCurrentLevelIndex());
@@ -23,16 +23,17 @@ public class LevelManagerTest {
 
 	@Test
 	public void nextLevel2(){
-
+		levelManager.resetLevels();
+		levelManager.nextLevel();
 		levelManager.nextLevel();
 		assertEquals(2, levelManager.getCurrentLevelIndex());
 	}
 
 	@Test
 	public void resetLevel(){
-		levelManager.resetLevel();
+		levelManager.resetLevels();
 		levelManager.nextLevel();
-		levelManager.resetLevel();
+		levelManager.resetLevels();
 		assertEquals(levelManager.getCurrentLevelIndex(), 0);
 	}
 }
