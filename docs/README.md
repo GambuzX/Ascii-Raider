@@ -14,6 +14,9 @@
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
+### Facade
+To keep the Model class as dumb as possible (namely the LevelModel) we added kind of a Facade class to organize the data as we want: objects in different lists may have similar traits but this Model should not have to know how to regroup them and their properties, it should only be a place to store the data about the Level. 
+
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
