@@ -14,7 +14,7 @@
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
-# Facade
+### Facade
 To keep the Model class as dumb as possible (namely the LevelModel) we added kind of a Facade class to organize the data as we want: objects in different lists may have similar traits but this Model should not have to know how to regroup them and their properties, it should only be a place to store the data about the Level. 
 
 ## Known Code Smells and Refactoring Suggestions
