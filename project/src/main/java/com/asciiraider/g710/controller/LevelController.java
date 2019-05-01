@@ -6,6 +6,7 @@ import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -43,6 +44,11 @@ public class LevelController {
 
 		if (canMovePlayerTo(newPos, delimPos))
 			player.setPosition(newPos);
+
+		if (isPlayerCollidingEnemy()) {
+			levelManager.finishGame();
+		}
+
 		if(levelFinished())
 			levelManager.nextLevel();
 	}
@@ -105,7 +111,7 @@ public class LevelController {
 	public void moveEnemies() {
 		LevelModel levelModel = getCurrentLevel();
 		for (Enemy enemy : levelModel.getEnemies()) {
-			List<Position> adj = levelModel.getAdjacentEmptyPositions(enemy.getPosition());
+			List<Position> adj = getAdjacentEmptyPositions(enemy.getPosition());
 			for (Position pos : adj) {
 				if (!insideBounds(pos)) {
 					adj.remove(pos);
@@ -117,8 +123,39 @@ public class LevelController {
 		}
 	}
 
+	public List<Position> getAdjacentEmptyPositions(Position pos) {
+		LevelModel levelModel = getCurrentLevel();
+		List<Position> adj = new ArrayList<>();
+		Player player = levelModel.getPlayer();
+
+		Element ele;
+		ele = levelModel.findElement(pos.getAbove());
+		if (ele == null || ele.equals(player)) adj.add(pos.getAbove());
+
+		ele = levelModel.findElement(pos.getBelow());
+		if (ele == null || ele.equals(player)) adj.add(pos.getBelow());
+
+		ele = levelModel.findElement(pos.getLeftSide());
+		if (ele == null || ele.equals(player)) adj.add(pos.getLeftSide());
+
+		ele = levelModel.findElement(pos.getRightSide());
+		if (ele == null || ele.equals(player)) adj.add(pos.getRightSide());
+
+		return adj;
+	}
+
 	private boolean insideBounds(Position pos) {
 		return pos.getX() >= 0 && pos.getX() < 17 && pos.getY() >= 0 && pos.getY() < 12;
+	}
+
+	public boolean isPlayerCollidingEnemy() {
+		LevelModel levelModel = getCurrentLevel();
+		for (Enemy enemy : levelModel.getEnemies()) {
+			if (enemy.getPosition().equals(levelModel.getPlayer().getPosition())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets

@@ -9,10 +9,12 @@ public class LevelManager {
 	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
 	private boolean finishedGame;
+	private boolean wonGame;
 
 	public LevelManager() {
 		currentLevelIndex = 0;
 		finishedGame = false;
+		wonGame = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();
 	}
@@ -28,7 +30,10 @@ public class LevelManager {
 
 	public void nextLevel() {
 		currentLevelIndex++;
-		if (currentLevelIndex >= levelModels.size()) finishedGame = true;
+		if (currentLevelIndex >= levelModels.size()) {
+			wonGame = true;
+			finishedGame = true;
+		}
 	}
 
 	public int getCurrentLevelIndex() {
@@ -41,6 +46,14 @@ public class LevelManager {
 
 	public boolean isGameFinished() {
 		return finishedGame;
+	}
+
+	public void finishGame() {
+		finishedGame = true;
+	}
+
+	public boolean wonGame() {
+		return wonGame;
 	}
 
 

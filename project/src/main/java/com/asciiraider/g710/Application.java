@@ -49,6 +49,7 @@ public class Application {
 					try {
 						levelController.handleKeyProgress();
 						levelController.moveEnemies();
+						if (levelController.isPlayerCollidingEnemy()) break;
 						finalLevelView.draw(levelManager.getCurrentLevel());
 						Thread.sleep(200);
 					} catch (InterruptedException e) {
@@ -56,6 +57,12 @@ public class Application {
 					}
 					if(isInterrupted()) break;
 				}
+
+				if (levelManager.wonGame())
+					System.out.println("GG you win|");
+				else
+					System.out.println("Game over");
+
 				finalLevelView.exit();
 			}
 		};

@@ -216,15 +216,4 @@ public class LevelModel extends Model {
 		return null;
 	}
 
-	public List<Position> getAdjacentEmptyPositions(Position pos) {
-		List<Position> adj = new ArrayList<>();
-
-		if (findElement(pos.getAbove()) == null) adj.add(pos.getAbove());
-		if (findElement(pos.getBelow()) == null) adj.add(pos.getBelow());
-		if (findElement(pos.getLeftSide()) == null) adj.add(pos.getLeftSide());
-		if (findElement(pos.getRightSide()) == null) adj.add(pos.getRightSide());
-
-		return adj;
-	}
-
 }
