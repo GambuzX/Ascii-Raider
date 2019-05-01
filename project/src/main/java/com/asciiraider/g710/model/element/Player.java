@@ -5,7 +5,7 @@ import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
 public class Player extends DestructibleElement implements Movable {
-    private static final Symbol playerSymbol = new Symbol('☻', new HexColorString("ff00e5"));
+    private static final Symbol playerSymbol = new Symbol('☻', new HexColorString("ff007f"));
 
     public Player(Position position) {
         super(position, playerSymbol);

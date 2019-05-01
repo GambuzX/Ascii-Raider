@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private static final int lvlCount = 2;
+	private static final int lvlCount = 3;
 
 	// TODO: ver isto de protected vs package-private
 	List<LevelModel> buildAllLevels() {
@@ -66,6 +66,12 @@ public class LevelBuilder {
 						break;
 					case 'D':
 						newLevelModel.setExitDoor(new ExitDoor(pos));
+						break;
+					case 'd':
+						newLevelModel.setDoor(new Door(pos));
+						break;
+					case 'k':
+						newLevelModel.setDoorKey(new DoorKey(pos));
 						break;
 				}
 			}

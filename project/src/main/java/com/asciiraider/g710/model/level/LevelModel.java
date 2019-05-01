@@ -17,6 +17,8 @@ public class LevelModel extends Model {
 	private List<LevelKey> keys = new ArrayList<>();
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
+	private Door door;
+	private DoorKey doorKey;
 
 	public void reset() {
 		player = null;
@@ -28,6 +30,8 @@ public class LevelModel extends Model {
 		keys.clear();
 		tnt.clear();
 		enemies.clear();
+		door = null;
+		doorKey = null;
 	}
 
 	public List<Element> getElements() {
@@ -41,6 +45,10 @@ public class LevelModel extends Model {
 		elements.addAll(keys);
 		elements.addAll(tnt);
 		elements.addAll(enemies);
+		if(door != null){
+			elements.add(door);
+			elements.add(doorKey);
+		}
 		return elements;
 	}
 
@@ -59,6 +67,14 @@ public class LevelModel extends Model {
 	public void setExitDoor(ExitDoor exitDoor) {
 		this.exitDoor = exitDoor;
 	}
+
+	public void setDoor(Door door) { this.door = door; }
+
+	public Door getDoor() { return this.door; }
+
+	public void setDoorKey(DoorKey doorKey) { this.doorKey = doorKey; }
+
+	public DoorKey getDoorKey() { return  this.doorKey; }
 
 	public List<Wall> getWalls() {
 		return walls;
@@ -186,6 +202,9 @@ public class LevelModel extends Model {
 		physicsElements.addAll(boulders);
 		physicsElements.addAll(keys);
 		physicsElements.addAll(tnt);
+		if(doorKey != null)
+			physicsElements.add(doorKey);
 		return physicsElements;
 	}
+
 }

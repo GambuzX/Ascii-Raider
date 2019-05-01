@@ -20,7 +20,7 @@ import java.util.List;
 public class LevelView extends View<LevelModel>{
 	private final TerminalScreen screen;
 	public LevelView(int width, int height, int size) throws IOException {
-		Font font = new Font("DejaVu Sans Mono", Font.PLAIN,  size);
+		Font font = new Font("Monospaced", Font.PLAIN,  size);
 		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
 
 		Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
