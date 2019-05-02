@@ -1,12 +1,11 @@
 package com.asciiraider.g710.controller;
 
+import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.*;
-import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -54,7 +53,7 @@ public class LevelController {
 	}
 
 	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
-		LevelModel levelModel = getCurrentLevel();
+		LevelFacade levelModel = getCurrentLevel();
 
 		if (newPos == null || !insideBounds(newPos)) return false;
 		if (levelModel.getExitDoor().getPosition().equals(newPos)) return false;
@@ -80,13 +79,13 @@ public class LevelController {
 		return true;
 	}
 
-	private LevelModel getCurrentLevel() {
-		return levelManager.getCurrentLevel();
+	private LevelFacade getCurrentLevel() {
+		return new LevelFacade(levelManager.getCurrentLevel());
 	}
 
 	// TODO: ver depois o sitio melhor
 	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
-		LevelModel levelModel = getCurrentLevel();
+		LevelFacade levelModel = getCurrentLevel();
 		if (levelModel.findElement(delimPos) != null) return false;
 		element.setPosition(delimPos);
 		handlePhysics();
@@ -94,7 +93,7 @@ public class LevelController {
 	}
 
 	public synchronized void handlePhysics() {
-		LevelModel levelModel = getCurrentLevel();
+		LevelFacade levelModel = getCurrentLevel();
 		for (PhysicsElement physicsElement : levelModel.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
 			if (levelModel.findElement(below) == null) {
@@ -109,39 +108,17 @@ public class LevelController {
 	}
 
 	public void moveEnemies() {
-		LevelModel levelModel = getCurrentLevel();
+		LevelFacade levelModel = getCurrentLevel();
 		for (Enemy enemy : levelModel.getEnemies()) {
-			List<Position> adj = getAdjacentEmptyPositions(enemy.getPosition());
-			for (Position pos : adj) {
-				if (!insideBounds(pos)) {
+			List<Position> adj = levelModel.getAdjacentEmptyPositions(enemy.getPosition());
+			for (Position pos : adj)
+				if (!insideBounds(pos))
 					adj.remove(pos);
-				}
-			}
+
 			if (adj.size()==0) return;
 
 			enemy.move(adj.get(new Random().nextInt(adj.size())));
 		}
-	}
-
-	public List<Position> getAdjacentEmptyPositions(Position pos) {
-		LevelModel levelModel = getCurrentLevel();
-		List<Position> adj = new ArrayList<>();
-		Player player = levelModel.getPlayer();
-
-		Element ele;
-		ele = levelModel.findElement(pos.getAbove());
-		if (ele == null || ele.equals(player)) adj.add(pos.getAbove());
-
-		ele = levelModel.findElement(pos.getBelow());
-		if (ele == null || ele.equals(player)) adj.add(pos.getBelow());
-
-		ele = levelModel.findElement(pos.getLeftSide());
-		if (ele == null || ele.equals(player)) adj.add(pos.getLeftSide());
-
-		ele = levelModel.findElement(pos.getRightSide());
-		if (ele == null || ele.equals(player)) adj.add(pos.getRightSide());
-
-		return adj;
 	}
 
 	private boolean insideBounds(Position pos) {
@@ -149,12 +126,11 @@ public class LevelController {
 	}
 
 	public boolean isPlayerCollidingEnemy() {
-		LevelModel levelModel = getCurrentLevel();
-		for (Enemy enemy : levelModel.getEnemies()) {
-			if (enemy.getPosition().equals(levelModel.getPlayer().getPosition())) {
+		LevelFacade levelModel = getCurrentLevel();
+		for (Enemy enemy : levelModel.getEnemies())
+			if (enemy.getPosition().equals(levelModel.getPlayer().getPosition()))
 				return true;
-			}
-		}
+
 		return false;
 	}
 
