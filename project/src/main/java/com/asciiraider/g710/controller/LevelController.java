@@ -121,6 +121,7 @@ public class LevelController {
 		}
 	}
 
+	// TODO: nao pode ser hardcoded
 	private boolean insideBounds(Position pos) {
 		return pos.getX() >= 0 && pos.getX() < 17 && pos.getY() >= 0 && pos.getY() < 12;
 	}
@@ -139,4 +140,5 @@ public class LevelController {
 		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
 		return getCurrentLevel().getPlayer().getPosition().equals(aboveDoor) && getCurrentLevel().getKeys().size() == 0;
 	}
+
 }

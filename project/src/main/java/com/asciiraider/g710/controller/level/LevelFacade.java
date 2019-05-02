@@ -92,60 +92,53 @@ public class LevelFacade {
 	}
 
 	public Element findElement(Position pos) {
-		for (Element element : getElements())
-			if (element.getPosition().equals(pos))
-				return element;
-		return null;
+		return levelModel.getElementsMatrix()[pos.getX()][pos.getY()];
 	}
 
 	public Wall findWall(Position pos) {
-		for(Wall wall : levelModel.getWalls())
-			if (wall.getPosition().equals(pos))
-				return wall;
+		Element element = findElement(pos);
+		if(element instanceof Wall)
+			return (Wall) element;
 		return null;
 	}
 
 	public Boulder findBoulder(Position pos) {
-		for(Boulder boulder : levelModel.getBoulders())
-			if (boulder.getPosition().equals(pos))
-				return boulder;
+		Element element = findElement(pos);
+		if(element instanceof Boulder)
+			return (Boulder) element;
 		return null;
 	}
 
 	public LevelKey findKey(Position pos) {
-		for(LevelKey key : levelModel.getKeys())
-			if (key.getPosition().equals(pos))
-				return key;
+		Element element = findElement(pos);
+		if(element instanceof LevelKey)
+			return (LevelKey) element;
 		return null;
 	}
 
 	public Sand findSandBlock(Position pos) {
-		for (Sand sand : levelModel.getSandBlocks())
-			if (sand.getPosition().equals(pos))
-				return sand;
+		Element element = findElement(pos);
+		if(element instanceof Sand)
+			return (Sand) element;
 		return null;
 	}
 
 	public StoneBlock findStoneBlock(Position pos) {
-		for (StoneBlock stone : levelModel.getStoneBlocks())
-			if (stone.getPosition().equals(pos))
-				return stone;
+		Element element = findElement(pos);
+		if(element instanceof StoneBlock)
+			return (StoneBlock) element;
 		return null;
 	}
 
 	public void removeKey(Position pos) {
-		for (LevelKey levelKey : levelModel.getKeys())
-			if (levelKey.getPosition().equals(pos)){
-				levelModel.getKeys().remove(levelKey);
-				break;
-			}
+		Element element = findElement(pos);
+		if(element instanceof LevelKey)
+			levelModel.getKeys().remove(element);
 	}
 
 	public void removeSandBlock(Position pos) {
-		for (Sand sandBlock : levelModel.getSandBlocks())
-			if (sandBlock.getPosition().equals(pos)){
-				levelModel.getSandBlocks().remove(sandBlock);
-				break;
-			}
+		Element element = findElement(pos);
+		if(element instanceof Sand)
+			levelModel.getSandBlocks().remove(element);
 	}
 }

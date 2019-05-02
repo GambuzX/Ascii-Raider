@@ -19,12 +19,16 @@ public class LevelModel extends Model {
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 
+	// TODO: n pode ser hardcoded
+	private Element[][] elementsMatrix = new Element[18][12];
+
 
 	public Player getPlayer() {
 		return player;
 	}
 
 	public void setPlayer(Player player) {
+		this.elementsMatrix[player.getPosition().getX()][player.getPosition().getY()] = player;
 		this.player = player;
 	}
 
@@ -33,6 +37,7 @@ public class LevelModel extends Model {
 	}
 
 	public void setExitDoor(ExitDoor exitDoor) {
+		this.elementsMatrix[exitDoor.getPosition().getX()][exitDoor.getPosition().getY()] = exitDoor;
 		this.exitDoor = exitDoor;
 	}
 
@@ -41,6 +46,7 @@ public class LevelModel extends Model {
 	}
 
 	public void setDoor(Door door) {
+		this.elementsMatrix[door.getPosition().getX()][door.getPosition().getY()] = door;
 		this.door = door;
 	}
 
@@ -49,6 +55,7 @@ public class LevelModel extends Model {
 	}
 
 	public void setDoorKey(DoorKey doorKey) {
+		this.elementsMatrix[doorKey.getPosition().getX()][doorKey.getPosition().getY()] = doorKey;
 		this.doorKey = doorKey;
 	}
 
@@ -80,31 +87,44 @@ public class LevelModel extends Model {
 		return enemies;
 	}
 
+	// TODO: ver se nao ha aqui um factory a ser feito
 	public void addWall(Wall wall) {
+		this.elementsMatrix[wall.getPosition().getX()][wall.getPosition().getY()] = wall;
 		this.getWalls().add(wall);
 	}
 
 	public void addBoulder(Boulder boulder) {
+		this.elementsMatrix[boulder.getPosition().getX()][boulder.getPosition().getY()] = boulder;
 		this.getBoulders().add(boulder);
 	}
 
 	public void addStoneBlock(StoneBlock stoneBlock) {
+		this.elementsMatrix[stoneBlock.getPosition().getX()][stoneBlock.getPosition().getY()] = stoneBlock;
 		this.getStoneBlocks().add(stoneBlock);
 	}
 
 	public void addSandBlock(Sand sand) {
+		this.elementsMatrix[sand.getPosition().getX()][sand.getPosition().getY()] = sand;
 		this.getSandBlocks().add(sand);
 	}
 
 	public void addTNT(TNT tnt) {
+		this.elementsMatrix[tnt.getPosition().getX()][tnt.getPosition().getY()] = tnt;
 		this.getTNT().add(tnt);
 	}
 
 	public void addKey(LevelKey key) {
+		this.elementsMatrix[key.getPosition().getX()][key.getPosition().getY()] = key;
 		this.getKeys().add(key);
 	}
 
 	public void addEnemy(Enemy enemy) {
+		this.elementsMatrix[enemy.getPosition().getX()][enemy.getPosition().getY()] = enemy;
 		this.getEnemies().add(enemy);
 	}
+
+	public Element[][] getElementsMatrix() {
+		return elementsMatrix;
+	}
+
 }
