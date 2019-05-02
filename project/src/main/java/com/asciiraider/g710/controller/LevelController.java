@@ -42,7 +42,7 @@ public class LevelController {
 		}
 
 		if (canMovePlayerTo(newPos, delimPos))
-			player.setPosition(newPos);
+			player.move(newPos);
 
 		if (isPlayerCollidingEnemy()) {
 			levelManager.finishGame();
