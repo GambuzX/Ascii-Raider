@@ -47,8 +47,6 @@ public class LevelBuilder {
 	private LevelModel buildLevelFromFile(List<String> levelLines) {
 		LevelModel newLevelModel = new LevelModel();
 
-		LevelFacade newLevelFacade = new LevelFacade(newLevelModel);
-
 		for (int row = 0; row < levelLines.size(); row++) {
 			for (int col = 0; col < levelLines.get(0).length(); col++) {
 
@@ -57,37 +55,37 @@ public class LevelBuilder {
 
 				switch(curr) {
 					case 'W':
-						newLevelFacade.addWall(new Wall(pos));
+						newLevelModel.addWall(new Wall(pos));
 						break;
 					case 'S':
-						newLevelFacade.addStoneBlock(new StoneBlock(pos));
+						newLevelModel.addStoneBlock(new StoneBlock(pos));
 						break;
 					case 'B':
-						newLevelFacade.addBoulder(new Boulder(pos));
+						newLevelModel.addBoulder(new Boulder(pos));
 						break;
 					case 'P':
-						newLevelFacade.setPlayer(new Player(pos));
+						newLevelModel.setPlayer(new Player(pos));
 						break;
 					case 'E':
-						newLevelFacade.addEnemy(new Enemy(pos));
+						newLevelModel.addEnemy(new Enemy(pos));
 						break;
 					case 'T':
-						newLevelFacade.addTNT(new TNT(pos));
+						newLevelModel.addTNT(new TNT(pos));
 						break;
 					case 's':
-						newLevelFacade.addSandBlock(new Sand(pos));
+						newLevelModel.addSandBlock(new Sand(pos));
 						break;
 					case 'K':
-						newLevelFacade.addKey(new LevelKey(pos));
+						newLevelModel.addKey(new LevelKey(pos));
 						break;
 					case 'D':
-						newLevelFacade.setExitDoor(new ExitDoor(pos));
+						newLevelModel.setExitDoor(new ExitDoor(pos));
 						break;
 					case 'd':
-						newLevelFacade.setDoor(new Door(pos));
+						newLevelModel.setDoor(new Door(pos));
 						break;
 					case 'k':
-						newLevelFacade.setDoorKey(new DoorKey(pos));
+						newLevelModel.setDoorKey(new DoorKey(pos));
 						break;
 				}
 			}

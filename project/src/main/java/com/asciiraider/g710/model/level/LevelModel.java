@@ -79,4 +79,32 @@ public class LevelModel extends Model {
 	public List<Enemy> getEnemies() {
 		return enemies;
 	}
+
+	public void addWall(Wall wall) {
+		this.getWalls().add(wall);
+	}
+
+	public void addBoulder(Boulder boulder) {
+		this.getBoulders().add(boulder);
+	}
+
+	public void addStoneBlock(StoneBlock stoneBlock) {
+		this.getStoneBlocks().add(stoneBlock);
+	}
+
+	public void addSandBlock(Sand sand) {
+		this.getSandBlocks().add(sand);
+	}
+
+	public void addTNT(TNT tnt) {
+		this.getTNT().add(tnt);
+	}
+
+	public void addKey(LevelKey key) {
+		this.getKeys().add(key);
+	}
+
+	public void addEnemy(Enemy enemy) {
+		this.getEnemies().add(enemy);
+	}
 }

@@ -1,7 +1,7 @@
 package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.level.LevelFacade;
+import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
