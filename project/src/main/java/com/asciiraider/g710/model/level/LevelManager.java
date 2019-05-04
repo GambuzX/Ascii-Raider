@@ -13,32 +13,46 @@ public class LevelManager {
 	private int currentLevelIndex;
 	private boolean gameFinished;
 	private LevelFacade currentLevelFacade;
+	private int currentLevelKeys;
 
 	public LevelManager() {
 		currentLevelIndex = 0;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();
-		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		updateLevelVariables();
 	}
 
 	public void resetLevels() {
 		currentLevelIndex = 0;
 		levelModels = lvlBuilder.getLevels();
-		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		updateLevelVariables();
 	}
 
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.getLevel(levelIndex));
-		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		updateLevelVariables();
 	}
 
 	public void nextLevel() {
 		currentLevelIndex++;
-		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		updateLevelVariables();
 		if (currentLevelIndex >= levelModels.size()) {
 			gameFinished = true;
 		}
+	}
+
+	private void updateLevelVariables() {
+		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		currentLevelKeys = currentLevelFacade.getLevelKeys().size();
+	}
+
+	public int getCurrentLevelKeys() {
+		return currentLevelKeys;
+	}
+
+	public void decreaseLevelKeyCount() {
+		currentLevelKeys--;
 	}
 
 	public int getCurrentLevelIndex() {

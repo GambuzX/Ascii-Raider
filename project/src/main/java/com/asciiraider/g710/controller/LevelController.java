@@ -156,7 +156,8 @@ public class LevelController {
 	public void handleKeyProgress(){
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
-		levelFacade.removeLevelKey(aboveDoor);
+		if(levelFacade.removeLevelKey(aboveDoor))
+			levelManager.decreaseLevelKeyCount();
 	}
 
 	public void handleExplosion(Position position) {
@@ -211,7 +212,7 @@ public class LevelController {
 	public boolean levelFinished(){
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
-		return levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelFacade.getLevelKeys().size() == 0;
+		return levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0;
 	}
 
 }
