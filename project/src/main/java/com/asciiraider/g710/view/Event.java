@@ -6,5 +6,6 @@ public enum Event {
 	RIGHT_KEY,
 	LEFT_KEY,
 	Q_KEY,
+	EOF,
 	OTHER
 }

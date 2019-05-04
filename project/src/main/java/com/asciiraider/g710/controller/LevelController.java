@@ -40,9 +40,15 @@ public class LevelController {
 				if (newPos.getX() > 0) delimPos = newPos.getLeftSide();
 				else delimPos = newPos;
 				break;
+			case EOF:
+				levelManager.finishGame();
+				return;
+			case Q_KEY:
+				levelManager.finishGame();
+				return;
 		}
 
-		if (canMovePlayerTo(newPos, delimPos))
+		if (handlePlayerMovement(newPos, delimPos))
 			moveElement(player, newPos);
 
 		if (isPlayerCollidingEnemy()) {
@@ -63,25 +69,14 @@ public class LevelController {
 		levelFacade.updateMatrixPosition(movable);
 	}
 
-
-
-	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
+	private boolean handlePlayerMovement(Position newPos, Position delimPos) {
 		LevelFacade levelFacade = getCurrentLevel();
 
 		if (newPos == null || !insideBounds(newPos)) return false;
 		if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
 		if (levelFacade.findWall(newPos) != null) return false;
 		if (levelFacade.findStoneBlock(newPos) != null) return false;
-
-		LevelKey key = levelFacade.findLevelKey(newPos);
-		if (key != null) {
-			return playerPhysicsElement(key, delimPos);
-		}
-
-		Boulder boulder = levelFacade.findBoulder(newPos);
-		if (boulder != null) {
-			return playerPhysicsElement(boulder, delimPos);
-		}
+		if (levelFacade.getDoor() != null && levelFacade.getDoor().getPosition().equals(newPos)) return false;
 
 		Sand sandBlock = levelFacade.findSandBlock(newPos);
 		if (sandBlock != null) {
@@ -89,7 +84,40 @@ public class LevelController {
 			return true;
 		}
 
+		LevelKey key = levelFacade.findLevelKey(newPos);
+		if (key != null) {
+			return handlePlayerPush(key, delimPos);
+		}
+
+		Boulder boulder = levelFacade.findBoulder(newPos);
+		if (boulder != null) {
+			return handlePlayerPush(boulder, delimPos);
+		}
+
+		TNT tnt = levelFacade.findTNT(newPos);
+		if (tnt != null) {
+			return handlePlayerPush(tnt, delimPos);
+		}
+
+		DoorKey doorKey = levelFacade.findDoorKey(newPos);
+		if (doorKey != null) {
+			catchDoorKey();
+			return true;
+		}
+
+		Enemy enemy = levelFacade.findEnemy(newPos);
+		if(enemy != null) {
+			levelManager.finishGame();
+			return true;
+		}
+
 		return true;
+	}
+
+	public void catchDoorKey() {
+		LevelFacade levelFacade = getCurrentLevel();
+		levelFacade.removeDoorKey();
+		levelFacade.removeDoor();
 	}
 
 	private LevelFacade getCurrentLevel() {
@@ -97,7 +125,8 @@ public class LevelController {
 	}
 
 	// TODO: ver depois o sitio melhor
-	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
+	public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
+		if (element.isFalling()) return false;
 		LevelFacade levelFacade = getCurrentLevel();
 		if (levelFacade.findElement(delimPos) != null) return false;
 		moveElement(element, delimPos);
@@ -110,11 +139,20 @@ public class LevelController {
 		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
 			Element belowEle = levelFacade.findElement(below);
-			if (belowEle == null) {
+			if (belowEle == null && !physicsElement.isFalling()) {
+				physicsElement.setFalling(true);
+			}
+			else if (belowEle == null) {
 				moveElement(physicsElement, below);
 			}
-			else if (belowEle instanceof Explosive) {
-				handleExplosion(belowEle);
+			else if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
+				handleExplosion(physicsElement.getPosition());
+			}
+			else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
+				handleExplosion(below);
+			}
+			else if (physicsElement.isFalling()) {
+				physicsElement.setFalling(false);
 			}
 		}
 	}
@@ -124,17 +162,20 @@ public class LevelController {
 		getCurrentLevel().removeLevelKey(aboveDoor);
 	}
 
-	public void handleExplosion(Element ele) {
+	public void handleExplosion(Position position) {
 		LevelFacade levelFacade = getCurrentLevel();
 		List<Position> inRange = new ArrayList<>();
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				inRange.add(new Position(ele.getPosition().getX() + i, ele.getPosition().getY() + j));
+				inRange.add(new Position(position.getX() + i, position.getY() + j));
 			}
 		}
 		for (Position pos : inRange) {
 			Element caught = levelFacade.findElement(pos);
-			if (caught instanceof DestructibleElement) {
+			if (caught instanceof Player) {
+				levelManager.finishGame();
+			}
+			else if (caught instanceof DestructibleElement) {
 				levelFacade.removeDestructibleElement(pos);
 			}
 		}
