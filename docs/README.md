@@ -79,6 +79,13 @@ This class serves as the medium of communicating between any other class (except
 
 > This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
 
+
+We soon realize that making final tests for the classes we working in was not a smart idea due to the high volatility of our code and the constant changing of approach and solution for the same problem.
+Therefore, the only classes fully tested that it is worth mentioning are the low-level ones, those in the model.utilities package that we consider to be final.
+We achieve 100% line and mutation coverage in every one of them as shown in the following picture.
+
+![First pitest results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/PITest1.png)*Preliminary test results*
+
 ## Self-evaluation
 
 > In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
