@@ -17,8 +17,13 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
     	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation)
     	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences) 
 4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
-5. [Testing Results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
-6. [Self-Evaluation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
+5. [Important Discussions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#importan-discussions)
+    1. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
+    2. [Multiple Threads vs Two Threads with Count](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
+    3. [Builder Pattern vs Read From File](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
+    4. [Architectural Pattern - The Design Pattern Killer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
+6. [Testing Results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
+7. [Self-Evaluation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
 
 
 ## Implemented Features
@@ -88,6 +93,39 @@ This class serves as the medium of communicating between any other class (except
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
+
+
+## Important Discussions
+
+This is an extra chapter filled with discussions that we think that are relevant, not only to justify certain decisions in our code but also to discuss problems that didn't seem to fit in any other chapter.
+ 
+### Save Data in Model and Efficiency
+One  of the first problems that we had was how to save data in the LevelModel. Our basic unit was the Element and so our first solution was to save all the different derived elements in only **one list**.
+This had solution had some problems:
+
+ - First we would need to cycle through all the elements every time an update to the Model data was made, even if it was only a player moving we would need to update the position of every object (walls included!!) in every cycle;
+ - The second part of the problem was that, in order to take advantage of the subclass structure every object would need every command that would culminate in lots of empty functions dangling around.
+ 
+Then we tried to divide into **different list** depending of the type of object: one for the walls, one for the enemies, one for the level keys... This solution still had a problem that in order to find some object in a certain position (to verify if the player's new position is valid for example), we had to iterate through every element to find the matching position. This problem is all the worse when we have a explosion and have to know the elements in the 8 adjacent cells of the central object. One could argue that this could still be done in one cycle, and you would be correct but when we add to this a falling object, an enemy and a player movement, it wouldn't be a trivial task to make a generic enough function that would allow us to test all the different cases in one iteration through all elements only.
+
+In this current solution we have not only the **different lists** but also a **grid** with the map dimension and the different elements in the correct places, making the find access time constant.
+
+### Multiple Threads vs Two Threads with Count
+
+One other problem that we're still debating is the number of threads that we should use. We began by using one thread for each type of element that need to be updated - one for the PhysicsElements, other for the Enemies, other waiting for user input and a final one to draw the Model -, allowing them to have different periodicity. 
+We think that this may more easily arise synchronicity problems and we were banking/betting on the hope that the CPU would make a good enough distribution of its resources, making the multiple threads worth it.
+Our new solution is one similar to the implementation done on LCOM last semester: one thread with user input and the other as multiple counters that when reached a predefined number the Physics/Enemy movement/whatever it is, is handled allowing us to do everything in only 2 threads and making the code more compact.
+
+### Builder Pattern vs Read From File
+
+This was other permutation that our code suffered and the reason why the LevelBuilder is called that way. We had first implemented a Builder Pattern in order to Build the different levels, however due to its simplicity in the creation process we adopt a different strategy: loading a level directly from a file. This solution allowed us to create levels and tests-levels much faster than the way we were doing before (it also reduced significantly the number of classes - we would need one for each level).
+
+### Architectural Pattern - The Design Pattern Killer
+
+One other problem that we found was the difficulty to make the design patterns fit the chosen Architectural Pattern in its purest form. We already touched lightly on the dilemma of where to put the LevelFacade, but there are other Design Patterns that became almost invalid.
+We could use the Command Pattern to make an Drawable Interface that each Element would implement allowing each one to know how to draw itself (like the solution for the SOLID exercises) and the LevelView would know how to draw a Level as a whole, but as noted, by our professor, this would destroy partially the MVC distribution, making this pattern useless in this case (there were other similar cases where this could be implemented but the result was the same: the Model class knowing to much about itself and its behavior).
+Other interesting example was the Strategy Pattern. We would like to use different strategies to the distinct movements that enemies could make (follow the player, random, in "circles"...), however this would be a function in an element subclass, and we would run the risk of the Model gaining more knowledge over the Controller.
+There were other examples, some more flagrant than the ones mentioned but, to keep this brief, we will wrap up this sub-chapter here.
 
 ## Testing Results
 
