@@ -42,7 +42,7 @@ public class LevelController {
 				break;
 		}
 
-		if (canMovePlayerTo(newPos, delimPos))
+		if (handlePlayerMovement(newPos, delimPos))
 			moveElement(player, newPos);
 
 		if (isPlayerCollidingEnemy()) {
@@ -65,23 +65,14 @@ public class LevelController {
 
 
 
-	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
+	private boolean handlePlayerMovement(Position newPos, Position delimPos) {
 		LevelFacade levelFacade = getCurrentLevel();
 
 		if (newPos == null || !insideBounds(newPos)) return false;
 		if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
 		if (levelFacade.findWall(newPos) != null) return false;
 		if (levelFacade.findStoneBlock(newPos) != null) return false;
-
-		LevelKey key = levelFacade.findLevelKey(newPos);
-		if (key != null) {
-			return playerPhysicsElement(key, delimPos);
-		}
-
-		Boulder boulder = levelFacade.findBoulder(newPos);
-		if (boulder != null) {
-			return playerPhysicsElement(boulder, delimPos);
-		}
+		if (levelFacade.getDoor() != null && levelFacade.getDoor().getPosition().equals(newPos)) return false;
 
 		Sand sandBlock = levelFacade.findSandBlock(newPos);
 		if (sandBlock != null) {
@@ -89,7 +80,40 @@ public class LevelController {
 			return true;
 		}
 
+		LevelKey key = levelFacade.findLevelKey(newPos);
+		if (key != null) {
+			return handlePlayerPush(key, delimPos);
+		}
+
+		Boulder boulder = levelFacade.findBoulder(newPos);
+		if (boulder != null) {
+			return handlePlayerPush(boulder, delimPos);
+		}
+
+		TNT tnt = levelFacade.findTNT(newPos);
+		if (tnt != null) {
+			return handlePlayerPush(tnt, delimPos);
+		}
+
+		DoorKey doorKey = levelFacade.findDoorKey(newPos);
+		if (doorKey != null) {
+			catchDoorKey();
+			return true;
+		}
+
+		Enemy enemy = levelFacade.findEnemy(newPos);
+		if(enemy != null) {
+			levelManager.finishGame();
+			return true;
+		}
+
 		return true;
+	}
+
+	public void catchDoorKey() {
+		LevelFacade levelFacade = getCurrentLevel();
+		levelFacade.removeDoorKey();
+		levelFacade.removeDoor();
 	}
 
 	private LevelFacade getCurrentLevel() {
@@ -97,7 +121,7 @@ public class LevelController {
 	}
 
 	// TODO: ver depois o sitio melhor
-	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
+	public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
 		LevelFacade levelFacade = getCurrentLevel();
 		if (levelFacade.findElement(delimPos) != null) return false;
 		moveElement(element, delimPos);

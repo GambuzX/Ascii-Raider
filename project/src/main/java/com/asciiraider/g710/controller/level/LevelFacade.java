@@ -131,6 +131,27 @@ public class LevelFacade {
 		return null;
 	}
 
+	public DoorKey findDoorKey(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof DoorKey)
+			return (DoorKey) element;
+		return null;
+	}
+
+	public TNT findTNT(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof TNT)
+			return (TNT) element;
+		return null;
+	}
+
+	public Enemy findEnemy(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof Enemy)
+			return (Enemy) element;
+		return null;
+	}
+
 	public void removeLevelKey(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof LevelKey) {
@@ -145,6 +166,16 @@ public class LevelFacade {
 			clearMatrixPosition(element.getPosition());
 			levelModel.getSandBlocks().remove(element);
 		}
+	}
+
+	public void removeDoorKey() {
+		clearMatrixPosition(levelModel.getDoorKey().getPosition());
+		levelModel.setDoorKey(null);
+	}
+
+	public void removeDoor() {
+		clearMatrixPosition(levelModel.getDoor().getPosition());
+		levelModel.setDoor(null);
 	}
 
 	public void removeDestructibleElement(Position pos) {
