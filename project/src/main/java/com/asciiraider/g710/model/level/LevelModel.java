@@ -2,6 +2,7 @@ package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +126,14 @@ public class LevelModel extends Model {
 
 	public Element[][] getElementsMatrix() {
 		return elementsMatrix;
+	}
+
+	public void clearMatrixPosition(Position position) {
+		elementsMatrix[position.getX()][position.getY()] = null;
+	}
+
+	public void updateMatrixPosition(Element ele) {
+		elementsMatrix[ele.getPosition().getX()][ele.getPosition().getY()] = ele;
 	}
 
 }

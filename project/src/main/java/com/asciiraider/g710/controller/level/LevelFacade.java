@@ -3,6 +3,7 @@ package com.asciiraider.g710.controller.level;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,13 +133,25 @@ public class LevelFacade {
 
 	public void removeKey(Position pos) {
 		Element element = findElement(pos);
-		if(element instanceof LevelKey)
+		if(element instanceof LevelKey) {
+			clearMatrixPosition(element.getPosition());
 			levelModel.getKeys().remove(element);
+		}
 	}
 
 	public void removeSandBlock(Position pos) {
 		Element element = findElement(pos);
-		if(element instanceof Sand)
+		if(element instanceof Sand) {
+			clearMatrixPosition(element.getPosition());
 			levelModel.getSandBlocks().remove(element);
+		}
+	}
+
+	public void clearMatrixPosition(Position position) {
+		levelModel.clearMatrixPosition(position);
+	}
+
+	public void updateMatrixPosition(Element ele) {
+		levelModel.updateMatrixPosition(ele);
 	}
 }

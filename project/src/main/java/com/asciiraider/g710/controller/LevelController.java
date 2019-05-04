@@ -42,7 +42,7 @@ public class LevelController {
 		}
 
 		if (canMovePlayerTo(newPos, delimPos))
-			player.setPosition(newPos);
+			moveElement(player, newPos);
 
 		if (isPlayerCollidingEnemy()) {
 			levelManager.finishGame();
@@ -51,6 +51,18 @@ public class LevelController {
 		if(levelFinished())
 			levelManager.nextLevel();
 	}
+
+	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
+	// TODO rethink elements hierarchy
+	private void moveElement(Element movable, Position newPos) {
+		LevelFacade levelModel = getCurrentLevel();
+
+		levelModel.clearMatrixPosition(movable.getPosition());
+		movable.setPosition(newPos);
+		levelModel.updateMatrixPosition(movable);
+	}
+
+
 
 	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
 		LevelFacade levelModel = getCurrentLevel();
@@ -87,7 +99,7 @@ public class LevelController {
 	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
 		LevelFacade levelModel = getCurrentLevel();
 		if (levelModel.findElement(delimPos) != null) return false;
-		element.setPosition(delimPos);
+		moveElement(element, delimPos);
 		handlePhysics();
 		return true;
 	}
@@ -97,7 +109,7 @@ public class LevelController {
 		for (PhysicsElement physicsElement : levelModel.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
 			if (levelModel.findElement(below) == null) {
-				physicsElement.drop();
+				moveElement(physicsElement, below);
 			}
 		}
 	}
