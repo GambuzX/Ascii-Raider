@@ -47,7 +47,6 @@ public class Application {
 			public void run(){
 				while (!levelManager.isGameFinished()) {
 					try {
-						levelController.handleKeyProgress();
 						levelController.moveEnemies();
 						if (levelController.isPlayerCollidingEnemy()) break;
 						finalLevelView.draw(levelManager.getCurrentLevel());
@@ -72,6 +71,7 @@ public class Application {
 			public void run() {
 				while (!levelManager.isGameFinished()) {
 					try {
+						levelController.handleKeyProgress();
 						levelController.handlePhysics();
 						Thread.sleep(300);
 					} catch (InterruptedException e) {

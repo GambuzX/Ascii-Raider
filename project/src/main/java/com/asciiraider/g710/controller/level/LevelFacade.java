@@ -33,8 +33,8 @@ public class LevelFacade {
 		return levelModel.getDoorKey();
 	}
 
-	public List<LevelKey> getKeys() {
-		return levelModel.getKeys();
+	public List<LevelKey> getLevelKeys() {
+		return levelModel.getLevelKeys();
 	}
 
 	public List<Enemy> getEnemies() {
@@ -51,7 +51,7 @@ public class LevelFacade {
 		elements.addAll(levelModel.getBoulders());
 		elements.addAll(levelModel.getStoneBlocks());
 		elements.addAll(levelModel.getSandBlocks());
-		elements.addAll(levelModel.getKeys());
+		elements.addAll(levelModel.getLevelKeys());
 		elements.addAll(levelModel.getTNT());
 		elements.addAll(levelModel.getEnemies());
 		if(levelModel.getDoor() != null){
@@ -64,7 +64,7 @@ public class LevelFacade {
 	public List<PhysicsElement> getPhysicsElements() {
 		List<PhysicsElement> physicsElements = new ArrayList<>();
 		physicsElements.addAll(levelModel.getBoulders());
-		physicsElements.addAll(levelModel.getKeys());
+		physicsElements.addAll(levelModel.getLevelKeys());
 		physicsElements.addAll(levelModel.getTNT());
 		if(levelModel.getDoorKey() != null)
 			physicsElements.add(levelModel.getDoorKey());
@@ -92,60 +92,65 @@ public class LevelFacade {
 	}
 
 	public Element findElement(Position pos) {
-		for (Element element : getElements())
-			if (element.getPosition().equals(pos))
-				return element;
-		return null;
+		return levelModel.getElementsMatrix()[pos.getX()][pos.getY()];
 	}
 
 	public Wall findWall(Position pos) {
-		for(Wall wall : levelModel.getWalls())
-			if (wall.getPosition().equals(pos))
-				return wall;
+		Element element = findElement(pos);
+		if(element instanceof Wall)
+			return (Wall) element;
 		return null;
 	}
 
 	public Boulder findBoulder(Position pos) {
-		for(Boulder boulder : levelModel.getBoulders())
-			if (boulder.getPosition().equals(pos))
-				return boulder;
+		Element element = findElement(pos);
+		if(element instanceof Boulder)
+			return (Boulder) element;
 		return null;
 	}
 
-	public LevelKey findKey(Position pos) {
-		for(LevelKey key : levelModel.getKeys())
-			if (key.getPosition().equals(pos))
-				return key;
+	public LevelKey findLevelKey(Position pos) {
+		Element element = findElement(pos);
+		if(element instanceof LevelKey)
+			return (LevelKey) element;
 		return null;
 	}
 
 	public Sand findSandBlock(Position pos) {
-		for (Sand sand : levelModel.getSandBlocks())
-			if (sand.getPosition().equals(pos))
-				return sand;
+		Element element = findElement(pos);
+		if(element instanceof Sand)
+			return (Sand) element;
 		return null;
 	}
 
 	public StoneBlock findStoneBlock(Position pos) {
-		for (StoneBlock stone : levelModel.getStoneBlocks())
-			if (stone.getPosition().equals(pos))
-				return stone;
+		Element element = findElement(pos);
+		if(element instanceof StoneBlock)
+			return (StoneBlock) element;
 		return null;
 	}
 
-	public void removeKey(Position pos) {
-		for (LevelKey levelKey : levelModel.getKeys())
-			if (levelKey.getPosition().equals(pos)){
-				levelModel.getKeys().remove(levelKey);
-				break;
-			}
+	public void removeLevelKey(Position pos) {
+		Element element = findElement(pos);
+		if(element instanceof LevelKey) {
+			clearMatrixPosition(element.getPosition());
+			levelModel.getLevelKeys().remove(element);
+		}
 	}
 
 	public void removeSandBlock(Position pos) {
-		for (Sand sandBlock : levelModel.getSandBlocks())
-			if (sandBlock.getPosition().equals(pos)){
-				levelModel.getSandBlocks().remove(sandBlock);
-				break;
-			}
+		Element element = findElement(pos);
+		if(element instanceof Sand) {
+			clearMatrixPosition(element.getPosition());
+			levelModel.getSandBlocks().remove(element);
+		}
+	}
+
+	public void clearMatrixPosition(Position position) {
+		levelModel.clearMatrixPosition(position);
+	}
+
+	public void updateMatrixPosition(Element ele) {
+		levelModel.updateMatrixPosition(ele);
 	}
 }
