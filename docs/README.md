@@ -8,17 +8,17 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
  Developed by [Manuel Coutinho](https://github.com/ManelCoutinho "ManelCoutinho") and [Mário Gil](https://github.com/GambuzX "GambuzX").
 
 ## Table of contents
-1. [Implemented Features](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#implemented-features)
-2. [Planned Features](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#planned-features)
-3. [Design](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#design)
-    1. [LevelFacade](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
-    	1. [Problem in Context](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context) 
-    	2. [The Pattern](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern) 
-    	3. [Implementation](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation)
-    	4. [Consequences](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences) 
-4. [Known Code Smells and Refactoring Suggestions](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
-5. [Testing Results](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
-6. [Self-Evaluation](#https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
+1. [Implemented Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#implemented-features)
+2. [Planned Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#planned-features)
+3. [Design](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#design)
+    1. [LevelFacade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
+    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context) 
+    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern) 
+    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation)
+    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences) 
+4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
+5. [Testing Results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
+6. [Self-Evaluation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
 
 
 ## Implemented Features
@@ -51,12 +51,12 @@ There are many features yet to be implemented:
  - [ ] Main Menu: where the user may choose between begin a new game from scratch (level 1), go directly to a certain level or view the highscores ranking;
  - [ ] Score: in order to implement the highscore ranking, we will have to create a score that will be based on the cumulative time that the player needs to complete the different levels;
  - [ ] Information Bar: we want to add a bar to the top of the screen with different information: 
-	 -[ ] Time: a counter with the remaining time that will be used to calculate the score;
-	 -[ ] Score: a number representing the current score that the player has already accumulated;
-	 -[ ] Level Number: parameter with information concerning the current level ;
-	 -[ ] Number of Lifes: we will allow the user two die 2 or restart levels two times (3 lifes) before completely loosing the game;
-	 -[ ] Progress Bar: indicates the number of level keys already put in the exit door and how many are missing;
-	 -[ ] Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
+	 - [ ] Time: a counter with the remaining time that will be used to calculate the score;
+	 - [ ] Score: a number representing the current score that the player has already accumulated;
+	 - [ ] Level Number: parameter with information concerning the current level ;
+	 - [ ] Number of Lifes: we will allow the user two die 2 or restart levels two times (3 lifes) before completely loosing the game;
+	 - [ ] Progress Bar: indicates the number of level keys already put in the exit door and how many are missing;
+	 - [ ] Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
 - [ ] Enemy movements: 
 	- [ ] Improve the way the current enemy moves;
 	- [ ] Add another kind of movement, making the enemy follow the player,
