@@ -59,8 +59,17 @@ There are many features yet to be implemented:
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
-### Facade
-To keep the Model class as dumb as possible (namely the LevelModel) we added kind of a Facade class to organize the data as we want: objects in different lists may have similar traits but this Model should not have to know how to regroup them and their properties, it should only be a place to store the data about the Level. 
+>TODO: Not that sure about what it is to write in the different parts of each chapter. 
+
+### LevelFacade
+#### Problem in Context
+After dividing our code into Model, View and Controller following the Architectural Pattern suggested by the regent of the discipline, one of our problems was that the LevelModel new to much about his own data: the level knew that if there was one key, it must also have a door or which lists were PhysicsElements  that it should reorganize and put together when asked about them.
+#### The Pattern
+To solve this problem we used the Facade Pattern.
+#### Implementation
+To implement this pattern, we created a knew class that takes a LevelModel as an argument to its constructor and has all the methods that you would need to interact with it: find some element, return a group of elements after regrouping them as instructed or removing some kind of this basic entity. We then added it to the Controller package. 
+#### Consequences
+This class serves as the medium of communicating between any other class (except the LevelBuilder, because it's him who builds the LevelModel, so it makes sense to make it interact directly with the Model) like the Controller or the View and the Model, making the interaction easier and more intelligible. With this class we kept the Model as a place to only store data and added a beautiful dress to make it a more pleasant experience when messing with it.
 
 ## Known Code Smells and Refactoring Suggestions
 
