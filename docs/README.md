@@ -32,6 +32,26 @@ There is a level builder that decodes .lvl files in order to create a new level,
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
+There are many features yet to be implemented:
+
+ - Main Menu: where the user may choose between begin a new game from scratch (level 1), go directly to a certain level or view the highscores ranking;
+ - Score: in order to implement the highscore ranking, we will have to create a score that will be based on the cumulative time that the player needs to complete the different levels;
+ - Information Bar: we want to add a bar to the top of the screen with different information: 
+	 -	Time: a counter with the remaining time that will be used to calculate the score;
+	 -	Score: a number representing the current score that the player has already accumulated;
+	 -	Level Number: parameter with information concerning the current level ;
+	 -	Number of Lifes: we will allow the user two die 2 or restart levels two times (3 lifes) before completely loosing the game;
+	 -	Progress Bar: indicates the number of level keys already put in the exit door and how many are missing;
+	 -	Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
+- Enemy movements: 
+	- Improve the way the current enemy moves;
+	- Add another kind of movement, making the enemy follow the player,
+- Loosing Life: adding two ways of loosing life:
+	- Time: when the #TimesUp;
+	- Restart: when the user chooses to restart a level.
+- Improve Explosions: Make the explosion have some kind of animation that lasts some time and doesn't just remove the surrounding elements, allowing deaths by going through the explosion moments after it happens;
+- Swing compatibility: Finally we want to add a swing version of the game.
+
 ## Design
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
