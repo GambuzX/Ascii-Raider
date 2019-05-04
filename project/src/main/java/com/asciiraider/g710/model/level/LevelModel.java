@@ -29,8 +29,8 @@ public class LevelModel extends Model {
 	}
 
 	public void setPlayer(Player player) {
-		this.elementsMatrix[player.getPosition().getX()][player.getPosition().getY()] = player;
 		this.player = player;
+		updateMatrixPosition(player);
 	}
 
 	public ExitDoor getExitDoor() {
@@ -38,8 +38,8 @@ public class LevelModel extends Model {
 	}
 
 	public void setExitDoor(ExitDoor exitDoor) {
-		this.elementsMatrix[exitDoor.getPosition().getX()][exitDoor.getPosition().getY()] = exitDoor;
 		this.exitDoor = exitDoor;
+		updateMatrixPosition(exitDoor);
 	}
 
 	public Door getDoor() {
@@ -47,8 +47,8 @@ public class LevelModel extends Model {
 	}
 
 	public void setDoor(Door door) {
-		this.elementsMatrix[door.getPosition().getX()][door.getPosition().getY()] = door;
 		this.door = door;
+		updateMatrixPosition(door);
 	}
 
 	public DoorKey getDoorKey() {
@@ -56,8 +56,8 @@ public class LevelModel extends Model {
 	}
 
 	public void setDoorKey(DoorKey doorKey) {
-		this.elementsMatrix[doorKey.getPosition().getX()][doorKey.getPosition().getY()] = doorKey;
 		this.doorKey = doorKey;
+		updateMatrixPosition(doorKey);
 	}
 
 	public List<Wall> getWalls() {
@@ -90,38 +90,38 @@ public class LevelModel extends Model {
 
 	// TODO: ver se nao ha aqui um factory a ser feito
 	public void addWall(Wall wall) {
-		this.elementsMatrix[wall.getPosition().getX()][wall.getPosition().getY()] = wall;
 		this.getWalls().add(wall);
+		updateMatrixPosition(wall);
 	}
 
 	public void addBoulder(Boulder boulder) {
-		this.elementsMatrix[boulder.getPosition().getX()][boulder.getPosition().getY()] = boulder;
 		this.getBoulders().add(boulder);
+		updateMatrixPosition(boulder);
 	}
 
 	public void addStoneBlock(StoneBlock stoneBlock) {
-		this.elementsMatrix[stoneBlock.getPosition().getX()][stoneBlock.getPosition().getY()] = stoneBlock;
 		this.getStoneBlocks().add(stoneBlock);
+		updateMatrixPosition(stoneBlock);
 	}
 
 	public void addSandBlock(Sand sand) {
-		this.elementsMatrix[sand.getPosition().getX()][sand.getPosition().getY()] = sand;
 		this.getSandBlocks().add(sand);
+		updateMatrixPosition(sand);
 	}
 
 	public void addTNT(TNT tnt) {
-		this.elementsMatrix[tnt.getPosition().getX()][tnt.getPosition().getY()] = tnt;
 		this.getTNT().add(tnt);
+		updateMatrixPosition(tnt);
 	}
 
 	public void addLevelKey(LevelKey key) {
-		this.elementsMatrix[key.getPosition().getX()][key.getPosition().getY()] = key;
 		this.getLevelKeys().add(key);
+		updateMatrixPosition(key);
 	}
 
 	public void addEnemy(Enemy enemy) {
-		this.elementsMatrix[enemy.getPosition().getX()][enemy.getPosition().getY()] = enemy;
 		this.getEnemies().add(enemy);
+		updateMatrixPosition(enemy);
 	}
 
 	public Element[][] getElementsMatrix() {
@@ -133,7 +133,8 @@ public class LevelModel extends Model {
 	}
 
 	public void updateMatrixPosition(Element ele) {
-		elementsMatrix[ele.getPosition().getX()][ele.getPosition().getY()] = ele;
+		if (ele != null)
+			elementsMatrix[ele.getPosition().getX()][ele.getPosition().getY()] = ele;
 	}
 
 	public Element findElement(Position pos) {
