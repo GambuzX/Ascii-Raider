@@ -23,6 +23,11 @@ We already implemented the majority of the different kind of elements and its co
 
 There is a level builder that decodes .lvl files in order to create a new level, allowing us to quickly generate new ones.
 
+![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png)
+
+![Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented2.png)
+
+
 ## Planned Features
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
