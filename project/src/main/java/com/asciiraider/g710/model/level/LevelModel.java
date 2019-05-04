@@ -136,4 +136,8 @@ public class LevelModel extends Model {
 		elementsMatrix[ele.getPosition().getX()][ele.getPosition().getY()] = ele;
 	}
 
+	public Element findElement(Position pos) {
+		return elementsMatrix[pos.getX()][pos.getY()];
+	}
+
 }

@@ -3,6 +3,7 @@ package com.asciiraider.g710.controller.level;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
+import sun.security.krb5.internal.crypto.Des;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,6 +145,37 @@ public class LevelFacade {
 			clearMatrixPosition(element.getPosition());
 			levelModel.getSandBlocks().remove(element);
 		}
+	}
+
+	public void removeDestructibleElement(Position pos) {
+		Element element = findElement(pos);
+		if (!(element instanceof DestructibleElement)) return;
+
+		if (element instanceof Player) {
+			levelModel.setPlayer(null);
+		}
+		else if (element instanceof DoorKey) {
+			levelModel.setDoorKey(null);
+		}
+		else if (element instanceof StoneBlock) {
+			levelModel.getStoneBlocks().remove(element);
+		}
+		else if (element instanceof Sand) {
+			levelModel.getSandBlocks().remove(element);
+		}
+		else if (element instanceof Boulder) {
+			levelModel.getBoulders().remove(element);
+		}
+		else if (element instanceof LevelKey) {
+			levelModel.getLevelKeys().remove(element);
+		}
+		else if (element instanceof TNT) {
+			levelModel.getTNT().remove(element);
+		}
+		else if (element instanceof Enemy) {
+			levelModel.getEnemies().remove(element);
+		}
+		clearMatrixPosition(element.getPosition());
 	}
 
 	public void clearMatrixPosition(Position position) {

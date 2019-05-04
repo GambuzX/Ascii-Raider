@@ -83,14 +83,7 @@ public class Application {
 		};
 
 		draw_t.start();
-
-
 		input_t.start();
-
-
 		physics_t.start();
-
-
-		// You win, GG
 	}
 }

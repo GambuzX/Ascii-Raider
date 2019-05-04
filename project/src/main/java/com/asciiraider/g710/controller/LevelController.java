@@ -6,6 +6,7 @@ import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -108,8 +109,12 @@ public class LevelController {
 		LevelFacade levelFacade = getCurrentLevel();
 		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
-			if (levelFacade.findElement(below) == null) {
+			Element belowEle = levelFacade.findElement(below);
+			if (belowEle == null) {
 				moveElement(physicsElement, below);
+			}
+			else if (belowEle instanceof Explosive) {
+				handleExplosion(belowEle);
 			}
 		}
 	}
@@ -117,6 +122,23 @@ public class LevelController {
 	public void handleKeyProgress(){
 		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
 		getCurrentLevel().removeLevelKey(aboveDoor);
+	}
+
+	public void handleExplosion(Element ele) {
+		LevelFacade levelFacade = getCurrentLevel();
+		List<Position> inRange = new ArrayList<>();
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				inRange.add(new Position(ele.getPosition().getX() + i, ele.getPosition().getY() + j));
+			}
+		}
+		for (Position pos : inRange) {
+			Element caught = levelFacade.findElement(pos);
+			if (caught instanceof DestructibleElement) {
+				levelFacade.removeDestructibleElement(pos);
+			}
+		}
+
 	}
 
 	public void moveEnemies() {
