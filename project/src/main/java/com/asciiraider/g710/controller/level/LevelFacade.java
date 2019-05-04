@@ -152,20 +152,24 @@ public class LevelFacade {
 		return null;
 	}
 
-	public void removeLevelKey(Position pos) {
+	public boolean removeLevelKey(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof LevelKey) {
 			clearMatrixPosition(element.getPosition());
 			levelModel.getLevelKeys().remove(element);
+			return true;
 		}
+		return false;
 	}
 
-	public void removeSandBlock(Position pos) {
+	public boolean removeSandBlock(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof Sand) {
 			clearMatrixPosition(element.getPosition());
 			levelModel.getSandBlocks().remove(element);
+			return true;
 		}
+		return false;
 	}
 
 	public void removeDoorKey() {

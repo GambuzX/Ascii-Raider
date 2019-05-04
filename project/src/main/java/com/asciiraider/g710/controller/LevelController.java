@@ -19,7 +19,7 @@ public class LevelController {
 	}
 
 	public void handleKeyPress(Event event) {
-		Player player = getCurrentLevel().getPlayer();
+		Player player = levelManager.getCurrentLevelFacade().getPlayer();
 		Position newPos = null;
 		Position delimPos = null;
 		switch (event){
@@ -62,7 +62,7 @@ public class LevelController {
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
 	// TODO rethink elements hierarchy
 	private void moveElement(Element movable, Position newPos) {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 
 		levelFacade.clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);
@@ -70,7 +70,7 @@ public class LevelController {
 	}
 
 	private boolean handlePlayerMovement(Position newPos, Position delimPos) {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 
 		if (newPos == null || !insideBounds(newPos)) return false;
 		if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
@@ -115,19 +115,15 @@ public class LevelController {
 	}
 
 	public void catchDoorKey() {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		levelFacade.removeDoorKey();
 		levelFacade.removeDoor();
-	}
-
-	private LevelFacade getCurrentLevel() {
-		return new LevelFacade(levelManager.getCurrentLevel());
 	}
 
 	// TODO: ver depois o sitio melhor
 	public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
 		if (element.isFalling()) return false;
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		if (levelFacade.findElement(delimPos) != null) return false;
 		moveElement(element, delimPos);
 		handlePhysics();
@@ -135,7 +131,7 @@ public class LevelController {
 	}
 
 	public synchronized void handlePhysics() {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
 			Element belowEle = levelFacade.findElement(below);
@@ -158,12 +154,14 @@ public class LevelController {
 	}
 
 	public void handleKeyProgress(){
-		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
-		getCurrentLevel().removeLevelKey(aboveDoor);
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
+		if(levelFacade.removeLevelKey(aboveDoor))
+			levelManager.decreaseLevelKeyCount();
 	}
 
 	public void handleExplosion(Position position) {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		List<Position> inRange = new ArrayList<>();
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -183,7 +181,7 @@ public class LevelController {
 	}
 
 	public void moveEnemies() {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for (Enemy enemy : levelFacade.getEnemies()) {
 			List<Position> adj = levelFacade.getAdjacentEmptyPositions(enemy.getPosition());
 			for (Position pos : adj)
@@ -202,7 +200,7 @@ public class LevelController {
 	}
 
 	public boolean isPlayerCollidingEnemy() {
-		LevelFacade levelFacade = getCurrentLevel();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for (Enemy enemy : levelFacade.getEnemies())
 			if (enemy.getPosition().equals(levelFacade.getPlayer().getPosition()))
 				return true;
@@ -212,8 +210,9 @@ public class LevelController {
 
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets
 	public boolean levelFinished(){
-		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
-		return getCurrentLevel().getPlayer().getPosition().equals(aboveDoor) && getCurrentLevel().getLevelKeys().size() == 0;
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
+		return levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0;
 	}
 
 }

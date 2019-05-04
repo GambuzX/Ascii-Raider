@@ -1,5 +1,8 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.controller.level.LevelFacade;
+import com.asciiraider.g710.view.LevelView;
+
 import java.util.List;
 
 // TODO: continuar a testar
@@ -8,32 +11,48 @@ public class LevelManager {
 	private LevelBuilder lvlBuilder;
 	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
-	private boolean finishedGame;
-	private boolean wonGame;
+	private boolean gameFinished;
+	private LevelFacade currentLevelFacade;
+	private int currentLevelKeys;
 
 	public LevelManager() {
 		currentLevelIndex = 0;
-		finishedGame = false;
-		wonGame = false;
+		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();
+		updateLevelVariables();
 	}
 
 	public void resetLevels() {
 		currentLevelIndex = 0;
 		levelModels = lvlBuilder.getLevels();
+		updateLevelVariables();
 	}
 
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.getLevel(levelIndex));
+		updateLevelVariables();
 	}
 
 	public void nextLevel() {
 		currentLevelIndex++;
+		updateLevelVariables();
 		if (currentLevelIndex >= levelModels.size()) {
-			wonGame = true;
-			finishedGame = true;
+			gameFinished = true;
 		}
+	}
+
+	private void updateLevelVariables() {
+		currentLevelFacade = new LevelFacade(getCurrentLevel());
+		currentLevelKeys = currentLevelFacade.getLevelKeys().size();
+	}
+
+	public int getCurrentLevelKeys() {
+		return currentLevelKeys;
+	}
+
+	public void decreaseLevelKeyCount() {
+		currentLevelKeys--;
 	}
 
 	public int getCurrentLevelIndex() {
@@ -44,16 +63,20 @@ public class LevelManager {
 		return levelModels.get(currentLevelIndex % levelModels.size());
 	}
 
+	public LevelFacade getCurrentLevelFacade() {
+		return currentLevelFacade;
+	}
+
 	public boolean isGameFinished() {
-		return finishedGame;
+		return gameFinished;
 	}
 
 	public void finishGame() {
-		finishedGame = true;
+		gameFinished = true;
 	}
 
 	public boolean wonGame() {
-		return wonGame;
+		return currentLevelIndex >= levelModels.size();
 	}
 
 
