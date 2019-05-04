@@ -16,7 +16,7 @@ public class LevelModel extends Model {
 	private List<Boulder> boulders = new ArrayList<>();
 	private List<StoneBlock> stoneBlocks = new ArrayList<>();
 	private List<Sand> sandBlocks = new ArrayList<>();
-	private List<LevelKey> keys = new ArrayList<>();
+	private List<LevelKey> levelKeys = new ArrayList<>();
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 
@@ -80,8 +80,8 @@ public class LevelModel extends Model {
 		return tnt;
 	}
 
-	public List<LevelKey> getKeys() {
-		return keys;
+	public List<LevelKey> getLevelKeys() {
+		return levelKeys;
 	}
 
 	public List<Enemy> getEnemies() {
@@ -114,9 +114,9 @@ public class LevelModel extends Model {
 		this.getTNT().add(tnt);
 	}
 
-	public void addKey(LevelKey key) {
+	public void addLevelKey(LevelKey key) {
 		this.elementsMatrix[key.getPosition().getX()][key.getPosition().getY()] = key;
-		this.getKeys().add(key);
+		this.getLevelKeys().add(key);
 	}
 
 	public void addEnemy(Enemy enemy) {

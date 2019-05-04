@@ -55,36 +55,36 @@ public class LevelController {
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
 	// TODO rethink elements hierarchy
 	private void moveElement(Element movable, Position newPos) {
-		LevelFacade levelModel = getCurrentLevel();
+		LevelFacade levelFacade = getCurrentLevel();
 
-		levelModel.clearMatrixPosition(movable.getPosition());
+		levelFacade.clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);
-		levelModel.updateMatrixPosition(movable);
+		levelFacade.updateMatrixPosition(movable);
 	}
 
 
 
 	private boolean canMovePlayerTo(Position newPos, Position delimPos) {
-		LevelFacade levelModel = getCurrentLevel();
+		LevelFacade levelFacade = getCurrentLevel();
 
 		if (newPos == null || !insideBounds(newPos)) return false;
-		if (levelModel.getExitDoor().getPosition().equals(newPos)) return false;
-		if (levelModel.findWall(newPos) != null) return false;
-		if (levelModel.findStoneBlock(newPos) != null) return false;
+		if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
+		if (levelFacade.findWall(newPos) != null) return false;
+		if (levelFacade.findStoneBlock(newPos) != null) return false;
 
-		LevelKey key = levelModel.findKey(newPos);
+		LevelKey key = levelFacade.findLevelKey(newPos);
 		if (key != null) {
 			return playerPhysicsElement(key, delimPos);
 		}
 
-		Boulder boulder = levelModel.findBoulder(newPos);
+		Boulder boulder = levelFacade.findBoulder(newPos);
 		if (boulder != null) {
 			return playerPhysicsElement(boulder, delimPos);
 		}
 
-		Sand sandBlock = levelModel.findSandBlock(newPos);
+		Sand sandBlock = levelFacade.findSandBlock(newPos);
 		if (sandBlock != null) {
-			levelModel.removeSandBlock(newPos);
+			levelFacade.removeSandBlock(newPos);
 			return true;
 		}
 
@@ -97,18 +97,18 @@ public class LevelController {
 
 	// TODO: ver depois o sitio melhor
 	public boolean playerPhysicsElement(PhysicsElement element, Position delimPos){
-		LevelFacade levelModel = getCurrentLevel();
-		if (levelModel.findElement(delimPos) != null) return false;
+		LevelFacade levelFacade = getCurrentLevel();
+		if (levelFacade.findElement(delimPos) != null) return false;
 		moveElement(element, delimPos);
 		handlePhysics();
 		return true;
 	}
 
 	public synchronized void handlePhysics() {
-		LevelFacade levelModel = getCurrentLevel();
-		for (PhysicsElement physicsElement : levelModel.getPhysicsElements()) {
+		LevelFacade levelFacade = getCurrentLevel();
+		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
-			if (levelModel.findElement(below) == null) {
+			if (levelFacade.findElement(below) == null) {
 				moveElement(physicsElement, below);
 			}
 		}
@@ -116,13 +116,13 @@ public class LevelController {
 
 	public void handleKeyProgress(){
 		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
-		getCurrentLevel().removeKey(aboveDoor);
+		getCurrentLevel().removeLevelKey(aboveDoor);
 	}
 
 	public void moveEnemies() {
-		LevelFacade levelModel = getCurrentLevel();
-		for (Enemy enemy : levelModel.getEnemies()) {
-			List<Position> adj = levelModel.getAdjacentEmptyPositions(enemy.getPosition());
+		LevelFacade levelFacade = getCurrentLevel();
+		for (Enemy enemy : levelFacade.getEnemies()) {
+			List<Position> adj = levelFacade.getAdjacentEmptyPositions(enemy.getPosition());
 			for (Position pos : adj)
 				if (!insideBounds(pos))
 					adj.remove(pos);
@@ -139,9 +139,9 @@ public class LevelController {
 	}
 
 	public boolean isPlayerCollidingEnemy() {
-		LevelFacade levelModel = getCurrentLevel();
-		for (Enemy enemy : levelModel.getEnemies())
-			if (enemy.getPosition().equals(levelModel.getPlayer().getPosition()))
+		LevelFacade levelFacade = getCurrentLevel();
+		for (Enemy enemy : levelFacade.getEnemies())
+			if (enemy.getPosition().equals(levelFacade.getPlayer().getPosition()))
 				return true;
 
 		return false;
@@ -150,7 +150,7 @@ public class LevelController {
 	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets
 	public boolean levelFinished(){
 		Position aboveDoor = getCurrentLevel().getExitDoor().getPosition().getAbove();
-		return getCurrentLevel().getPlayer().getPosition().equals(aboveDoor) && getCurrentLevel().getKeys().size() == 0;
+		return getCurrentLevel().getPlayer().getPosition().equals(aboveDoor) && getCurrentLevel().getLevelKeys().size() == 0;
 	}
 
 }

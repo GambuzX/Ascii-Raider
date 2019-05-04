@@ -3,7 +3,6 @@ package com.asciiraider.g710.controller.level;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
-import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +33,8 @@ public class LevelFacade {
 		return levelModel.getDoorKey();
 	}
 
-	public List<LevelKey> getKeys() {
-		return levelModel.getKeys();
+	public List<LevelKey> getLevelKeys() {
+		return levelModel.getLevelKeys();
 	}
 
 	public List<Enemy> getEnemies() {
@@ -52,7 +51,7 @@ public class LevelFacade {
 		elements.addAll(levelModel.getBoulders());
 		elements.addAll(levelModel.getStoneBlocks());
 		elements.addAll(levelModel.getSandBlocks());
-		elements.addAll(levelModel.getKeys());
+		elements.addAll(levelModel.getLevelKeys());
 		elements.addAll(levelModel.getTNT());
 		elements.addAll(levelModel.getEnemies());
 		if(levelModel.getDoor() != null){
@@ -65,7 +64,7 @@ public class LevelFacade {
 	public List<PhysicsElement> getPhysicsElements() {
 		List<PhysicsElement> physicsElements = new ArrayList<>();
 		physicsElements.addAll(levelModel.getBoulders());
-		physicsElements.addAll(levelModel.getKeys());
+		physicsElements.addAll(levelModel.getLevelKeys());
 		physicsElements.addAll(levelModel.getTNT());
 		if(levelModel.getDoorKey() != null)
 			physicsElements.add(levelModel.getDoorKey());
@@ -110,7 +109,7 @@ public class LevelFacade {
 		return null;
 	}
 
-	public LevelKey findKey(Position pos) {
+	public LevelKey findLevelKey(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof LevelKey)
 			return (LevelKey) element;
@@ -131,11 +130,11 @@ public class LevelFacade {
 		return null;
 	}
 
-	public void removeKey(Position pos) {
+	public void removeLevelKey(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof LevelKey) {
 			clearMatrixPosition(element.getPosition());
-			levelModel.getKeys().remove(element);
+			levelModel.getLevelKeys().remove(element);
 		}
 	}
 

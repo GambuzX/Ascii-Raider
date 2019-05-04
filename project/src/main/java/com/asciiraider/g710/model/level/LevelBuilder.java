@@ -77,7 +77,7 @@ public class LevelBuilder {
 						newLevelModel.addSandBlock(new Sand(pos));
 						break;
 					case 'K':
-						newLevelModel.addKey(new LevelKey(pos));
+						newLevelModel.addLevelKey(new LevelKey(pos));
 						break;
 					case 'D':
 						newLevelModel.setExitDoor(new ExitDoor(pos));
