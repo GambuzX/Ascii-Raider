@@ -23,9 +23,9 @@ We already implemented the majority of the different kind of elements and its co
 
 There is a level builder that decodes .lvl files in order to create a new level, allowing us to quickly generate new ones.
 
-![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png)
+![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png) *Example from level 2*
 
-![Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented2.png)
+![Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented2.png) *Example from level 3*
 
 
 ## Planned Features
@@ -51,6 +51,9 @@ There are many features yet to be implemented:
 	- Restart: when the user chooses to restart a level.
 - Improve Explosions: Make the explosion have some kind of animation that lasts some time and doesn't just remove the surrounding elements, allowing deaths by going through the explosion moments after it happens;
 - Swing compatibility: Finally we want to add a swing version of the game.
+
+![Info Bar Prototype](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/info_bar.png)*Info Bar Prototype*
+
 
 ## Design
 
