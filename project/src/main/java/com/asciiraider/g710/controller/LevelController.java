@@ -40,6 +40,12 @@ public class LevelController {
 				if (newPos.getX() > 0) delimPos = newPos.getLeftSide();
 				else delimPos = newPos;
 				break;
+			case EOF:
+				levelManager.finishGame();
+				return;
+			case Q_KEY:
+				levelManager.finishGame();
+				return;
 		}
 
 		if (handlePlayerMovement(newPos, delimPos))
