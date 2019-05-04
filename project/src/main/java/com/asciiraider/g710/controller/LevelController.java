@@ -129,7 +129,7 @@ public class LevelController {
 
 			if (adj.size()==0) return;
 
-			enemy.move(adj.get(new Random().nextInt(adj.size())));
+			moveElement(enemy, adj.get(new Random().nextInt(adj.size())));
 		}
 	}
 
