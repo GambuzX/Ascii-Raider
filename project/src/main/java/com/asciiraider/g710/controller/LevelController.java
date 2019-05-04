@@ -63,8 +63,6 @@ public class LevelController {
 		levelFacade.updateMatrixPosition(movable);
 	}
 
-
-
 	private boolean handlePlayerMovement(Position newPos, Position delimPos) {
 		LevelFacade levelFacade = getCurrentLevel();
 
@@ -122,6 +120,7 @@ public class LevelController {
 
 	// TODO: ver depois o sitio melhor
 	public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
+		if (element.isFalling()) return false;
 		LevelFacade levelFacade = getCurrentLevel();
 		if (levelFacade.findElement(delimPos) != null) return false;
 		moveElement(element, delimPos);
@@ -133,17 +132,21 @@ public class LevelController {
 		LevelFacade levelFacade = getCurrentLevel();
 		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
-			Position belowBelow = below.getBelow();
 			Element belowEle = levelFacade.findElement(below);
-			Element belowBelowEle = insideBounds(belowBelow) ? levelFacade.findElement(below.getBelow()) : null;
-			if (belowEle == null) {
-				moveElement(physicsElement, below);
-
-				if (belowBelowEle != null)
-					handleExplosion(below);
+			if (belowEle == null && !physicsElement.isFalling()) {
+				physicsElement.setFalling(true);
 			}
-			else if (belowEle instanceof Explosive) {
+			else if (belowEle == null) {
+				moveElement(physicsElement, below);
+			}
+			else if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
+				handleExplosion(physicsElement.getPosition());
+			}
+			else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
 				handleExplosion(below);
+			}
+			else if (physicsElement.isFalling()) {
+				physicsElement.setFalling(false);
 			}
 		}
 	}
@@ -163,7 +166,10 @@ public class LevelController {
 		}
 		for (Position pos : inRange) {
 			Element caught = levelFacade.findElement(pos);
-			if (caught instanceof DestructibleElement) {
+			if (caught instanceof Player) {
+				levelManager.finishGame();
+			}
+			else if (caught instanceof DestructibleElement) {
 				levelFacade.removeDestructibleElement(pos);
 			}
 		}
