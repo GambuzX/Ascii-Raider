@@ -23,7 +23,6 @@ public class LevelModel extends Model {
 	// TODO: n pode ser hardcoded
 	private Element[][] elementsMatrix = new Element[18][12];
 
-
 	public Player getPlayer() {
 		return player;
 	}
