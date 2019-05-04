@@ -133,12 +133,17 @@ public class LevelController {
 		LevelFacade levelFacade = getCurrentLevel();
 		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
 			Position below = physicsElement.getPosition().getBelow();
+			Position belowBelow = below.getBelow();
 			Element belowEle = levelFacade.findElement(below);
+			Element belowBelowEle = insideBounds(belowBelow) ? levelFacade.findElement(below.getBelow()) : null;
 			if (belowEle == null) {
 				moveElement(physicsElement, below);
+
+				if (belowBelowEle != null)
+					handleExplosion(below);
 			}
 			else if (belowEle instanceof Explosive) {
-				handleExplosion(belowEle);
+				handleExplosion(below);
 			}
 		}
 	}
@@ -148,12 +153,12 @@ public class LevelController {
 		getCurrentLevel().removeLevelKey(aboveDoor);
 	}
 
-	public void handleExplosion(Element ele) {
+	public void handleExplosion(Position position) {
 		LevelFacade levelFacade = getCurrentLevel();
 		List<Position> inRange = new ArrayList<>();
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				inRange.add(new Position(ele.getPosition().getX() + i, ele.getPosition().getY() + j));
+				inRange.add(new Position(position.getX() + i, position.getY() + j));
 			}
 		}
 		for (Position pos : inRange) {
