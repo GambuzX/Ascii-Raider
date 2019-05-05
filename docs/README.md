@@ -117,8 +117,16 @@ This class serves as the medium of communication between any other class (except
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
-### LevelController
-This is not as much a code smell but more a violation of the first of the SOLID principles: the LevelController class does to much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
+### Large Class
+This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
+
+
+### Switch Statement
+Our removeDestructibleElement method in LevelFacade has a complex sequence of if statements with similar behaviours. This happens because almost every element is a Destructible Element and we need to check all the lists inside the levelModel in order to find and delete it. The sequence of if statements to determine a specific element type is, in the way we are devising our project, unavoidable, because we are storing each element type in its own list. 
+
+To solve this problem we would have to restructure our Elements in a different way, but for reasons discussed below in the 'Additional Topics' section, we opted for this architecture. 
+
+A possible improvement would be to create a method to, given an element, get its corresponding list from the model. This would allow us to unify the similar behaviour in the removeDestructibleElement, but the complex if statements would remain in the new method.
 
 
 ## Additional Topics
