@@ -183,9 +183,8 @@ public class LevelController {
 		}
 	}
 
-	// TODO: nao pode ser hardcoded
 	private boolean insideBounds(Position pos) {
-		return pos.getX() >= 0 && pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() >= 0 && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
+		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
 	}
 
 	public boolean isPlayerCollidingEnemy() {

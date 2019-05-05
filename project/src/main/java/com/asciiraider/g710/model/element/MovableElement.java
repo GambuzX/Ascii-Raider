@@ -9,16 +9,25 @@ public abstract class MovableElement extends DestructibleElement{
     }
 
     public Position moveUp() {
-        return this.getPosition().getAbove();
+        try{
+            return this.getPosition().getAbove();
+        }
+        catch (IllegalArgumentException e){
+            return  this.getPosition();
+        }
     }
 
     public Position moveDown() {
         return this.getPosition().getBelow();
     }
 
-    public Position moveLeft() {
-        return this.getPosition().getLeftSide();
-    }
+    public Position moveLeft() throws IllegalArgumentException {
+        try{
+            return this.getPosition().getLeftSide();
+        }
+        catch (IllegalArgumentException e){
+            return  this.getPosition();
+        }    }
 
     public Position moveRight() {
         return this.getPosition().getRightSide();

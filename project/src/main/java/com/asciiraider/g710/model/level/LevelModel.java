@@ -20,8 +20,6 @@ public class LevelModel extends Model {
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 	private Position bottomRightCorner;
-
-	// TODO: n pode ser hardcoded
 	private Element[][] elementsMatrix;
 
 	public LevelModel(Position bottomRightCorner) {
