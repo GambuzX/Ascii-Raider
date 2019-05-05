@@ -3,7 +3,6 @@ package com.asciiraider.g710.controller.level;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
-import sun.security.krb5.internal.crypto.Des;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -56,7 +56,7 @@ public class Application {
 				}
 
 				if (levelManager.wonGame())
-					System.out.println("GG you win|");
+					System.out.println("GG you win!");
 				else
 					System.out.println("Game over");
 
@@ -71,7 +71,7 @@ public class Application {
 					try {
 						levelController.handleKeyProgress();
 						levelController.handlePhysics();
-						Thread.sleep(300);
+						Thread.sleep(200);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
