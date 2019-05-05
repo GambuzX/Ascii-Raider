@@ -43,12 +43,24 @@ public class Application {
 		Thread draw_t = new Thread() {
 			@Override
 			public void run(){
+				int physicsCounter = 0;
+				int enemiesCounter = 0;
 				while (!levelManager.isGameFinished()) {
+					physicsCounter++;
+					enemiesCounter++;
 					try {
-						levelController.moveEnemies();
+						if(physicsCounter == 4){
+							physicsCounter = 0;
+							levelController.handleKeyProgress();
+							levelController.handlePhysics();
+						}
+						if(enemiesCounter == 3){
+							enemiesCounter = 0;
+							levelController.moveEnemies();
+						}
 						if (levelController.isPlayerCollidingEnemy()) break;
 						finalLevelView.draw(levelManager.getCurrentLevel());
-						Thread.sleep(200);
+						Thread.sleep(50);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -64,24 +76,8 @@ public class Application {
 			}
 		};
 
-		Thread physics_t = new Thread() {
-			@Override
-			public void run() {
-				while (!levelManager.isGameFinished()) {
-					try {
-						levelController.handleKeyProgress();
-						levelController.handlePhysics();
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if(isInterrupted()) break;
-				}
-			}
-		};
 
 		draw_t.start();
 		input_t.start();
-		physics_t.start();
 	}
 }
