@@ -45,7 +45,7 @@ public class LevelBuilder {
 	}
 
 	private LevelModel buildLevelFromFile(List<String> levelLines) {
-		LevelModel newLevelModel = new LevelModel();
+		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(0).length(), levelLines.size()));
 
 		// TODO make sure dimensions are okay
 		for (int row = 0; row < levelLines.size(); row++) {

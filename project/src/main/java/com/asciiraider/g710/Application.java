@@ -17,7 +17,7 @@ public class Application {
 		LevelController levelController = new LevelController(levelManager);
 		LevelView levelView = null;
 		try {
-			levelView = new LevelView(18, 12, 48);
+			levelView = new LevelView(levelManager.getCurrentLevelFacade().getWidth(), levelManager.getCurrentLevelFacade().getHeight(), 48);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

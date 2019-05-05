@@ -14,8 +14,8 @@ public class LevelFacade {
 		this.levelModel = levelModel;
 	}
 
-	// TODO: deixar o repetido ??
 
+	// TODO: deixar o repetido ??
 
 	public Player getPlayer() {
 		return levelModel.getPlayer();
@@ -42,6 +42,10 @@ public class LevelFacade {
 	}
 
 	// Acaba aqui //
+
+	public int getHeight() {return levelModel.getBottomRightCorner().getY();}
+
+	public int getWidth() {return levelModel.getBottomRightCorner().getX();}
 
 	public List<Element> getElements() {
 		List<Element> elements = new ArrayList<>();

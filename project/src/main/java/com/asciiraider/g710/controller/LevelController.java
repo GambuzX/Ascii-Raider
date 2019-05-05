@@ -19,6 +19,8 @@ public class LevelController {
 	}
 
 	public void handleKeyPress(Event event) {
+		if(event == null)
+			return;
 		Player player = levelManager.getCurrentLevelFacade().getPlayer();
 		Position newPos = null;
 		Position delimPos = null;
@@ -41,8 +43,6 @@ public class LevelController {
 				else delimPos = newPos;
 				break;
 			case EOF:
-				levelManager.finishGame();
-				return;
 			case Q_KEY:
 				levelManager.finishGame();
 				return;
@@ -186,7 +186,7 @@ public class LevelController {
 
 	// TODO: nao pode ser hardcoded
 	private boolean insideBounds(Position pos) {
-		return pos.getX() >= 0 && pos.getX() < 17 && pos.getY() >= 0 && pos.getY() < 12;
+		return pos.getX() >= 0 && pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() >= 0 && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
 	}
 
 	public boolean isPlayerCollidingEnemy() {

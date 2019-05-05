@@ -15,7 +15,7 @@ public class KeyPressEvent {
         if (key.getKeyType() == KeyType.ArrowLeft) return LEFT_KEY;
         if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') return Q_KEY;
         if (key.getKeyType() == KeyType.EOF) return EOF;
-        return OTHER;
+        return null;
     }
 
 }
