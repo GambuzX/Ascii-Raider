@@ -9,6 +9,11 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
 
 ## Table of contents
 1. [Implemented Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#implemented-features)
+    1. [Elements](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#elements)
+    	1. [Generic Behaviours](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#generic-behaviours)
+    	2. [Specific Elements](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#specific-elements)
+    2. [Level Builder](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#level-builder)
+    3. [Screenshots](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#screenshots)
 2. [Planned Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#planned-features)
 3. [Design](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#design)
     1. [LevelFacade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
@@ -17,7 +22,7 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
     	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation)
     	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences) 
 4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
-5. [Important Discussions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#important-discussions)
+5. [Additional Topics](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#additional-topics)
     1. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#save-data-in-model-and-efficiency)
     2. [Multiple Threads vs Two Threads with Count](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#multiple-threads-vs-two-threads-with-count)
     3. [Builder Pattern vs Read From File](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#builder-pattern-vs-read-from-file)
@@ -32,17 +37,33 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
 
 We already implemented the majority of the different kind of elements and its corresponding behaviors and interactions:
 
+
+### Elements
+#### Generic Behaviours
+
+ - Destructible Elements - all the elements that can be destroyed by an explosion.
  - Physics Elements - all the non static elements (aside from the player and enemy) are affected by gravity and fall down when there's no ground under them. They can also be pushed along the map by the player. These include Boulders, Level Keys and TNT;
- - Key and Door Key - when there's a door in a certain level, you must first pick up the key in order to unlock and go through the door;
+ - Movable Elements - elements that can move.
+ - Explosive Elements - elements that can explode, destroying elements around it.
+ 
+#### Specific Elements
+
  - Wall - the wall is a static element without any behaviour or interaction that can not be destroyed.
  - Stone Block - this is a static element that differs from the walls in that they can be destroyed by explosions.
+ - Boulder - element that has physics behaviour, used to fill in holes or kill enemies.
  - Enemy - there is already one enemy with random movement that explodes when some kind of stone falls on top of him. It also causes the player to die when they collide;
- - Sand  - dug by the player, the blocks of sand disappear when you visit their position;
- - TNT - this element generates an explosion in its neighbor cells when it hits the ground, some other element falls on top of it or fired by a nearby explosion; 
+ - Sand - static elements that can be dug by the player, disappearing when you visit their position;
+ - TNT - this element generates an explosion in its neighbor cells when it hits the ground, some other element falls on top of it or fired by a nearby explosion;
+ - Door - static element that must appear together with a Door Key. The player can't go through it until it catches the key, making this element disappear.
+ - Door Key - static element that, when picked up, unlocks the Door on the same level.
  - Level Key - elements that must be pushed by the player to the exit door in order to unlock it and allow the level to be finished. Destroying them with explosions makes the level unwinnable.
  - Exit Door - this is the level exit door, meaning you must go through it to go the next level. However, this door only opens when all the level keys have already been put in there.
 
-There is a level builder that decodes .lvl files in order to create a new level, allowing us to quickly generate new ones.
+### Level Builder
+
+We created a LevelBuilder class that decodes .lvl files in order to create a new level, allowing us to quickly generate new ones. These files contain the levels drawn with ASCII symbols, with each type of element having a specific symbol assigned.
+
+### Screenshots
 
 ![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png) *Example from level 2*
 
@@ -100,9 +121,9 @@ This class serves as the medium of communication between any other class (except
 This is not as much a code smell but more a violation of the first of the SOLID principles: the LevelController class does to much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
 
 
-## Important Discussions
+## Additional Topics
 
-This is an extra chapter filled with discussions that we think that are relevant, not only to justify certain decisions in our code but also to discuss problems that didn't seem to fit in any other chapter.
+This is an extra chapter filled with topics that we considered relevant, not only to justify certain decisions in our code but also to discuss problems that didn't seem to fit in any other chapter.
  
 ### Save Data in Model and Efficiency
 One  of the first problems that we had was how to save data in the LevelModel. Our basic unit was the Element and so our first solution was to save all the different derived elements in only **one list**.
@@ -117,10 +138,12 @@ In the **current solution** we have not only the **different lists** but also a 
 
 ### Multiple Threads vs Two Threads with Count
 
-One other problem that we're still debating is the number of threads that we should use. We began by using one thread for each type of element that needed to be updated - one for the PhysicsElements, other for the Enemies, other waiting for User Input and a final one to draw the Model, allowing them to have different periodicity. 
+One other problem that we're still debating is the number of threads that we should use. We began by using one thread for each type of element that needed to be updated - one for the PhysicsElements, other for the Enemies, other waiting for User Input and a final one to draw the Model, allowing them to have different periodicity.
 However, we were concerned about synchronicity problems that could arise because of the resources distribution of the CPU. Since we could not control the slice of time each thread would actually be allowed to run, we were in doubt the multiple threads were worth it.
+
 For this reason, in trying to avoid increasing the number of threads when not strictly required, we came up with a new solution, based on a methodology used last semester in LCOM.
 Our program is composed by two threads, one for the user input and another to deal with the elements drawing / physics / interactions. This last one possesses multiple counters to control each different kind of event that, when reached a predefined number, allows that event to occur (be it physics, enemy movement, ...).
+
 This method allows us to do everything in only 2 threads, makes the code more compact and prevents synchronicity problems.
 
 ### Builder Pattern vs Read From File
@@ -130,6 +153,7 @@ This was other permutation that our code suffered and the reason why the LevelBu
 ### Architectural Pattern - The Design Pattern Killer
 
 One other problem that we found was the difficulty to make the design patterns fit the chosen Architectural Pattern in its purest form. We already touched lightly on the dilemma of where to put the LevelFacade, but there are other Design Patterns that became almost invalid.
+
 We could use the Command Pattern to make a Drawable Interface that each Element would implement, allowing each one to know how to draw itself (like the solution for the SOLID exercises) and the LevelView would know how to draw a Level as a whole, but as noted, by our professor, this would destroy partially the MVC architecture, making this pattern unusable in this case (there were other similar cases where this could be implemented but the result was the same: the Model class knowing too much about itself and its behavior).
 
 Other interesting example was the Strategy Pattern. We would like to use different strategies to implement the distinct movements that enemies could make (follow the player, random, in "circles"...). However, this would have to be a function in an element subclass, and we would run the risk of the Model gaining more knowledge over the Controller.
