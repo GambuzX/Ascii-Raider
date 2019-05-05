@@ -23,10 +23,11 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
     	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences) 
 4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
 5. [Additional Topics](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#additional-topics)
-    1. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#save-data-in-model-and-efficiency)
-    2. [Multiple Threads vs Two Threads with Count](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#multiple-threads-vs-two-threads-with-count)
-    3. [Builder Pattern vs Read From File](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#builder-pattern-vs-read-from-file)
-    4. [Architectural Pattern - The Design Pattern Killer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#architectural-pattern---the-design-pattern-killer)
+    1. [Data Class Smell and MVC](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#data-class-smell-and-mvc)
+    2. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#save-data-in-model-and-efficiency)
+    3. [Multiple Threads vs Two Threads with Count](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#multiple-threads-vs-two-threads-with-count)
+    4. [Builder Pattern vs Read From File](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#builder-pattern-vs-read-from-file)
+    5. [Architectural Pattern - The Design Pattern Killer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#architectural-pattern---the-design-pattern-killer)
 6. [Testing Results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
 7. [Self-Evaluation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
 
@@ -115,7 +116,7 @@ This class serves as the medium of communication between any other class (except
 
 ## Known Code Smells and Refactoring Suggestions
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
+> This section should describe 3 (third one is the first aditional topic) to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
 ### Large Class
 This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
@@ -132,6 +133,13 @@ A possible improvement would be to create a method to, given an element, get its
 ## Additional Topics
 
 This is an extra chapter filled with topics that we considered relevant, not only to justify certain decisions in our code but also to discuss problems that didn't seem to fit in any other chapter.
+
+### Data Class Smell and MVC
+
+This discussion could easily fit in the code smell section but, because we are not that sure if it is really a smell or a consequence of the architectural pattern, we decided to put it here.
+By strictly following the MVC structure and listening to the advices from our professor, the Model, in our case the LevelModel class, should be kept as dumb as possible, making the Controller the responsible for knowing how the data is transformed and modeled.
+This causes a code smell known as Data Class, where a class is simply a place where you put data in with the correct getters and setters.
+The almost antagonistic paradoxical pressure between the two ideas left us a bit lost and confuse.
  
 ### Save Data in Model and Efficiency
 One  of the first problems that we had was how to save data in the LevelModel. Our basic unit was the Element and so our first solution was to save all the different derived elements in only **one list**.
