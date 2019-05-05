@@ -166,7 +166,9 @@ This method allows us to do everything in only 2 threads, makes the code more co
 
 ### Builder Pattern vs Read From File
 
-This was other permutation that our code suffered and the reason why the LevelBuilder is called that way. We had first implemented a Builder Pattern in order to Build the different levels, however due to its simplicity in the creation process we adopt a different strategy: loading a level directly from a file. This solution allowed us to create levels and tests-levels much faster than the way we were doing before (it also reduced significantly the number of classes - we would need one for each level).
+This was other permutation that our code suffered and the reason why the LevelBuilder is called that way. We had first implemented a #Builder #Pattern in order to build the different levels, with a parent class with methods to create every kind of element. Each level would have a class extending the LevelBuilder, that would know how to build it.
+
+However, due to the simplicity of the creation process of another solution we considered, we adopted a different strategy: loading a level directly from a file. This solution allowed us to create levels and tests-levels much faster than the way we were doing before (it also reduced significantly the number of classes - we would need one for each level).
 
 ### Architectural Pattern - The Design Pattern Killer
 
