@@ -1,6 +1,6 @@
 package com.asciiraider.g710;
 
-import com.asciiraider.g710.controller.LevelController;
+import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.view.LevelView;
 
