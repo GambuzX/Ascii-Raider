@@ -95,6 +95,13 @@ public class LevelFacade {
 		return levelModel.getElementsMatrix()[pos.getX()][pos.getY()];
 	}
 
+	public PhysicsElement findPhysicsElement(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof Boulder || element instanceof TNT || element instanceof LevelKey)
+			return (PhysicsElement) element;
+		return null;
+	}
+
 	public Wall findWall(Position pos) {
 		Element element = findElement(pos);
 		if(element instanceof Wall)

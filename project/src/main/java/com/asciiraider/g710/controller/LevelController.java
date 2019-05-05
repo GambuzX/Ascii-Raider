@@ -84,19 +84,9 @@ public class LevelController {
 			return true;
 		}
 
-		LevelKey key = levelFacade.findLevelKey(newPos);
-		if (key != null) {
-			return handlePlayerPush(key, delimPos);
-		}
-
-		Boulder boulder = levelFacade.findBoulder(newPos);
-		if (boulder != null) {
-			return handlePlayerPush(boulder, delimPos);
-		}
-
-		TNT tnt = levelFacade.findTNT(newPos);
-		if (tnt != null) {
-			return handlePlayerPush(tnt, delimPos);
+		PhysicsElement physicsElement = levelFacade.findPhysicsElement(newPos);
+		if (physicsElement != null) {
+			return handlePlayerPush(physicsElement, delimPos);
 		}
 
 		DoorKey doorKey = levelFacade.findDoorKey(newPos);
