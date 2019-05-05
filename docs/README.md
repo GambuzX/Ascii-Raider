@@ -116,7 +116,7 @@ This class serves as the medium of communication between any other class (except
 
 ## Known Code Smells and Refactoring Suggestions
 
-> This section should describe 3 (third one is the first aditional topic) to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
+> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
 ### Large Class
 This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
@@ -129,6 +129,8 @@ To solve this problem we would have to restructure our Elements in a different w
 
 A possible improvement would be to create a method to, given an element, get its corresponding list from the model. This would allow us to unify the similar behaviour in the removeDestructibleElement, but the complex if statements would remain in the new method.
 
+### Data Class
+By following the MVC structure, our classes that represent the Models end up being Data Classes, which are a code smell. Since this topic is deeply related to the MVC architecture, we decided to include it in the 'Additional Topics' section, and so it is further developed there.
 
 ## Additional Topics
 
@@ -136,7 +138,7 @@ This is an extra chapter filled with topics that we considered relevant, not onl
 
 ### Data Class Smell and MVC
 
-This discussion could easily fit in the code smell section but, because we are not that sure if it is really a smell or a consequence of the architectural pattern, we decided to put it here.
+This discussion could easily fit in the code smell section but, because we are in doubt whether it really is a smell or a consequence of the architectural pattern, we decided to put it here.
 By strictly following the MVC structure and listening to the advices from our professor, the Model, in our case the LevelModel class, should be kept as dumb as possible, making the Controller the responsible for knowing how the data is transformed and modeled.
 This causes a code smell known as Data Class, where a class is simply a place where you put data in with the correct getters and setters.
 The almost antagonistic paradoxical pressure between the two ideas left us a bit lost and confuse.
