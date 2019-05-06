@@ -19,7 +19,7 @@ public class LevelManager {
 	public LevelManager(int fps) {
 		this.fps = fps;
 
-		currentLevelIndex = 2;
+		currentLevelIndex = 0;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();

@@ -18,6 +18,7 @@ public class LevelController {
 	}
 
 	public void handleKeyPress(Event event) {
+
 		if(event == null)
 			return;
 		Player player = levelManager.getCurrentLevelFacade().getPlayer();
@@ -56,6 +57,7 @@ public class LevelController {
 
 		if(levelFinished())
 			levelManager.nextLevel();
+
 	}
 
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
@@ -162,7 +164,7 @@ public class LevelController {
 				levelManager.finishGame();
 			}
 			else if (caught == null || caught instanceof DestructibleElement) {
-				if(caught instanceof DestructibleElement)
+				if(caught != null)
 					levelFacade.removeDestructibleElement(pos);
 				levelFacade.addExplosion(pos, levelManager.getFps());
 			}
@@ -173,7 +175,7 @@ public class LevelController {
 	public void handleAnimations(int fps){
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for(AnimatedElement animated : levelFacade.getAnimatedElements())
-			if(!animated.updateExplosion(fps))
+			if(!animated.updateAnimation(fps))
 				levelFacade.removeAnimation(animated.getPosition());
 	}
 

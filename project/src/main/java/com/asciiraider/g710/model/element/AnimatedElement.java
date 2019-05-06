@@ -12,7 +12,7 @@ public class AnimatedElement extends Element {
 		this.animation = animation;
 	}
 
-	public boolean updateExplosion(int fps){
+	public boolean updateAnimation(int fps){
 		Symbol newSymbol = animation.getNextSymbol(fps);
 		if(newSymbol == null)
 			return false;
