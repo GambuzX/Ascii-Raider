@@ -11,6 +11,8 @@ import java.util.List;
 
 public class LevelController {
 	private LevelManager levelManager;
+
+	// TODO: ver sitio para se por este controller
 	private LevelKeyController levelKeyController = new LevelKeyController();
 
 	public LevelController(LevelManager levelManager) {
@@ -176,8 +178,7 @@ public class LevelController {
 		for (Enemy enemy : levelFacade.getEnemies()) {
 			List<Position> adj = enemy.move(levelFacade.getPlayer().getPosition());
 			for (Position pos : adj)
-				// TODO: refactor este if
-				if (insideBounds(pos) && levelFacade.getAdjacentEmptyPositions(enemy.getPosition()).contains(pos)) {
+				if (insideBounds(pos) && levelFacade.isEmptyPosition(pos)) {
 					levelFacade.setElementPosition(enemy, pos);
 					break;
 				}

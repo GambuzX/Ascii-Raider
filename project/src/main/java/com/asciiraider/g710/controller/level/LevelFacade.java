@@ -96,22 +96,22 @@ public class LevelFacade {
 
 	public List<Position> getAdjacentEmptyPositions(Position pos) {
 		List<Position> adj = new ArrayList<>();
-		Player player = getPlayer();
 
-		Element ele;
-		ele = findElement(pos.getAbove());
-		if (ele == null || ele.equals(player)) adj.add(pos.getAbove());
+		if (isEmptyPosition(pos.getAbove())) adj.add(pos.getAbove());
 
-		ele = findElement(pos.getBelow());
-		if (ele == null || ele.equals(player)) adj.add(pos.getBelow());
+		if (isEmptyPosition(pos.getBelow())) adj.add(pos.getBelow());
 
-		ele = findElement(pos.getLeftSide());
-		if (ele == null || ele.equals(player)) adj.add(pos.getLeftSide());
+		if (isEmptyPosition(pos.getLeftSide())) adj.add(pos.getLeftSide());
 
-		ele = findElement(pos.getRightSide());
-		if (ele == null || ele.equals(player)) adj.add(pos.getRightSide());
+		if (isEmptyPosition(pos.getRightSide())) adj.add(pos.getRightSide());
 
 		return adj;
+	}
+
+	// TODO: mudar nome e talvez sitio desta funcao
+	public boolean isEmptyPosition(Position position) {
+		Element ele = findElement(position);
+		return (ele == null || ele.equals(getPlayer()));
 	}
 
 	public Element findElement(Position pos) {
