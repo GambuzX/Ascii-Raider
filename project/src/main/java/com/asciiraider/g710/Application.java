@@ -56,7 +56,7 @@ public class Application {
 							//levelController.handleKeyProgress();
 							levelController.handlePhysics();
 						}
-						if(enemiesCounter == 3){
+						if(enemiesCounter == 6){
 							enemiesCounter = 0;
 							levelController.moveEnemies();
 						}

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private static final int lvlCount = 3;
+	private static final int lvlCount = 4;
 	private List<LevelModel> levels = new ArrayList<>();
 
 	public LevelBuilder() {
@@ -69,6 +69,9 @@ public class LevelBuilder {
 						break;
 					case 'E':
 						newLevelModel.addEnemy(new SkullEnemy(pos));
+						break;
+					case 'M':
+						newLevelModel.addEnemy(new MummyEnemy(pos));
 						break;
 					case 'T':
 						newLevelModel.addTNT(new TNT(pos));
