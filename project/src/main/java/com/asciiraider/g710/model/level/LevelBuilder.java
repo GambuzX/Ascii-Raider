@@ -68,7 +68,7 @@ public class LevelBuilder {
 						newLevelModel.setPlayer(new Player(pos));
 						break;
 					case 'E':
-						newLevelModel.addEnemy(new Enemy(pos));
+						newLevelModel.addEnemy(new SkullEnemy(pos));
 						break;
 					case 'T':
 						newLevelModel.addTNT(new TNT(pos));

@@ -7,7 +7,6 @@ import com.asciiraider.g710.view.Event;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LevelController {
 
@@ -182,14 +181,13 @@ public class LevelController {
 	public void moveEnemies() {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for (Enemy enemy : levelFacade.getEnemies()) {
-			List<Position> adj = levelFacade.getAdjacentEmptyPositions(enemy.getPosition());
+			List<Position> adj = enemy.move(levelFacade.getPlayer().getPosition());
 			for (Position pos : adj)
-				if (!insideBounds(pos))
-					adj.remove(pos);
-
-			if (adj.size()==0) return;
-
-			moveElement(enemy, adj.get(new Random().nextInt(adj.size())));
+				// TODO: refactor este if
+				if (insideBounds(pos) && levelFacade.getAdjacentEmptyPositions(enemy.getPosition()).contains(pos)) {
+					moveElement(enemy, pos);
+					break;
+				}
 		}
 	}
 
