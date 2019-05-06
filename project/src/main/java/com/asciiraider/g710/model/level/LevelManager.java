@@ -1,11 +1,12 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 
 import java.util.List;
 
 // TODO: continuar a testar
-public class LevelManager {
+public class LevelManager implements LevelKeyObserver {
 
 	private LevelBuilder lvlBuilder;
 	private List<LevelModel> levelModels;
@@ -54,10 +55,6 @@ public class LevelManager {
 		return currentLevelKeys;
 	}
 
-	public void decreaseLevelKeyCount() {
-		currentLevelKeys--;
-	}
-
 	public int getCurrentLevelIndex() {
 		return currentLevelIndex;
 	}
@@ -85,5 +82,10 @@ public class LevelManager {
 
 	public int getFps() {
 		return fps;
+	}
+
+	@Override
+	public void updateLevelKey() {
+		currentLevelKeys--;
 	}
 }

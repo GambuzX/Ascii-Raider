@@ -53,7 +53,7 @@ public class Application {
 					try {
 						if(physicsCounter == 4){
 							physicsCounter = 0;
-							levelController.handleKeyProgress();
+							//levelController.handleKeyProgress();
 							levelController.handlePhysics();
 						}
 						if(enemiesCounter == 3){

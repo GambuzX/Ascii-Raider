@@ -3,13 +3,12 @@ package com.asciiraider.g710.model.element;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
-import java.util.List;
-
 public abstract class MovableElement extends DestructibleElement{
     public MovableElement(Position position, Symbol symbol) {
         super(position, symbol);
     }
 
+    // TODO: ver se isto precisa de estar aqui. so o player e que esta a usar
     public Position moveUp() {
         try{
             return this.getPosition().getAbove();
@@ -36,5 +35,4 @@ public abstract class MovableElement extends DestructibleElement{
         return this.getPosition().getRightSide();
     }
 
-    public abstract List<Position> move(Position targetPosition);
 }

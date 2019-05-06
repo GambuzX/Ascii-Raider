@@ -14,7 +14,6 @@ public abstract class Enemy extends MovableElement implements Explosive{
         this.movementStrategy = createMovementStrategy();
     }
 
-    @Override
     public List<Position> move(Position targetPosition){
         return movementStrategy.move(this.getPosition(), targetPosition);
     }

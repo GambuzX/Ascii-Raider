@@ -3,7 +3,7 @@ package com.asciiraider.g710.model.element;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
-public abstract class PhysicsElement extends DestructibleElement {
+public abstract class PhysicsElement extends MovableElement {
 
     private boolean falling;
 
@@ -19,6 +19,4 @@ public abstract class PhysicsElement extends DestructibleElement {
     public boolean isFalling() {
         return falling;
     }
-
-
 }
