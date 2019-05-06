@@ -24,6 +24,10 @@ abstract public class Element implements Cloneable {
 		return symbol;
 	}
 
+	public void setSymbol(Symbol symbol){
+		this.symbol = symbol;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

@@ -47,6 +47,24 @@ public class LevelFacade {
 
 	public int getWidth() {return levelModel.getBottomRightCorner().getX();}
 
+	public List<AnimatedElement> getAnimatedElements(){
+		List<AnimatedElement> animatedElements =  new ArrayList<>();
+		animatedElements.addAll(levelModel.getExplosions());
+		return animatedElements;
+	}
+
+	public void removeAnimation(Position pos){
+		Element element = findElement(pos);
+		levelModel.getExplosions().remove(element);
+		clearMatrixPosition(element.getPosition());
+	}
+
+	public Explosion findExplosion(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof Explosion)
+			return (Explosion) element;
+		return null;
+	}
 	public List<Element> getElements() {
 		List<Element> elements = new ArrayList<>();
 		elements.add(levelModel.getPlayer());
@@ -58,6 +76,7 @@ public class LevelFacade {
 		elements.addAll(levelModel.getLevelKeys());
 		elements.addAll(levelModel.getTNT());
 		elements.addAll(levelModel.getEnemies());
+		elements.addAll(levelModel.getExplosions());
 		if(levelModel.getDoor() != null){
 			elements.add(levelModel.getDoor());
 			elements.add(levelModel.getDoorKey());
@@ -229,5 +248,9 @@ public class LevelFacade {
 
 	public void updateMatrixPosition(Element ele) {
 		levelModel.updateMatrixPosition(ele);
+	}
+
+	public void addExplosion(Position position, int fps) {
+		levelModel.addExplostion(new Explosion(position, fps));
 	}
 }
