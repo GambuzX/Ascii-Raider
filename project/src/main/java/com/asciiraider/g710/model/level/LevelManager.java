@@ -1,7 +1,6 @@
 package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.controller.level.LevelFacade;
-import com.asciiraider.g710.view.LevelView;
 
 import java.util.List;
 
@@ -15,8 +14,12 @@ public class LevelManager {
 	private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
 
-	public LevelManager() {
-		currentLevelIndex = 0;
+	private int fps;
+
+	public LevelManager(int fps) {
+		this.fps = fps;
+
+		currentLevelIndex = 2;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();
@@ -80,4 +83,7 @@ public class LevelManager {
 	}
 
 
+	public int getFps() {
+		return fps;
+	}
 }

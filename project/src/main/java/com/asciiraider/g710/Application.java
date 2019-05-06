@@ -12,7 +12,9 @@ public class Application {
 	}
 
 	private void run() {
-		LevelManager levelManager = new LevelManager();
+		int fps = 20;
+
+		LevelManager levelManager = new LevelManager(fps);
 
 		LevelController levelController = new LevelController(levelManager);
 		LevelView levelView = null;
@@ -59,8 +61,9 @@ public class Application {
 							levelController.moveEnemies();
 						}
 						if (levelController.isPlayerCollidingEnemy()) break;
+						levelController.handleAnimations(levelManager.getFps());
 						finalLevelView.draw(levelManager.getCurrentLevel());
-						Thread.sleep(50);
+						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

@@ -19,6 +19,7 @@ public class LevelModel extends Model {
 	private List<LevelKey> levelKeys = new ArrayList<>();
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
+	private List<Explosion> explosions = new ArrayList<>();
 	private Position bottomRightCorner;
 	private Element[][] elementsMatrix;
 
@@ -93,6 +94,15 @@ public class LevelModel extends Model {
 	}
 
 	// TODO: ver se nao ha aqui um factory a ser feito
+	public void addExplostion(Explosion explosion) {
+		this.getExplosions().add(explosion);
+		updateMatrixPosition(explosion);
+	}
+
+	public List<Explosion> getExplosions() {
+		return  explosions;
+	}
+
 	public void addWall(Wall wall) {
 		this.getWalls().add(wall);
 		updateMatrixPosition(wall);
