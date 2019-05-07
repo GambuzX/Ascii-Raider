@@ -69,7 +69,7 @@ public class LevelController {
 		return levelManager;
 	}
 
-	public void handleExplosion(Position pos) {
+	public void triggerExplosion(Position pos) {
 		explosionsController.handleExplosion(pos);
 	}
 

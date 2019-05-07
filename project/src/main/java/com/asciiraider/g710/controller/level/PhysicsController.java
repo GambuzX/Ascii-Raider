@@ -32,10 +32,10 @@ public class PhysicsController {
             levelFacade.setElementPosition(physicsElement, nextPosition);
         }
         else if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
-            levelController.handleExplosion(physicsElement.getPosition());
+            levelController.triggerExplosion(physicsElement.getPosition());
         }
         else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
-            levelController.handleExplosion(nextPosition);
+            levelController.triggerExplosion(nextPosition);
         }
         else if (physicsElement.isFalling()) {
             physicsElement.setFalling(false);

@@ -20,7 +20,7 @@ public class LevelManager implements LevelKeyObserver {
 	public LevelManager(int fps) {
 		this.fps = fps;
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 7;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.getLevels();

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private static final int lvlCount = 4;
+	private static final int lvlCount = 8;
 	private List<LevelModel> levels = new ArrayList<>();
 
 	public LevelBuilder() {
