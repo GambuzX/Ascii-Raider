@@ -2,6 +2,7 @@ package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.model.element.DestructibleElement;
 import com.asciiraider.g710.model.element.Element;
+import com.asciiraider.g710.model.element.Explosive;
 import com.asciiraider.g710.model.element.Player;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
@@ -17,9 +18,7 @@ public class ExplosionController {
         this.levelController = levelController;
     }
 
-    public void handleExplosion(Position position) {
-        LevelManager levelManager = levelController.getLevelManager();
-        LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+    public void handleExplosion(Position position, LevelFacade levelFacade) {
         List<Position> inRange = new ArrayList<>();
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -29,12 +28,16 @@ public class ExplosionController {
         for (Position pos : inRange) {
             Element caught = levelFacade.findElement(pos);
             if (caught instanceof Player) {
-                levelManager.finishGame();
+                levelController.finishGame();
             }
             else if (caught == null || caught instanceof DestructibleElement) {
                 if(caught != null)
                     levelFacade.removeDestructibleElement(pos);
-                levelFacade.addExplosion(pos, levelManager.getFps());
+
+                levelFacade.addExplosion(pos, levelController.getFps());
+
+                if (caught instanceof Explosive)
+                    handleExplosion(pos, levelFacade);
             }
         }
 

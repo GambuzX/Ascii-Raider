@@ -14,15 +14,13 @@ public class PhysicsController {
         this.levelController = levelController;
     }
 
-    public void handlePhysics() {
-        LevelFacade levelFacade = levelController.getLevelManager().getCurrentLevelFacade();
+    public void handlePhysics(LevelFacade levelFacade) {
         for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
-            handleElementPhysics(physicsElement);
+            handleElementPhysics(physicsElement, levelFacade);
         }
     }
 
-    public void handleElementPhysics(PhysicsElement physicsElement) {
-        LevelFacade levelFacade = levelController.getLevelManager().getCurrentLevelFacade();
+    public void handleElementPhysics(PhysicsElement physicsElement, LevelFacade levelFacade) {
         Position nextPosition = physicsElement.moveDown();
         Element belowEle = levelFacade.findElement(nextPosition);
         if (belowEle == null && !physicsElement.isFalling()) {
@@ -39,20 +37,18 @@ public class PhysicsController {
         }
         else if (physicsElement.isFalling()) {
             physicsElement.setFalling(false);
-            levelController.handleLevelKey(levelFacade);
+            levelController.handleLevelKey();
         }
     }
 
-    public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
-        LevelManager levelManager = levelController.getLevelManager();
+    public boolean handlePlayerPush(PhysicsElement element, Position delimPos, LevelFacade levelFacade){
 
         if (element.isFalling()) return false;
 
-        LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
         if (levelFacade.findElement(delimPos) != null) return false;
         levelFacade.setElementPosition(element, delimPos);
-        handleElementPhysics(element);
-        levelController.handleLevelKey(levelFacade);
+        handleElementPhysics(element, levelFacade);
+        levelController.handleLevelKey();
         return true;
     }
 }

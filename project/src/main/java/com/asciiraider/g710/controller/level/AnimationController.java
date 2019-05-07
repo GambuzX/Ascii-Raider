@@ -10,8 +10,7 @@ public class AnimationController {
         this.levelController = levelController;
     }
 
-    public void handleAnimations(int fps){
-        LevelFacade levelFacade = levelController.getLevelManager().getCurrentLevelFacade();
+    public void handleAnimations(int fps, LevelFacade levelFacade){
         for(AnimatedElement animated : levelFacade.getAnimatedElements())
             if(!animated.updateAnimation(fps))
                 levelFacade.removeAnimation(animated.getPosition());

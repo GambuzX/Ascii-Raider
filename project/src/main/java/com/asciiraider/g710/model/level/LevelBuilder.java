@@ -49,7 +49,7 @@ public class LevelBuilder {
 
 	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
 		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(0).length(), levelLines.size()));
-		
+
 		// TODO make sure dimensions are okay
 		int playerCount = 0, doorCount = 0, doorKeyCount = 0;
 		for (int row = 0; row < levelLines.size(); row++) {

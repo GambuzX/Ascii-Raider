@@ -8,6 +8,7 @@ import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.List;
+import java.util.logging.Level;
 
 public class MovementController {
 
@@ -17,8 +18,7 @@ public class MovementController {
         this.levelController = levelController;
     }
 
-    public void moveEnemies() {
-        LevelFacade levelFacade = levelController.getLevelManager().getCurrentLevelFacade();
+    public void moveEnemies(LevelFacade levelFacade) {
         for (Enemy enemy : levelFacade.getEnemies()) {
             List<Position> adj = enemy.move(levelFacade.getPlayer().getPosition());
             for (Position pos : adj)
@@ -29,9 +29,7 @@ public class MovementController {
         }
     }
 
-    public boolean handlePlayerMovement(Position newPos, Position delimPos) {
-        LevelManager levelManager = levelController.getLevelManager();
-        LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+    public boolean handlePlayerMovement(Position newPos, Position delimPos, LevelFacade levelFacade) {
 
         if (newPos == null || !levelController.insideBounds(newPos)) return false;
         if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
@@ -57,7 +55,7 @@ public class MovementController {
         }
 
         if(null != levelFacade.findEnemy(newPos) || null != levelFacade.findExplosion(newPos)) {
-            levelManager.finishGame();
+            levelController.finishGame();
             return true;
         }
 

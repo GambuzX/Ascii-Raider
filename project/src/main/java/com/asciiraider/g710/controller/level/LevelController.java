@@ -53,7 +53,7 @@ public class LevelController {
 				return;
 		}
 
-		if (movementController.handlePlayerMovement(newPos, delimPos))
+		if (movementController.handlePlayerMovement(newPos, delimPos, levelManager.getCurrentLevelFacade()))
 			levelManager.getCurrentLevelFacade().setElementPosition(player, newPos);
 
 		if (isPlayerCollidingEnemy()) {
@@ -65,36 +65,40 @@ public class LevelController {
 
 	}
 
-	public LevelManager getLevelManager() {
-		return levelManager;
-	}
-
 	public void triggerExplosion(Position pos) {
-		explosionsController.handleExplosion(pos);
+		explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade());
 	}
 
 	public void handlePhysics() {
-		physicsController.handlePhysics();
+		physicsController.handlePhysics(levelManager.getCurrentLevelFacade());
 	}
 
 	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
-		return physicsController.handlePlayerPush(element, delimPos);
+		return physicsController.handlePlayerPush(element, delimPos, levelManager.getCurrentLevelFacade());
 	}
 
-	public void handleLevelKey(LevelFacade levelFacade) {
-		levelKeyController.handler(levelFacade);
+	public void handleLevelKey() {
+		levelKeyController.handler(levelManager.getCurrentLevelFacade());
 	}
 
 	public void moveEnemies() {
-		movementController.moveEnemies();
+		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
 	}
 
 	public void handleAnimations(int fps){
-		animationController.handleAnimations(fps);
+		animationController.handleAnimations(fps, levelManager.getCurrentLevelFacade());
 	}
 
 	public boolean insideBounds(Position pos) {
 		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
+	}
+
+	public void finishGame() {
+		this.levelManager.finishGame();
+	}
+
+	public int getFps() {
+		return levelManager.getFps();
 	}
 
 	public void catchDoorKey() {
