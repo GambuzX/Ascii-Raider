@@ -13,14 +13,10 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
-public class LevelView extends View<LevelModel>{
-	private final TerminalScreen screen;
-	public LevelView(Terminal terminal) throws IOException {
-		screen = new TerminalScreen(terminal);
+public class LevelView extends TerminalView<LevelModel>{
 
-		screen.setCursorPosition(null);
-		screen.startScreen();
-		screen.doResizeIfNecessary();
+	public LevelView(Terminal terminal) throws IOException {
+		super(terminal);
 	}
 
 	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
