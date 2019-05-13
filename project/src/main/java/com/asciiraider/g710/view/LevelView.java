@@ -1,29 +1,21 @@
 package com.asciiraider.g710.view;
 
-import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.controller.level.LevelFacade;
+import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class LevelView extends View<LevelModel>{
 	private final TerminalScreen screen;
-	public LevelView(int width, int height, int size) throws IOException {
-		Font font = new Font("Monospaced", Font.PLAIN,  size);
-		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
-
-		Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
+	public LevelView(Terminal terminal) throws IOException {
 		screen = new TerminalScreen(terminal);
 
 		screen.setCursorPosition(null);
