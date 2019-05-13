@@ -1,7 +1,9 @@
 package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.controller.element.LevelKeyController;
-import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.element.Enemy;
+import com.asciiraider.g710.model.element.PhysicsElement;
+import com.asciiraider.g710.model.element.Player;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
@@ -12,6 +14,7 @@ public class LevelController {
 	// TODO: ver sitio para se por este controller
 	private LifeController lifeController = new LifeController();
 	private LevelKeyController levelKeyController = new LevelKeyController();
+	private LevelProgressionController levelProgressionController = new LevelProgressionController();
 	private PhysicsController physicsController = new PhysicsController(this);
 	private ExplosionController explosionsController = new ExplosionController(this);
 	private MovementController movementController = new MovementController(this);
@@ -21,7 +24,12 @@ public class LevelController {
 		this.levelManager = levelManager;
 		// TODO: depois adicionar-se-a a barra de progresso
 		levelKeyController.addObserver(levelManager);
+
 		lifeController.addObserver(levelManager.getLifeManager());
+		lifeController.addObserver(levelManager.getCurrentLevel().getTimeAlarm());
+
+		levelProgressionController.addObserver(levelManager.getUser());
+		levelProgressionController.addObserver(levelManager.getCurrentLevel().getTimeAlarm());
 	}
 
 	public void handleKeyPress(Event event) {
@@ -51,7 +59,6 @@ public class LevelController {
 				break;
 			case R_KEY:
 				handleLife();
-				levelManager.restartLevel();
 				return;
 			case EOF:
 			case Q_KEY:
@@ -65,9 +72,7 @@ public class LevelController {
 		if (isPlayerCollidingEnemy())
 			handleLife();
 
-		if(levelFinished())
-			levelManager.nextLevel();
-
+		levelProgressionController.handle(levelManager);
 	}
 
 	public void triggerExplosion(Position pos) {
@@ -101,8 +106,6 @@ public class LevelController {
 	public void handleLife() {
 		lifeController.notifyObservers();
 		levelManager.restartLevel();
-		levelManager.getCurrentLevel().getTimeAlarm().resetTimer();
-		levelManager.getCurrentLevel().getTimeAlarm().start();
 		if(!levelManager.getLifeManager().hasLifes())
 			levelManager.finishGame();
 	}
@@ -124,13 +127,6 @@ public class LevelController {
 				return true;
 
 		return false;
-	}
-
-	// TODO: este e certo que n e aqui, vê se pelos comprimentos dos gets
-	public boolean levelFinished(){
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
-		return levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0;
 	}
 
 }

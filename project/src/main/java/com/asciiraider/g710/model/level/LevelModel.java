@@ -3,7 +3,6 @@ package com.asciiraider.g710.model.level;
 import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.model.utilities.TimeAlarm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class LevelModel extends Model {
 	private Position bottomRightCorner;
 	private Element[][] elementsMatrix;
 
-	private TimeAlarm remainingTime;
+	private LevelTimeAlarm remainingTime;
 
 	public LevelModel(Position bottomRightCorner) {
 		this.bottomRightCorner = bottomRightCorner;
@@ -161,11 +160,11 @@ public class LevelModel extends Model {
 		return bottomRightCorner;
 	}
 
-	public TimeAlarm getTimeAlarm() {
+	public LevelTimeAlarm getTimeAlarm() {
 		return remainingTime;
 	}
 
 	public void setTime(int time) {
-		this.remainingTime = new TimeAlarm(time);
+		this.remainingTime = new LevelTimeAlarm(time);
 	}
 }

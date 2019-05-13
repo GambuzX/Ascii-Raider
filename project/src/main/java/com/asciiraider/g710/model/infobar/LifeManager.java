@@ -1,10 +1,10 @@
 package com.asciiraider.g710.model.infobar;
 
-import com.asciiraider.g710.controller.PlayerObserver;
+import com.asciiraider.g710.controller.PlayerDeathObserver;
 
 import java.security.InvalidParameterException;
 
-public class LifeManager implements PlayerObserver {
+public class LifeManager implements PlayerDeathObserver {
 	private int currentLife;
 	private int initialLife;
 
@@ -26,7 +26,7 @@ public class LifeManager implements PlayerObserver {
 	}
 
 	@Override
-	public void update() {
+	public void updateDeath() {
 		currentLife--;
 	}
 }

@@ -3,6 +3,7 @@ package com.asciiraider.g710.model.level;
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.utilities.User;
 
 import java.security.InvalidParameterException;
 import java.util.List;
@@ -17,6 +18,7 @@ public class LevelManager implements LevelKeyObserver {
 	private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
 	private LifeManager lifeManager;
+	private User user = new User();
 
 	private int fps;
 
@@ -42,16 +44,15 @@ public class LevelManager implements LevelKeyObserver {
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
+		// TODO: ver se depois da para fazer reset sem alarme que este ja faz pois e observer
 		getCurrentLevel().getTimeAlarm().start();
 	}
 
 	public void nextLevel() {
 		currentLevelIndex++;
 		updateLevelVariables();
-		getCurrentLevel().getTimeAlarm().start();
-		if (currentLevelIndex >= levelModels.size()) {
+		if (currentLevelIndex >= levelModels.size())
 			gameFinished = true;
-		}
 	}
 
 	public void restartLevel() {
@@ -103,5 +104,9 @@ public class LevelManager implements LevelKeyObserver {
 
 	public LifeManager getLifeManager() {
 		return lifeManager;
+	}
+
+	public User getUser() {
+		return user;
 	}
 }
