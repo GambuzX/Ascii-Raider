@@ -80,8 +80,28 @@ public class Application {
 			}
 		};
 
+		Thread tick_second = new Thread() {
+			@Override
+			public void run() {
+				while (!levelManager.isGameFinished()) {
+					// TODO: refactoring??
+					while (!levelManager.isGameFinished() && levelManager.getCurrentLevel().getTimeAlarm().getCurrentTime() > 0) {
+						System.out.println(levelManager.getCurrentLevel().getTimeAlarm().getCurrentTime());
+						levelManager.getCurrentLevel().getTimeAlarm().decTimer();
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					levelController.handleLife();
+				}
+			}
+		};
+
 
 		draw_t.start();
 		input_t.start();
+		tick_second.start();
 	}
 }

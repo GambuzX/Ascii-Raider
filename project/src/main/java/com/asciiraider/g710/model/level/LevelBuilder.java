@@ -39,16 +39,17 @@ public class LevelBuilder {
 	}
 
 	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
-		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(0).length(), levelLines.size()));
+		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(1).length(), levelLines.size() - 1));
 
 		// TODO make sure dimensions are okay
+		newLevelModel.setTime(Integer.parseInt(levelLines.get(0)));
+
 		int playerCount = 0, doorCount = 0, doorKeyCount = 0;
-		for (int row = 0; row < levelLines.size(); row++) {
-			for (int col = 0; col < levelLines.get(0).length(); col++) {
+		for (int row = 1; row < levelLines.size(); row++) {
+			for (int col = 0; col < levelLines.get(row).length(); col++) {
 
 				char curr = levelLines.get(row).charAt(col);
-				Position pos = new Position(col, row);
-
+				Position pos = new Position(col, row - 1);
 				switch(curr) {
 					case 'W':
 						newLevelModel.addWall(new Wall(pos));
