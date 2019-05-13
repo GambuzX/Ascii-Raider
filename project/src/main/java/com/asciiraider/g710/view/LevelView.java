@@ -9,19 +9,17 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
 public class LevelView extends TerminalView<LevelModel>{
 
-	public LevelView(Terminal terminal) throws IOException {
+	public LevelView(TerminalScreen terminal) throws IOException {
 		super(terminal);
 	}
 
 	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
 	public synchronized void draw(LevelModel levelModel) {
-		screen.clear();
 		TextGraphics graphics = screen.newTextGraphics();
 
 		// TODO: ver isto
@@ -35,6 +33,7 @@ public class LevelView extends TerminalView<LevelModel>{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public void drawElement(TextGraphics graphics, Element element) {
@@ -54,13 +53,5 @@ public class LevelView extends TerminalView<LevelModel>{
 			e.printStackTrace();
 		}
 		return Event.OTHER;
-	}
-
-	public void exit() {
-		try {
-			this.screen.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
