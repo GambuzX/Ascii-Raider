@@ -12,39 +12,30 @@ import java.util.List;
 
 public class LevelBuilder {
 	private static final int lvlCount = 8;
-	private List<LevelModel> levels = new ArrayList<>();
-
-	public LevelBuilder() {
-		this.buildAllLevels();
-	}
-
-	public List<LevelModel> getLevels() {
-		return levels;
-	}
-
-	public LevelModel getLevel(int levelNumber) {
-		return levels.get(levelNumber%levels.size());
-	}
 
 	// TODO: ver isto de protected vs package-private
-	private void buildAllLevels() {
+	public List<LevelModel> buildAllLevels() {
 		List<LevelModel> levelModels = new ArrayList<>();
 		for (int i = 1 ; i <= lvlCount; i++) {
-			try {
-				levelModels.add( buildLevel(i) );
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InvalidLevelException ile) {
-				System.out.println("Tried to build invalid level");
-			}
+			LevelModel newLevel = buildLevel(i);
+			if (newLevel != null)
+				levelModels.add( newLevel );
 
 		}
-		levels = levelModels;
+		return levelModels;
 	}
 
-	private LevelModel buildLevel(int levelNumber) throws IOException, InvalidLevelException {
-		List<String> levelLines = readLevelFile(levelNumber);
-		return buildLevelFromFile(levelLines);
+	public LevelModel buildLevel(int levelNumber){
+		List<String> levelLines = null;
+		LevelModel levelModel = null;
+		try {
+			levelLines = readLevelFile(levelNumber);
+			levelModel = buildLevelFromFile(levelLines);
+
+		} catch (IOException | InvalidLevelException e) {
+			e.printStackTrace();
+		}
+		return levelModel;
 	}
 
 	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
