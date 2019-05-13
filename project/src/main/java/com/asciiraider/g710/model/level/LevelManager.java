@@ -42,6 +42,7 @@ public class LevelManager implements LevelKeyObserver {
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
+		getCurrentLevel().getTimeAlarm().start();
 	}
 
 	public void nextLevel() {
