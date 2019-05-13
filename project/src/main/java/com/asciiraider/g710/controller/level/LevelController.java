@@ -101,6 +101,8 @@ public class LevelController {
 	public void handleLife() {
 		lifeController.notifyObservers();
 		levelManager.restartLevel();
+		levelManager.getCurrentLevel().getTimeAlarm().resetTimer();
+		levelManager.getCurrentLevel().getTimeAlarm().start();
 		if(!levelManager.getLifeManager().hasLifes())
 			levelManager.finishGame();
 	}

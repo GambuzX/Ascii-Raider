@@ -29,6 +29,8 @@ public class LevelManager implements LevelKeyObserver {
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();
 		updateLevelVariables();
+		getCurrentLevel().getTimeAlarm().start();
+
 	}
 
 	public void resetLevels() {
@@ -45,6 +47,7 @@ public class LevelManager implements LevelKeyObserver {
 	public void nextLevel() {
 		currentLevelIndex++;
 		updateLevelVariables();
+		getCurrentLevel().getTimeAlarm().start();
 		if (currentLevelIndex >= levelModels.size()) {
 			gameFinished = true;
 		}
