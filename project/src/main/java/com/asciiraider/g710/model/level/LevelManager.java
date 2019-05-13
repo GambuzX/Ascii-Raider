@@ -23,18 +23,18 @@ public class LevelManager implements LevelKeyObserver {
 		currentLevelIndex = 0;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
-		levelModels = lvlBuilder.getLevels();
+		levelModels = lvlBuilder.buildAllLevels();
 		updateLevelVariables();
 	}
 
 	public void resetLevels() {
 		currentLevelIndex = 0;
-		levelModels = lvlBuilder.getLevels();
+		levelModels = lvlBuilder.buildAllLevels();
 		updateLevelVariables();
 	}
 
 	public void resetLevel(int levelIndex) {
-		levelModels.set(levelIndex, lvlBuilder.getLevel(levelIndex));
+		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
 	}
 
@@ -44,6 +44,10 @@ public class LevelManager implements LevelKeyObserver {
 		if (currentLevelIndex >= levelModels.size()) {
 			gameFinished = true;
 		}
+	}
+
+	public void restartLevel() {
+		this.resetLevel(currentLevelIndex);
 	}
 
 	private void updateLevelVariables() {
