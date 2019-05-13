@@ -1,5 +1,8 @@
 package com.asciiraider.g710.model.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // TODO: ver se faz sentido X e Y n poder ser menor que 0
 public class Position {
 	private int x, y;
@@ -54,6 +57,29 @@ public class Position {
 
 	public Position getLeftSide() throws IllegalArgumentException{
 		return new Position(this.x - 1, this.y);
+	}
+
+	public List<Position> getAdjacent(){
+		List<Position> adjacent = new ArrayList<>();
+
+		try {
+			adjacent.add(this.getAbove());
+		}
+		catch (Exception e) {}
+
+		try {
+			adjacent.add(this.getLeftSide());
+		}
+		catch (Exception e){}
+
+		adjacent.add(this.getRightSide());
+		adjacent.add(this.getBelow());
+
+		return adjacent;
+	}
+
+	public double distance(Position pos2){
+		return Math.sqrt(Math.pow(pos2.getX() - this.getX(), 2.0) + Math.pow(pos2.getY()-this.getY(), 2.0));
 	}
 
 

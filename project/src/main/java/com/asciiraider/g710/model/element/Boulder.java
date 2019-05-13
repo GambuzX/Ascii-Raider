@@ -10,12 +10,4 @@ public class Boulder extends PhysicsElement{
 	public Boulder(Position position) {
 		super(position, boulderSymbol);
 	}
-
-	public Position pushRight() {
-		return this.getPosition().getRightSide();
-	}
-
-	public Position pushLeft() {
-		return this.getPosition().getLeftSide();
-	}
 }

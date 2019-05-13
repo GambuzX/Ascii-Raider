@@ -1,13 +1,22 @@
 package com.asciiraider.g710.model.element;
 
-import com.asciiraider.g710.model.utilities.HexColorString;
+import com.asciiraider.g710.controller.element.MovementStrategy;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
-public class Enemy extends MovableElement implements Explosive{
-    private static final Symbol enemySymbol = new Symbol('☠', new HexColorString("ff0000"));
+import java.util.List;
 
-    public Enemy(Position position) {
-        super(position, enemySymbol);
+public abstract class Enemy extends MovableElement implements Explosive{
+    private MovementStrategy movementStrategy;
+
+    public Enemy(Position position, Symbol symbol) {
+        super(position, symbol);
+        this.movementStrategy = createMovementStrategy();
     }
+
+    public List<Position> move(Position targetPosition){
+        return movementStrategy.move(this.getPosition(), targetPosition);
+    }
+
+    protected abstract MovementStrategy createMovementStrategy();
 }

@@ -8,6 +8,7 @@ public abstract class MovableElement extends DestructibleElement{
         super(position, symbol);
     }
 
+    // TODO: ver se isto precisa de estar aqui. so o player e que esta a usar
     public Position moveUp() {
         try{
             return this.getPosition().getAbove();
@@ -21,19 +22,17 @@ public abstract class MovableElement extends DestructibleElement{
         return this.getPosition().getBelow();
     }
 
-    public Position moveLeft() throws IllegalArgumentException {
+    public Position moveLeft() {
         try{
             return this.getPosition().getLeftSide();
         }
         catch (IllegalArgumentException e){
             return  this.getPosition();
-        }    }
+        }
+    }
 
     public Position moveRight() {
         return this.getPosition().getRightSide();
     }
 
-    public void move(Position pos) {
-        this.setPosition(pos);
-    }
 }

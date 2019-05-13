@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private static final int lvlCount = 3;
+	private static final int lvlCount = 8;
 	private List<LevelModel> levels = new ArrayList<>();
 
 	public LevelBuilder() {
@@ -34,20 +34,24 @@ public class LevelBuilder {
 				levelModels.add( buildLevel(i) );
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (InvalidLevelException ile) {
+				System.out.println("Tried to build invalid level");
 			}
+
 		}
 		levels = levelModels;
 	}
 
-	private LevelModel buildLevel(int levelNumber) throws IOException {
+	private LevelModel buildLevel(int levelNumber) throws IOException, InvalidLevelException {
 		List<String> levelLines = readLevelFile(levelNumber);
 		return buildLevelFromFile(levelLines);
 	}
 
-	private LevelModel buildLevelFromFile(List<String> levelLines) {
+	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
 		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(0).length(), levelLines.size()));
 
 		// TODO make sure dimensions are okay
+		int playerCount = 0, doorCount = 0, doorKeyCount = 0;
 		for (int row = 0; row < levelLines.size(); row++) {
 			for (int col = 0; col < levelLines.get(0).length(); col++) {
 
@@ -66,9 +70,13 @@ public class LevelBuilder {
 						break;
 					case 'P':
 						newLevelModel.setPlayer(new Player(pos));
+						playerCount++;
 						break;
 					case 'E':
-						newLevelModel.addEnemy(new Enemy(pos));
+						newLevelModel.addEnemy(new SkullEnemy(pos));
+						break;
+					case 'M':
+						newLevelModel.addEnemy(new MummyEnemy(pos));
 						break;
 					case 'T':
 						newLevelModel.addTNT(new TNT(pos));
@@ -84,13 +92,20 @@ public class LevelBuilder {
 						break;
 					case 'd':
 						newLevelModel.setDoor(new Door(pos));
+						doorCount++;
 						break;
 					case 'k':
 						newLevelModel.setDoorKey(new DoorKey(pos));
+						doorKeyCount++;
 						break;
 				}
 			}
 		}
+
+		if (playerCount != 1 || !((doorCount == 0 && doorKeyCount == 0) || (doorCount == 1 && doorKeyCount == 1))) {
+			throw new InvalidLevelException();
+		}
+
 		return newLevelModel;
 	}
 

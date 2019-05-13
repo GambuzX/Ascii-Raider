@@ -1,20 +1,25 @@
 package com.asciiraider.g710.controller.level;
 
+import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class LevelController {
-
 	private LevelManager levelManager;
+
+	// TODO: ver sitio para se por este controller
+	private LevelKeyController levelKeyController = new LevelKeyController();
+	private PhysicsController physicsController = new PhysicsController(this);
+	private ExplosionController explosionsController = new ExplosionController(this);
+	private MovementController movementController = new MovementController(this);
+	private AnimationController animationController = new AnimationController(this);
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
+		// TODO: depois adicionar-se-a a barra de progresso
+		levelKeyController.addObserver(levelManager);
 	}
 
 	public void handleKeyPress(Event event) {
@@ -48,8 +53,8 @@ public class LevelController {
 				return;
 		}
 
-		if (handlePlayerMovement(newPos, delimPos))
-			moveElement(player, newPos);
+		if (movementController.handlePlayerMovement(newPos, delimPos, levelManager.getCurrentLevelFacade()))
+			levelManager.getCurrentLevelFacade().setElementPosition(player, newPos);
 
 		if (isPlayerCollidingEnemy()) {
 			levelManager.finishGame();
@@ -60,141 +65,46 @@ public class LevelController {
 
 	}
 
-	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
-	// TODO rethink elements hierarchy
-	private void moveElement(Element movable, Position newPos) {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-
-		levelFacade.clearMatrixPosition(movable.getPosition());
-		movable.setPosition(newPos);
-		levelFacade.updateMatrixPosition(movable);
+	public void triggerExplosion(Position pos) {
+		explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade());
 	}
 
-	private boolean handlePlayerMovement(Position newPos, Position delimPos) {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+	public void handlePhysics() {
+		physicsController.handlePhysics(levelManager.getCurrentLevelFacade());
+	}
 
-		if (newPos == null || !insideBounds(newPos)) return false;
-		if (levelFacade.getExitDoor().getPosition().equals(newPos)) return false;
-		if (levelFacade.findWall(newPos) != null) return false;
-		if (levelFacade.findStoneBlock(newPos) != null) return false;
-		if (levelFacade.getDoor() != null && levelFacade.getDoor().getPosition().equals(newPos)) return false;
+	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
+		return physicsController.handlePlayerPush(element, delimPos, levelManager.getCurrentLevelFacade());
+	}
 
-		Sand sandBlock = levelFacade.findSandBlock(newPos);
-		if (sandBlock != null) {
-			levelFacade.removeSandBlock(newPos);
-			return true;
-		}
+	public void handleLevelKey() {
+		levelKeyController.handler(levelManager.getCurrentLevelFacade());
+	}
 
-		PhysicsElement physicsElement = levelFacade.findPhysicsElement(newPos);
-		if (physicsElement != null) {
-			return handlePlayerPush(physicsElement, delimPos);
-		}
+	public void moveEnemies() {
+		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
+	}
 
-		DoorKey doorKey = levelFacade.findDoorKey(newPos);
-		if (doorKey != null) {
-			catchDoorKey();
-			return true;
-		}
+	public void handleAnimations(int fps){
+		animationController.handleAnimations(fps, levelManager.getCurrentLevelFacade());
+	}
 
-		if(null != levelFacade.findEnemy(newPos) || null != levelFacade.findExplosion(newPos)) {
-			levelManager.finishGame();
-			return true;
-		}
+	public boolean insideBounds(Position pos) {
+		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
+	}
 
-		return true;
+	public void finishGame() {
+		this.levelManager.finishGame();
+	}
+
+	public int getFps() {
+		return levelManager.getFps();
 	}
 
 	public void catchDoorKey() {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		levelFacade.removeDoorKey();
 		levelFacade.removeDoor();
-	}
-
-	// TODO: ver depois o sitio melhor
-	public boolean handlePlayerPush(PhysicsElement element, Position delimPos){
-		if (element.isFalling()) return false;
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		if (levelFacade.findElement(delimPos) != null) return false;
-		moveElement(element, delimPos);
-		handlePhysics();
-		return true;
-	}
-
-	public synchronized void handlePhysics() {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		for (PhysicsElement physicsElement : levelFacade.getPhysicsElements()) {
-			Position below = physicsElement.getPosition().getBelow();
-			Element belowEle = levelFacade.findElement(below);
-			if (belowEle == null && !physicsElement.isFalling()) {
-				physicsElement.setFalling(true);
-			}
-			else if (belowEle == null) {
-				moveElement(physicsElement, below);
-			}
-			else if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
-				handleExplosion(physicsElement.getPosition());
-			}
-			else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
-				handleExplosion(below);
-			}
-			else if (physicsElement.isFalling()) {
-				physicsElement.setFalling(false);
-			}
-		}
-	}
-
-	public void handleKeyProgress(){
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
-		if(levelFacade.removeLevelKey(aboveDoor))
-			levelManager.decreaseLevelKeyCount();
-	}
-
-	public void handleExplosion(Position position) {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		List<Position> inRange = new ArrayList<>();
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				inRange.add(new Position(position.getX() + i, position.getY() + j));
-			}
-		}
-		for (Position pos : inRange) {
-			Element caught = levelFacade.findElement(pos);
-			if (caught instanceof Player) {
-				levelManager.finishGame();
-			}
-			else if (caught == null || caught instanceof DestructibleElement) {
-				if(caught != null)
-					levelFacade.removeDestructibleElement(pos);
-				levelFacade.addExplosion(pos, levelManager.getFps());
-			}
-		}
-
-	}
-
-	public void handleAnimations(int fps){
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		for(AnimatedElement animated : levelFacade.getAnimatedElements())
-			if(!animated.updateAnimation(fps))
-				levelFacade.removeAnimation(animated.getPosition());
-	}
-
-	public void moveEnemies() {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		for (Enemy enemy : levelFacade.getEnemies()) {
-			List<Position> adj = levelFacade.getAdjacentEmptyPositions(enemy.getPosition());
-			for (Position pos : adj)
-				if (!insideBounds(pos))
-					adj.remove(pos);
-
-			if (adj.size()==0) return;
-
-			moveElement(enemy, adj.get(new Random().nextInt(adj.size())));
-		}
-	}
-
-	private boolean insideBounds(Position pos) {
-		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
 	}
 
 	public boolean isPlayerCollidingEnemy() {
