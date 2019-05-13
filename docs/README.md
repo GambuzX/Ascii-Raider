@@ -91,8 +91,8 @@ There are many features yet to be implemented:
 	- [ ] Add another kind of enemy, which follows the player;
 - [ ] Improved Lives system: add two other ways of loosing a life:
 	- [ ] Time: when the time counter reaches 0;
-	- [ ] Restart: when the user chooses to restart a level.
-- [ ] Improved Explosions: Make the explosion have some kind of animation that lasts some time and doesn't just remove the surrounding elements, allowing elements to be destroyed by going through the explosion moments after it happens;
+	- [x] Restart: when the user chooses to restart a level.
+- [x] Improved Explosions: Make the explosion have some kind of animation that lasts some time and doesn't just remove the surrounding elements, allowing elements to be destroyed by going through the explosion moments after it happens;
 - [ ] Swing compatibility: add a swing version of the game.
 
 ![Info Bar Prototype](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/info_bar.png)*Info Bar Prototype*
