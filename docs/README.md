@@ -88,7 +88,7 @@ There are many features yet to be implemented:
 	 - [ ] Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
 - [ ] New Enemies: 
 	- [ ] Improve the way the current enemy moves;
-	- [ ] Add another kind of enemy, which follows the player;
+	- [x] Add another kind of enemy, which follows the player;
 - [ ] Improved Lives system: add two other ways of loosing a life:
 	- [ ] Time: when the time counter reaches 0;
 	- [x] Restart: when the user chooses to restart a level.
