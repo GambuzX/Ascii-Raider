@@ -5,26 +5,28 @@ import com.asciiraider.g710.controller.PlayerObserver;
 import java.security.InvalidParameterException;
 
 public class LifeManager implements PlayerObserver {
-	private int numberLife;
+	private int currentLife;
+	private int initialLife;
 
 
 	public LifeManager(int numberLife) throws InvalidParameterException {
 		if(numberLife <= 0)
 			throw new InvalidParameterException("Number of life must be higher than 0");
-		this.numberLife = numberLife;
+		this.currentLife = numberLife;
+		this.initialLife = numberLife;
 	}
 
 
-	public int getNumberLife() {
-		return numberLife;
+	public int getCurrentLife() {
+		return currentLife;
 	}
 
 	public boolean hasLifes(){
-		return numberLife > 0;
+		return getCurrentLife() > 0;
 	}
 
 	@Override
 	public void update() {
-		numberLife--;
+		currentLife--;
 	}
 }

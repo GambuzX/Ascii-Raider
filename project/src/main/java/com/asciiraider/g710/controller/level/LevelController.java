@@ -50,6 +50,7 @@ public class LevelController {
 				else delimPos = newPos;
 				break;
 			case R_KEY:
+				handleLife();
 				levelManager.restartLevel();
 				return;
 			case EOF:
