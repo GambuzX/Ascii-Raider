@@ -99,7 +99,7 @@ public class LevelController {
 
 	public void handleLife() {
 		lifeController.notifyObservers();
-
+		levelManager.restartLevel();
 		if(!levelManager.getLifeManager().hasLifes())
 			levelManager.finishGame();
 	}
