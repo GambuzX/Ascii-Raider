@@ -4,7 +4,6 @@ import com.asciiraider.g710.model.element.DestructibleElement;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.element.Explosive;
 import com.asciiraider.g710.model.element.Player;
-import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.ArrayList;
@@ -27,9 +26,9 @@ public class ExplosionController {
         }
         for (Position pos : inRange) {
             Element caught = levelFacade.findElement(pos);
-            if (caught instanceof Player) {
-                levelController.finishGame();
-            }
+            if (caught instanceof Player)
+                levelController.handleLife();
+
             else if (caught == null || caught instanceof DestructibleElement) {
                 if(caught != null)
                     levelFacade.removeDestructibleElement(pos);

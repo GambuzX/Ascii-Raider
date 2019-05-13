@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class LevelManagerTest {
-	private LevelManager levelManager = new LevelManager();
+	private LevelManager levelManager = new LevelManager(32, 3);
 
 	@Test
 	public void currentLevel1(){

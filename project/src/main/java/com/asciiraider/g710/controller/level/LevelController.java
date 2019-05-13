@@ -10,6 +10,7 @@ public class LevelController {
 	private LevelManager levelManager;
 
 	// TODO: ver sitio para se por este controller
+	private LifeController lifeController = new LifeController();
 	private LevelKeyController levelKeyController = new LevelKeyController();
 	private PhysicsController physicsController = new PhysicsController(this);
 	private ExplosionController explosionsController = new ExplosionController(this);
@@ -20,6 +21,7 @@ public class LevelController {
 		this.levelManager = levelManager;
 		// TODO: depois adicionar-se-a a barra de progresso
 		levelKeyController.addObserver(levelManager);
+		lifeController.addObserver(levelManager.getLifeManager());
 	}
 
 	public void handleKeyPress(Event event) {
@@ -56,9 +58,8 @@ public class LevelController {
 		if (movementController.handlePlayerMovement(newPos, delimPos, levelManager.getCurrentLevelFacade()))
 			levelManager.getCurrentLevelFacade().setElementPosition(player, newPos);
 
-		if (isPlayerCollidingEnemy()) {
-			levelManager.finishGame();
-		}
+		if (isPlayerCollidingEnemy())
+			handleLife();
 
 		if(levelFinished())
 			levelManager.nextLevel();
@@ -93,8 +94,11 @@ public class LevelController {
 		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
 	}
 
-	public void finishGame() {
-		this.levelManager.finishGame();
+	public void handleLife() {
+		lifeController.notifyObservers();
+
+		if(!levelManager.getLifeManager().hasLifes())
+			levelManager.finishGame();
 	}
 
 	public int getFps() {
