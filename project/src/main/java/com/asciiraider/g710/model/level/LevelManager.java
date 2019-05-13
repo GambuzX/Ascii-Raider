@@ -2,7 +2,9 @@ package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
+import com.asciiraider.g710.model.infobar.LifeManager;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 // TODO: continuar a testar
@@ -14,13 +16,15 @@ public class LevelManager implements LevelKeyObserver {
 	private boolean gameFinished;
 	private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
+	private LifeManager lifeManager;
 
 	private int fps;
 
-	public LevelManager(int fps) {
+	public LevelManager(int fps, int lifes) throws InvalidParameterException {
 		this.fps = fps;
+		this.lifeManager = new LifeManager(lifes);
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 2;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();
@@ -91,5 +95,9 @@ public class LevelManager implements LevelKeyObserver {
 	@Override
 	public void updateLevelKey() {
 		currentLevelKeys--;
+	}
+
+	public LifeManager getLifeManager() {
+		return lifeManager;
 	}
 }

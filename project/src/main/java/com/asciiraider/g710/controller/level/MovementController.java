@@ -4,11 +4,9 @@ import com.asciiraider.g710.model.element.DoorKey;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.element.Sand;
-import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 
 import java.util.List;
-import java.util.logging.Level;
 
 public class MovementController {
 
@@ -55,7 +53,7 @@ public class MovementController {
         }
 
         if(null != levelFacade.findEnemy(newPos) || null != levelFacade.findExplosion(newPos)) {
-            levelController.finishGame();
+            levelController.handleLife();
             return true;
         }
 
