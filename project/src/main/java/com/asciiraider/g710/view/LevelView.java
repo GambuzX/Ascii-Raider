@@ -42,7 +42,7 @@ public class LevelView extends TerminalView<LevelModel>{
 
 		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
 		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
-		graphics.putString(new TerminalPosition(position.getX(), position.getY()), ""+symbol.getAscii());
+		graphics.putString(new TerminalPosition(position.getX(), position.getY()+1), ""+symbol.getAscii());
 	}
 
 

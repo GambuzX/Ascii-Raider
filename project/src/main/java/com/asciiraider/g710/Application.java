@@ -27,13 +27,14 @@ public class Application {
 		LevelManager levelManager = new LevelManager(FPS, PLAYER_HP);
 		int level_width = levelManager.getCurrentLevelFacade().getWidth();
 		int level_height = levelManager.getCurrentLevelFacade().getHeight();
+		int info_bar_height = 1;
 
 		Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
 		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
 		Terminal terminal = null;
 		TerminalScreen screen = null;
 		try {
-			terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height)).createTerminal();
+			terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height + info_bar_height)).createTerminal();
 			screen = new TerminalScreen(terminal);
 			screen.setCursorPosition(null);
 			screen.startScreen();
