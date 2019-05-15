@@ -1,9 +1,17 @@
 package com.asciiraider.g710;
 
 import com.asciiraider.g710.controller.level.LevelController;
+import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
+import com.asciiraider.g710.view.InfoBarView;
 import com.asciiraider.g710.view.LevelView;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Application {
@@ -12,21 +20,49 @@ public class Application {
 	}
 
 	private void run() {
-		int fps = 20;
+		final int FPS = 20;
+		final int PLAYER_HP = 3;
+		final int FONT_SIZE = 48;
 
-		LevelManager levelManager = new LevelManager(fps, 3);
+		LevelManager levelManager = new LevelManager(FPS, PLAYER_HP);
+		int level_width = levelManager.getCurrentLevelFacade().getWidth();
+		int level_height = levelManager.getCurrentLevelFacade().getHeight();
+		int info_bar_height = 1;
 
-		LevelController levelController = new LevelController(levelManager);
-		LevelView levelView = null;
+		Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
+		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
+		Terminal terminal = null;
+		TerminalScreen screen = null;
 		try {
-			levelView = new LevelView(levelManager.getCurrentLevelFacade().getWidth(), levelManager.getCurrentLevelFacade().getHeight(), 48);
+			terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height + info_bar_height)).createTerminal();
+			screen = new TerminalScreen(terminal);
+			screen.setCursorPosition(null);
+			screen.startScreen();
+			screen.doResizeIfNecessary();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		if (levelView == null) return;
+		if (terminal == null) {
+			System.out.println("error initializing terminal");
+			return;
+		}
+
+		LevelController levelController = new LevelController(levelManager);
+
+		LevelView levelView = null;
+		InfoBarView infoBarView = null;
+		try {
+			levelView = new LevelView(screen);
+			infoBarView = new InfoBarView(screen);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (levelView == null || infoBarView == null) return;
 
 		LevelView finalLevelView = levelView;
+		InfoBarView finalBarView = infoBarView;
+		TerminalScreen finalScreen = screen;
 
 		/**
 		 * Draw Cicle
@@ -59,11 +95,16 @@ public class Application {
 						if(enemiesCounter == 6){
 							enemiesCounter = 0;
 							levelController.moveEnemies();
+							levelController.moveEnemies();
 						}
 						if (levelController.isPlayerCollidingEnemy())
 							levelController.handleLife();
 						levelController.handleAnimations(levelManager.getFps());
+
+						finalScreen.clear();
 						finalLevelView.draw(levelManager.getCurrentLevel());
+						finalBarView.draw(new InfoBarModel());
+
 						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
 						e.printStackTrace();

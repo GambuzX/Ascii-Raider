@@ -1,39 +1,25 @@
 package com.asciiraider.g710.view;
 
-import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.controller.level.LevelFacade;
+import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
-import java.awt.*;
 import java.io.IOException;
 
-public class LevelView extends View<LevelModel>{
-	private final TerminalScreen screen;
-	public LevelView(int width, int height, int size) throws IOException {
-		Font font = new Font("Monospaced", Font.PLAIN,  size);
-		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
+public class LevelView extends TerminalView<LevelModel>{
 
-		Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-		screen = new TerminalScreen(terminal);
-
-		screen.setCursorPosition(null);
-		screen.startScreen();
-		screen.doResizeIfNecessary();
+	public LevelView(TerminalScreen terminal) throws IOException {
+		super(terminal);
 	}
 
 	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
 	public synchronized void draw(LevelModel levelModel) {
-		screen.clear();
 		TextGraphics graphics = screen.newTextGraphics();
 
 		// TODO: ver isto
@@ -47,6 +33,7 @@ public class LevelView extends View<LevelModel>{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public void drawElement(TextGraphics graphics, Element element) {
@@ -55,7 +42,7 @@ public class LevelView extends View<LevelModel>{
 
 		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
 		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
-		graphics.putString(new TerminalPosition(position.getX(), position.getY()), ""+symbol.getAscii());
+		graphics.putString(new TerminalPosition(position.getX(), position.getY()+1), ""+symbol.getAscii());
 	}
 
 
@@ -66,13 +53,5 @@ public class LevelView extends View<LevelModel>{
 			e.printStackTrace();
 		}
 		return Event.OTHER;
-	}
-
-	public void exit() {
-		try {
-			this.screen.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
