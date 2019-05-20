@@ -98,7 +98,6 @@ public class Application {
 						if(enemiesCounter == 6){
 							enemiesCounter = 0;
 							levelController.moveEnemies();
-							levelController.moveEnemies();
 						}
 						if (levelController.isPlayerCollidingEnemy())
 							levelController.handleLife();
@@ -121,6 +120,7 @@ public class Application {
 					System.out.println("GG you win!");
 				else
 					System.out.println("Game over");
+				System.out.println(levelManager.getUser().getScore());
 
 				finalLevelView.exit();
 			}
@@ -131,9 +131,9 @@ public class Application {
 			public void run() {
 				while (!levelManager.isGameFinished()) {
 					// TODO: refactoring??
-					while (!levelManager.isGameFinished() && levelManager.getCurrentLevel().getTimeAlarm().getCurrentTime() > 0) {
-						System.out.println(levelManager.getCurrentLevel().getTimeAlarm().getCurrentTime());
-						levelManager.getCurrentLevel().getTimeAlarm().decTimer();
+					while (!levelManager.isGameFinished() && levelManager.getTimeAlarm().getCurrentTime() > 0) {
+						System.out.println(levelManager.getTimeAlarm().getCurrentTime());
+						levelManager.getTimeAlarm().decTimer();
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {

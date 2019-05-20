@@ -3,6 +3,7 @@ package com.asciiraider.g710.model.level;
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.utilities.User;
 
 import java.security.InvalidParameterException;
 import java.util.List;
@@ -17,6 +18,8 @@ public class LevelManager implements LevelKeyObserver {
 	private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
 	private LifeManager lifeManager;
+	private User user = new User();
+	private LevelTimeAlarm timeAlarm;
 
 	private int fps;
 
@@ -28,8 +31,9 @@ public class LevelManager implements LevelKeyObserver {
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();
+		timeAlarm = new LevelTimeAlarm(getCurrentLevel().getLevelTime());
 		updateLevelVariables();
-		getCurrentLevel().getTimeAlarm().start();
+		timeAlarm.start();
 
 	}
 
@@ -42,16 +46,13 @@ public class LevelManager implements LevelKeyObserver {
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
-		getCurrentLevel().getTimeAlarm().start();
 	}
 
 	public void nextLevel() {
 		currentLevelIndex++;
 		updateLevelVariables();
-		getCurrentLevel().getTimeAlarm().start();
-		if (currentLevelIndex >= levelModels.size()) {
+		if (currentLevelIndex >= levelModels.size())
 			gameFinished = true;
-		}
 	}
 
 	public void restartLevel() {
@@ -61,6 +62,7 @@ public class LevelManager implements LevelKeyObserver {
 	private void updateLevelVariables() {
 		currentLevelFacade = new LevelFacade(getCurrentLevel());
 		currentLevelKeys = currentLevelFacade.getLevelKeys().size();
+		timeAlarm.setTimer(getCurrentLevel().getLevelTime());
 	}
 
 	public int getCurrentLevelKeys() {
@@ -104,4 +106,10 @@ public class LevelManager implements LevelKeyObserver {
 	public LifeManager getLifeManager() {
 		return lifeManager;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public LevelTimeAlarm getTimeAlarm() { return timeAlarm; }
 }
