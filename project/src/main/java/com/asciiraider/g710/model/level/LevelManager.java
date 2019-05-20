@@ -19,6 +19,7 @@ public class LevelManager implements LevelKeyObserver {
 	private int currentLevelKeys;
 	private LifeManager lifeManager;
 	private User user = new User();
+	private LevelTimeAlarm timeAlarm;
 
 	private int fps;
 
@@ -30,8 +31,9 @@ public class LevelManager implements LevelKeyObserver {
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();
+		timeAlarm = new LevelTimeAlarm(getCurrentLevel().getLevelTime());
 		updateLevelVariables();
-		getCurrentLevel().getTimeAlarm().start();
+		timeAlarm.start();
 
 	}
 
@@ -44,8 +46,6 @@ public class LevelManager implements LevelKeyObserver {
 	public void resetLevel(int levelIndex) {
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
-		// TODO: ver se depois da para fazer reset sem alarme que este ja faz pois e observer
-		getCurrentLevel().getTimeAlarm().start();
 	}
 
 	public void nextLevel() {
@@ -62,6 +62,7 @@ public class LevelManager implements LevelKeyObserver {
 	private void updateLevelVariables() {
 		currentLevelFacade = new LevelFacade(getCurrentLevel());
 		currentLevelKeys = currentLevelFacade.getLevelKeys().size();
+		timeAlarm.setTimer(getCurrentLevel().getLevelTime());
 	}
 
 	public int getCurrentLevelKeys() {
@@ -109,4 +110,6 @@ public class LevelManager implements LevelKeyObserver {
 	public User getUser() {
 		return user;
 	}
+
+	public LevelTimeAlarm getTimeAlarm() { return timeAlarm; }
 }

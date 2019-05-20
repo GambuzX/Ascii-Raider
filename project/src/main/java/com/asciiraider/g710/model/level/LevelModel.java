@@ -23,7 +23,7 @@ public class LevelModel extends Model {
 	private Position bottomRightCorner;
 	private Element[][] elementsMatrix;
 
-	private LevelTimeAlarm remainingTime;
+	private int remainingTime;
 
 	public LevelModel(Position bottomRightCorner) {
 		this.bottomRightCorner = bottomRightCorner;
@@ -160,11 +160,11 @@ public class LevelModel extends Model {
 		return bottomRightCorner;
 	}
 
-	public LevelTimeAlarm getTimeAlarm() {
+	public int getLevelTime() {
 		return remainingTime;
 	}
 
 	public void setTime(int time) {
-		this.remainingTime = new LevelTimeAlarm(time);
+		this.remainingTime = time;
 	}
 }

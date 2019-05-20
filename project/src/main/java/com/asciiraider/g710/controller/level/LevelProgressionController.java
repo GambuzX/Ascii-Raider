@@ -10,6 +10,7 @@ import java.util.List;
 
 public class LevelProgressionController implements EventSubject<LevelCompletedObserver> {
 	private List<LevelCompletedObserver> levelCompletedObservers = new ArrayList<>();
+	private int userPontuation;
 
 
 	@Override
@@ -26,7 +27,7 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 	@Override
 	public void notifyObservers() {
 		for(LevelCompletedObserver levelCompletedObserver : levelCompletedObservers)
-			levelCompletedObserver.updateNextLevel();
+			levelCompletedObserver.updateNextLevel(userPontuation);
 	}
 
 	public void handle(LevelManager levelManager) {
@@ -34,9 +35,8 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
 		if(levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0) {
-			removeObserver(levelManager.getCurrentLevel().getTimeAlarm());
 			levelManager.nextLevel();
-			addObserver(levelManager.getCurrentLevel().getTimeAlarm());
+			userPontuation = levelManager.getTimeAlarm().getCurrentTime();
 			notifyObservers();
 		}
 	}

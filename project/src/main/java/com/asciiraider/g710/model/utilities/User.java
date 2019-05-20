@@ -37,7 +37,7 @@ public class User implements LevelCompletedObserver {
 
 
 	@Override
-	public void updateNextLevel() {
-// TODO: to complete
+	public void updateNextLevel(int pontuation) {
+		addScore(pontuation);
 	}
 }

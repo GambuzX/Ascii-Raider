@@ -26,10 +26,10 @@ public class LevelController {
 		levelKeyController.addObserver(levelManager);
 
 		lifeController.addObserver(levelManager.getLifeManager());
-		lifeController.addObserver(levelManager.getCurrentLevel().getTimeAlarm());
+		lifeController.addObserver(levelManager.getTimeAlarm());
 
 		levelProgressionController.addObserver(levelManager.getUser());
-		levelProgressionController.addObserver(levelManager.getCurrentLevel().getTimeAlarm());
+		levelProgressionController.addObserver(levelManager.getTimeAlarm());
 	}
 
 	public void handleKeyPress(Event event) {
