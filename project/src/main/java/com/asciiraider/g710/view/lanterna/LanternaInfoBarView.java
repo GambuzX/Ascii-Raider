@@ -1,21 +1,23 @@
-package com.asciiraider.g710.view;
+package com.asciiraider.g710.view.lanterna;
 
 import com.asciiraider.g710.model.infobar.InfoBarModel;
+import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
-import java.io.IOException;
+public class LanternaInfoBarView extends View<InfoBarModel> {
 
-public class InfoBarView extends TerminalView<InfoBarModel> {
+    private TerminalScreen screen;
 
-    public InfoBarView(TerminalScreen terminal) throws IOException {
-        super(terminal);
+    public LanternaInfoBarView(TerminalScreen screen) {
+        this.screen = screen;
     }
 
     @Override
-    public void draw(InfoBarModel model) {
+    public synchronized void draw(InfoBarModel model) {
         TextGraphics graphics = screen.newTextGraphics();
 
         graphics.setForegroundColor(TextColor.Factory.fromString(model.getTextColor().toString()));
@@ -55,16 +57,15 @@ public class InfoBarView extends TerminalView<InfoBarModel> {
             if (value != -1) toDraw = Integer.toString(value);
             graphics.putString(new TerminalPosition(i, barHeight), toDraw);
         }
-
-        try {
-            screen.refresh();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public Event getKey() {
         return null;
+    }
+
+    @Override
+    public void exit() {
+        return;
     }
 }

@@ -3,15 +3,9 @@ package com.asciiraider.g710;
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
-import com.asciiraider.g710.view.InfoBarView;
-import com.asciiraider.g710.view.LevelView;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import com.asciiraider.g710.model.level.LevelModelGroup;
+import com.asciiraider.g710.view.lanterna.LanternaView;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class Application {
@@ -22,47 +16,24 @@ public class Application {
 	private void run() {
 		final int FPS = 20;
 		final int PLAYER_HP = 3;
-		final int FONT_SIZE = 48;
 
 		LevelManager levelManager = new LevelManager(FPS, PLAYER_HP);
 		int level_width = levelManager.getCurrentLevelFacade().getWidth();
 		int level_height = levelManager.getCurrentLevelFacade().getHeight();
-		int info_bar_height = 1;
 
-		Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
-		SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
-		Terminal terminal = null;
-		TerminalScreen screen = null;
+		LanternaView lanternaView = null;
 		try {
-			terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height + info_bar_height)).createTerminal();
-			screen = new TerminalScreen(terminal);
-			screen.setCursorPosition(null);
-			screen.startScreen();
-			screen.doResizeIfNecessary();
+			lanternaView = new LanternaView(level_width, level_height);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		if (terminal == null) {
-			System.out.println("error initializing terminal");
+		if (lanternaView == null) {
+			System.out.println("error creating lanternaView");
 			return;
 		}
+		LanternaView finalLanternaView = lanternaView;
 
 		LevelController levelController = new LevelController(levelManager);
-
-		LevelView levelView = null;
-		InfoBarView infoBarView = null;
-		try {
-			levelView = new LevelView(screen);
-			infoBarView = new InfoBarView(screen);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (levelView == null || infoBarView == null) return;
-
-		LevelView finalLevelView = levelView;
-		InfoBarView finalBarView = infoBarView;
-		TerminalScreen finalScreen = screen;
 
 		InfoBarModel infoBarModel = new InfoBarModel();
 		infoBarModel.setMaxLives(levelManager.getLifeManager().getInitialLife());
@@ -75,7 +46,7 @@ public class Application {
 			@Override
 			public void run(){
 				while (!levelManager.isGameFinished()) {
-					levelController.handleKeyPress(finalLevelView.getKey());
+					levelController.handleKeyPress(finalLanternaView.getKey());
 					if(isInterrupted()) break;
 				}
 			}
@@ -106,9 +77,7 @@ public class Application {
 
 						levelController.updateInfoBarModel(infoBarModel);
 
-						finalScreen.clear();
-						finalLevelView.draw(levelManager.getCurrentLevel());
-						finalBarView.draw(infoBarModel);
+						finalLanternaView.draw(new LevelModelGroup(levelManager.getCurrentLevel(), infoBarModel));
 
 						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
@@ -122,7 +91,7 @@ public class Application {
 				else
 					System.out.println("Game over");
 
-				finalLevelView.exit();
+				finalLanternaView.exit();
 			}
 		};
 
