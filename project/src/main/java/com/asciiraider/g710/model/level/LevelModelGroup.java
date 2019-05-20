@@ -7,16 +7,19 @@ public class LevelModelGroup extends Model {
     private LevelModel levelModel;
     private InfoBarModel infoBarModel;
 
-    public LevelModelGroup(LevelModel levelModel, InfoBarModel infoBarModel) {
-        this.levelModel = levelModel;
-        this.infoBarModel = infoBarModel;
-    }
-
     public LevelModel getLevelModel() {
         return levelModel;
     }
 
     public InfoBarModel getInfoBarModel() {
         return infoBarModel;
+    }
+
+    public void setLevelModel(LevelModel levelModel) {
+        this.levelModel = levelModel;
+    }
+
+    public void setInfoBarModel(InfoBarModel infoBarModel) {
+        this.infoBarModel = infoBarModel;
     }
 }

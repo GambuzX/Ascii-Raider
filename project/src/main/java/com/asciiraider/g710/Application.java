@@ -35,8 +35,9 @@ public class Application {
 
 		LevelController levelController = new LevelController(levelManager);
 
-		InfoBarModel infoBarModel = new InfoBarModel();
-		infoBarModel.setMaxLives(levelManager.getLifeManager().getInitialLife());
+		LevelModelGroup levelModelGroup = new LevelModelGroup();
+		levelModelGroup.setInfoBarModel(new InfoBarModel());
+		levelModelGroup.getInfoBarModel().setMaxLives(levelManager.getLifeManager().getInitialLife());
 
 		/**
 		 * Draw Cicle
@@ -75,9 +76,9 @@ public class Application {
 							levelController.handleLife();
 						levelController.handleAnimations(levelManager.getFps());
 
-						levelController.updateInfoBarModel(infoBarModel);
-
-						finalLanternaView.draw(new LevelModelGroup(levelManager.getCurrentLevel(), infoBarModel));
+						levelController.updateInfoBarModel(levelModelGroup.getInfoBarModel());
+						levelModelGroup.setLevelModel(levelManager.getCurrentLevel());
+						finalLanternaView.draw(levelModelGroup);
 
 						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
