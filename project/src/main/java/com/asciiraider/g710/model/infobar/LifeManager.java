@@ -21,6 +21,10 @@ public class LifeManager implements PlayerObserver {
 		return currentLife;
 	}
 
+	public int getInitialLife() {
+		return initialLife;
+	}
+
 	public boolean hasLifes(){
 		return getCurrentLife() > 0;
 	}

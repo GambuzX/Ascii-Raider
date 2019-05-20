@@ -2,6 +2,7 @@ package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
@@ -133,4 +134,10 @@ public class LevelController {
 		return levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0;
 	}
 
+	public void updateInfoBarModel(InfoBarModel infoBarModel) {
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		infoBarModel.setCurrentLevel(levelManager.getCurrentLevelIndex()+1);
+		infoBarModel.setKeys(levelFacade.getLevelKeys().size());
+		infoBarModel.setLives(levelManager.getLifeManager().getCurrentLife());
+	}
 }

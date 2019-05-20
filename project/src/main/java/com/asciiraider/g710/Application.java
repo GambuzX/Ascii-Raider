@@ -64,6 +64,9 @@ public class Application {
 		InfoBarView finalBarView = infoBarView;
 		TerminalScreen finalScreen = screen;
 
+		InfoBarModel infoBarModel = new InfoBarModel();
+		infoBarModel.setMaxLives(levelManager.getLifeManager().getInitialLife());
+
 		/**
 		 * Draw Cicle
 		 */
@@ -101,9 +104,11 @@ public class Application {
 							levelController.handleLife();
 						levelController.handleAnimations(levelManager.getFps());
 
+						levelController.updateInfoBarModel(infoBarModel);
+
 						finalScreen.clear();
 						finalLevelView.draw(levelManager.getCurrentLevel());
-						finalBarView.draw(new InfoBarModel());
+						finalBarView.draw(infoBarModel);
 
 						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
