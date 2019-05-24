@@ -133,7 +133,6 @@ public class Application {
 				while (!levelManager.isGameFinished()) {
 					// TODO: refactoring??
 					while (!levelManager.isGameFinished() && levelManager.getTimeAlarm().getCurrentTime() > 0) {
-						System.out.println(levelManager.getTimeAlarm().getCurrentTime());
 						levelManager.getTimeAlarm().decTimer();
 						try {
 							Thread.sleep(1000);
