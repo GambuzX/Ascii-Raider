@@ -54,7 +54,7 @@ public class LanternaView extends View<LevelModelGroup> {
     @Override
     public Event getKey() {
         try {
-            return KeyPressEvent.handle(screen.readInput());
+            return KeyPressEvent.handleLanterna(screen.readInput());
         } catch (IOException e) {
             e.printStackTrace();
         }

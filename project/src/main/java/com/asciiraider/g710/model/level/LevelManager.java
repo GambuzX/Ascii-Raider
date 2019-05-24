@@ -24,7 +24,7 @@ public class LevelManager implements LevelKeyObserver {
 		this.fps = fps;
 		this.lifeManager = new LifeManager(lifes);
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 5;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();

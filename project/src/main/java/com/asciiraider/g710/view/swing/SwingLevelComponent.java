@@ -3,6 +3,7 @@ package com.asciiraider.g710.view.swing;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
+import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.View;
 
@@ -39,19 +40,20 @@ public class SwingLevelComponent extends JPanel {
 
         if (levelModel == null) return;
 
-        LevelFacade levelFacade = new LevelFacade(levelModel);
-        for (Element ele : levelFacade.getElements())
-            drawElement(graphics, ele);
+        for (int row = 0; row < N_ROWS; row++) {
+            for (int col = 0; col < N_COLS; col++) {
+                drawElement(graphics, levelModel.findElement(new Position(col,row)), col, row);
+            }
+        }
 
     }
 
-    public void drawElement(Graphics graphics, Element ele) {
-        //System.out.println("tried to draw");
-        URL resource = SwingLevelComponent.class.getResource("/symbols/twitter.png");
+    public void drawElement(Graphics graphics, Element ele, int x, int y) {
+        URL resource = SwingLevelComponent.class.getResource(SymbolMapper.elementResource(ele));
         BufferedImage image;
         try {
             image = ImageIO.read(resource);
-            graphics.drawImage(image, ele.getPosition().getX() * SIZE_FACTOR, ele.getPosition().getY() * SIZE_FACTOR, null);
+            graphics.drawImage(image, x * SIZE_FACTOR, y * SIZE_FACTOR, null);
         } catch(IOException e) {}
     }
 }

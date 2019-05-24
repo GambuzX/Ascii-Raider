@@ -2,16 +2,24 @@ package com.asciiraider.g710.view.swing;
 
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.KeyPressEvent;
 import com.asciiraider.g710.view.View;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class SwingView extends View<LevelModelGroup> {
+public class SwingView extends View<LevelModelGroup> implements KeyEventDispatcher{
 
     JFrame frame;
 
     SwingLevelComponent levelComponent;
     //SwingInfoBarView infoBarView;
+
+    private Queue<Event> eventQueue = new LinkedList<>();
 
     public SwingView(int level_width, int level_height) {
         frame = new JFrame("Ascii Raider");
@@ -21,15 +29,11 @@ public class SwingView extends View<LevelModelGroup> {
         levelComponent = new SwingLevelComponent();
         frame.add(levelComponent);
 
-        /*KeyEventDispatcher keyEventDispatcher = e -> {
-            System.out.println("key pressed");
-            return false;
-        };
-        KeyboardFocusManager
-                .getCurrentKeyboardFocusManager()
-                .addKeyEventDispatcher(keyEventDispatcher);*/
+
         frame.pack();
         frame.setVisible(true);
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
     }
 
     @Override
@@ -43,6 +47,7 @@ public class SwingView extends View<LevelModelGroup> {
 
     @Override
     public Event getKey() {
+        if (!eventQueue.isEmpty()) return eventQueue.remove();
         return null;
     }
 
@@ -51,4 +56,9 @@ public class SwingView extends View<LevelModelGroup> {
 
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        eventQueue.add(KeyPressEvent.handleSwing(e));
+        return true;
+    }
 }
