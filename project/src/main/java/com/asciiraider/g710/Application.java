@@ -121,7 +121,7 @@ public class Application {
 					System.out.println("GG you win!");
 				else
 					System.out.println("Game over");
-				System.out.println(levelManager.getUser().getScore());
+				System.out.println(infoBarModel.getScore());
 
 				finalLevelView.exit();
 			}

@@ -28,7 +28,6 @@ public class LevelController {
 		lifeController.addObserver(levelManager.getLifeManager());
 		lifeController.addObserver(levelManager.getTimeAlarm());
 
-		levelProgressionController.addObserver(levelManager.getUser());
 		levelProgressionController.addObserver(levelManager.getTimeAlarm());
 	}
 
