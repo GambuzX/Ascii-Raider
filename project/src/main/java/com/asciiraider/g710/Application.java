@@ -1,5 +1,6 @@
 package com.asciiraider.g710;
 
+import com.asciiraider.g710.controller.infobar.InfoBarController;
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
@@ -65,7 +66,7 @@ public class Application {
 		TerminalScreen finalScreen = screen;
 
 		InfoBarModel infoBarModel = new InfoBarModel();
-		infoBarModel.setMaxLives(levelManager.getLifeManager().getInitialLife());
+		InfoBarController infoBarController = new InfoBarController(levelController, infoBarModel);
 
 		/**
 		 * Draw Cicle
@@ -103,7 +104,7 @@ public class Application {
 							levelController.handleLife();
 						levelController.handleAnimations(levelManager.getFps());
 
-						levelController.updateInfoBarModel(infoBarModel);
+						infoBarController.handler(levelManager.getTimeAlarm());
 
 						finalScreen.clear();
 						finalLevelView.draw(levelManager.getCurrentLevel());
