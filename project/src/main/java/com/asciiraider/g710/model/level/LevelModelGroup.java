@@ -4,22 +4,24 @@ import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 
 public class LevelModelGroup extends Model {
-    private LevelModel levelModel;
+    private LevelManager levelManager;
     private InfoBarModel infoBarModel;
 
-    public LevelModel getLevelModel() {
-        return levelModel;
+    public LevelModelGroup(int fps, int hp){
+        levelManager = new LevelManager(fps, hp);
+        infoBarModel = new InfoBarModel(levelManager.getCurrentLevelIndex() + 1, hp, levelManager.getCurrentLevelKeys(), 0);
     }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
+
+    public LevelModel getLevelModel() {
+        return levelManager.getCurrentLevel();
+    }
+
 
     public InfoBarModel getInfoBarModel() {
         return infoBarModel;
-    }
-
-    public void setLevelModel(LevelModel levelModel) {
-        this.levelModel = levelModel;
-    }
-
-    public void setInfoBarModel(InfoBarModel infoBarModel) {
-        this.infoBarModel = infoBarModel;
     }
 }

@@ -15,7 +15,7 @@ public class LevelKeyController implements EventSubject<LevelKeyObserver> {
 	public void handler(LevelFacade levelFacade){
 		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
 		if(levelFacade.removeLevelKey(aboveDoor))
-			notifyObservers();
+			this.notifyObservers();
 	}
 
 	@Override
