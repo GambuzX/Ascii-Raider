@@ -1,7 +1,6 @@
 package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.controller.element.LevelKeyController;
-import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.element.Player;
@@ -31,6 +30,18 @@ public class LevelController {
 
 		levelProgressionController.addObserver(levelManager.getUser());
 		levelProgressionController.addObserver(levelManager.getTimeAlarm());
+	}
+
+	public LifeController getLifeController(){
+		return  this.lifeController;
+	}
+
+	public LevelKeyController getLevelKeyController(){
+		return this.levelKeyController;
+	}
+
+	public LevelProgressionController getLevelProgressionController(){
+		return  this.levelProgressionController;
 	}
 
 	public void handleKeyPress(Event event) {
@@ -128,12 +139,5 @@ public class LevelController {
 				return true;
 
 		return false;
-	}
-
-	public void updateInfoBarModel(InfoBarModel infoBarModel) {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		infoBarModel.setCurrentLevel(levelManager.getCurrentLevelIndex()+1);
-		infoBarModel.setKeys(levelFacade.getLevelKeys().size());
-		infoBarModel.setLives(levelManager.getLifeManager().getCurrentLife());
 	}
 }

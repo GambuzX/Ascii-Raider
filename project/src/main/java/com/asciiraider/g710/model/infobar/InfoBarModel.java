@@ -1,19 +1,18 @@
 package com.asciiraider.g710.model.infobar;
 
+import com.asciiraider.g710.controller.LevelCompletedObserver;
+import com.asciiraider.g710.controller.LevelKeyObserver;
+import com.asciiraider.g710.controller.PlayerDeathObserver;
 import com.asciiraider.g710.model.Model;
-import com.asciiraider.g710.model.utilities.HexColorString;
 
-public class InfoBarModel extends Model {
+public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeathObserver, LevelCompletedObserver {
     //TODO level, lives, keys, time, score, R button
-    private int currentLevel;
-    private int lives;
-    private int maxLives;
+    private int currentLevel = 1;
+    private int lives = 3;
     private int keys;
+    private int maxKeys = 1;
     private int time;
-    private int score;
-    private static final String rButton = "R";
-    private static final HexColorString backgroundColor = new HexColorString("E0A21D");
-    private static final HexColorString textColor = new HexColorString("000000");
+    private int score = 0;
 
     public int getCurrentLevel() {
         return currentLevel;
@@ -55,23 +54,33 @@ public class InfoBarModel extends Model {
         this.score = score;
     }
 
-    public String getrButton() {
-        return rButton;
+    public void setMaxKeys(int maxKeys) {
+        this.maxKeys = maxKeys;
     }
 
-    public HexColorString getBackgroundColor() {
-        return backgroundColor;
+    public int getMaxKeys(){
+        return this.maxKeys;
     }
 
-    public HexColorString getTextColor() {
-        return textColor;
+    @Override
+    public void updateLevelKey() {
+        this.keys++;
     }
 
-    public int getMaxLives() {
-        return maxLives;
+    @Override
+    public void updateDeath() {
+        this.lives--;
     }
 
-    public void setMaxLives(int maxLives) {
-        this.maxLives = maxLives;
+    @Override
+    public void updatePontuation(int pontuation) {
+        this.score += pontuation;
+    }
+
+    @Override
+    public void updateNumKeys(int numKeys) {
+        this.keys = 0;
+        this.maxKeys = numKeys;
+        this.currentLevel++;
     }
 }

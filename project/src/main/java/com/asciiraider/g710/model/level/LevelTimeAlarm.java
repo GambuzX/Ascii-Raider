@@ -18,7 +18,12 @@ public class LevelTimeAlarm extends TimeAlarm implements PlayerDeathObserver, Le
 	}
 
 	@Override
-	public void updateNextLevel(int pontuation) {
+	public void updatePontuation(int pontuation) {
 		start();
+	}
+
+	@Override
+	public void updateNumKeys(int numKeys) {
+
 	}
 }
