@@ -6,37 +6,32 @@ import com.asciiraider.g710.controller.PlayerDeathObserver;
 import com.asciiraider.g710.model.Model;
 
 public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeathObserver, LevelCompletedObserver {
-    //TODO level, lives, keys, time, score, R button
-    private int currentLevel = 1;
-    private int lives = 3;
+    private int currentLevel;
+    private int lives;
     private int keys;
-    private int maxKeys = 1;
+    private int maxKeys;
     private int time;
-    private int score = 0;
+    private int score;
+
+    public InfoBarModel(int initialLevel, int maxLives, int maxKeys, int initialScore){
+        this.currentLevel = initialLevel;
+        this.lives = maxLives;
+        this.maxKeys = maxKeys;
+        this.score = initialScore;
+    }
 
     public int getCurrentLevel() {
         return currentLevel;
-    }
-
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
     }
 
     public int getLives() {
         return lives;
     }
 
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
     public int getKeys() {
         return keys;
     }
 
-    public void setKeys(int keys) {
-        this.keys = keys;
-    }
 
     public int getTime() {
         return time;
@@ -48,14 +43,6 @@ public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeath
 
     public int getScore() {
         return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setMaxKeys(int maxKeys) {
-        this.maxKeys = maxKeys;
     }
 
     public int getMaxKeys(){

@@ -65,7 +65,7 @@ public class Application {
 		InfoBarView finalBarView = infoBarView;
 		TerminalScreen finalScreen = screen;
 
-		InfoBarModel infoBarModel = new InfoBarModel();
+		InfoBarModel infoBarModel = new InfoBarModel(levelManager.getCurrentLevelIndex() + 1, PLAYER_HP, levelManager.getCurrentLevelKeys(), 0);
 		InfoBarController infoBarController = new InfoBarController(levelController, infoBarModel);
 
 		/**
@@ -104,8 +104,6 @@ public class Application {
 							levelController.handleLife();
 						levelController.handleAnimations(levelManager.getFps());
 
-						infoBarController.handler(levelManager.getTimeAlarm());
-
 						finalScreen.clear();
 						finalLevelView.draw(levelManager.getCurrentLevel());
 						finalBarView.draw(infoBarModel);
@@ -133,6 +131,7 @@ public class Application {
 				while (!levelManager.isGameFinished()) {
 					// TODO: refactoring??
 					while (!levelManager.isGameFinished() && levelManager.getTimeAlarm().getCurrentTime() > 0) {
+						infoBarController.handler(levelManager.getTimeAlarm());
 						levelManager.getTimeAlarm().decTimer();
 						try {
 							Thread.sleep(1000);
