@@ -10,13 +10,23 @@ public class SwingInfoBarView extends View<InfoBarModel> {
 
     private JPanel panel;
 
-    public SwingInfoBarView(JPanel panel) {
-        this.panel = panel;
+    public SwingInfoBarView(JFrame frame) {
+        this.panel = new JPanel();
+        this.panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        frame.getContentPane().add(panel);
+
+
+        panel.add(new JButton("Button 2"));
+        panel.add(new JButton("Button 2"));
+        panel.add(new JButton("Button 2"));
+        panel.add(new JButton("Button 2"));
+
+        panel.setVisible(true);
     }
 
     @Override
     public void draw(InfoBarModel model) {
-
+        return;
     }
 
     @Override

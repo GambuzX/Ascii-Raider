@@ -4,7 +4,9 @@ import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.level.LevelModelGroup;
+import com.asciiraider.g710.view.View;
 import com.asciiraider.g710.view.lanterna.LanternaView;
+import com.asciiraider.g710.view.swing.SwingView;
 
 import java.io.IOException;
 
@@ -21,17 +23,18 @@ public class Application {
 		int level_width = levelManager.getCurrentLevelFacade().getWidth();
 		int level_height = levelManager.getCurrentLevelFacade().getHeight();
 
-		LanternaView lanternaView = null;
+
+		/*View view = null;
 		try {
-			lanternaView = new LanternaView(level_width, level_height);
+			view = new SwingView(level_width, level_height);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (lanternaView == null) {
+		if (view == null) {
 			System.out.println("error creating lanternaView");
 			return;
-		}
-		LanternaView finalLanternaView = lanternaView;
+		}*/
+		View finalView = new SwingView(level_width, level_height);//view;
 
 		LevelController levelController = new LevelController(levelManager);
 
@@ -47,7 +50,7 @@ public class Application {
 			@Override
 			public void run(){
 				while (!levelManager.isGameFinished()) {
-					levelController.handleKeyPress(finalLanternaView.getKey());
+					levelController.handleKeyPress(finalView.getKey());
 					if(isInterrupted()) break;
 				}
 			}
@@ -78,7 +81,7 @@ public class Application {
 
 						levelController.updateInfoBarModel(levelModelGroup.getInfoBarModel());
 						levelModelGroup.setLevelModel(levelManager.getCurrentLevel());
-						finalLanternaView.draw(levelModelGroup);
+						finalView.draw(levelModelGroup);
 
 						Thread.sleep(1000/levelManager.getFps());
 					} catch (InterruptedException e) {
@@ -92,7 +95,7 @@ public class Application {
 				else
 					System.out.println("Game over");
 
-				finalLanternaView.exit();
+				finalView.exit();
 			}
 		};
 

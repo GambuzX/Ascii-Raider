@@ -5,33 +5,40 @@ import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.View;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class SwingView extends View<LevelModelGroup> {
 
-    JPanel infoBarPanel;
-    JPanel levelPanel;
+    JFrame frame;
 
-    SwingLevelView levelView;
-    SwingInfoBarView infoBarView;
+    SwingLevelComponent levelComponent;
+    //SwingInfoBarView infoBarView;
 
-    public SwingView() {
-        JFrame frame = new JFrame("Ascii Raider");
+    public SwingView(int level_width, int level_height) {
+        frame = new JFrame("Ascii Raider");
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        infoBarPanel = new JPanel();
-        infoBarPanel.setLayout(new BoxLayout(infoBarPanel, BoxLayout.X_AXIS));
+        //infoBarView = new SwingInfoBarView(frame);
+        levelComponent = new SwingLevelComponent();
+        frame.add(levelComponent);
 
-        levelPanel = new JPanel();
-        levelPanel.setLayout(new GridLayout());
-
-        levelView = new SwingLevelView(levelPanel);
-        infoBarView = new SwingInfoBarView(infoBarPanel);
+        /*KeyEventDispatcher keyEventDispatcher = e -> {
+            System.out.println("key pressed");
+            return false;
+        };
+        KeyboardFocusManager
+                .getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher(keyEventDispatcher);*/
+        frame.pack();
+        frame.setVisible(true);
     }
 
     @Override
     public void draw(LevelModelGroup model) {
 
+        this.levelComponent.setLevelModel(model.getLevelModel());
+        //infoBarView.draw(model.getInfoBarModel());
+
+        frame.repaint();
     }
 
     @Override
