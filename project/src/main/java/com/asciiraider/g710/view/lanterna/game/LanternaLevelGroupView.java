@@ -12,9 +12,6 @@ import java.util.List;
 
 public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
 
-    private final int FONT_SIZE = 48;
-    private final int INFO_BAR_HEIGHT = 1;
-
     LanternaLevelComponent levelView;
     LanternaInfoBarComponent infoBarView;
 

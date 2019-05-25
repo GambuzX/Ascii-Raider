@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.lanterna;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
@@ -25,6 +26,6 @@ public class LanternaElementView extends View<Element> {
 
 		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
 		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
-		graphics.putString(new TerminalPosition(position.getX(), position.getY()+1), ""+symbol.getAscii());
+		graphics.putString(new TerminalPosition(position.getX(), position.getY()+ GlobalConfigs.INFOBAR_HEIGHT), ""+symbol.getAscii());
 	}
 }

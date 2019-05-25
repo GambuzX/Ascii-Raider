@@ -15,5 +15,8 @@ public class GlobalConfigs {
     public final static double ANIMATION_DURATION = 0.5;
 
     public final static int FONT_SIZE = 48;
+    public final static String LANTERNA_FONT = "Monospaced";
+
     public final static int SWING_SIZE_FACTOR = 60;
+    public final static String JFRAME_NAME = "Ascii Raider";
 }
