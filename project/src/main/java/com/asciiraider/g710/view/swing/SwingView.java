@@ -8,16 +8,17 @@ import com.asciiraider.g710.view.View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SwingView extends View<LevelModelGroup> implements KeyEventDispatcher{
+public class SwingView extends View<LevelModelGroup> implements KeyListener {
 
     JFrame frame;
 
     SwingLevelComponent levelComponent;
-    //SwingInfoBarView infoBarView;
+    SwingInfoBarComponent infoBarComponent;
 
     private Queue<Event> eventQueue = new LinkedList<>();
 
@@ -25,22 +26,26 @@ public class SwingView extends View<LevelModelGroup> implements KeyEventDispatch
         frame = new JFrame("Ascii Raider");
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        //infoBarView = new SwingInfoBarView(frame);
+        infoBarComponent = new SwingInfoBarComponent();
         levelComponent = new SwingLevelComponent();
+        frame.add(infoBarComponent);
         frame.add(levelComponent);
-
 
         frame.pack();
         frame.setVisible(true);
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+        //KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+        frame.addKeyListener(this);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.requestFocusInWindow();
     }
 
     @Override
     public void draw(LevelModelGroup model) {
 
+        this.infoBarComponent.setInfoBarModel(model.getInfoBarModel());
         this.levelComponent.setLevelModel(model.getLevelModel());
-        //infoBarView.draw(model.getInfoBarModel());
 
         frame.repaint();
     }
@@ -53,12 +58,22 @@ public class SwingView extends View<LevelModelGroup> implements KeyEventDispatch
 
     @Override
     public void exit() {
+        frame.setVisible(false);
+        frame.dispose();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        eventQueue.add(KeyPressEvent.handleSwing(e));
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
 
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent e) {
-        eventQueue.add(KeyPressEvent.handleSwing(e));
-        return true;
+    public void keyReleased(KeyEvent e) {
+
     }
 }

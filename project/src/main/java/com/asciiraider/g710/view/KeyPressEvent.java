@@ -21,7 +21,6 @@ public class KeyPressEvent {
     }
 
     public static Event handleSwing(KeyEvent e) {
-        System.out.println(e.getKeyChar() + " " + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_UP) return UP_KEY;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) return RIGHT_KEY;
         if (e.getKeyCode() == KeyEvent.VK_LEFT) return LEFT_KEY;
