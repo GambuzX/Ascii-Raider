@@ -23,17 +23,16 @@ import java.util.Queue;
 public class SwingLevelComponent extends JPanel {
 
     private final static int SIZE_FACTOR = 60;
-    private final static int N_ROWS = 12;
-    private final static int N_COLS = 18;
-
-    private final static int WIDTH = N_COLS * SIZE_FACTOR;
-    private final static int HEIGHT = N_ROWS * SIZE_FACTOR;
+    private int rows;
+    private int cols;
 
     private LevelModel levelModel;
     private SymbolMapper symbolMapper;
 
-    public SwingLevelComponent() {
+    public SwingLevelComponent(int rows, int cols) {
         symbolMapper = new SymbolMapper();
+        this.rows = rows;
+        this.cols = cols;
     }
 
     public void setLevelModel(LevelModel levelModel) {
@@ -42,7 +41,7 @@ public class SwingLevelComponent extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(WIDTH, HEIGHT);
+        return new Dimension(cols * SIZE_FACTOR, rows * SIZE_FACTOR);
     }
 
     @Override
@@ -51,8 +50,8 @@ public class SwingLevelComponent extends JPanel {
 
         if (levelModel == null) return;
 
-        for (int row = 0; row < N_ROWS; row++) {
-            for (int col = 0; col < N_COLS; col++) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
                 drawElement(graphics, levelModel.findElement(new Position(col,row)), col, row);
             }
         }

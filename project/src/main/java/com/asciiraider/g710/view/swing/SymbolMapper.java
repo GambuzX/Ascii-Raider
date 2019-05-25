@@ -23,7 +23,10 @@ public class SymbolMapper {
         DOOR(9, "/symbols/door.png"),
         DOORKEY(10, "/symbols/key.png"),
         TNT(11, "/symbols/bomb.png"),
-        BACKGROUND(12, "/symbols/background.png");
+        EXPLOSION_BIG(12, "/symbols/explosion-big.png"),
+        EXPLOSION_MEDIUM(13, "/symbols/explosion-medium.png"),
+        EXPLOSION_SMALL(14, "/symbols/explosion-small.png"),
+        BACKGROUND(15, "/symbols/background.png");
 
         public final int index;
         public final String resource;
@@ -57,6 +60,12 @@ public class SymbolMapper {
         if (element instanceof Door) return elementsImages.get(Elements.DOOR.index);
         if (element instanceof DoorKey) return elementsImages.get(Elements.DOORKEY.index);
         if (element instanceof TNT) return elementsImages.get(Elements.TNT.index);
+        if (element instanceof Explosion) {
+            Explosion explosion = (Explosion) element;
+            if (explosion.getSymbol().getAscii() == '●') return elementsImages.get(Elements.EXPLOSION_BIG.index);
+            if (explosion.getSymbol().getAscii() == '⦁') return elementsImages.get(Elements.EXPLOSION_MEDIUM.index);
+            if (explosion.getSymbol().getAscii() == '٠') return elementsImages.get(Elements.EXPLOSION_SMALL.index);
+        }
         return elementsImages.get(Elements.BACKGROUND.index);
     }
 
@@ -73,48 +82,9 @@ public class SymbolMapper {
         elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.DOOR.resource)));
         elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.DOORKEY.resource)));
         elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.TNT.resource)));
+        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_BIG.resource)));
+        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_MEDIUM.resource)));
+        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_SMALL.resource)));
         elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.BACKGROUND.resource)));
     }
-/*
-    public static String elementResource(Elements element) {
-
-        switch (element) {
-            case WALL:
-                return "/symbols/hardSand.png";
-
-            case PLAYER:
-                return "/symbols/guy.png";
-
-            case STONEBLOCK:
-                return "/symbols/granite.png";
-
-            case LEVELKEY:
-                return "/symbols/orb.png";
-
-            case EXITDOOR:
-                return "/symbols/portal.png";
-
-            case SAND:
-                return "/symbols/softSand.png";
-
-            case BOULDER:
-                return "/symbols/rock.png";
-
-            case SKULLENEMY:
-                return "/symbols/fly.png";
-
-            case MUMMYENEMY:
-                return "/symbols/mummy.png";
-
-            case DOOR:
-                return "/symbols/door.png";
-
-            case DOORKEY:
-                return "/symbols/key.png";
-
-            case TNT:
-                return "/symbols/bomb.png";
-        }
-        return "/symbols/background.png";
-    }*/
 }

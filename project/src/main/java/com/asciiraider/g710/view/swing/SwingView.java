@@ -6,10 +6,8 @@ import com.asciiraider.g710.view.KeyPressEvent;
 import com.asciiraider.g710.view.View;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -29,7 +27,7 @@ public class SwingView extends View<LevelModelGroup> {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         infoBarComponent = new SwingInfoBarComponent();
-        levelComponent = new SwingLevelComponent();
+        levelComponent = new SwingLevelComponent(level_height, level_width);
         //frame.add(infoBarComponent);
         frame.add(levelComponent);
 
