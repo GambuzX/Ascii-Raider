@@ -5,13 +5,33 @@ import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.View;
+import com.asciiraider.g710.view.ViewFactory;
+import com.asciiraider.g710.view.lanterna.LanternaFactory;
 import com.asciiraider.g710.view.lanterna.LanternaView;
+import com.asciiraider.g710.view.swing.SwingFactory;
 import com.asciiraider.g710.view.swing.SwingView;
 
 import java.io.IOException;
 
 public class Application {
+
+	private static ViewFactory viewFactory;
+
 	public static void main(String[] args) {
+		if (args.length != 1) {
+			System.out.println("Please specify View Platform");
+			return;
+		}
+
+		if (args[0].equals("lanterna"))
+			viewFactory = new LanternaFactory();
+		else if (args[0].equals("swing"))
+			viewFactory = new SwingFactory();
+		else {
+			System.out.println("Unknown view platform");
+			return;
+		}
+
 		new Application().run();
 	}
 
@@ -23,18 +43,8 @@ public class Application {
 		int level_width = levelManager.getCurrentLevelFacade().getWidth();
 		int level_height = levelManager.getCurrentLevelFacade().getHeight();
 
-
-		/*View view = null;
-		try {
-			view = new SwingView(level_width, level_height);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (view == null) {
-			System.out.println("error creating lanternaView");
-			return;
-		}*/
-		View finalView = new SwingView(level_width, level_height);//view;
+		View finalView = viewFactory.createView(level_width, level_height);
+		if (finalView == null) return;
 
 		LevelController levelController = new LevelController(levelManager);
 
