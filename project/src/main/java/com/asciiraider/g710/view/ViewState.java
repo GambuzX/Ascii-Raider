@@ -1,10 +1,12 @@
 package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.Model;
-import com.googlecode.lanterna.screen.TerminalScreen;
 
-public abstract class ViewState<M extends Model> extends View<M> {
-	public abstract Event getKey();
+import java.util.List;
+
+public abstract class ViewState<M extends Model, T> extends View<M> {
+	public abstract List<Event> getEventsList();
 	public abstract void exit();
-	public abstract TerminalScreen getScreen();
+
+	public abstract T getScreen();
 }

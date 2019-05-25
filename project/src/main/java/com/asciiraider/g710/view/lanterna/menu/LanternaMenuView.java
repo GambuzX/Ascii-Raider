@@ -3,7 +3,7 @@ package com.asciiraider.g710.view.lanterna.menu;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
-import com.asciiraider.g710.view.ViewState;
+import com.asciiraider.g710.view.lanterna.LanternaViewState;
 import com.asciiraider.g710.view.lanterna.utilities.LanternaButtonView;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -14,8 +14,10 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LanternaMenuView extends ViewState<MenuModel> {
+public class LanternaMenuView extends LanternaViewState<MenuModel> {
 	private TerminalScreen screen;
 	private LanternaButtonView lanternaButtonView;
 	private final int FONT_SIZE = 48;
@@ -48,14 +50,16 @@ public class LanternaMenuView extends ViewState<MenuModel> {
 		}
 	}
 
+
 	@Override
-	public Event getKey() {
+	public List<Event> getEventsList() {
+		List<Event> events = new ArrayList<>();
 		try {
-			return KeyPressEvent.handle(screen.readInput());
+			events.add(KeyPressEvent.handleLanterna(screen.readInput()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return Event.OTHER;
+		return events;
 	}
 
 	@Override

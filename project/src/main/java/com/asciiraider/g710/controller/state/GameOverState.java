@@ -2,7 +2,7 @@ package com.asciiraider.g710.controller.state;
 
 import com.asciiraider.g710.controller.ControllerState;
 import com.asciiraider.g710.model.Model;
-import com.asciiraider.g710.view.ViewState;
+import com.asciiraider.g710.view.swing.SwingViewState;
 
 public class GameOverState extends State {
 	@Override
@@ -11,7 +11,7 @@ public class GameOverState extends State {
 	}
 
 	@Override
-	public ViewState getStateView() {
+	public SwingViewState getStateView() {
 		return null;
 	}
 

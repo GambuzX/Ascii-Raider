@@ -5,6 +5,7 @@ import com.asciiraider.g710.controller.command.ExitCommand;
 import com.asciiraider.g710.controller.command.StartCommand;
 import com.asciiraider.g710.controller.menu.MenuController;
 import com.asciiraider.g710.model.menu.MenuModel;
+import com.asciiraider.g710.view.ViewState;
 import com.asciiraider.g710.view.lanterna.menu.LanternaMenuView;
 
 import java.io.IOException;
@@ -15,13 +16,14 @@ public class MenuState extends State {
 	private MenuModel menuModel;
 	private LanternaMenuView lanternaMenuView;
 
-	public MenuState(Game game) throws IOException {
+	// TODO: depois ver aqui
+	public MenuState(Game game, ViewState stateView) throws IOException {
 		this.game = game;
 		menuModel = new MenuModel();
 		menuModel.getOptions().get(0).setAction(new StartCommand(game));
 		menuModel.getOptions().get(1).setAction(new ExitCommand(game));
 		menuController = new MenuController(menuModel);
-		lanternaMenuView = new LanternaMenuView(18, 13);
+		lanternaMenuView = (LanternaMenuView) stateView;
 	}
 
 	@Override

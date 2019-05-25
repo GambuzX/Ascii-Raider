@@ -14,7 +14,7 @@ public class PlayState extends State {
 	private LanternaLevelGroupView lanternaLevelGroupView;
 
 	public PlayState(int fps, int hp, TerminalScreen screen, Game game) throws IOException {
-		this.game =game;
+		this.game = game;
 		levelModelGroup = new LevelModelGroup(fps, hp);
 		levelControllerGroup = new LevelControllerGroup(levelModelGroup);
 

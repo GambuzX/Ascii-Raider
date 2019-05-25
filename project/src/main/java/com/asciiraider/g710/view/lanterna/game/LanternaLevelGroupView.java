@@ -3,12 +3,14 @@ package com.asciiraider.g710.view.lanterna.game;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
-import com.asciiraider.g710.view.ViewState;
+import com.asciiraider.g710.view.lanterna.LanternaViewState;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
+public class LanternaLevelGroupView extends LanternaViewState<LevelModelGroup> {
 
     private final int FONT_SIZE = 48;
     private final int INFO_BAR_HEIGHT = 1;
@@ -47,13 +49,14 @@ public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
     }
 
     @Override
-    public Event getKey() {
+    public List<Event> getEventsList() {
+        List<Event> events = new ArrayList<>();
         try {
-            return KeyPressEvent.handle(screen.readInput());
+            events.add(KeyPressEvent.handleLanterna(screen.readInput()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Event.OTHER;
+        return events;
     }
 
     @Override

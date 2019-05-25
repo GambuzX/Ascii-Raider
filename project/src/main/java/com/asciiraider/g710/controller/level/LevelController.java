@@ -6,8 +6,12 @@ import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
+import com.asciiraider.g710.view.Event;
+
+import java.util.List;
 
 public class LevelController extends Controller {
+
 	private LevelManager levelManager;
 
 	// TODO: ver sitio para se por este controller
