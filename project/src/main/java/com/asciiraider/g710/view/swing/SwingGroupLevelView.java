@@ -23,13 +23,13 @@ public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
     private Queue<Event> eventQueue = new LinkedList<>();
 
     // TODO: ver melhor o que precisa de ser aqui e o que e no factory
-    public SwingGroupLevelView(int level_width, int level_height) {
+    public SwingGroupLevelView() {
         frame = new JFrame("Ascii Raider");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         infoBarComponent = new SwingInfoBarComponent();
-        levelComponent = new SwingLevelComponent(level_height, level_width);
+        levelComponent = new SwingLevelComponent();
         //frame.add(infoBarComponent);
         frame.add(levelComponent);
 

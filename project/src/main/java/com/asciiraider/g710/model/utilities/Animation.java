@@ -1,5 +1,7 @@
 package com.asciiraider.g710.model.utilities;
 
+import com.asciiraider.g710.GlobalConfigs;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class Animation {
 		symbolSequence.add(symbol);
 	}
 
-	public Symbol getNextSymbol(int fps){
-		int updateFrequency = getUpdateFrequency(fps);
+	public Symbol getNextSymbol(){
+		int updateFrequency = getUpdateFrequency(GlobalConfigs.FPS);
 		if(frameCounter < updateFrequency){
 			frameCounter++;
 			return symbolSequence.get(currentSymbol);

@@ -28,7 +28,7 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 	@Override
 	public void notifyObservers() {
 		for(LevelCompletedObserver levelCompletedObserver : levelCompletedObservers) {
-			levelCompletedObserver.updatePontuation(userPontuation);
+			levelCompletedObserver.updateScore(userPontuation);
 			levelCompletedObserver.updateNumKeys(numKeys);
 		}
 	}

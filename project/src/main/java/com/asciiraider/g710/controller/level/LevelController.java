@@ -6,9 +6,6 @@ import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.Event;
-
-import java.util.List;
 
 public class LevelController extends Controller {
 
@@ -70,8 +67,8 @@ public class LevelController extends Controller {
 		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
 	}
 
-	public void handleAnimations(int fps){
-		animationController.handleAnimations(fps, levelManager.getCurrentLevelFacade());
+	public void handleAnimations(){
+		animationController.handleAnimations(levelManager.getCurrentLevelFacade());
 	}
 
 	public boolean insideBounds(Position pos) {
@@ -83,10 +80,6 @@ public class LevelController extends Controller {
 		levelManager.restartLevel();
 		if(!levelManager.getLifeManager().hasLifes())
 			levelManager.finishGame();
-	}
-
-	public int getFps() {
-		return levelManager.getFps();
 	}
 
 	public void catchDoorKey() {

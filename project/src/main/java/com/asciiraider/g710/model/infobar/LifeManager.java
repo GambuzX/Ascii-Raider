@@ -8,7 +8,6 @@ public class LifeManager implements PlayerDeathObserver {
 	private int currentLife;
 	private int initialLife;
 
-
 	public LifeManager(int numberLife) throws InvalidParameterException {
 		if(numberLife <= 0)
 			throw new InvalidParameterException("Number of life must be higher than 0");

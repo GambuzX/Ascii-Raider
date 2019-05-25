@@ -1,5 +1,6 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
 
@@ -11,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelBuilder {
-	private static final int lvlCount = 8;
 
 	// TODO: ver isto de protected vs package-private
 	public List<LevelModel> buildAllLevels() {
 		List<LevelModel> levelModels = new ArrayList<>();
-		for (int i = 1 ; i <= lvlCount; i++) {
+		for (int i = 1; i <= GlobalConfigs.LEVEL_COUNT; i++) {
 			LevelModel newLevel = buildLevel(i);
 			if (newLevel != null)
 				levelModels.add( newLevel );
@@ -39,7 +39,7 @@ public class LevelBuilder {
 	}
 
 	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
-		LevelModel newLevelModel = new LevelModel(new Position(levelLines.get(1).length(), levelLines.size() - 1));
+		LevelModel newLevelModel = new LevelModel();
 
 		// TODO make sure dimensions are okay
 		newLevelModel.setTime(Integer.parseInt(levelLines.get(0)));

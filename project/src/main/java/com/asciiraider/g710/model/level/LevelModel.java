@@ -1,5 +1,6 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
@@ -25,8 +26,8 @@ public class LevelModel extends Model {
 
 	private int remainingTime;
 
-	public LevelModel(Position bottomRightCorner) {
-		this.bottomRightCorner = bottomRightCorner;
+	public LevelModel() {
+		this.bottomRightCorner = new Position(GlobalConfigs.LEVEL_WIDTH, GlobalConfigs.LEVEL_HEIGHT);
 		elementsMatrix = new Element[bottomRightCorner.getX()][bottomRightCorner.getY()];
 	}
 

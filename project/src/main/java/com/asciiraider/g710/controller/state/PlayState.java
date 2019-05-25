@@ -1,5 +1,6 @@
 package com.asciiraider.g710.controller.state;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.level.LevelControllerGroup;
 import com.asciiraider.g710.model.level.LevelModelGroup;
@@ -10,9 +11,9 @@ public class PlayState<T> extends State<LevelModelGroup> {
 	private LevelModelGroup levelModelGroup;
 	private ViewState<LevelModelGroup> levelModelGroupView;
 
-	public PlayState(int fps, int hp, Game game) {
+	public PlayState(Game game) {
 		this.game = game;
-		levelModelGroup = new LevelModelGroup(fps, hp);
+		levelModelGroup = new LevelModelGroup();
 		levelControllerGroup = new LevelControllerGroup(levelModelGroup);
 
 		levelModelGroupView = game.getViewFactory().createLevelView();
@@ -74,11 +75,11 @@ public class PlayState<T> extends State<LevelModelGroup> {
 				}
 				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
 					levelControllerGroup.getLevelController().handleLife();
-				levelControllerGroup.getLevelController().handleAnimations(levelModelGroup.getLevelManager().getFps());
+				levelControllerGroup.getLevelController().handleAnimations();
 
 				levelModelGroupView.draw(levelModelGroup);
 
-				Thread.sleep(1000/levelModelGroup.getLevelManager().getFps());
+				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

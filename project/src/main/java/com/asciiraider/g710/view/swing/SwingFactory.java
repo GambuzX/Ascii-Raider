@@ -9,13 +9,6 @@ import javax.swing.*;
 
 public class SwingFactory implements ViewFactory {
     private JFrame frame;
-    private int width, height;
-    public SwingFactory(int width, int height){
-        this.width = width;
-        this.height = height;
-
-
-    }
 
     @Override
     public ViewState<MenuModel> createMenuView() {
@@ -24,6 +17,6 @@ public class SwingFactory implements ViewFactory {
 
     @Override
     public ViewState<LevelModelGroup> createLevelView() {
-        return new SwingGroupLevelView(width, height);
+        return new SwingGroupLevelView();
     }
 }

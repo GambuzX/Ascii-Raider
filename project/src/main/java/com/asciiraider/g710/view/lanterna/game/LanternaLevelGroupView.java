@@ -21,14 +21,6 @@ public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
     protected TerminalScreen screen;
 
     public LanternaLevelGroupView(TerminalScreen screen){
-
-        /*Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
-        SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
-        Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height + INFO_BAR_HEIGHT)).createTerminal();
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();*/
         this.screen = screen;
         levelView = new LanternaLevelComponent(screen);
         infoBarView = new LanternaInfoBarComponent(screen);

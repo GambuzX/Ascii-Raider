@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.swing;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 
 import javax.swing.*;
@@ -7,11 +8,6 @@ import java.awt.*;
 import java.net.URL;
 
 public class SwingInfoBarComponent extends JPanel {
-
-    private final static int SIZE_FACTOR = 60;
-    private final static int N_COLS = 18;
-
-    private final static int WIDTH = N_COLS * SIZE_FACTOR;
 
     private InfoBarModel infoBarModel;
 
@@ -39,7 +35,7 @@ public class SwingInfoBarComponent extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(WIDTH, SIZE_FACTOR);
+        return new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR);
     }
 
     @Override
