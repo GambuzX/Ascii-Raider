@@ -21,7 +21,6 @@ public class LevelController {
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
-		// TODO: depois adicionar-se-a a barra de progresso
 		levelKeyController.addObserver(levelManager);
 
 		lifeController.addObserver(levelManager.getLifeManager());

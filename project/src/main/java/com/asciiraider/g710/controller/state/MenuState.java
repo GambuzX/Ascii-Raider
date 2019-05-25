@@ -7,7 +7,7 @@ import com.asciiraider.g710.controller.menu.MenuController;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewState;
 
-public class MenuState<T> extends State<MenuModel> {
+public class MenuState extends State<MenuModel> {
 
 	private MenuController menuController;
 	private MenuModel menuModel;

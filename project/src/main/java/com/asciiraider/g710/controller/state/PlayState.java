@@ -5,7 +5,7 @@ import com.asciiraider.g710.controller.level.LevelControllerGroup;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.ViewState;
 
-public class PlayState<T> extends State<LevelModelGroup> {
+public class PlayState extends State<LevelModelGroup> {
 	private LevelControllerGroup levelControllerGroup;
 	private LevelModelGroup levelModelGroup;
 	private ViewState<LevelModelGroup> levelModelGroupView;
