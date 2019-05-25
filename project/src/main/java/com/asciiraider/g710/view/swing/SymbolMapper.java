@@ -70,21 +70,8 @@ public class SymbolMapper {
     }
 
     private void preLoadImages() throws IOException {
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.WALL.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.PLAYER.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.STONEBLOCK.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.LEVELKEY.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXITDOOR.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.SAND.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.BOULDER.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.SKULLENEMY.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.MUMMYENEMY.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.DOOR.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.DOORKEY.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.TNT.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_BIG.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_MEDIUM.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.EXPLOSION_SMALL.resource)));
-        elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(Elements.BACKGROUND.resource)));
+        for (Elements ele : Elements.values()) {
+            elementsImages.add(ImageIO.read(SymbolMapper.class.getResource(ele.resource)));
+        }
     }
 }
