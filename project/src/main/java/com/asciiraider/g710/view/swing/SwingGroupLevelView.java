@@ -3,15 +3,17 @@ package com.asciiraider.g710.view.swing;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
+import com.asciiraider.g710.view.ViewState;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
-public class SwingGroupLevelView extends SwingViewState<LevelModelGroup> {
+public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
 
     JFrame frame;
 
@@ -20,6 +22,7 @@ public class SwingGroupLevelView extends SwingViewState<LevelModelGroup> {
 
     private Queue<Event> eventQueue = new LinkedList<>();
 
+    // TODO: ver melhor o que precisa de ser aqui e o que e no factory
     public SwingGroupLevelView(int level_width, int level_height) {
         frame = new JFrame("Ascii Raider");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +45,7 @@ public class SwingGroupLevelView extends SwingViewState<LevelModelGroup> {
         frame.setVisible(true);
     }
 
+
     @Override
     public void draw(LevelModelGroup model) {
 
@@ -52,8 +56,8 @@ public class SwingGroupLevelView extends SwingViewState<LevelModelGroup> {
     }
 
     @Override
-    public java.util.List<Event> getEventsList() {
-        java.util.List<Event> events = new ArrayList<>();
+    public List<Event> getEventsList() {
+        List<Event> events = new ArrayList<>();
         while (!eventQueue.isEmpty()) {
             events.add(eventQueue.remove());
         }
@@ -64,10 +68,5 @@ public class SwingGroupLevelView extends SwingViewState<LevelModelGroup> {
     public void exit() {
         frame.setVisible(false);
         frame.dispose();
-    }
-
-    @Override
-    public JFrame getScreen() {
-        return frame;
     }
 }

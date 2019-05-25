@@ -2,10 +2,8 @@ package com.asciiraider.g710;
 
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.model.level.LevelManager;
-import com.asciiraider.g710.view.View;
 import com.asciiraider.g710.view.ViewFactory;
 import com.asciiraider.g710.view.lanterna.LanternaFactory;
-import com.asciiraider.g710.view.lanterna.LanternaViewState;
 import com.asciiraider.g710.view.swing.SwingFactory;
 
 import java.io.IOException;
@@ -20,11 +18,17 @@ public class Application {
 			System.out.println("Please specify View Platform");
 			return;
 		}
-
-		if (args[0].equals("lanterna"))
-			viewFactory = new LanternaFactory();
+		// TODO: refactor os valores aqui
+		if (args[0].equals("lanterna")) {
+			try {
+				viewFactory = new LanternaFactory(18, 13);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
 		else if (args[0].equals("swing"))
-			viewFactory = new SwingFactory();
+			viewFactory = new SwingFactory(18, 12);
 		else {
 			System.out.println("Unknown view platform");
 			return;

@@ -10,7 +10,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
-public class LanternaInfoBarView extends View<InfoBarModel> {
+public class LanternaInfoBarComponent extends View<InfoBarModel> {
 
     private TerminalScreen screen;
 
@@ -20,7 +20,7 @@ public class LanternaInfoBarView extends View<InfoBarModel> {
     private static final HexColorString textColor = new HexColorString("000000");
     private static final HexColorString divideSectionColor = new HexColorString("1");
 
-    public LanternaInfoBarView(TerminalScreen screen) {
+    public LanternaInfoBarComponent(TerminalScreen screen) {
         this.screen = screen;
     }
 

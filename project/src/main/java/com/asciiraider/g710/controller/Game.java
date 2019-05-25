@@ -1,20 +1,19 @@
 package com.asciiraider.g710.controller;
 
-import com.asciiraider.g710.controller.state.MenuState;
+import com.asciiraider.g710.controller.state.PlayState;
 import com.asciiraider.g710.controller.state.State;
 import com.asciiraider.g710.view.ViewFactory;
-import com.asciiraider.g710.view.ViewState;
 
 import java.io.IOException;
 
 public class Game {
 	private State state;
 	private boolean exit = false;
+	private ViewFactory viewFactory;
 
 	public Game(ViewFactory viewFactory, int width, int height) throws IOException {
-		ViewState finalView = viewFactory.createView(width, height);
-		if (finalView == null) return;
-		state = new MenuState(this, finalView);
+		this.viewFactory = viewFactory;
+		state = new PlayState(20, 3, this);
 	}
 
 	public void changeState(State state){
@@ -32,5 +31,9 @@ public class Game {
 	public void exit(){
 		exit = true;
 		this.getState().getStateView().exit();
+	}
+
+	public ViewFactory getViewFactory() {
+		return viewFactory;
 	}
 }

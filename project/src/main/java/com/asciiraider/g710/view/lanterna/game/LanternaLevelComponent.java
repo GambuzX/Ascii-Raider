@@ -7,14 +7,12 @@ import com.asciiraider.g710.view.View;
 import com.asciiraider.g710.view.lanterna.LanternaElementView;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
-import java.io.IOException;
-
-public class LanternaLevelView extends View<LevelModel> {
+public class LanternaLevelComponent extends View<LevelModel> {
 
 	private TerminalScreen screen;
 	private LanternaElementView lanternaElementView;
 
-	public LanternaLevelView(TerminalScreen screen) throws IOException {
+	public LanternaLevelComponent(TerminalScreen screen) {
 		this.screen = screen;
 		this.lanternaElementView = new LanternaElementView(screen);
 	}

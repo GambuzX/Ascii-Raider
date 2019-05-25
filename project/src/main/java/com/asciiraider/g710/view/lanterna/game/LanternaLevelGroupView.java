@@ -3,24 +3,24 @@ package com.asciiraider.g710.view.lanterna.game;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
-import com.asciiraider.g710.view.lanterna.LanternaViewState;
+import com.asciiraider.g710.view.ViewState;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanternaLevelGroupView extends LanternaViewState<LevelModelGroup> {
+public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
 
     private final int FONT_SIZE = 48;
     private final int INFO_BAR_HEIGHT = 1;
 
-    LanternaLevelView levelView;
-    LanternaInfoBarView infoBarView;
+    LanternaLevelComponent levelView;
+    LanternaInfoBarComponent infoBarView;
 
     protected TerminalScreen screen;
 
-    public LanternaLevelGroupView(int level_width, int level_height, TerminalScreen screen) throws IOException {
+    public LanternaLevelGroupView(TerminalScreen screen){
 
         /*Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
@@ -30,8 +30,8 @@ public class LanternaLevelGroupView extends LanternaViewState<LevelModelGroup> {
         screen.startScreen();
         screen.doResizeIfNecessary();*/
         this.screen = screen;
-        levelView = new LanternaLevelView(screen);
-        infoBarView = new LanternaInfoBarView(screen);
+        levelView = new LanternaLevelComponent(screen);
+        infoBarView = new LanternaInfoBarComponent(screen);
     }
 
     @Override
@@ -66,10 +66,5 @@ public class LanternaLevelGroupView extends LanternaViewState<LevelModelGroup> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public TerminalScreen getScreen() {
-        return screen;
     }
 }

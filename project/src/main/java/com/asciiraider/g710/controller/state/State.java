@@ -5,9 +5,9 @@ import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.view.ViewState;
 
-public abstract class State implements Runnable{
+public abstract class State<M extends Model> implements Runnable{
 	protected Game game;
-	public abstract Model getStateModel();
-	public abstract ViewState getStateView();
+	public abstract M getStateModel();
+	public abstract ViewState<M> getStateView();
 	public abstract ControllerState getStateController();
 }

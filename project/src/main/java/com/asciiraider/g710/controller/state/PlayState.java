@@ -3,25 +3,19 @@ package com.asciiraider.g710.controller.state;
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.level.LevelControllerGroup;
 import com.asciiraider.g710.model.level.LevelModelGroup;
-import com.asciiraider.g710.view.lanterna.game.LanternaLevelGroupView;
-import com.googlecode.lanterna.screen.TerminalScreen;
+import com.asciiraider.g710.view.ViewState;
 
-import java.io.IOException;
-
-public class PlayState extends State {
+public class PlayState<T> extends State<LevelModelGroup> {
 	private LevelControllerGroup levelControllerGroup;
 	private LevelModelGroup levelModelGroup;
-	private LanternaLevelGroupView lanternaLevelGroupView;
+	private ViewState<LevelModelGroup> levelModelGroupView;
 
-	public PlayState(int fps, int hp, TerminalScreen screen, Game game) throws IOException {
+	public PlayState(int fps, int hp, Game game) {
 		this.game = game;
 		levelModelGroup = new LevelModelGroup(fps, hp);
 		levelControllerGroup = new LevelControllerGroup(levelModelGroup);
 
-		int level_width = levelModelGroup.getLevelManager().getCurrentLevelFacade().getWidth();
-		int level_height = levelModelGroup.getLevelManager().getCurrentLevelFacade().getHeight();
-
-		lanternaLevelGroupView = new LanternaLevelGroupView(level_width, level_height, screen);
+		levelModelGroupView = game.getViewFactory().createLevelView();
 	}
 
 	@Override
@@ -30,8 +24,8 @@ public class PlayState extends State {
 	}
 
 	@Override
-	public LanternaLevelGroupView getStateView() {
-		return this.lanternaLevelGroupView;
+	public ViewState<LevelModelGroup>  getStateView() {
+		return this.levelModelGroupView;
 	}
 
 	@Override
@@ -82,7 +76,7 @@ public class PlayState extends State {
 					levelControllerGroup.getLevelController().handleLife();
 				levelControllerGroup.getLevelController().handleAnimations(levelModelGroup.getLevelManager().getFps());
 
-				lanternaLevelGroupView.draw(levelModelGroup);
+				levelModelGroupView.draw(levelModelGroup);
 
 				Thread.sleep(1000/levelModelGroup.getLevelManager().getFps());
 			} catch (InterruptedException e) {

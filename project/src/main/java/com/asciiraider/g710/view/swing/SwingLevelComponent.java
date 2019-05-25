@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.swing;
 
+import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
 
@@ -14,6 +15,7 @@ public class SwingLevelComponent extends JPanel {
 
     private LevelModel levelModel;
     private SymbolMapper symbolMapper;
+
 
     public SwingLevelComponent(int rows, int cols) {
         symbolMapper = new SymbolMapper();
@@ -36,11 +38,15 @@ public class SwingLevelComponent extends JPanel {
 
         if (levelModel == null) return;
 
-        SwingElementView swingElementView = new SwingElementView(graphics, symbolMapper, SIZE_FACTOR);
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                drawElement(graphics, levelModel.findElement(new Position(col,row)), col, row);
+            }
+        }
 
-        for (int row = 0; row < rows; row++)
-            for (int col = 0; col < cols; col++)
-                swingElementView.draw(levelModel.findElement(new Position(col, row)));
+    }
 
+    public void drawElement(Graphics graphics, Element ele, int x, int y) {
+        graphics.drawImage(symbolMapper.getElementImage(ele), x * SIZE_FACTOR, y * SIZE_FACTOR, null);
     }
 }
