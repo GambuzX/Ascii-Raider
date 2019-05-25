@@ -7,8 +7,6 @@ import com.asciiraider.g710.controller.menu.MenuController;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewState;
 
-import java.io.IOException;
-
 public class MenuState<T> extends State<MenuModel> {
 
 	private MenuController menuController;
@@ -16,7 +14,7 @@ public class MenuState<T> extends State<MenuModel> {
 	private ViewState<MenuModel> menuView;
 
 	// TODO: depois ver aqui
-	public MenuState(Game game) throws IOException {
+	public MenuState(Game game) {
 		this.game = game;
 		menuModel = new MenuModel();
 		menuModel.getOptions().get(0).setAction(new StartCommand(game));

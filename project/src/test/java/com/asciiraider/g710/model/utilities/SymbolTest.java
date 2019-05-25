@@ -46,7 +46,6 @@ public class SymbolTest {
 		assertEquals("#abc", sym.getBackgroundColorString());
 	}
 
-	// TODO: sera preciso separa get e set em testes
 	@Test
 	public void setBackColor(){
 		symbols.get(2).setBackgroundColor(new HexColorString("123"));

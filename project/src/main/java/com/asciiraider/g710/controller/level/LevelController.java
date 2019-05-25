@@ -1,16 +1,12 @@
 package com.asciiraider.g710.controller.level;
 
-import com.asciiraider.g710.controller.Controller;
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.Event;
 
-import java.util.List;
-
-public class LevelController extends Controller {
+public class LevelController {
 
 	private LevelManager levelManager;
 

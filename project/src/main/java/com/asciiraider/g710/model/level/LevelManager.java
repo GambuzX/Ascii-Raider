@@ -7,7 +7,6 @@ import com.asciiraider.g710.model.infobar.LifeManager;
 import java.security.InvalidParameterException;
 import java.util.List;
 
-// TODO: continuar a testar
 public class LevelManager implements LevelKeyObserver {
 
 	private LevelBuilder lvlBuilder;
