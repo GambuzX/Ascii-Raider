@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.lanterna;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
@@ -17,10 +18,9 @@ import java.io.IOException;
 
 public class LanternaFactory implements ViewFactory {
     private TerminalScreen screen;
-    private final int FONT_SIZE = 48;
 
     public LanternaFactory(int width, int height) throws IOException {
-        Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
+        Font font = new Font(GlobalConfigs.LANTERNA_FONT, Font.PLAIN, GlobalConfigs.FONT_SIZE);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
         Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);

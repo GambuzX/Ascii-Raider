@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.swing;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
@@ -23,13 +24,13 @@ public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
     private Queue<Event> eventQueue = new LinkedList<>();
 
     // TODO: ver melhor o que precisa de ser aqui e o que e no factory
-    public SwingGroupLevelView(int level_width, int level_height) {
-        frame = new JFrame("Ascii Raider");
+    public SwingGroupLevelView() {
+        frame = new JFrame(GlobalConfigs.JFRAME_NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         infoBarComponent = new SwingInfoBarComponent();
-        levelComponent = new SwingLevelComponent(level_height, level_width);
+        levelComponent = new SwingLevelComponent();
         //frame.add(infoBarComponent);
         frame.add(levelComponent);
 

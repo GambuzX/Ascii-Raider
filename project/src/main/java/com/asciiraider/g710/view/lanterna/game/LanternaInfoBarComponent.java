@@ -1,8 +1,9 @@
 package com.asciiraider.g710.view.lanterna.game;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.IllegalConversionException;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
-import com.asciiraider.g710.model.infobar.Pontuation;
+import com.asciiraider.g710.model.infobar.Score;
 import com.asciiraider.g710.model.utilities.HexColorString;
 import com.asciiraider.g710.view.View;
 import com.googlecode.lanterna.TerminalPosition;
@@ -32,16 +33,15 @@ public class LanternaInfoBarComponent extends View<InfoBarModel> {
 
 
         char[] scoreArray;
-        Pontuation points = new Pontuation(model.getScore());
+        Score points = new Score(model.getScore());
         try {
             scoreArray = points.pointsToArray3();
         } catch (IllegalConversionException e) {
             scoreArray = new char[]{'9', '9', '9'};
         }
 
-        int barWidth = screen.getTerminalSize().getColumns();
         int barHeight = 0;
-        for (int i = 0 ; i < barWidth; i++) {
+        for (int i = 0; i < GlobalConfigs.LEVEL_WIDTH; i++) {
             graphics.setForegroundColor(TextColor.Factory.fromString(textColor.toString()));
 
             String toDraw = " ";

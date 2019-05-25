@@ -11,7 +11,7 @@ public class StartCommand extends ButtonCommand {
 	// TODO: refactor aqui
 	@Override
 	public void execute() {
-		game.changeState(new PlayState(20, 3, game));
+		game.changeState(new PlayState(game));
 		Thread t = new Thread(game.getState());
 		t.start();
 	}

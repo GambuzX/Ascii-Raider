@@ -19,16 +19,16 @@ public class Application {
 			return;
 		}
 		// TODO: refactor os valores aqui
-		if (args[0].equals("lanterna")) {
+		if (args[0].equals(GlobalConfigs.LANTERNA_OPTION)) {
 			try {
-				viewFactory = new LanternaFactory(18, 13);
+				viewFactory = new LanternaFactory(GlobalConfigs.LEVEL_WIDTH, GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT);
 			} catch (IOException e) {
 				e.printStackTrace();
 				return;
 			}
 		}
-		else if (args[0].equals("swing"))
-			viewFactory = new SwingFactory(18, 12);
+		else if (args[0].equals(GlobalConfigs.SWING_OPTION))
+			viewFactory = new SwingFactory();
 		else {
 			System.out.println("Unknown view platform");
 			return;
@@ -38,20 +38,7 @@ public class Application {
 	}
 
 	private void run() {
-		final int FPS = 20;
-		final int PLAYER_HP = 3;
-
-		LevelManager levelManager = new LevelManager(FPS, PLAYER_HP);
-		int level_width = levelManager.getCurrentLevelFacade().getWidth();
-		int level_height = levelManager.getCurrentLevelFacade().getHeight();
-
-		try {
-			game = new Game(viewFactory, level_width, level_height + 1);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-
+		game = new Game(viewFactory);
 
 		Thread t = new Thread(game.getState());
 		t.start();

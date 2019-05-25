@@ -1,5 +1,6 @@
 package com.asciiraider.g710.controller.state;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.command.ExitCommand;
 import com.asciiraider.g710.controller.command.StartCommand;
@@ -45,7 +46,7 @@ public class MenuState extends State<MenuModel> {
 
 				menuView.draw(menuModel);
 
-				Thread.sleep(1000/20);
+				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

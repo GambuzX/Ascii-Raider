@@ -1,5 +1,6 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.infobar.LifeManager;
@@ -18,11 +19,8 @@ public class LevelManager implements LevelKeyObserver {
 	private LifeManager lifeManager;
 	private LevelTimeAlarm timeAlarm;
 
-	private int fps;
-
-	public LevelManager(int fps, int lifes) throws InvalidParameterException {
-		this.fps = fps;
-		this.lifeManager = new LifeManager(lifes);
+	public LevelManager() throws InvalidParameterException {
+		this.lifeManager = new LifeManager(GlobalConfigs.PLAYER_HP);
 
 		currentLevelIndex = 0;
 		gameFinished = false;
@@ -88,11 +86,6 @@ public class LevelManager implements LevelKeyObserver {
 
 	public boolean wonGame() {
 		return currentLevelIndex >= levelModels.size();
-	}
-
-
-	public int getFps() {
-		return fps;
 	}
 
 	@Override

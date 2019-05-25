@@ -1,5 +1,6 @@
 package com.asciiraider.g710.model.infobar;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.LevelCompletedObserver;
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.PlayerDeathObserver;
@@ -13,9 +14,9 @@ public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeath
     private int time;
     private int score;
 
-    public InfoBarModel(int initialLevel, int maxLives, int maxKeys, int initialScore){
+    public InfoBarModel(int initialLevel, int maxKeys, int initialScore){
         this.currentLevel = initialLevel;
-        this.lives = maxLives;
+        this.lives = GlobalConfigs.PLAYER_HP;
         this.maxKeys = maxKeys;
         this.score = initialScore;
     }
@@ -60,8 +61,8 @@ public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeath
     }
 
     @Override
-    public void updatePontuation(int pontuation) {
-        this.score += pontuation;
+    public void updateScore(int score) {
+        this.score += score;
     }
 
     @Override

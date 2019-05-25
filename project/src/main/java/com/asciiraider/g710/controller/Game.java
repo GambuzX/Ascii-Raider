@@ -11,9 +11,9 @@ public class Game {
 	private boolean exit = false;
 	private ViewFactory viewFactory;
 
-	public Game(ViewFactory viewFactory, int width, int height) throws IOException {
+	public Game(ViewFactory viewFactory) {
 		this.viewFactory = viewFactory;
-		state = new PlayState(20, 3, this);
+		state = new PlayState(this);
 	}
 
 	public void changeState(State state){

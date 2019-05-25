@@ -65,8 +65,8 @@ public class LevelController {
 		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
 	}
 
-	public void handleAnimations(int fps){
-		animationController.handleAnimations(fps, levelManager.getCurrentLevelFacade());
+	public void handleAnimations(){
+		animationController.handleAnimations(levelManager.getCurrentLevelFacade());
 	}
 
 	public boolean insideBounds(Position pos) {
@@ -78,10 +78,6 @@ public class LevelController {
 		levelManager.restartLevel();
 		if(!levelManager.getLifeManager().hasLifes())
 			levelManager.finishGame();
-	}
-
-	public int getFps() {
-		return levelManager.getFps();
 	}
 
 	public void catchDoorKey() {

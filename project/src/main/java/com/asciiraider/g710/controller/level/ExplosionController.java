@@ -33,7 +33,7 @@ public class ExplosionController {
                 if(caught != null)
                     levelFacade.removeDestructibleElement(pos);
 
-                levelFacade.addExplosion(pos, levelController.getFps());
+                levelFacade.addExplosion(pos);
 
                 if (caught instanceof Explosive)
                     handleExplosion(pos, levelFacade);

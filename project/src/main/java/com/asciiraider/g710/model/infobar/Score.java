@@ -1,9 +1,9 @@
 package com.asciiraider.g710.model.infobar;
 
-public class Pontuation {
+public class Score {
 	private int points;
 
-	public Pontuation(int points) throws  IllegalArgumentException{
+	public Score(int points) throws  IllegalArgumentException{
 		if(points < 0)
 			throw new IllegalArgumentException("points cant be negative");
 		this.points = points;

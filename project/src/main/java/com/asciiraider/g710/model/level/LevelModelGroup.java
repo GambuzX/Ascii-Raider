@@ -7,9 +7,9 @@ public class LevelModelGroup extends Model {
     private LevelManager levelManager;
     private InfoBarModel infoBarModel;
 
-    public LevelModelGroup(int fps, int hp){
-        levelManager = new LevelManager(fps, hp);
-        infoBarModel = new InfoBarModel(levelManager.getCurrentLevelIndex() + 1, hp, levelManager.getCurrentLevelKeys(), 0);
+    public LevelModelGroup(){
+        levelManager = new LevelManager();
+        infoBarModel = new InfoBarModel(levelManager.getCurrentLevelIndex() + 1, levelManager.getCurrentLevelKeys(), 0);
     }
 
     public LevelManager getLevelManager() {
