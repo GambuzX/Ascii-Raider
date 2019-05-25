@@ -8,5 +8,6 @@ public enum Event {
 	Q_KEY,
 	R_KEY,
 	EOF,
+	ENTER_KEY,
 	OTHER
 }

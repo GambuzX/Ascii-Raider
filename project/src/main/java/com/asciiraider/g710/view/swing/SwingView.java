@@ -1,7 +1,6 @@
 package com.asciiraider.g710.view.swing;
 
 import com.asciiraider.g710.model.level.LevelModelGroup;
-import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.View;
 
 import javax.swing.*;
@@ -31,16 +30,6 @@ public class SwingView extends View<LevelModelGroup> {
 
     @Override
     public void draw(LevelModelGroup model) {
-
-    }
-
-    @Override
-    public Event getKey() {
-        return null;
-    }
-
-    @Override
-    public void exit() {
 
     }
 

@@ -4,10 +4,8 @@ import com.asciiraider.g710.controller.Controller;
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
-import com.asciiraider.g710.model.element.Player;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.Event;
 
 public class LevelController extends Controller {
 	private LevelManager levelManager;
@@ -44,49 +42,6 @@ public class LevelController extends Controller {
 		return  this.levelProgressionController;
 	}
 
-	public void handleKeyPress(Event event) {
-
-		if(event == null)
-			return;
-		Player player = levelManager.getCurrentLevelFacade().getPlayer();
-		Position newPos = null;
-		Position delimPos = null;
-		switch (event){
-			case UP_KEY:
-				newPos = player.moveUp();
-				delimPos = new Position(newPos);
-				break;
-			case DOWN_KEY:
-				newPos = player.moveDown();
-				delimPos = newPos.getBelow();
-				break;
-			case RIGHT_KEY:
-				newPos = player.moveRight();
-				delimPos = newPos.getRightSide();
-				break;
-			case LEFT_KEY:
-				newPos = player.moveLeft();
-				if (newPos.getX() > 0) delimPos = newPos.getLeftSide();
-				else delimPos = newPos;
-				break;
-			case R_KEY:
-				handleLife();
-				return;
-			case EOF:
-			case Q_KEY:
-				levelManager.finishGame();
-				return;
-		}
-
-		if (movementController.handlePlayerMovement(newPos, delimPos, levelManager.getCurrentLevelFacade()))
-			levelManager.getCurrentLevelFacade().setElementPosition(player, newPos);
-
-		if (isPlayerCollidingEnemy())
-			handleLife();
-
-		levelProgressionController.handle(levelManager);
-	}
-
 	public void triggerExplosion(Position pos) {
 		explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade());
 	}
@@ -101,6 +56,10 @@ public class LevelController extends Controller {
 
 	public void handleLevelKey() {
 		levelKeyController.handler(levelManager.getCurrentLevelFacade());
+	}
+
+	public boolean movePlayer(Position newPos, Position delimPos, LevelFacade levelFacade) {
+		return movementController.handlePlayerMovement(newPos, delimPos, levelFacade);
 	}
 
 	public void moveEnemies() {

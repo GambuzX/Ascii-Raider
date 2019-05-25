@@ -1,19 +1,14 @@
-package com.asciiraider.g710.view.lanterna;
+package com.asciiraider.g710.view.lanterna.game;
 
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
-import com.asciiraider.g710.view.View;
-import com.googlecode.lanterna.TerminalSize;
+import com.asciiraider.g710.view.ViewState;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
-import java.awt.*;
 import java.io.IOException;
 
-public class LanternaView extends View<LevelModelGroup> {
+public class LanternaLevelGroupView extends ViewState<LevelModelGroup> {
 
     private final int FONT_SIZE = 48;
     private final int INFO_BAR_HEIGHT = 1;
@@ -23,16 +18,16 @@ public class LanternaView extends View<LevelModelGroup> {
 
     protected TerminalScreen screen;
 
-    public LanternaView(int level_width, int level_height) throws IOException {
+    public LanternaLevelGroupView(int level_width, int level_height, TerminalScreen screen) throws IOException {
 
-        Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
+        /*Font font = new Font("Monospaced", Font.PLAIN,  FONT_SIZE);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
         Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(level_width, level_height + INFO_BAR_HEIGHT)).createTerminal();
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);
         screen.startScreen();
-        screen.doResizeIfNecessary();
-
+        screen.doResizeIfNecessary();*/
+        this.screen = screen;
         levelView = new LanternaLevelView(screen);
         infoBarView = new LanternaInfoBarView(screen);
     }
@@ -68,5 +63,10 @@ public class LanternaView extends View<LevelModelGroup> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public TerminalScreen getScreen() {
+        return screen;
     }
 }

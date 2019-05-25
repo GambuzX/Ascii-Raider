@@ -1,11 +1,10 @@
-package com.asciiraider.g710.view.lanterna;
+package com.asciiraider.g710.view.lanterna.game;
 
 import com.asciiraider.g710.model.infobar.IllegalConversionException;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
-import com.asciiraider.g710.view.Event;
-import com.asciiraider.g710.view.View;
 import com.asciiraider.g710.model.infobar.Pontuation;
 import com.asciiraider.g710.model.utilities.HexColorString;
+import com.asciiraider.g710.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -102,15 +101,5 @@ public class LanternaInfoBarView extends View<InfoBarModel> {
             if (value != -1) toDraw = Integer.toString(value);
             graphics.putString(new TerminalPosition(i, barHeight), toDraw);
         }
-    }
-
-    @Override
-    public Event getKey() {
-        return null;
-    }
-
-    @Override
-    public void exit() {
-        return;
     }
 }

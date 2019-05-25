@@ -23,7 +23,5 @@ public class LevelTimeAlarm extends TimeAlarm implements PlayerDeathObserver, Le
 	}
 
 	@Override
-	public void updateNumKeys(int numKeys) {
-
-	}
+	public void updateNumKeys(int numKeys) {}
 }

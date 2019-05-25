@@ -3,7 +3,6 @@ package com.asciiraider.g710.view.swing;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
-import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.View;
 
 import javax.imageio.ImageIO;
@@ -30,16 +29,6 @@ public class SwingLevelView extends View<LevelModel> {
 
         for (Element ele : levelModelF.getElements())
             drawElement(graphics, ele);
-    }
-
-    @Override
-    public Event getKey() {
-        return null;
-    }
-
-    @Override
-    public void exit() {
-        return;
     }
 
     public void drawElement(Graphics graphics, Element element) {

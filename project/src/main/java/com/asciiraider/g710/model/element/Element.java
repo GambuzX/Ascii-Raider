@@ -1,9 +1,10 @@
 package com.asciiraider.g710.model.element;
 
+import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
-abstract public class Element implements Cloneable {
+abstract public class Element extends Model implements Cloneable {
 	private Position position;
 	private Symbol symbol;
 
