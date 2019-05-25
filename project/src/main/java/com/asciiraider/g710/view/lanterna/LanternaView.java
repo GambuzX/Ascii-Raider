@@ -12,6 +12,8 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanternaView extends View<LevelModelGroup> {
 
@@ -52,13 +54,14 @@ public class LanternaView extends View<LevelModelGroup> {
     }
 
     @Override
-    public Event getKey() {
+    public List<Event> getEventsList() {
+        List<Event> events = new ArrayList<>();
         try {
-            return KeyPressEvent.handleLanterna(screen.readInput());
+            events.add(KeyPressEvent.handleLanterna(screen.readInput()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Event.OTHER;
+        return events;
     }
 
     @Override

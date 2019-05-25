@@ -7,6 +7,8 @@ import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
+import java.util.List;
+
 public class LevelController {
 	private LevelManager levelManager;
 
@@ -23,6 +25,10 @@ public class LevelController {
 		// TODO: depois adicionar-se-a a barra de progresso
 		levelKeyController.addObserver(levelManager);
 		lifeController.addObserver(levelManager.getLifeManager());
+	}
+
+	public void processEventList(List<Event> events) {
+		for (Event event : events) handleKeyPress(event);
 	}
 
 	public void handleKeyPress(Event event) {

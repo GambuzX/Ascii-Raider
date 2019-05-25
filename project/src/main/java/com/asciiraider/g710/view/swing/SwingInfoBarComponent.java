@@ -1,15 +1,9 @@
 package com.asciiraider.g710.view.swing;
 
-import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 
 public class SwingInfoBarComponent extends JPanel {

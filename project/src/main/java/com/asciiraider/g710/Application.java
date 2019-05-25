@@ -50,7 +50,7 @@ public class Application {
 			@Override
 			public void run(){
 				while (!levelManager.isGameFinished()) {
-					levelController.handleKeyPress(finalView.getKey());
+					levelController.processEventList(finalView.getEventsList());
 					if(isInterrupted()) break;
 				}
 			}

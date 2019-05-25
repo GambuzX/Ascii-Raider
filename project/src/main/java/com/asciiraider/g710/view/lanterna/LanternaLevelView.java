@@ -13,6 +13,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LanternaLevelView extends View<LevelModel> {
 
@@ -33,6 +34,11 @@ public class LanternaLevelView extends View<LevelModel> {
 			drawElement(graphics, ele);
 	}
 
+	@Override
+	public List<Event> getEventsList() {
+		return null;
+	}
+
 	public void drawElement(TextGraphics graphics, Element element) {
 		Symbol symbol = element.getSymbol();
 		Position position = element.getPosition();
@@ -40,11 +46,6 @@ public class LanternaLevelView extends View<LevelModel> {
 		graphics.setForegroundColor(TextColor.Factory.fromString(symbol.getForegroundColorString()));
 		graphics.setBackgroundColor(TextColor.Factory.fromString(symbol.getBackgroundColorString()));
 		graphics.putString(new TerminalPosition(position.getX(), position.getY()+1), ""+symbol.getAscii());
-	}
-
-
-	public Event getKey() {
-		return null;
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
+import java.util.List;
+
 public class LanternaInfoBarView extends View<InfoBarModel> {
 
     private TerminalScreen screen;
@@ -60,7 +62,7 @@ public class LanternaInfoBarView extends View<InfoBarModel> {
     }
 
     @Override
-    public Event getKey() {
+    public List<Event> getEventsList() {
         return null;
     }
 

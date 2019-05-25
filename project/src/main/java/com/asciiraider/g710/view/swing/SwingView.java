@@ -7,13 +7,14 @@ import com.asciiraider.g710.view.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SwingView extends View<LevelModelGroup> implements KeyListener {
+public class SwingView extends View<LevelModelGroup> {
 
     JFrame frame;
 
@@ -24,21 +25,24 @@ public class SwingView extends View<LevelModelGroup> implements KeyListener {
 
     public SwingView(int level_width, int level_height) {
         frame = new JFrame("Ascii Raider");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         infoBarComponent = new SwingInfoBarComponent();
         levelComponent = new SwingLevelComponent();
-        frame.add(infoBarComponent);
+        //frame.add(infoBarComponent);
         frame.add(levelComponent);
+
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                eventQueue.add(KeyPressEvent.handleSwing(keyEvent));
+            }
+        });
+        frame.requestFocusInWindow();
 
         frame.pack();
         frame.setVisible(true);
-
-        //KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
-        frame.addKeyListener(this);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.requestFocusInWindow();
     }
 
     @Override
@@ -51,29 +55,17 @@ public class SwingView extends View<LevelModelGroup> implements KeyListener {
     }
 
     @Override
-    public Event getKey() {
-        if (!eventQueue.isEmpty()) return eventQueue.remove();
-        return null;
+    public java.util.List<Event> getEventsList() {
+        java.util.List<Event> events = new ArrayList<>();
+        while (!eventQueue.isEmpty()) {
+            events.add(eventQueue.remove());
+        }
+        return events;
     }
 
     @Override
     public void exit() {
         frame.setVisible(false);
         frame.dispose();
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        eventQueue.add(KeyPressEvent.handleSwing(e));
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }
