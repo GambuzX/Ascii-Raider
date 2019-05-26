@@ -41,7 +41,7 @@ public class MenuState extends State<MenuModel> {
 
 	@Override
 	public void run() {
-		while (!getStateController().isClose()) {
+		while (!menuController.isClose()) {
 			try {
 
 				menuView.draw(menuModel);

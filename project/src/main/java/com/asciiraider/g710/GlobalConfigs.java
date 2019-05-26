@@ -19,4 +19,7 @@ public class GlobalConfigs {
 
     public final static int SWING_SIZE_FACTOR = 60;
     public final static String JFRAME_NAME = "Ascii Raider";
+
+    public final static int SWING_MENU_PLAY_BTN_Y = 5;
+    public final static int SWING_MENU_EXIT_BTN_Y = 7;
 }
