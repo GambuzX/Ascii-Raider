@@ -4,8 +4,6 @@ import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.Event;
 import com.asciiraider.g710.view.KeyPressEvent;
 import com.asciiraider.g710.view.ViewState;
-import com.asciiraider.g710.view.swing.game.SwingInfoBarComponent;
-import com.asciiraider.g710.view.swing.game.SwingLevelComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +15,6 @@ import java.util.List;
 import java.util.Queue;
 
 public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
-
 
     private SwingLevelComponent levelComponent;
     private SwingInfoBarComponent infoBarComponent;
@@ -31,11 +28,6 @@ public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
 
         infoBarComponent = new SwingInfoBarComponent();
         levelComponent = new SwingLevelComponent();
-
-        for (Component component : frame.getComponents()) {
-            if (component instanceof JFrame)
-                frame.remove(component);
-        }
 
         //frame.add(infoBarComponent);
         frame.add(levelComponent);

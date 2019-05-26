@@ -14,6 +14,7 @@ public class MenuController extends ControllerState {
 
 	@Override
 	public void handleKeyPress(Event event) {
+		if (event == null) return;
 		switch (event){
 			case UP_KEY: case LEFT_KEY:
 				menuModel.previousOption();
@@ -29,7 +30,6 @@ public class MenuController extends ControllerState {
 			case Q_KEY:
 				close = true;
 				menuModel.getOptions().get(1).getAction().execute();
-				return;
 		}
 
 	}

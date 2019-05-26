@@ -2,9 +2,12 @@ package com.asciiraider.g710.view.swing.menu;
 
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.KeyPressEvent;
 import com.asciiraider.g710.view.ViewState;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,8 +25,15 @@ public class SwingMenuView extends ViewState<MenuModel> {
         this.frame = frame;
 
         menuComponent = new SwingMenuComponent();
+        menuComponent.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                eventQueue.add(KeyPressEvent.handleSwing(keyEvent));
+            }
+        });
+        menuComponent.setFocusable(true);
 
-        frame.add(menuComponent);
+        frame.getContentPane().add(menuComponent);
 
         frame.pack();
         frame.setVisible(true);

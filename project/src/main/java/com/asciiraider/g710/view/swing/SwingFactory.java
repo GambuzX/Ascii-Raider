@@ -9,6 +9,7 @@ import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SwingFactory implements ViewFactory {
     private JFrame frame;
@@ -21,11 +22,13 @@ public class SwingFactory implements ViewFactory {
 
     @Override
     public ViewState<MenuModel> createMenuView() {
+        frame.getContentPane().removeAll();
         return new SwingMenuView(frame);
     }
 
     @Override
     public ViewState<LevelModelGroup> createLevelView() {
+        frame.getContentPane().removeAll();
         return new SwingGroupLevelView(frame);
     }
 }

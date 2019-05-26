@@ -1,11 +1,7 @@
 package com.asciiraider.g710.view.swing.menu;
 
 import com.asciiraider.g710.GlobalConfigs;
-import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.menu.MenuModel;
-import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.swing.utilities.SymbolMapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +25,13 @@ public class SwingMenuComponent extends JPanel {
 
         this.add(playButton);
         this.add(exitButton);
+
+        playButton.setFocusable(false);
+        exitButton.setFocusable(false);
+
+        playButton.addActionListener(actionEvent -> System.out.println("Play game!"));
+
+        exitButton.addActionListener(actionEvent -> System.out.println("Exit game!"));
     }
 
     public void setMenuModel(MenuModel menuModel) {

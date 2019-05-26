@@ -1,7 +1,6 @@
 package com.asciiraider.g710;
 
 import com.asciiraider.g710.controller.Game;
-import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.view.ViewFactory;
 import com.asciiraider.g710.view.lanterna.LanternaFactory;
 import com.asciiraider.g710.view.swing.SwingFactory;
@@ -46,9 +45,9 @@ public class Application {
 		Thread input_t = new Thread() {
 			@Override
 			public void run(){
-				while (!game.toExit()) {
-					game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
-				}
+			while (!game.toExit()) {
+				game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
+			}
 			}
 		};
 
