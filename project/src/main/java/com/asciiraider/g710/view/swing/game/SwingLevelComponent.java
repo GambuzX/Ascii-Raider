@@ -1,9 +1,10 @@
-package com.asciiraider.g710.view.swing;
+package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
+import com.asciiraider.g710.view.swing.utilities.SymbolMapper;
 
 import javax.swing.*;
 import java.awt.*;

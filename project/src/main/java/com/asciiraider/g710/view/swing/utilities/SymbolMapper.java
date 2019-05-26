@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view.swing;
+package com.asciiraider.g710.view.swing.utilities;
 
 import com.asciiraider.g710.model.element.*;
 

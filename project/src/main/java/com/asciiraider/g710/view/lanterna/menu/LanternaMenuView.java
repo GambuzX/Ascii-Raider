@@ -25,7 +25,6 @@ public class LanternaMenuView extends ViewState<MenuModel> {
 	@Override
 	public void draw(MenuModel model) {
 		screen.clear();
-		TextGraphics graphics = screen.newTextGraphics();
 
 		for(int i = 0; i < model.getNumberOptions(); i++)
 			lanternaButtonView.draw(model.getOptions().get(i));
