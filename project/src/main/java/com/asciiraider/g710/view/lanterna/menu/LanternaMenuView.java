@@ -23,6 +23,7 @@ public class LanternaMenuView extends LanternaStateView<MenuModel> {
 	@Override
 	public void draw(MenuModel model) {
 		screen.clear();
+
 		TextGraphics graphics = screen.newTextGraphics();
 		graphics.setForegroundColor(TextColor.Factory.fromString(new HexColorString("CCCCCC").toString()));
 

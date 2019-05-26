@@ -22,6 +22,9 @@ public final class GlobalConfigs {
 
     public final static int SWING_SIZE_FACTOR = 60;
 
+    public final static int SWING_MENU_PLAY_BTN_Y = 5;
+    public final static int SWING_MENU_EXIT_BTN_Y = 7;
+
     private GlobalConfigs(){
         throw new AssertionError();
     }

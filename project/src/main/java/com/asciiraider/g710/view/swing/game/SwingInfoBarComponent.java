@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view.swing;
+package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
@@ -15,7 +15,7 @@ public class SwingInfoBarComponent extends JPanel {
     private JProgressBar progressBar;
     private JButton restartButton;
 
-    SwingInfoBarComponent() {
+    public SwingInfoBarComponent() {
         levelIndicator = new JTextField(5);
 
         progressBar = new JProgressBar();

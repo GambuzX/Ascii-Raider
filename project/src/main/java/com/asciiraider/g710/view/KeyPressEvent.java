@@ -26,6 +26,7 @@ public class KeyPressEvent {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) return RIGHT_KEY;
         if (e.getKeyCode() == KeyEvent.VK_LEFT) return LEFT_KEY;
         if (e.getKeyCode() == KeyEvent.VK_DOWN) return DOWN_KEY;
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) return ENTER_KEY;
         if (e.getKeyCode() == KeyEvent.VK_Q) return Q_KEY;
         if (e.getKeyCode() == KeyEvent.VK_R) return R_KEY;
         return null;

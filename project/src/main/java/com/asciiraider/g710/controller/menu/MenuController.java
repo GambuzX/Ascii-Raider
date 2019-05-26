@@ -15,6 +15,7 @@ public class MenuController extends ControllerState<MenuModel> {
 	public void handleKeyPress(Event event) {
 		if(event == null)
 			return;
+
 		switch (event){
 			case UP_KEY: case LEFT_KEY:
 				model.previousOption();
@@ -31,6 +32,7 @@ public class MenuController extends ControllerState<MenuModel> {
 				close = true;
 				model.getOptions().get(1).getAction().execute();
 				return;
+
 		}
 
 	}

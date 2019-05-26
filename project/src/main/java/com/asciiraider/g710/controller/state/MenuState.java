@@ -41,6 +41,7 @@ public class MenuState extends State<MenuModel> {
 
 	@Override
 	public void run() {
+
 		Thread input_t = new Thread() {
 			@Override
 			public void run(){
@@ -52,7 +53,8 @@ public class MenuState extends State<MenuModel> {
 
 		input_t.start();
 
-		while (!getStateController().isClose()) {
+
+		while (!menuController.isClose()) {
 			try {
 
 				menuView.draw(menuModel);
