@@ -1,6 +1,9 @@
 package com.asciiraider.g710.controller.level;
 
+import com.asciiraider.g710.controller.element.EnemyController;
 import com.asciiraider.g710.controller.element.LevelKeyController;
+import com.asciiraider.g710.controller.element.PhysicsElementController;
+import com.asciiraider.g710.model.element.AnimatedElement;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.level.LevelManager;
@@ -14,13 +17,13 @@ public class LevelController {
 	private LifeController lifeController = new LifeController();
 	private LevelKeyController levelKeyController = new LevelKeyController();
 	private LevelProgressionController levelProgressionController = new LevelProgressionController();
-	private PhysicsController physicsController = new PhysicsController(this);
-	private ExplosionController explosionsController = new ExplosionController(this);
+
+	private ExplosionController explosionsController = new ExplosionController();
 	private MovementController movementController = new MovementController(this);
-	private AnimationController animationController = new AnimationController(this);
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
+
 		levelKeyController.addObserver(levelManager);
 
 		lifeController.addObserver(levelManager.getLifeManager());
@@ -42,15 +45,37 @@ public class LevelController {
 	}
 
 	public void triggerExplosion(Position pos) {
-		explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade());
+		if(explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade()))
+			handleLife();
 	}
+
+	//// -------------------------------------------------------------------------------------------------------- /////
 
 	public void handlePhysics() {
-		physicsController.handlePhysics(levelManager.getCurrentLevelFacade());
+		PhysicsElementController pec;
+		for (PhysicsElement physicsElement : levelManager.getCurrentLevelFacade().getPhysicsElements()){
+			 pec = new PhysicsElementController(physicsElement);
+			 pec.handleElementPhysics(this, levelManager.getCurrentLevelFacade());
+		}
 	}
 
+	public void moveEnemies() {
+		EnemyController ec;
+		for (Enemy enemy : levelManager.getCurrentLevelFacade().getEnemies()){
+			ec = new EnemyController(enemy);
+			ec.handle(levelManager.getCurrentLevelFacade());
+		}
+	}
+	//// -------------------------------------------------------------------------------------------------------- /////
+
 	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
-		return physicsController.handlePlayerPush(element, delimPos, levelManager.getCurrentLevelFacade());
+		PhysicsElementController pec = new PhysicsElementController(element);
+		if(pec.handlePlayerPush(delimPos, levelManager.getCurrentLevelFacade())){
+			pec.handleElementPhysics(this, levelManager.getCurrentLevelFacade());
+			handleLevelKey();
+			return true;
+		}
+		return false;
 	}
 
 	public void handleLevelKey() {
@@ -61,16 +86,11 @@ public class LevelController {
 		return movementController.handlePlayerMovement(newPos, delimPos, levelFacade);
 	}
 
-	public void moveEnemies() {
-		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
-	}
-
+	// TODO: classe à parte talvez no Group Controller??
 	public void handleAnimations(){
-		animationController.handleAnimations(levelManager.getCurrentLevelFacade());
-	}
-
-	public boolean insideBounds(Position pos) {
-		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
+		for(AnimatedElement animated : levelManager.getCurrentLevelFacade().getAnimatedElements())
+			if(!animated.updateAnimation())
+				levelManager.getCurrentLevelFacade().removeAnimation(animated.getPosition());
 	}
 
 	public void handleLife() {
@@ -93,10 +113,5 @@ public class LevelController {
 				return true;
 
 		return false;
-	}
-
-	// TODO: provisorio
-	public boolean isGameOver(){
-		return levelManager.isGameFinished();
 	}
 }

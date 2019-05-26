@@ -1,5 +1,6 @@
 package com.asciiraider.g710.controller.level;
 
+import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
@@ -41,11 +42,9 @@ public class LevelFacade {
 		return levelModel.getEnemies();
 	}
 
-	// Acaba aqui //
-
-	public int getHeight() {return levelModel.getBottomRightCorner().getY();}
-
-	public int getWidth() {return levelModel.getBottomRightCorner().getX();}
+	public boolean insideBounds(Position pos) {
+		return pos.getX() < GlobalConfigs.LEVEL_WIDTH && pos.getY() < GlobalConfigs.LEVEL_HEIGHT;
+	}
 
 	public List<AnimatedElement> getAnimatedElements(){
 		List<AnimatedElement> animatedElements =  new ArrayList<>();

@@ -33,15 +33,16 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 		}
 	}
 
-	public void handle(LevelManager levelManager) {
-
+	public boolean handle(LevelManager levelManager) {
+		boolean ret = false;
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
 		if(levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0) {
 			userScore = levelManager.getTimeAlarm().getCurrentTime();
-			levelManager.nextLevel();
+			ret = levelManager.nextLevel();
 			numKeys = levelManager.getCurrentLevelKeys();
 			notifyObservers();
 		}
+		return ret;
 	}
 }

@@ -21,15 +21,10 @@ public class LevelModel extends Model {
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 	private List<Explosion> explosions = new ArrayList<>();
-	private Position bottomRightCorner;
-	private Element[][] elementsMatrix;
+	//private Position bottomRightCorner;
+	private Element[][] elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
 
 	private int remainingTime;
-
-	public LevelModel() {
-		this.bottomRightCorner = new Position(GlobalConfigs.LEVEL_WIDTH, GlobalConfigs.LEVEL_HEIGHT);
-		elementsMatrix = new Element[bottomRightCorner.getX()][bottomRightCorner.getY()];
-	}
 
 	public Player getPlayer() {
 		return player;
@@ -155,10 +150,6 @@ public class LevelModel extends Model {
 
 	public Element findElement(Position pos) {
 		return elementsMatrix[pos.getX()][pos.getY()];
-	}
-
-	public Position getBottomRightCorner() {
-		return bottomRightCorner;
 	}
 
 	public int getLevelTime() {

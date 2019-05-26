@@ -66,7 +66,6 @@ public class PlayState extends State<LevelModelGroup> {
 			try {
 				if(physicsCounter == 4){
 					physicsCounter = 0;
-					//levelController.handleKeyProgress();
 					levelControllerGroup.getLevelController().handlePhysics();
 				}
 				if(enemiesCounter == 6){

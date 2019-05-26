@@ -43,11 +43,10 @@ public class LevelManager implements LevelKeyObserver {
 		updateLevelVariables();
 	}
 
-	public void nextLevel() {
+	public boolean nextLevel() {
 		currentLevelIndex++;
 		updateLevelVariables();
-		if (currentLevelIndex >= levelModels.size())
-			gameFinished = true;
+		return currentLevelIndex >= levelModels.size();
 	}
 
 	public void restartLevel() {
@@ -76,16 +75,8 @@ public class LevelManager implements LevelKeyObserver {
 		return currentLevelFacade;
 	}
 
-	public boolean isGameFinished() {
-		return gameFinished;
-	}
-
 	public void finishGame() {
 		gameFinished = true;
-	}
-
-	public boolean wonGame() {
-		return currentLevelIndex >= levelModels.size();
 	}
 
 	@Override
