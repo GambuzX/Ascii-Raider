@@ -7,13 +7,12 @@ import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.view.Event;
 
-public class LevelControllerGroup extends ControllerState {
+public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 	private LevelController levelController;
 	private InfoBarController infoBarController;
-	private LevelModelGroup levelModelGroup;
 
 	public LevelControllerGroup(LevelModelGroup levelModelGroup){
-		this.levelModelGroup = levelModelGroup;
+		super(levelModelGroup);
 		this.levelController = new LevelController(levelModelGroup.getLevelManager());
 		this.infoBarController = new InfoBarController(levelController, levelModelGroup.getInfoBarModel());
 	}
@@ -32,7 +31,7 @@ public class LevelControllerGroup extends ControllerState {
 
 		if(event == null)
 			return;
-		Player player = levelModelGroup.getLevelManager().getCurrentLevelFacade().getPlayer();
+		Player player = model.getLevelManager().getCurrentLevelFacade().getPlayer();
 		Position newPos = null;
 		Position delimPos = null;
 		switch (event){
@@ -58,16 +57,16 @@ public class LevelControllerGroup extends ControllerState {
 				return;
 			case EOF:
 			case Q_KEY:
-				levelModelGroup.getLevelManager().finishGame();
+				model.getLevelManager().finishGame();
 				return;
 		}
 
-		if (levelController.movePlayer(newPos, delimPos, levelModelGroup.getLevelManager().getCurrentLevelFacade()))
-			levelModelGroup.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
+		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade()))
+			model.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
 
 		if (levelController.isPlayerCollidingEnemy())
 			levelController.handleLife();
 
-		levelController.getLevelProgressionController().handle(levelModelGroup.getLevelManager());
+		levelController.getLevelProgressionController().handle(model.getLevelManager());
 	}
 }

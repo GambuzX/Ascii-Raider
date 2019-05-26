@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LanternaStateView<M extends Model> extends ViewState<M> {
-	protected TerminalScreen screen;
+	protected final TerminalScreen screen;
 	protected LanternaStateView(TerminalScreen screen) {
 		this.screen = screen;
 	}

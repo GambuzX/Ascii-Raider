@@ -40,6 +40,17 @@ public class GameOverState extends State {
 
 	@Override
 	public void run() {
+		Thread input_t = new Thread() {
+			@Override
+			public void run(){
+				while (!getStateController().isClose()) {
+					gameOverController.processEventList(gameOverView.getEventsList());
+				}
+			}
+		};
+
+		input_t.start();
+
 		TimeAlarm alarm =  new TimeAlarm(GlobalConfigs.GAMEOVER_SCREEN_DURATION);
 		Thread tick_second = new Thread() {
 			@Override

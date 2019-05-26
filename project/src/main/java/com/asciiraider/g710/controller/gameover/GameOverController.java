@@ -4,12 +4,11 @@ import com.asciiraider.g710.controller.ControllerState;
 import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.view.Event;
 
-public class GameOverController extends ControllerState {
-	private GameOverModel gameOverModel;
+public class GameOverController extends ControllerState<GameOverModel>  {
 	private boolean close = false;
 
 	public GameOverController(GameOverModel gameOverModel) {
-		this.gameOverModel = gameOverModel;
+		super(gameOverModel);
 	}
 
 
@@ -22,7 +21,7 @@ public class GameOverController extends ControllerState {
 			case EOF:
 			case Q_KEY:
 				close = true;
-				gameOverModel.getExitButton().getAction().execute();
+				model.getExitButton().getAction().execute();
 				return;
 		}
 

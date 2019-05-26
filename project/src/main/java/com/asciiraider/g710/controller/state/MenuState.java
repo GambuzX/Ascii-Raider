@@ -41,6 +41,17 @@ public class MenuState extends State<MenuModel> {
 
 	@Override
 	public void run() {
+		Thread input_t = new Thread() {
+			@Override
+			public void run(){
+				while (!getStateController().isClose()) {
+					menuController.processEventList(menuView.getEventsList());
+				}
+			}
+		};
+
+		input_t.start();
+
 		while (!getStateController().isClose()) {
 			try {
 

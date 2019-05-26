@@ -39,18 +39,6 @@ public class Application {
 	private void run() {
 		game = new Game(viewFactory);
 
-		Thread t = new Thread(game.getState());
-		t.start();
-
-		Thread input_t = new Thread() {
-			@Override
-			public void run(){
-				while (!game.toExit()) {
-					game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
-				}
-			}
-		};
-
-		input_t.start();
+		game.getState().run();
 	}
 }

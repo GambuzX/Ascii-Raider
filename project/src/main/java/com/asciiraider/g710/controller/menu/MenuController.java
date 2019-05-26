@@ -4,12 +4,11 @@ import com.asciiraider.g710.controller.ControllerState;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.Event;
 
-public class MenuController extends ControllerState {
-	private MenuModel menuModel;
+public class MenuController extends ControllerState<MenuModel> {
 	private boolean close = false;
 
 	public MenuController(MenuModel menuModel) {
-		this.menuModel = menuModel;
+		super(menuModel);
 	}
 
 	@Override
@@ -18,19 +17,19 @@ public class MenuController extends ControllerState {
 			return;
 		switch (event){
 			case UP_KEY: case LEFT_KEY:
-				menuModel.previousOption();
+				model.previousOption();
 				break;
 			case DOWN_KEY: case RIGHT_KEY:
-				menuModel.nextOption();
+				model.nextOption();
 				break;
 			case ENTER_KEY:
 				close = true;
-				menuModel.getSelectedButton().getAction().execute();
+				model.getSelectedButton().getAction().execute();
 				break;
 			case EOF:
 			case Q_KEY:
 				close = true;
-				menuModel.getOptions().get(1).getAction().execute();
+				model.getOptions().get(1).getAction().execute();
 				return;
 		}
 

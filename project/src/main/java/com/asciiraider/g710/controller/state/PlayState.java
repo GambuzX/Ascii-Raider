@@ -36,6 +36,16 @@ public class PlayState extends State<LevelModelGroup> {
 
 	@Override
 	public void run() {
+		Thread input_t = new Thread() {
+			@Override
+			public void run(){
+				while (!levelModelGroup.getLevelManager().isGameFinished()) {
+					levelControllerGroup.processEventList(levelModelGroupView.getEventsList());
+				}
+			}
+		};
+
+		input_t.start();
 
 		Thread tick_second = new Thread() {
 			@Override
