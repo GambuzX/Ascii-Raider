@@ -85,7 +85,6 @@ public class PlayState extends State<LevelModelGroup> {
 			}
 		}
 
-		System.out.println("Ja sai");
 		game.changeState(new GameOverState(game, getStateModel().getInfoBarModel().getScore()));
 	}
 

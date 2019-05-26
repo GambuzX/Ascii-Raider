@@ -45,7 +45,7 @@ public class GameOverState extends State {
 			@Override
 			public void run() {
 				alarm.start();
-				while (alarm.getCurrentTime() > 0)  {
+				while (alarm.getCurrentTime() > 0) {
 						alarm.decTimer();
 						try {
 							Thread.sleep(1000);

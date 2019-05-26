@@ -12,7 +12,6 @@ import java.util.List;
 
 public abstract class LanternaStateView<M extends Model> extends ViewState<M> {
 	protected TerminalScreen screen;
-
 	protected LanternaStateView(TerminalScreen screen) {
 		this.screen = screen;
 	}
@@ -22,8 +21,6 @@ public abstract class LanternaStateView<M extends Model> extends ViewState<M> {
 		List<Event> events = new ArrayList<>();
 		try {
 			events.add(KeyPressEvent.handleLanterna(screen.readInput()));
-			if(events.get(0) == Event.Q_KEY)
-				System.out.println("lido");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

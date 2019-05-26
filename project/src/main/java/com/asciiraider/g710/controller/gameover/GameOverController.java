@@ -15,7 +15,6 @@ public class GameOverController extends ControllerState {
 
 	@Override
 	public void handleKeyPress(Event event) {
-		System.out.println("GO recebi");
 		if(event == null)
 			return;
 		switch (event){

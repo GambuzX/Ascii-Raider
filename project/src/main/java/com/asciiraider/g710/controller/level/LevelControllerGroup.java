@@ -58,7 +58,6 @@ public class LevelControllerGroup extends ControllerState {
 				return;
 			case EOF:
 			case Q_KEY:
-				System.out.println("anjk");
 				levelModelGroup.getLevelManager().finishGame();
 				return;
 		}
