@@ -1,11 +1,10 @@
 package com.asciiraider.g710.view.swing;
 
-import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
-import com.asciiraider.g710.view.ViewState;
 import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
 
@@ -21,19 +20,19 @@ public class SwingFactory implements ViewFactory {
     }
 
     @Override
-    public ViewState<MenuModel> createMenuView() {
+    public SwingStateView<MenuModel> createMenuView() {
         frame.getContentPane().removeAll();
         return new SwingMenuView(frame);
     }
 
     @Override
-    public ViewState<LevelModelGroup> createLevelView() {
+    public SwingStateView<LevelModelGroup> createLevelView() {
         frame.getContentPane().removeAll();
         return new SwingGroupLevelView(frame);
     }
 
     @Override
-    public ViewState<GameOverModel> createGameOverView() {
+    public SwingStateView<GameOverModel> createGameOverView() {
         return null;
     }
 }
