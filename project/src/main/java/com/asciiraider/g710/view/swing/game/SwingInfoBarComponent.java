@@ -46,8 +46,7 @@ public class SwingInfoBarComponent extends JPanel {
 
         this.levelIndicator.setText("Level " + infoBarModel.getCurrentLevel());
         // TODO: refactoring do maxLifes
-        this.progressBar.setValue((int) ((float) infoBarModel.getLives() / 3 * 100));
-//        this.progressBar.setValue((int) ((float) infoBarModel.getLives() / infoBarModel.getMaxLives() * 100));
+        this.progressBar.setValue((int) ((float) infoBarModel.getLives() / GlobalConfigs.PLAYER_HP * 100));
 
     }
 
