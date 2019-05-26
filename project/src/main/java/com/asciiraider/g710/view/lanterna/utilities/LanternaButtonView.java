@@ -34,7 +34,7 @@ public class LanternaButtonView extends View<Button> {
 
 		int x = (model.getUpperLeft().getX() + model.getLowerRight().getX() - model.getText().length()) / 2;
 		int y = (model.getUpperLeft().getY() + model.getLowerRight().getY()) / 2;
-		graphics.putString(new TerminalPosition(x, y), model.getText());
+		graphics.putString(x, y, model.getText());
 
 	}
 

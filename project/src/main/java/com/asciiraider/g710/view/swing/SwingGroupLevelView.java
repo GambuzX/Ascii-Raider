@@ -25,7 +25,7 @@ public class SwingGroupLevelView extends ViewState<LevelModelGroup> {
 
     // TODO: ver melhor o que precisa de ser aqui e o que e no factory
     public SwingGroupLevelView() {
-        frame = new JFrame(GlobalConfigs.JFRAME_NAME);
+        frame = new JFrame(GlobalConfigs.GAME_NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
