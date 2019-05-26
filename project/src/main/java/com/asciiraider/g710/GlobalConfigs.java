@@ -1,6 +1,6 @@
 package com.asciiraider.g710;
 
-public class GlobalConfigs {
+public final class GlobalConfigs {
 
     public final static int PLAYER_HP = 3;
     public final static int FPS = 20;
@@ -19,4 +19,8 @@ public class GlobalConfigs {
 
     public final static int SWING_SIZE_FACTOR = 60;
     public final static String JFRAME_NAME = "Ascii Raider";
+
+    private GlobalConfigs(){
+        throw new AssertionError();
+    }
 }
