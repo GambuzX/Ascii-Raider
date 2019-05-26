@@ -47,4 +47,9 @@ public class Score {
 
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return ""+points;
+	}
 }

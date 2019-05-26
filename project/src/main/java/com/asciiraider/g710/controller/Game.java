@@ -16,6 +16,8 @@ public class Game {
 
 	public void changeState(State state){
 		this.state = state;
+		Thread t = new Thread(this.state);
+		t.start();
 	}
 
 	public State getState() {

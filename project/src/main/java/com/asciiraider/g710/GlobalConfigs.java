@@ -15,6 +15,8 @@ public final class GlobalConfigs {
 
     public final static double ANIMATION_DURATION = 0.5;
 
+    public final static int GAMEOVER_SCREEN_DURATION = 5;
+
     public final static int FONT_SIZE = 48;
     public final static String LANTERNA_FONT = "Monospaced";
 

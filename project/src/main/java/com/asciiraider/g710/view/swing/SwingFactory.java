@@ -1,5 +1,6 @@
 package com.asciiraider.g710.view.swing;
 
+import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
@@ -18,5 +19,10 @@ public class SwingFactory implements ViewFactory {
     @Override
     public ViewState<LevelModelGroup> createLevelView() {
         return new SwingGroupLevelView();
+    }
+
+    @Override
+    public ViewState<GameOverModel> createGameOverView() {
+        return null;
     }
 }

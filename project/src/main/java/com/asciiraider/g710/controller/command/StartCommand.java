@@ -8,11 +8,8 @@ public class StartCommand extends ButtonCommand {
 		super(game);
 	}
 
-	// TODO: refactor aqui
 	@Override
 	public void execute() {
 		game.changeState(new PlayState(game));
-		Thread t = new Thread(game.getState());
-		t.start();
 	}
 }

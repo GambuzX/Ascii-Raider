@@ -84,8 +84,9 @@ public class PlayState extends State<LevelModelGroup> {
 				e.printStackTrace();
 			}
 		}
-		game.exit();
 
+		System.out.println("Ja sai");
+		game.changeState(new GameOverState(game, getStateModel().getInfoBarModel().getScore()));
 	}
 
 }
