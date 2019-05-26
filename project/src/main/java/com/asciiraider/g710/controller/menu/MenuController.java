@@ -37,6 +37,7 @@ public class MenuController extends ControllerState<MenuModel> {
 
 	}
 
+	@Override
 	public boolean isClose() {
 		return close;
 	}

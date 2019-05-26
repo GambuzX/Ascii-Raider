@@ -94,4 +94,9 @@ public class LevelController {
 
 		return false;
 	}
+
+	// TODO: provisorio
+	public boolean isGameOver(){
+		return levelManager.isGameFinished();
+	}
 }

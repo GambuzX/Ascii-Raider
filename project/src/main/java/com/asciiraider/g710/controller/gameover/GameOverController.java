@@ -27,6 +27,7 @@ public class GameOverController extends ControllerState<GameOverModel>  {
 
 	}
 
+	@Override
 	public boolean isClose() {
 		return close;
 	}

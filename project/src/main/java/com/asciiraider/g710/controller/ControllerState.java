@@ -17,4 +17,6 @@ public abstract class ControllerState<M extends Model>{
 	}
 
 	public abstract void handleKeyPress(Event event);
+
+	public abstract boolean isClose();
 }

@@ -69,4 +69,9 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 
 		levelController.getLevelProgressionController().handle(model.getLevelManager());
 	}
+
+	@Override
+	public boolean isClose() {
+		return levelController.isGameOver();
+	}
 }

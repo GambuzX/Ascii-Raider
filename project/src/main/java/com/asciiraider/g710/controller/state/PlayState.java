@@ -36,21 +36,11 @@ public class PlayState extends State<LevelModelGroup> {
 
 	@Override
 	public void run() {
-		Thread input_t = new Thread() {
-			@Override
-			public void run(){
-				while (!levelModelGroup.getLevelManager().isGameFinished()) {
-					levelControllerGroup.processEventList(levelModelGroupView.getEventsList());
-				}
-			}
-		};
-
-		input_t.start();
 
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				while (!getStateModel().getLevelManager().isGameFinished()) {
+				while (!getStateController().isClose()) {
 					// TODO: refactoring??
 					while (getStateModel().getLevelManager().getTimeAlarm().getCurrentTime() > 0) {
 						getStateController().getInfoBarController().handler(getStateModel().getLevelManager().getTimeAlarm());
@@ -70,7 +60,7 @@ public class PlayState extends State<LevelModelGroup> {
 
 		int physicsCounter = 0;
 		int enemiesCounter = 0;
-		while (!levelModelGroup.getLevelManager().isGameFinished()) {
+		while (!getStateController().isClose()) {
 			physicsCounter++;
 			enemiesCounter++;
 			try {
