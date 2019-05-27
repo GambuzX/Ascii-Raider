@@ -11,22 +11,55 @@ public class SwingInfoBarComponent extends JPanel {
 
     private InfoBarModel infoBarModel;
 
-    private JTextField levelIndicator;
-    private JProgressBar progressBar;
-    private JButton restartButton;
+    private JLabel levelLabel;
+    private JLabel scoreLabel;
+    private JProgressBar keysProgressBar;
+    private JLabel timeLabel;
+    private JLabel livesLabel;
+    private JLabel rLabel;
 
     public SwingInfoBarComponent() {
-        levelIndicator = new JTextField(5);
+        this.setLayout(new GridLayout(1, 18));
+        this.setBackground(Color.GRAY);
 
-        progressBar = new JProgressBar();
+        Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.FONT_SIZE);
 
-        ImageIcon rButton = createImageIcon("/symbols/retry.png");
-        restartButton = new JButton(rButton);
-        restartButton.addActionListener(actionEvent -> System.out.println("Restart button clicked!"));
+        levelLabel = new JLabel();
+        scoreLabel = new JLabel();
+        keysProgressBar = new JProgressBar();
+        timeLabel = new JLabel();
+        livesLabel = new JLabel();
+        rLabel = new JLabel();
 
-        this.add(levelIndicator);
-        this.add(progressBar);
-        this.add(restartButton);
+        levelLabel.setFont(labelsFont);
+        scoreLabel.setFont(labelsFont);
+        keysProgressBar.setFont(labelsFont);
+        timeLabel.setFont(labelsFont);
+        livesLabel.setFont(labelsFont);
+        rLabel.setFont(labelsFont);
+
+        levelLabel.setForeground(Color.BLACK);
+        scoreLabel.setForeground(Color.BLACK);
+        keysProgressBar.setForeground(Color.BLUE);
+        livesLabel.setForeground(Color.RED);
+        timeLabel.setForeground(Color.BLACK);
+        rLabel.setForeground(Color.BLACK);
+
+        levelLabel.setHorizontalAlignment(JLabel.CENTER);
+        scoreLabel.setHorizontalAlignment(JLabel.CENTER);
+        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        livesLabel.setHorizontalAlignment(JLabel.CENTER);
+        rLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        keysProgressBar.setFocusable(false);
+        keysProgressBar.setStringPainted(true);
+
+        this.add(levelLabel);
+        this.add(scoreLabel);
+        this.add(keysProgressBar);
+        this.add(timeLabel);
+        this.add(livesLabel);
+        this.add(rLabel);
     }
 
     public void setInfoBarModel(InfoBarModel infoBarModel) {
@@ -44,10 +77,19 @@ public class SwingInfoBarComponent extends JPanel {
 
         if (infoBarModel == null) return;
 
-        this.levelIndicator.setText("Level " + infoBarModel.getCurrentLevel());
         // TODO: refactoring do maxLifes
-        this.progressBar.setValue((int) ((float) infoBarModel.getLives() / GlobalConfigs.PLAYER_HP * 100));
+        levelLabel.setText("Level " + infoBarModel.getCurrentLevel());
+        scoreLabel.setText("" + infoBarModel.getScore());
+        timeLabel.setText("" + infoBarModel.getTime());
+        rLabel.setText("R");
 
+        livesLabel.setText("");
+        for (int i = 0 ; i < infoBarModel.getLives(); i++)
+            livesLabel.setText(livesLabel.getText() + "♥");
+
+        keysProgressBar.setMaximum(infoBarModel.getMaxKeys());
+        keysProgressBar.setValue(infoBarModel.getKeys());
+        keysProgressBar.setString(infoBarModel.getKeys() + " / " + infoBarModel.getMaxKeys());
     }
 
     protected static ImageIcon createImageIcon(String path) {

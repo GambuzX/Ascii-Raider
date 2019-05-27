@@ -9,6 +9,7 @@ import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SwingFactory implements ViewFactory {
     private JFrame frame;
@@ -17,6 +18,7 @@ public class SwingFactory implements ViewFactory {
         frame = new JFrame(GlobalConfigs.GAME_NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setSize(new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR));
     }
 
     @Override
