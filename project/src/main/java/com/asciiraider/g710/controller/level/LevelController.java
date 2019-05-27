@@ -69,20 +69,6 @@ public class LevelController {
 	}
 	//// -------------------------------------------------------------------------------------------------------- /////
 
-	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
-		PhysicsElementController pec = new PhysicsElementController(element);
-
-		if (element.isFalling()) return false;
-		if (levelManager.getCurrentLevelFacade().findElement(delimPos) != null) return false;
-		levelManager.getCurrentLevelFacade().setElementPosition(element, delimPos);
-
-		//if(pec.handlePlayerPush(delimPos, levelManager.getCurrentLevelFacade())){
-			pec.handleElementPhysics(this, levelManager.getCurrentLevelFacade());
-			handleLevelKey();
-			return true;
-		//}
-		//return false;
-	}
 
 	public void handleLevelKey() {
 		levelKeyController.handler(levelManager.getCurrentLevelFacade());
