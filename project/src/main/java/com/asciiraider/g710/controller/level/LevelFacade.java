@@ -217,7 +217,6 @@ public class LevelFacade {
 
 		if (element instanceof Player) {
 			levelModel.setPlayer(null);
-			levelModel.clearMatrixPosition(element.getPosition());
 		}
 		else if (element instanceof DoorKey) {
 			levelModel.setDoorKey(null);

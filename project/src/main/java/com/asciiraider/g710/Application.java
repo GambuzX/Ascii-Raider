@@ -45,15 +45,15 @@ public class Application {
 		Thread input_t = new Thread() {
 			@Override
 			public void run(){
-			while (!game.toExit()) {
-				while (!game.getState().getStateController().isClose())
-					game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				while (!game.toExit()) {
+					while (!game.getState().getStateController().isClose())
+						game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
-			}
 			}
 		};
 
