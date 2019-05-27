@@ -37,11 +37,4 @@ public class PhysicsElementController {
 			levelController.handleLevelKey();
 		}
 	}
-
-	public boolean handlePlayerPush(Position delimPos, LevelFacade levelFacade){
-		if (physicsElement.isFalling()) return false;
-		if (levelFacade.findElement(delimPos) != null) return false;
-		levelFacade.setElementPosition(physicsElement, delimPos);
-		return true;
-	}
 }

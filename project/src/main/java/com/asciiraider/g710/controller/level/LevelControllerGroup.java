@@ -59,15 +59,12 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 				return;
 			case EOF:
 			case Q_KEY:
-				close = true;
+				model.getLevelManager().finishGame();
 				return;
 		}
 
 		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade()))
 			model.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
-
-		if (levelController.isPlayerCollidingEnemy())
-			levelController.getLifeController().notifyObservers();
 
 		close = levelController.getLevelProgressionController().handle(model.getLevelManager());
 	}

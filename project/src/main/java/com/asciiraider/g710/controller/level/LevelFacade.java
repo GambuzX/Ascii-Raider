@@ -1,6 +1,7 @@
 package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.controller.element.interaction.DeathInteraction;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
@@ -250,7 +251,9 @@ public class LevelFacade {
 	}
 
 	public void addExplosion(Position position) {
-		levelModel.addExplostion(new Explosion(position));
+		Explosion explosion = new Explosion(position);
+		explosion.setInteraction(new DeathInteraction(explosion));
+		levelModel.addExplostion(explosion);
 	}
 
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved

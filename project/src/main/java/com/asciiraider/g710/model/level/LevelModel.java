@@ -159,4 +159,21 @@ public class LevelModel extends Model {
 	public void setTime(int time) {
 		this.remainingTime = time;
 	}
+
+	public void clear() {
+		this.player = null;
+		this.exitDoor = null;
+		this.door = null;
+		this.doorKey = null;
+		this.walls = new ArrayList<>();
+		this.boulders = new ArrayList<>();
+		this.stoneBlocks = new ArrayList<>();
+		this.sandBlocks = new ArrayList<>();
+		this.levelKeys = new ArrayList<>();
+		this.tnt = new ArrayList<>();
+		this.enemies = new ArrayList<>();
+		this.explosions = new ArrayList<>();
+		//private Position bottomRightCorner;
+		this.elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
+	}
 }

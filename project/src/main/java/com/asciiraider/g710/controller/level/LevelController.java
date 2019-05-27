@@ -79,6 +79,13 @@ public class LevelController {
 		Element element = levelFacade.findElement(newPos);
 		if(element == null) return true;
 
+		// TODO: ver porque e que as interactions dao load mal as vezes
+		if(element.getInteraction() == null) {
+			System.out.println("Interaction error: reloading level");
+			levelManager.restartLevel();
+			return false;
+		}
+
 		return element.getInteraction().interact(this, delimPos);
 	}
 
@@ -91,11 +98,10 @@ public class LevelController {
 
 	public boolean isPlayerCollidingEnemy() {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		for (Enemy enemy : levelFacade.getEnemies())
-			if (enemy.getPosition().equals(levelFacade.getPlayer().getPosition()))
-				return true;
-
-		return false;
+		Enemy enemy = levelFacade.findEnemy(levelFacade.getPlayer().getPosition());
+		if(enemy == null)
+			return false;
+		return true;
 	}
 
 	public boolean isGameOver(){
