@@ -35,7 +35,7 @@ public class ExplosionController {
 
                 levelFacade.addExplosion(pos);
 
-                if (caught instanceof Explosive)
+                if (caught instanceof Explosive && !pos.equals(position))
                     handleExplosion(pos, levelFacade);
             }
         }
