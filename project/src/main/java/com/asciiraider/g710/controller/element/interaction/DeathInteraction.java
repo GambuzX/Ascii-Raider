@@ -12,6 +12,6 @@ public class DeathInteraction extends Interaction {
 	@Override
 	public boolean interact(LevelController levelController, Position delimPos) {
 		levelController.getLifeController().notifyObservers();
-		return true;
+		return false;
 	}
 }
