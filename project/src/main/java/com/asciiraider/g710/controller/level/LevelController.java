@@ -4,6 +4,7 @@ import com.asciiraider.g710.controller.element.EnemyController;
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.controller.element.PhysicsElementController;
 import com.asciiraider.g710.model.element.AnimatedElement;
+import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.element.Enemy;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.level.LevelManager;
@@ -19,7 +20,6 @@ public class LevelController {
 	private LevelProgressionController levelProgressionController = new LevelProgressionController();
 
 	private ExplosionController explosionsController = new ExplosionController();
-	private MovementController movementController = new MovementController(this);
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
@@ -28,6 +28,7 @@ public class LevelController {
 
 		lifeController.addObserver(levelManager.getLifeManager());
 		lifeController.addObserver(levelManager.getTimeAlarm());
+		lifeController.addObserver(levelManager);
 
 		levelProgressionController.addObserver(levelManager.getTimeAlarm());
 	}
@@ -46,7 +47,7 @@ public class LevelController {
 
 	public void triggerExplosion(Position pos) {
 		if(explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade()))
-			handleLife();
+			lifeController.notifyObservers();
 	}
 
 	//// -------------------------------------------------------------------------------------------------------- /////
@@ -70,12 +71,17 @@ public class LevelController {
 
 	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
 		PhysicsElementController pec = new PhysicsElementController(element);
-		if(pec.handlePlayerPush(delimPos, levelManager.getCurrentLevelFacade())){
+
+		if (element.isFalling()) return false;
+		if (levelManager.getCurrentLevelFacade().findElement(delimPos) != null) return false;
+		levelManager.getCurrentLevelFacade().setElementPosition(element, delimPos);
+
+		//if(pec.handlePlayerPush(delimPos, levelManager.getCurrentLevelFacade())){
 			pec.handleElementPhysics(this, levelManager.getCurrentLevelFacade());
 			handleLevelKey();
 			return true;
-		}
-		return false;
+		//}
+		//return false;
 	}
 
 	public void handleLevelKey() {
@@ -83,7 +89,11 @@ public class LevelController {
 	}
 
 	public boolean movePlayer(Position newPos, Position delimPos, LevelFacade levelFacade) {
-		return movementController.handlePlayerMovement(newPos, delimPos, levelFacade);
+		if (newPos == null || !levelFacade.insideBounds(newPos)) return false;
+		Element element = levelFacade.findElement(newPos);
+		if(element == null) return true;
+
+		return element.getInteraction().interact(this, delimPos);
 	}
 
 	// TODO: classe à parte talvez no Group Controller??
@@ -93,19 +103,6 @@ public class LevelController {
 				levelManager.getCurrentLevelFacade().removeAnimation(animated.getPosition());
 	}
 
-	public void handleLife() {
-		lifeController.notifyObservers();
-		levelManager.restartLevel();
-		if(!levelManager.getLifeManager().hasLifes())
-			levelManager.finishGame();
-	}
-
-	public void catchDoorKey() {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		levelFacade.removeDoorKey();
-		levelFacade.removeDoor();
-	}
-
 	public boolean isPlayerCollidingEnemy() {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		for (Enemy enemy : levelFacade.getEnemies())
@@ -113,5 +110,9 @@ public class LevelController {
 				return true;
 
 		return false;
+	}
+
+	public boolean isGameOver(){
+		return levelManager.isGameFinished();
 	}
 }

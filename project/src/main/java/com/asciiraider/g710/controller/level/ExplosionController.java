@@ -10,8 +10,10 @@ import java.util.List;
 
 public class ExplosionController {
 
+
     public boolean handleExplosion(Position position, LevelFacade levelFacade) {
         List<Position> inRange = position.getMatrix();
+        inRange.add(position);
 
         for (Position pos : inRange) {
             Element caught = levelFacade.findElement(pos);
@@ -29,6 +31,6 @@ public class ExplosionController {
                         return true;
             }
         }
-        return false;
+        return  false;
     }
 }

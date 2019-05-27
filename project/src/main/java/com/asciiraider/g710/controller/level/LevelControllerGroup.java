@@ -55,7 +55,7 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 				else delimPos = newPos;
 				break;
 			case R_KEY:
-				levelController.handleLife();
+				levelController.getLifeController().notifyObservers();
 				return;
 			case EOF:
 			case Q_KEY:
@@ -67,14 +67,14 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 			model.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
 
 		if (levelController.isPlayerCollidingEnemy())
-			levelController.handleLife();
+			levelController.getLifeController().notifyObservers();
 
 		close = levelController.getLevelProgressionController().handle(model.getLevelManager());
 	}
 
 	@Override
 	public boolean isClose() {
-		return close;
-		//return levelController.isGameOver();
+		//return close;
+		return levelController.isGameOver();
 	}
 }

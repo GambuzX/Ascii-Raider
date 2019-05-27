@@ -40,7 +40,9 @@ public class PlayState extends State<LevelModelGroup> {
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				while (!getStateController().isClose()) {
+				//while (!getStateController().isClose()) {
+				while (!getStateModel().getLevelManager().isGameFinished()) {
+
 					// TODO: refactoring??
 					while (getStateModel().getLevelManager().getTimeAlarm().getCurrentTime() > 0) {
 						getStateController().getInfoBarController().handler(getStateModel().getLevelManager().getTimeAlarm());
@@ -52,7 +54,7 @@ public class PlayState extends State<LevelModelGroup> {
 						}
 						if(game.toExit()) break;
 					}
-					getStateController().getLevelController().handleLife();
+					getStateController().getLevelController().getLifeController().notifyObservers();
 				}
 			}
 		};
@@ -60,7 +62,8 @@ public class PlayState extends State<LevelModelGroup> {
 
 		int physicsCounter = 0;
 		int enemiesCounter = 0;
-		while (!getStateController().isClose()) {
+		//while (!getStateController().isClose()) {
+		while (!getStateModel().getLevelManager().isGameFinished()) {
 			physicsCounter++;
 			enemiesCounter++;
 			try {
@@ -73,7 +76,7 @@ public class PlayState extends State<LevelModelGroup> {
 					levelControllerGroup.getLevelController().moveEnemies();
 				}
 				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
-					levelControllerGroup.getLevelController().handleLife();
+					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
 				levelControllerGroup.getLevelController().handleAnimations();
 
 				levelModelGroupView.draw(levelModelGroup);

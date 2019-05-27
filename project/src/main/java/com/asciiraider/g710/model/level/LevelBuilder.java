@@ -1,6 +1,7 @@
 package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.controller.element.interaction.*;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
 
@@ -52,42 +53,64 @@ public class LevelBuilder {
 				Position pos = new Position(col, row - 1);
 				switch(curr) {
 					case 'W':
-						newLevelModel.addWall(new Wall(pos));
+						Wall wall = new Wall(pos);
+						wall.setInteraction(new BarrierInteraction(wall));
+						newLevelModel.addWall(wall);
 						break;
 					case 'S':
-						newLevelModel.addStoneBlock(new StoneBlock(pos));
+						StoneBlock stoneBlock = new StoneBlock(pos);
+						stoneBlock.setInteraction(new BarrierInteraction(stoneBlock));
+						newLevelModel.addStoneBlock(stoneBlock);
 						break;
 					case 'B':
-						newLevelModel.addBoulder(new Boulder(pos));
+						Boulder boulder = new Boulder(pos);
+						boulder.setInteraction(new PushInteraction(boulder,newLevelModel));
+						newLevelModel.addBoulder(boulder);
 						break;
 					case 'P':
 						newLevelModel.setPlayer(new Player(pos));
 						playerCount++;
 						break;
 					case 'E':
-						newLevelModel.addEnemy(new SkullEnemy(pos));
+						SkullEnemy skullEnemy = new SkullEnemy(pos);
+						skullEnemy.setInteraction(new DeathInteraction(skullEnemy));
+						newLevelModel.addEnemy(skullEnemy);
 						break;
 					case 'M':
-						newLevelModel.addEnemy(new MummyEnemy(pos));
+						MummyEnemy mummyEnemy = new MummyEnemy(pos);
+						mummyEnemy.setInteraction(new DeathInteraction(mummyEnemy));
+						newLevelModel.addEnemy(mummyEnemy);
 						break;
 					case 'T':
-						newLevelModel.addTNT(new TNT(pos));
+						TNT tnt = new TNT(pos);
+						tnt.setInteraction(new PushInteraction(tnt, newLevelModel));
+						newLevelModel.addTNT(tnt);
 						break;
 					case 's':
-						newLevelModel.addSandBlock(new Sand(pos));
+						Sand sand = new Sand(pos);
+						sand.setInteraction(new SandInteraction(sand, newLevelModel));
+						newLevelModel.addSandBlock(sand);
 						break;
 					case 'K':
-						newLevelModel.addLevelKey(new LevelKey(pos));
+						LevelKey levelKey = new LevelKey(pos);
+						levelKey.setInteraction(new PushInteraction(levelKey, newLevelModel));
+						newLevelModel.addLevelKey(levelKey);
 						break;
 					case 'D':
-						newLevelModel.setExitDoor(new ExitDoor(pos));
+						ExitDoor exitDoor = new ExitDoor(pos);
+						exitDoor.setInteraction(new BarrierInteraction(exitDoor));
+						newLevelModel.setExitDoor(exitDoor);
 						break;
 					case 'd':
-						newLevelModel.setDoor(new Door(pos));
+						Door door = new Door(pos);
+						door.setInteraction(new BarrierInteraction(door));
+						newLevelModel.setDoor(door);
 						doorCount++;
 						break;
 					case 'k':
-						newLevelModel.setDoorKey(new DoorKey(pos));
+						DoorKey doorKey = new DoorKey(pos);
+						doorKey.setInteraction(new DoorKeyInteraction(doorKey, newLevelModel));
+						newLevelModel.setDoorKey(doorKey);
 						doorKeyCount++;
 						break;
 				}
