@@ -217,6 +217,7 @@ public class LevelFacade {
 
 		if (element instanceof Player) {
 			levelModel.setPlayer(null);
+			levelModel.clearMatrixPosition(element.getPosition());
 		}
 		else if (element instanceof DoorKey) {
 			levelModel.setDoorKey(null);
@@ -251,12 +252,15 @@ public class LevelFacade {
 	}
 
 	public void addExplosion(Position position) {
-		levelModel.addExplostion(new Explosion(position));
+		levelModel.addExplosion(new Explosion(position));
 	}
 
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
 	// TODO rethink elements hierarchy
 	public void setElementPosition(MovableElement movable, Position newPos) {
+
+		if (movable instanceof Player && !getPlayer().getPosition().equals(movable.getPosition())) return;
+
 		clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);
 		updateMatrixPosition(movable);
