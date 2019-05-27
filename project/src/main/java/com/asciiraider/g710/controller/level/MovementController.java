@@ -54,7 +54,7 @@ public class MovementController {
 
         if(null != levelFacade.findEnemy(newPos) || null != levelFacade.findExplosion(newPos)) {
             levelController.handleLife();
-            return true;
+            return false;
         }
 
         return true;
