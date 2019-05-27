@@ -11,17 +11,12 @@ import java.awt.*;
 
 public class SwingLevelComponent extends JPanel {
 
-    private int width;
-    private int height;
-
     private LevelModel levelModel;
     private SymbolMapper symbolMapper;
 
 
     public SwingLevelComponent() {
         symbolMapper = new SymbolMapper();
-        this.width = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-        this.height = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
     }
 
     public void setLevelModel(LevelModel levelModel) {
@@ -30,7 +25,7 @@ public class SwingLevelComponent extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(width, height);
+        return new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR);
     }
 
     @Override
