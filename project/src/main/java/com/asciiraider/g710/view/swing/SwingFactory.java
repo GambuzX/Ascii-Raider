@@ -18,7 +18,7 @@ public class SwingFactory implements ViewFactory {
     public SwingFactory() {
         frame = new JFrame(GlobalConfigs.GAME_NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new MigLayout("insets 0, gap 0 0, wrap 1, fill", "fill, grow", "fill, grow"));
+        frame.setLayout(new MigLayout("wrap 1, insets 0 0, gap 0 0, fill, align 0% 0%"));
         frame.setSize(new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR));
     }
 

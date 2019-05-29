@@ -29,6 +29,9 @@ public class SwingInfoBarComponent extends JPanel {
     BufferedImage background;
 
     public SwingInfoBarComponent() {
+
+        this.setLayout(new MigLayout("wrap 18, insets 0 0, gap 0 0, fill, align 0% 0%", "[][][][][][][][][][][][][][][][][][]"));
+
         Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.FONT_SIZE);
 
         levelLabel = new JLabel();
@@ -61,17 +64,17 @@ public class SwingInfoBarComponent extends JPanel {
         keysProgressBar.setFocusable(false);
         keysProgressBar.setStringPainted(true);
 
-        //this.add(levelLabel);
+        this.add(levelLabel, "span 1, cell 1 0");
 
-        //this.add(scoreLabel, "span 1");
+        this.add(scoreLabel,  "span 1, cell 3 0");
 
-        //this.add(keysProgressBar, "span 1");
+        this.add(keysProgressBar,  "span 2, cell 6 0, hmax " + HEIGHT);
 
-       // this.add(timeLabel, "span 1");
+        this.add(timeLabel, "span 3, cell 10 0");
 
-        //this.add(livesLabel, "span 1");
+        this.add(livesLabel, "span 3, cell 14 0");
 
-        //this.add(rLabel, "span 1");
+        this.add(rLabel, "span 1, cell 17 0");
 
         try {
             background = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/infobar_background.png"));
