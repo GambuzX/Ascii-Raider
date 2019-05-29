@@ -5,7 +5,6 @@ import com.asciiraider.g710.view.KeyPressEvent;
 import com.asciiraider.g710.view.swing.SwingStateView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -20,8 +19,8 @@ public class SwingGroupLevelView extends SwingStateView<LevelModelGroup> {
         infoBarComponent = new SwingInfoBarComponent();
         levelComponent = new SwingLevelComponent();
 
-        frame.add(infoBarComponent);
-        frame.add(levelComponent);
+        frame.getContentPane().add(infoBarComponent, "cell 0 0, width " + infoBarComponent.WIDTH + ", height " + infoBarComponent.HEIGHT);
+        frame.getContentPane().add(levelComponent, "cell 0 1, width " + levelComponent.WIDTH + ", height " + levelComponent.HEIGHT);
 
         frame.addKeyListener(new KeyAdapter() {
             @Override

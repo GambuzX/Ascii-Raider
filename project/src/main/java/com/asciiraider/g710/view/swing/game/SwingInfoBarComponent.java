@@ -3,6 +3,7 @@ package com.asciiraider.g710.view.swing.game;
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.view.swing.menu.SwingMenuResources;
+import net.miginfocom.swing.MigLayout;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +16,9 @@ public class SwingInfoBarComponent extends JPanel {
 
     private InfoBarModel infoBarModel;
 
+    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    public final static int HEIGHT = GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
+
     private JLabel levelLabel;
     private JLabel scoreLabel;
     private JProgressBar keysProgressBar;
@@ -25,14 +29,8 @@ public class SwingInfoBarComponent extends JPanel {
     BufferedImage background;
 
     public SwingInfoBarComponent() {
-        //this.setLayout(new GridLayout(1, 18));
-        this.setLayout(new GridBagLayout());
-        this.setBackground(Color.GRAY);
-
         Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.FONT_SIZE);
 
-        GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.WEST;
         levelLabel = new JLabel();
         scoreLabel = new JLabel();
         keysProgressBar = new JProgressBar();
@@ -63,35 +61,17 @@ public class SwingInfoBarComponent extends JPanel {
         keysProgressBar.setFocusable(false);
         keysProgressBar.setStringPainted(true);
 
-        GridBagConstraints gbc = new GridBagConstraints();
+        //this.add(levelLabel);
 
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.weightx = 0.5;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
-        this.add(levelLabel, gbc);
+        //this.add(scoreLabel, "span 1");
 
-        gbc.gridx = 4;
-        gbc.gridwidth = 2;
-        this.add(scoreLabel, gbc);
+        //this.add(keysProgressBar, "span 1");
 
-        gbc.gridx = 7;
-        gbc.gridwidth = 5;
-        this.add(keysProgressBar, gbc);
+       // this.add(timeLabel, "span 1");
 
-        gbc.gridx = 12;
-        gbc.gridwidth = 2;
-        this.add(timeLabel, gbc);
+        //this.add(livesLabel, "span 1");
 
-        gbc.gridx = 14;
-        gbc.gridwidth = 3;
-        this.add(livesLabel, gbc);
-
-        gbc.gridx = 20;
-        gbc.gridwidth = 1;
-        this.add(rLabel, gbc);
+        //this.add(rLabel, "span 1");
 
         try {
             background = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/infobar_background.png"));
@@ -103,11 +83,6 @@ public class SwingInfoBarComponent extends JPanel {
 
     public void setInfoBarModel(InfoBarModel infoBarModel) {
         this.infoBarModel = infoBarModel;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR);
     }
 
     @Override
