@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view.swing.menu;
+package com.asciiraider.g710.view.swing.resources;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

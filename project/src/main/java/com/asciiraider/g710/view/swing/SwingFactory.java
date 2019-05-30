@@ -7,6 +7,7 @@ import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
 import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
+import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
