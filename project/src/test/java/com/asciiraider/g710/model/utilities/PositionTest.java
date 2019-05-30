@@ -18,6 +18,7 @@ public class PositionTest {
 		positions.add(new Position(1, 2));
 		positions.add(new Position(2, 4));
 		positions.add(new Position(43, 12));
+		positions.add(new Position(0, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -137,4 +138,18 @@ public class PositionTest {
 		positions.get(1).getLeftSide();
 	}
 
+	@Test
+	public void distance(){
+		assertEquals(positions.get(0).distance(positions.get(1)), Math.sqrt(5), 0.0);
+	}
+
+	@Test
+	public void getAdjacent1(){
+		assertEquals(3, positions.get(3).getAdjacent().size());
+	}
+
+	@Test
+	public void getMatrix1(){
+		assertEquals(5, positions.get(3).getMatrix().size());
+	}
 }

@@ -20,14 +20,6 @@ public class Animation {
 		currentSymbol = 0;
 	}
 
-	public Animation(List<Symbol> symbolSequence, double duration, boolean isLoop) {
-		this.symbolSequence = symbolSequence;
-		this.duration = duration;
-		this.isLoop = isLoop;
-		frameCounter = 0;
-		currentSymbol = 0;
-	}
-
 	public void addSymbol(Symbol symbol){
 		symbolSequence.add(symbol);
 	}

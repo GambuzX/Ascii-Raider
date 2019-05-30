@@ -9,7 +9,7 @@ public class TimeAlarm {
 
 
 	public TimeAlarm(int time) throws InvalidParameterException {
-		if(currentTime < 0)
+		if(time < 0)
 			throw new InvalidParameterException("Time can't be negative");
 		this.currentTime = time;
 		this.initialTime = time;
@@ -38,7 +38,7 @@ public class TimeAlarm {
 	}
 
 	public void setTimer(int time){
-		if(currentTime < 0)
+		if(time < 0)
 			throw new InvalidParameterException("Time can't be negative");
 		this.currentTime = time;
 		this.initialTime = time;
