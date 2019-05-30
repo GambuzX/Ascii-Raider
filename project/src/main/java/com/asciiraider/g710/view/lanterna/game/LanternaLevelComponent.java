@@ -4,7 +4,6 @@ import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.view.View;
-import com.asciiraider.g710.view.lanterna.LanternaElementView;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 public class LanternaLevelComponent extends View<LevelModel> {

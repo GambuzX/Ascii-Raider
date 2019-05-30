@@ -13,8 +13,8 @@ public class SwingInfoBarComponent extends JPanel {
 
     private InfoBarModel infoBarModel;
 
-    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-    public final static int HEIGHT = GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int HEIGHT = GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
 
     private JLabel levelValue;
     private JLabel scoreValue;
@@ -23,7 +23,7 @@ public class SwingInfoBarComponent extends JPanel {
 
     private SwingInfoBarResources infoBarResources;
 
-    public SwingInfoBarComponent(SwingInfoBarResources infoBarResources) {
+    SwingInfoBarComponent(SwingInfoBarResources infoBarResources) {
 
         this.infoBarResources = infoBarResources;
 
@@ -47,16 +47,16 @@ public class SwingInfoBarComponent extends JPanel {
         keysProgressBar.setFocusable(false);
         keysProgressBar.setStringPainted(true);
 
-        this.add(new JLabel("LEVEL"), "span 1, cell 2 0, right");
+        this.add(new JLabel("LEVEL  "), "span 1, cell 2 0, right");
         this.add(levelValue, "span 1, cell 3 0, left");
 
-        this.add(new JLabel("SCORE "),  "span 1, cell 4 0, right");
+        this.add(new JLabel("SCORE  "),  "span 1, cell 4 0, right");
         this.add(scoreValue, "span 1, cell 5 0, left");
 
-        this.add(new JLabel("ENERGY "), "span 1, cell 6 0, right");
+        this.add(new JLabel("ENERGY  "), "span 1, cell 6 0, right");
         this.add(keysProgressBar,  "span 1, cell 7 0, left, hmax " + HEIGHT);
 
-        this.add(new JLabel("TIME "), "span 1, cell 8 0, right");
+        this.add(new JLabel("TIME  "), "span 1, cell 8 0, right");
         this.add(timeValue, "span 1, cell 9 0, left");
     }
 

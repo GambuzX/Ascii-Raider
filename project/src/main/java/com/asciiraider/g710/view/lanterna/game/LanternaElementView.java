@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view.lanterna;
+package com.asciiraider.g710.view.lanterna.game;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.Element;

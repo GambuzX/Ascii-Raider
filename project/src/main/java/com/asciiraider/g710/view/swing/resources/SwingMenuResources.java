@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class SwingMenuResources {
+public class SwingMenuResources  implements SwingResource{
 
     private BufferedImage menuBackground;
     private BufferedImage playButton;
@@ -14,11 +14,11 @@ public class SwingMenuResources {
 
     public void loadResources()  {
         try {
-            menuBackground = ImageIO.read(SwingMenuResources.class.getResource("/symbols/menu.png"));
-            playButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn.png"));
-            playButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn_hovered.png"));
-            exitButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn.png"));
-            exitButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn_hovered.png"));
+            menuBackground = ImageIO.read(SwingMenuResources.class.getResource("/swing/menu/menu.png"));
+            playButton = ImageIO.read(SwingMenuResources.class.getResource("/swing/menu/play_btn.png"));
+            playButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/swing/menu/play_btn_hovered.png"));
+            exitButton = ImageIO.read(SwingMenuResources.class.getResource("/swing/menu/exit_btn.png"));
+            exitButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/swing/menu/exit_btn_hovered.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

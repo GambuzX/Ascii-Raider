@@ -8,25 +8,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwingLevelResources {
+public class SwingLevelResources implements SwingResource{
 
     private enum Elements {
-        WALL(0, "/symbols/hardSand.png"),
-        PLAYER(1, "/symbols/guy.png"),
-        STONEBLOCK(2, "/symbols/granite.png"),
-        LEVELKEY (3, "/symbols/orb.png"),
-        EXITDOOR(4, "/symbols/portal.png"),
-        SAND(5, "/symbols/softSand.png"),
-        BOULDER(6, "/symbols/rock.png"),
-        SKULLENEMY(7, "/symbols/fly.png"),
-        MUMMYENEMY(8, "/symbols/mummy.png"),
-        DOOR(9, "/symbols/door.png"),
-        DOORKEY(10, "/symbols/key.png"),
-        TNT(11, "/symbols/bomb.png"),
-        EXPLOSION_BIG(12, "/symbols/explosion-big.png"),
-        EXPLOSION_MEDIUM(13, "/symbols/explosion-medium.png"),
-        EXPLOSION_SMALL(14, "/symbols/explosion-small.png"),
-        BACKGROUND(15, "/symbols/background.png");
+        WALL(0, "/swing/elements/hardSand.png"),
+        PLAYER(1, "/swing/elements/guy.png"),
+        STONEBLOCK(2, "/swing/elements/granite.png"),
+        LEVELKEY (3, "/swing/elements/orb.png"),
+        EXITDOOR(4, "/swing/elements/portal.png"),
+        SAND(5, "/swing/elements/softSand.png"),
+        BOULDER(6, "/swing/elements/rock.png"),
+        SKULLENEMY(7, "/swing/elements/fly.png"),
+        MUMMYENEMY(8, "/swing/elements/mummy.png"),
+        DOOR(9, "/swing/elements/door.png"),
+        DOORKEY(10, "/swing/elements/key.png"),
+        TNT(11, "/swing/elements/bomb.png"),
+        EXPLOSION_BIG(12, "/swing/elements/explosion-big.png"),
+        EXPLOSION_MEDIUM(13, "/swing/elements/explosion-medium.png"),
+        EXPLOSION_SMALL(14, "/swing/elements/explosion-small.png"),
+        BACKGROUND(15, "/swing/elements/background.png");
 
         public final int index;
         public final String resource;

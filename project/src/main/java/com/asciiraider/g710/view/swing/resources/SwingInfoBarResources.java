@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class SwingInfoBarResources {
+public class SwingInfoBarResources implements SwingResource{
 
     private BufferedImage background;
     private BufferedImage player;
@@ -17,11 +17,11 @@ public class SwingInfoBarResources {
 
     public void loadResources()  {
         try {
-            background = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/infobar_background.png"));
-            player = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar.png"));
-            playerDead = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar_dark.png"));
-            rButton = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/r_button.png"));
-            pharaoh = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/pharaoh.png"));
+            background = ImageIO.read(SwingInfoBarComponent.class.getResource("/swing/infobar/infobar_background.png"));
+            player = ImageIO.read(SwingInfoBarComponent.class.getResource("/swing/infobar/guy_infobar.png"));
+            playerDead = ImageIO.read(SwingInfoBarComponent.class.getResource("/swing/infobar/guy_infobar_dark.png"));
+            rButton = ImageIO.read(SwingInfoBarComponent.class.getResource("/swing/infobar/r_button.png"));
+            pharaoh = ImageIO.read(SwingInfoBarComponent.class.getResource("/swing/infobar/pharaoh.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
