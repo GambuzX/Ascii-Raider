@@ -17,10 +17,11 @@ public final class GlobalConfigs {
 
     public final static int GAMEOVER_SCREEN_DURATION = 5;
 
-    public final static int FONT_SIZE = 48;
+    public final static int LANTERNA_FONT_SIZE = 48;
     public final static String LANTERNA_FONT = "Monospaced";
 
     public final static int SWING_SIZE_FACTOR = 60;
+    public final static int SWING_FONT_SIZE = 25;
 
     public final static int SWING_MENU_PLAY_BTN_Y = 5;
     public final static int SWING_MENU_EXIT_BTN_Y = 7;
