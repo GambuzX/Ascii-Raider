@@ -10,17 +10,17 @@ import java.awt.*;
 
 public class SwingMenuComponent extends JPanel {
 
-    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-    public final static int HEIGHT = (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int HEIGHT = (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR;
 
     private MenuModel menuModel;
     private SwingMenuResources menuResources;
 
-    public SwingMenuComponent(SwingMenuResources menuResources) {
+    SwingMenuComponent(SwingMenuResources menuResources) {
         this.menuResources = menuResources;
     }
 
-    public void setMenuModel(MenuModel menuModel) {
+    void setMenuModel(MenuModel menuModel) {
         this.menuModel = menuModel;
     }
 

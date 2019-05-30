@@ -14,14 +14,14 @@ public class SwingLevelComponent extends JPanel {
     private LevelModel levelModel;
     private SwingLevelResources levelResources;
 
-    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-    public final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
 
-    public SwingLevelComponent(SwingLevelResources levelResources) {
+    SwingLevelComponent(SwingLevelResources levelResources) {
         this.levelResources = levelResources;
     }
 
-    public void setLevelModel(LevelModel levelModel) {
+    void setLevelModel(LevelModel levelModel) {
         this.levelModel = levelModel;
     }
 

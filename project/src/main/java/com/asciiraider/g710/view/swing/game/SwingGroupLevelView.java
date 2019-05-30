@@ -20,8 +20,8 @@ public class SwingGroupLevelView extends SwingStateView<LevelModelGroup> {
         infoBarComponent = new SwingInfoBarComponent(resourceManager.getInfoBarResources());
         levelComponent = new SwingLevelComponent(resourceManager.getLevelResources());
 
-        frame.getContentPane().add(infoBarComponent, "span 1, cell 0 0, width " + infoBarComponent.WIDTH + ", height " + infoBarComponent.HEIGHT);
-        frame.getContentPane().add(levelComponent, "span 1, cell 0 1, width " + levelComponent.WIDTH + ", height " + levelComponent.HEIGHT);
+        frame.getContentPane().add(infoBarComponent, "span 1, cell 0 0, width " + SwingInfoBarComponent.WIDTH + ", height " + SwingInfoBarComponent.HEIGHT);
+        frame.getContentPane().add(levelComponent, "span 1, cell 0 1, width " + SwingLevelComponent.WIDTH + ", height " + SwingLevelComponent.HEIGHT);
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
