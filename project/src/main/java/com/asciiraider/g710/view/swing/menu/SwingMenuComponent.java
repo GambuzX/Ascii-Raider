@@ -9,15 +9,13 @@ import java.awt.*;
 
 public class SwingMenuComponent extends JPanel {
 
-    private int width;
-    private int height;
+    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    public final static int HEIGHT = (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR;
 
     private MenuModel menuModel;
     private SwingMenuResources menuResources;
 
     public SwingMenuComponent() {
-        width = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-        height = (GlobalConfigs.LEVEL_HEIGHT + 1) * GlobalConfigs.SWING_SIZE_FACTOR;
         menuResources = new SwingMenuResources();
     }
 
@@ -25,10 +23,6 @@ public class SwingMenuComponent extends JPanel {
         this.menuModel = menuModel;
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(width, height);
-    }
 
     @Override
     protected void paintComponent(Graphics graphics) {

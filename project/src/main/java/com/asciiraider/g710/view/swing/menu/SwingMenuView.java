@@ -26,7 +26,7 @@ public class SwingMenuView extends SwingStateView<MenuModel> {
         });
         menuComponent.setFocusable(true);
 
-        frame.getContentPane().add(menuComponent);
+        frame.getContentPane().add(menuComponent, "cell 0 0, width " + menuComponent.WIDTH + ", height " + menuComponent.HEIGHT);
 
         frame.pack();
         frame.setVisible(true);

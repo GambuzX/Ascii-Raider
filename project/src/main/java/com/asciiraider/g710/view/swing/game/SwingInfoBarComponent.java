@@ -2,64 +2,92 @@ package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
+import net.miginfocom.swing.MigLayout;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 
 public class SwingInfoBarComponent extends JPanel {
 
     private InfoBarModel infoBarModel;
 
-    private JLabel levelLabel;
-    private JLabel scoreLabel;
+    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    public final static int HEIGHT = GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
+
+    private JLabel levelLabel, levelValue;
+    private JLabel scoreLabel, scoreValue;
+    private JLabel keysLabel;
     private JProgressBar keysProgressBar;
-    private JLabel timeLabel;
-    private JLabel livesLabel;
-    private JLabel rLabel;
+    private JLabel timeLabel, timeValue;
+
+    BufferedImage background;
+    BufferedImage player;
+    BufferedImage player_dead;
+    BufferedImage rButton;
+    BufferedImage pharaoh;
 
     public SwingInfoBarComponent() {
-        this.setLayout(new GridLayout(1, 18));
-        this.setBackground(Color.GRAY);
 
-        Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.FONT_SIZE);
+        this.setLayout(new MigLayout("wrap 17, insets 0 0, gap 0 0, fill", "[][][][][][][][][][][][][][][][][][]"));
 
-        levelLabel = new JLabel();
-        scoreLabel = new JLabel();
+        Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.SWING_FONT_SIZE);
+
+        levelLabel = new JLabel("LEVEL ");
+        levelValue = new JLabel();
+        scoreLabel = new JLabel("SCORE ");
+        scoreValue = new JLabel();
+        keysLabel = new JLabel("ENERGY ");
         keysProgressBar = new JProgressBar();
-        timeLabel = new JLabel();
-        livesLabel = new JLabel();
-        rLabel = new JLabel();
+        timeLabel = new JLabel("TIME ");
+        timeValue = new JLabel();
 
         levelLabel.setFont(labelsFont);
+        levelValue.setFont(labelsFont);
         scoreLabel.setFont(labelsFont);
+        scoreValue.setFont(labelsFont);
+        keysLabel.setFont(labelsFont);
         keysProgressBar.setFont(labelsFont);
         timeLabel.setFont(labelsFont);
-        livesLabel.setFont(labelsFont);
-        rLabel.setFont(labelsFont);
+        timeValue.setFont(labelsFont);
 
-        levelLabel.setForeground(Color.BLACK);
-        scoreLabel.setForeground(Color.BLACK);
-        keysProgressBar.setForeground(Color.BLUE);
-        livesLabel.setForeground(Color.RED);
-        timeLabel.setForeground(Color.BLACK);
-        rLabel.setForeground(Color.BLACK);
-
-        levelLabel.setHorizontalAlignment(JLabel.CENTER);
-        scoreLabel.setHorizontalAlignment(JLabel.CENTER);
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
-        livesLabel.setHorizontalAlignment(JLabel.CENTER);
-        rLabel.setHorizontalAlignment(JLabel.CENTER);
+        levelLabel.setForeground(Color.YELLOW);
+        levelValue.setForeground(Color.WHITE);
+        scoreLabel.setForeground(Color.YELLOW);
+        scoreValue.setForeground(Color.WHITE);
+        keysLabel.setForeground(Color.YELLOW);
+        keysProgressBar.setForeground(new Color(49, 126, 249));
+        timeLabel.setForeground(Color.YELLOW);
+        timeValue.setForeground(Color.WHITE);
 
         keysProgressBar.setFocusable(false);
         keysProgressBar.setStringPainted(true);
 
-        this.add(levelLabel);
-        this.add(scoreLabel);
-        this.add(keysProgressBar);
-        this.add(timeLabel);
-        this.add(livesLabel);
-        this.add(rLabel);
+        this.add(levelLabel, "span 1, cell 2 0, right");
+        this.add(levelValue, "span 1, cell 3 0, left");
+
+        this.add(scoreLabel,  "span 1, cell 4 0, right");
+        this.add(scoreValue, "span 1, cell 5 0, left");
+
+        this.add(keysLabel, "span 1, cell 6 0, right");
+        this.add(keysProgressBar,  "span 1, cell 7 0, left, hmax " + HEIGHT);
+
+        this.add(timeLabel, "span 1, cell 8 0, right");
+        this.add(timeValue, "span 1, cell 9 0, left");
+
+        try {
+            background = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/infobar_background.png"));
+            player = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar.png"));
+            player_dead = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar_dark.png"));
+            rButton = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/r_button.png"));
+            pharaoh = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/pharaoh.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void setInfoBarModel(InfoBarModel infoBarModel) {
@@ -67,33 +95,31 @@ public class SwingInfoBarComponent extends JPanel {
     }
 
     @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, GlobalConfigs.INFOBAR_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR);
-    }
-
-    @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+
+        graphics.drawImage(background, 0, 0, null);
 
         if (infoBarModel == null) return;
 
         // TODO: refactoring do maxLifes
-        levelLabel.setText("Level " + infoBarModel.getCurrentLevel());
-        scoreLabel.setText("" + infoBarModel.getScore());
-        timeLabel.setText("" + infoBarModel.getTime());
-        rLabel.setText("R");
-
-        livesLabel.setText("");
-        for (int i = 0 ; i < infoBarModel.getLives(); i++)
-            livesLabel.setText(livesLabel.getText() + "♥");
+        levelValue.setText("" + infoBarModel.getCurrentLevel());
+        scoreValue.setText("" + infoBarModel.getScore());
+        timeValue.setText("" + infoBarModel.getTime());
 
         keysProgressBar.setMaximum(infoBarModel.getMaxKeys());
         keysProgressBar.setValue(infoBarModel.getKeys());
         keysProgressBar.setString(infoBarModel.getKeys() + " / " + infoBarModel.getMaxKeys());
-    }
 
-    protected static ImageIcon createImageIcon(String path) {
-        URL imgURL = SwingInfoBarComponent.class.getResource(path);
-        return new ImageIcon(imgURL);
+        for (int i = 0 ; i < GlobalConfigs.PLAYER_HP; i++) {
+            if (infoBarModel.getLives() > i)
+                graphics.drawImage(player, (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+            else
+                graphics.drawImage(player_dead, (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+        }
+
+        graphics.drawImage(pharaoh, 0, 0, null);
+        graphics.drawImage(rButton, 17 * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+
     }
 }

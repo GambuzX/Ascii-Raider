@@ -1,7 +1,5 @@
 package com.asciiraider.g710.view.swing.menu;
 
-import com.asciiraider.g710.view.swing.utilities.SymbolMapper;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

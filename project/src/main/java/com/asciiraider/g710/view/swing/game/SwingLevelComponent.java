@@ -14,6 +14,8 @@ public class SwingLevelComponent extends JPanel {
     private LevelModel levelModel;
     private SymbolMapper symbolMapper;
 
+    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    public final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
 
     public SwingLevelComponent() {
         symbolMapper = new SymbolMapper();
@@ -23,10 +25,6 @@ public class SwingLevelComponent extends JPanel {
         this.levelModel = levelModel;
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR, GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR);
-    }
 
     @Override
     protected void paintComponent(Graphics graphics) {
