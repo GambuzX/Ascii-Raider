@@ -23,10 +23,10 @@ public abstract class PhysicsElement extends MovableElement {
             return getPosition();
         }
         frameCounter = 0;
-        if(isFalling())
-            return getPosition().getBelow();
+       if(isFalling())
+           return getPosition().getBelow();
         else
-            return getPosition();
+          return getPosition();
     }
 
     public void setFalling(boolean falling) {

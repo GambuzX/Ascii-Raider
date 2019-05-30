@@ -175,6 +175,8 @@ public class LevelFacade {
 	}
 
 	public Enemy findEnemy(Position pos) {
+		if(pos == null)
+			return null;
 		Element element = findElement(pos);
 		if (element instanceof Enemy)
 			return (Enemy) element;
