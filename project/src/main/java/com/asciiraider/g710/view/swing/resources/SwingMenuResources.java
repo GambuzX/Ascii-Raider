@@ -6,31 +6,26 @@ import java.io.IOException;
 
 public class SwingMenuResources {
 
-    private BufferedImage menuImg;
+    private BufferedImage menuBackground;
     private BufferedImage playButton;
     private BufferedImage playButtonHovered;
     private BufferedImage exitButton;
     private BufferedImage exitButtonHovered;
 
-
-    public SwingMenuResources() {
+    public void loadResources()  {
         try {
-            preLoadResources();
+            menuBackground = ImageIO.read(SwingMenuResources.class.getResource("/symbols/menu.png"));
+            playButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn.png"));
+            playButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn_hovered.png"));
+            exitButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn.png"));
+            exitButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn_hovered.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void preLoadResources() throws IOException {
-        menuImg = ImageIO.read(SwingMenuResources.class.getResource("/symbols/menu.png"));
-        playButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn.png"));
-        playButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/play_btn_hovered.png"));
-        exitButton = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn.png"));
-        exitButtonHovered = ImageIO.read(SwingMenuResources.class.getResource("/symbols/exit_btn_hovered.png"));
-    }
-
-    public BufferedImage getMenuImg() {
-        return menuImg;
+    public BufferedImage getMenuBackground() {
+        return menuBackground;
     }
 
     public BufferedImage getPlayButton() {

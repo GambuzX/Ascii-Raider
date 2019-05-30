@@ -3,6 +3,7 @@ package com.asciiraider.g710.view.swing.menu;
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.model.utilities.Button;
+import com.asciiraider.g710.view.swing.resources.SwingMenuResources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +16,8 @@ public class SwingMenuComponent extends JPanel {
     private MenuModel menuModel;
     private SwingMenuResources menuResources;
 
-    public SwingMenuComponent() {
-        menuResources = new SwingMenuResources();
+    public SwingMenuComponent(SwingMenuResources menuResources) {
+        this.menuResources = menuResources;
     }
 
     public void setMenuModel(MenuModel menuModel) {
@@ -28,7 +29,7 @@ public class SwingMenuComponent extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
-        graphics.drawImage(menuResources.getMenuImg(), 0, 0, null);
+        graphics.drawImage(menuResources.getMenuBackground(), 0, 0, null);
 
         Button playBtn = menuModel.getOptions().get(0);
         graphics.drawImage(

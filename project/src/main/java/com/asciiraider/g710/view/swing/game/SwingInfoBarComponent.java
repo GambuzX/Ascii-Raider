@@ -2,6 +2,7 @@ package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
+import com.asciiraider.g710.view.swing.resources.SwingInfoBarResources;
 import net.miginfocom.swing.MigLayout;
 
 import javax.imageio.ImageIO;
@@ -24,13 +25,11 @@ public class SwingInfoBarComponent extends JPanel {
     private JProgressBar keysProgressBar;
     private JLabel timeLabel, timeValue;
 
-    BufferedImage background;
-    BufferedImage player;
-    BufferedImage player_dead;
-    BufferedImage rButton;
-    BufferedImage pharaoh;
+    private SwingInfoBarResources infoBarResources;
 
-    public SwingInfoBarComponent() {
+    public SwingInfoBarComponent(SwingInfoBarResources infoBarResources) {
+
+        this.infoBarResources = infoBarResources;
 
         this.setLayout(new MigLayout("wrap 17, insets 0 0, gap 0 0, fill", "[][][][][][][][][][][][][][][][][][]"));
 
@@ -77,17 +76,6 @@ public class SwingInfoBarComponent extends JPanel {
 
         this.add(timeLabel, "span 1, cell 8 0, right");
         this.add(timeValue, "span 1, cell 9 0, left");
-
-        try {
-            background = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/infobar_background.png"));
-            player = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar.png"));
-            player_dead = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/guy_infobar_dark.png"));
-            rButton = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/r_button.png"));
-            pharaoh = ImageIO.read(SwingInfoBarComponent.class.getResource("/symbols/pharaoh.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void setInfoBarModel(InfoBarModel infoBarModel) {
@@ -98,7 +86,7 @@ public class SwingInfoBarComponent extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
-        graphics.drawImage(background, 0, 0, null);
+        graphics.drawImage(infoBarResources.getBackground(), 0, 0, null);
 
         if (infoBarModel == null) return;
 
@@ -113,13 +101,13 @@ public class SwingInfoBarComponent extends JPanel {
 
         for (int i = 0 ; i < GlobalConfigs.PLAYER_HP; i++) {
             if (infoBarModel.getLives() > i)
-                graphics.drawImage(player, (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+                graphics.drawImage(infoBarResources.getPlayer(), (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
             else
-                graphics.drawImage(player_dead, (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+                graphics.drawImage(infoBarResources.getPlayerDead(), (14 + i) * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
         }
 
-        graphics.drawImage(pharaoh, 0, 0, null);
-        graphics.drawImage(rButton, 17 * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
+        graphics.drawImage(infoBarResources.getPharaoh(), 0, 0, null);
+        graphics.drawImage(infoBarResources.getRButton(), 17 * GlobalConfigs.SWING_SIZE_FACTOR, 0, null);
 
     }
 }
