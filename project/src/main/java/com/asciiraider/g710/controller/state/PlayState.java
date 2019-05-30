@@ -68,16 +68,18 @@ public class PlayState extends State<LevelModelGroup> {
 
 				levelControllerGroup.getLevelController().handlePhysics();
 
-				levelControllerGroup.getLevelController().handleLevelKey();
-
 				levelControllerGroup.getLevelController().handleEnemies();
 
 				levelControllerGroup.getLevelController().handleAnimations();
+
 
 				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
 					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
 
 				levelModelGroupView.draw(levelModelGroup);
+
+
+				levelControllerGroup.getLevelController().handleLevelKey();
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {

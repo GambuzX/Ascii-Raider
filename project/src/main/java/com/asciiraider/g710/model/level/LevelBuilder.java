@@ -54,17 +54,17 @@ public class LevelBuilder {
 				switch(curr) {
 					case 'W':
 						Wall wall = new Wall(pos);
-						wall.setInteraction(new BarrierInteraction(wall));
+						wall.setPlayerInteraction(new BarrierInteraction(wall));
 						newLevelModel.addWall(wall);
 						break;
 					case 'S':
 						StoneBlock stoneBlock = new StoneBlock(pos);
-						stoneBlock.setInteraction(new BarrierInteraction(stoneBlock));
+						stoneBlock.setPlayerInteraction(new BarrierInteraction(stoneBlock));
 						newLevelModel.addStoneBlock(stoneBlock);
 						break;
 					case 'B':
 						Boulder boulder = new Boulder(pos);
-						boulder.setInteraction(new PushInteraction(boulder,newLevelModel));
+						boulder.setPlayerInteraction(new PushInteraction(boulder,newLevelModel));
 						newLevelModel.addBoulder(boulder);
 						break;
 					case 'P':
@@ -73,43 +73,43 @@ public class LevelBuilder {
 						break;
 					case 'E':
 						SkullEnemy skullEnemy = new SkullEnemy(pos);
-						skullEnemy.setInteraction(new DeathInteraction(skullEnemy));
+						skullEnemy.setPlayerInteraction(new DeathInteraction(skullEnemy));
 						newLevelModel.addEnemy(skullEnemy);
 						break;
 					case 'M':
 						MummyEnemy mummyEnemy = new MummyEnemy(pos);
-						mummyEnemy.setInteraction(new DeathInteraction(mummyEnemy));
+						mummyEnemy.setPlayerInteraction(new DeathInteraction(mummyEnemy));
 						newLevelModel.addEnemy(mummyEnemy);
 						break;
 					case 'T':
 						TNT tnt = new TNT(pos);
-						tnt.setInteraction(new PushInteraction(tnt, newLevelModel));
+						tnt.setPlayerInteraction(new PushInteraction(tnt, newLevelModel));
 						newLevelModel.addTNT(tnt);
 						break;
 					case 's':
 						Sand sand = new Sand(pos);
-						sand.setInteraction(new SandInteraction(sand, newLevelModel));
+						sand.setPlayerInteraction(new SandInteraction(sand, newLevelModel));
 						newLevelModel.addSandBlock(sand);
 						break;
 					case 'K':
 						LevelKey levelKey = new LevelKey(pos);
-						levelKey.setInteraction(new PushInteraction(levelKey, newLevelModel));
+						levelKey.setPlayerInteraction(new PushInteraction(levelKey, newLevelModel));
 						newLevelModel.addLevelKey(levelKey);
 						break;
 					case 'D':
 						ExitDoor exitDoor = new ExitDoor(pos);
-						exitDoor.setInteraction(new BarrierInteraction(exitDoor));
+						exitDoor.setPlayerInteraction(new BarrierInteraction(exitDoor));
 						newLevelModel.setExitDoor(exitDoor);
 						break;
 					case 'd':
 						Door door = new Door(pos);
-						door.setInteraction(new BarrierInteraction(door));
+						door.setPlayerInteraction(new BarrierInteraction(door));
 						newLevelModel.setDoor(door);
 						doorCount++;
 						break;
 					case 'k':
 						DoorKey doorKey = new DoorKey(pos);
-						doorKey.setInteraction(new DoorKeyInteraction(doorKey, newLevelModel));
+						doorKey.setPlayerInteraction(new DoorKeyInteraction(doorKey, newLevelModel));
 						newLevelModel.setDoorKey(doorKey);
 						doorKeyCount++;
 						break;

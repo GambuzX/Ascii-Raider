@@ -3,23 +3,19 @@ package com.asciiraider.g710.controller.level;
 import com.asciiraider.g710.controller.element.EnemyController;
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.controller.element.PhysicsElementController;
-import com.asciiraider.g710.model.element.AnimatedElement;
-import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.element.Enemy;
-import com.asciiraider.g710.model.element.PhysicsElement;
+import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
+
+import java.util.List;
 
 public class LevelController {
 
 	private LevelManager levelManager;
 
-	// TODO: ver sitio para se por este controller
 	private LifeController lifeController = new LifeController();
 	private LevelKeyController levelKeyController = new LevelKeyController();
 	private LevelProgressionController levelProgressionController = new LevelProgressionController();
-
-	private ExplosionController explosionsController = new ExplosionController();
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
@@ -46,8 +42,27 @@ public class LevelController {
 	}
 
 	public void triggerExplosion(Position pos) {
-		if(explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade()))
-			lifeController.notifyObservers();
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		List<Position> inRange = pos.getMatrix();
+		inRange.add(pos);
+
+		for (Position position : inRange) {
+			Element caught = levelFacade.findElement(position);
+			if (caught instanceof Player){
+				lifeController.notifyObservers();
+				return;
+			}
+
+			else if (caught == null || caught instanceof DestructibleElement) {
+				if(caught != null)
+					levelFacade.removeDestructibleElement(position);
+
+				levelFacade.addExplosion(position);
+
+				if (caught instanceof Explosive)
+					triggerExplosion(position);
+			}
+		}
 	}
 
 	//// -------------------------------------------------------------------------------------------------------- /////
@@ -87,7 +102,7 @@ public class LevelController {
 		Element element = levelFacade.findElement(newPos);
 		if(element == null) return true;
 
-		return element.getInteraction().interact(this, delimPos);
+		return element.getPlayerInteraction().interact(this, delimPos);
 	}
 
 	public boolean isPlayerCollidingEnemy() {

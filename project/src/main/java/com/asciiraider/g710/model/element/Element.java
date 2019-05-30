@@ -8,7 +8,7 @@ import com.asciiraider.g710.model.utilities.Symbol;
 abstract public class Element extends Model implements Cloneable {
 	private Position position;
 	private Symbol symbol;
-	private Interaction interaction = null;
+	private Interaction playerInteraction = null;
 
 	public Element(Position position, Symbol symbol) {
 		this.position = position;
@@ -45,11 +45,11 @@ abstract public class Element extends Model implements Cloneable {
 		return super.clone();
 	}
 
-	public Interaction getInteraction() {
-		return interaction;
+	public Interaction getPlayerInteraction() {
+		return playerInteraction;
 	}
 
-	public void setInteraction(Interaction interaction) {
-		this.interaction = interaction;
+	public void setPlayerInteraction(Interaction playerInteraction) {
+		this.playerInteraction = playerInteraction;
 	}
 }

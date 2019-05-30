@@ -253,7 +253,7 @@ public class LevelFacade {
 
 	public void addExplosion(Position position) {
 		Explosion explosion = new Explosion(position);
-		explosion.setInteraction(new DeathInteraction(explosion));
+		explosion.setPlayerInteraction(new DeathInteraction(explosion));
 		levelModel.addExplostion(explosion);
 	}
 
