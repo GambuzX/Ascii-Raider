@@ -36,10 +36,6 @@ public class Button extends Model {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(HexColorString backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-
 	public HexColorString getTextColor() {
 		return textColor;
 	}
