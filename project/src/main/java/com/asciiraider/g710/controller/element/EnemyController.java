@@ -15,6 +15,7 @@ public class EnemyController {
 
 	public void handle(LevelFacade levelFacade) {
 		List<Position> adj = enemy.move(levelFacade.getPlayer().getPosition());
+		if(adj == null) return;
 		for (Position pos : adj)
 			if (levelFacade.insideBounds(pos) && levelFacade.isEmptyPosition(pos)) {
 				levelFacade.setElementPosition(enemy, pos);

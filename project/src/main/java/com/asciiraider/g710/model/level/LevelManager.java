@@ -23,7 +23,7 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	public LevelManager() throws InvalidParameterException {
 		this.lifeManager = new LifeManager(GlobalConfigs.PLAYER_HP);
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 2;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();

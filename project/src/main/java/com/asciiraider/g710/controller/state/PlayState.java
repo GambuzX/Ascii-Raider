@@ -67,14 +67,14 @@ public class PlayState extends State<LevelModelGroup> {
 			physicsCounter++;
 			enemiesCounter++;
 			try {
-				if(physicsCounter == 4){
-					physicsCounter = 0;
+				//if(physicsCounter == 4){
+				//	physicsCounter = 0;
 					levelControllerGroup.getLevelController().handlePhysics();
-				}
-				if(enemiesCounter == 6){
-					enemiesCounter = 0;
+				//}
+				//if(enemiesCounter == 6){
+				//	enemiesCounter = 0;
 					levelControllerGroup.getLevelController().moveEnemies();
-				}
+				//}
 				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
 					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
 				levelControllerGroup.getLevelController().handleAnimations();
