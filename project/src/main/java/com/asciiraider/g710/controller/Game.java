@@ -1,7 +1,6 @@
 package com.asciiraider.g710.controller;
 
 import com.asciiraider.g710.controller.state.MenuState;
-import com.asciiraider.g710.controller.state.PlayState;
 import com.asciiraider.g710.controller.state.State;
 import com.asciiraider.g710.view.ViewFactory;
 
@@ -12,7 +11,7 @@ public class Game {
 
 	public Game(ViewFactory viewFactory) {
 		this.viewFactory = viewFactory;
-		state = new PlayState(this);
+		state = new MenuState(this);
 	}
 
 	public void changeState(State state){
