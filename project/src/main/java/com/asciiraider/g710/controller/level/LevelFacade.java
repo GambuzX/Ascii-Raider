@@ -1,5 +1,7 @@
 package com.asciiraider.g710.controller.level;
 
+import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.controller.element.interaction.DeathInteraction;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
@@ -41,11 +43,9 @@ public class LevelFacade {
 		return levelModel.getEnemies();
 	}
 
-	// Acaba aqui //
-
-	public int getHeight() {return levelModel.getBottomRightCorner().getY();}
-
-	public int getWidth() {return levelModel.getBottomRightCorner().getX();}
+	public boolean insideBounds(Position pos) {
+		return pos.getX() < GlobalConfigs.LEVEL_WIDTH && pos.getY() < GlobalConfigs.LEVEL_HEIGHT;
+	}
 
 	public List<AnimatedElement> getAnimatedElements(){
 		List<AnimatedElement> animatedElements =  new ArrayList<>();
@@ -53,10 +53,9 @@ public class LevelFacade {
 		return animatedElements;
 	}
 
-	public void removeAnimation(Position pos){
-		Element element = findElement(pos);
-		levelModel.getExplosions().remove(element);
-		clearMatrixPosition(element.getPosition());
+	public void removeAnimation(Element animation){
+		levelModel.getExplosions().remove(animation);
+		clearMatrixPosition(animation.getPosition());
 	}
 
 	public Explosion findExplosion(Position pos) {
@@ -175,6 +174,8 @@ public class LevelFacade {
 	}
 
 	public Enemy findEnemy(Position pos) {
+		if(pos == null)
+			return null;
 		Element element = findElement(pos);
 		if (element instanceof Enemy)
 			return (Enemy) element;
@@ -251,7 +252,10 @@ public class LevelFacade {
 	}
 
 	public void addExplosion(Position position) {
-		levelModel.addExplosion(new Explosion(position));
+
+		Explosion explosion = new Explosion(position);
+		explosion.setPlayerInteraction(new DeathInteraction(explosion));
+		levelModel.addExplosion(explosion);
 	}
 
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved

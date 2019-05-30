@@ -14,6 +14,17 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 	private int numKeys;
 
 
+	public void handler(LevelManager levelManager) {
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
+		if(levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0) {
+			userScore = levelManager.getTimeAlarm().getCurrentTime();
+			levelManager.nextLevel();
+			numKeys = levelManager.getCurrentLevelKeys();
+			notifyObservers();
+		}
+	}
+
 	@Override
 	public void addObserver(LevelCompletedObserver observer) {
 		levelCompletedObservers.add(observer);
@@ -30,18 +41,6 @@ public class LevelProgressionController implements EventSubject<LevelCompletedOb
 		for(LevelCompletedObserver levelCompletedObserver : levelCompletedObservers) {
 			levelCompletedObserver.updateScore(userScore);
 			levelCompletedObserver.updateNumKeys(numKeys);
-		}
-	}
-
-	public void handle(LevelManager levelManager) {
-
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		Position aboveDoor = levelFacade.getExitDoor().getPosition().getAbove();
-		if(levelFacade.getPlayer().getPosition().equals(aboveDoor) && levelManager.getCurrentLevelKeys() == 0) {
-			userScore = levelManager.getTimeAlarm().getCurrentTime();
-			levelManager.nextLevel();
-			numKeys = levelManager.getCurrentLevelKeys();
-			notifyObservers();
 		}
 	}
 }

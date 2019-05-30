@@ -21,15 +21,10 @@ public class LevelModel extends Model {
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 	private List<Explosion> explosions = new ArrayList<>();
-	private Position bottomRightCorner;
-	private Element[][] elementsMatrix;
+	//private Position bottomRightCorner;
+	private Element[][] elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
 
 	private int remainingTime;
-
-	public LevelModel() {
-		this.bottomRightCorner = new Position(GlobalConfigs.LEVEL_WIDTH, GlobalConfigs.LEVEL_HEIGHT);
-		elementsMatrix = new Element[bottomRightCorner.getX()][bottomRightCorner.getY()];
-	}
 
 	public Player getPlayer() {
 		return player;
@@ -157,15 +152,28 @@ public class LevelModel extends Model {
 		return elementsMatrix[pos.getX()][pos.getY()];
 	}
 
-	public Position getBottomRightCorner() {
-		return bottomRightCorner;
-	}
-
 	public int getLevelTime() {
 		return remainingTime;
 	}
 
 	public void setTime(int time) {
 		this.remainingTime = time;
+	}
+
+	public void clear() {
+		this.player = null;
+		this.exitDoor = null;
+		this.door = null;
+		this.doorKey = null;
+		this.walls = new ArrayList<>();
+		this.boulders = new ArrayList<>();
+		this.stoneBlocks = new ArrayList<>();
+		this.sandBlocks = new ArrayList<>();
+		this.levelKeys = new ArrayList<>();
+		this.tnt = new ArrayList<>();
+		this.enemies = new ArrayList<>();
+		this.explosions = new ArrayList<>();
+		//private Position bottomRightCorner;
+		this.elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
 	}
 }

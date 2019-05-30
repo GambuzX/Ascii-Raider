@@ -2,13 +2,14 @@ package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.LevelKeyObserver;
+import com.asciiraider.g710.controller.PlayerDeathObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.infobar.LifeManager;
 
 import java.security.InvalidParameterException;
 import java.util.List;
 
-public class LevelManager implements LevelKeyObserver {
+public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 
 	private LevelBuilder lvlBuilder;
 	private List<LevelModel> levelModels;
@@ -39,6 +40,7 @@ public class LevelManager implements LevelKeyObserver {
 	}
 
 	public void resetLevel(int levelIndex) {
+		levelModels.get(levelIndex).clear();
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
 	}
@@ -46,7 +48,7 @@ public class LevelManager implements LevelKeyObserver {
 	public void nextLevel() {
 		currentLevelIndex++;
 		updateLevelVariables();
-		if (currentLevelIndex >= levelModels.size())
+		if( currentLevelIndex >= levelModels.size())
 			gameFinished = true;
 	}
 
@@ -76,16 +78,8 @@ public class LevelManager implements LevelKeyObserver {
 		return currentLevelFacade;
 	}
 
-	public boolean isGameFinished() {
-		return gameFinished;
-	}
-
 	public void finishGame() {
 		gameFinished = true;
-	}
-
-	public boolean wonGame() {
-		return currentLevelIndex >= levelModels.size();
 	}
 
 	@Override
@@ -98,4 +92,15 @@ public class LevelManager implements LevelKeyObserver {
 	}
 
 	public LevelTimeAlarm getTimeAlarm() { return timeAlarm; }
+
+	@Override
+	public void updateDeath() {
+		restartLevel();
+		if(!lifeManager.hasLifes())
+			finishGame();
+	}
+
+	public boolean isGameFinished() {
+		return gameFinished;
+	}
 }

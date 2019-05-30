@@ -40,7 +40,9 @@ public class PlayState extends State<LevelModelGroup> {
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				while (!getStateController().isClose()) {
+				//while (!getStateController().isClose()) {
+				while (!getStateModel().getLevelManager().isGameFinished()) {
+
 					// TODO: refactoring??
 					while (getStateModel().getLevelManager().getTimeAlarm().getCurrentTime() > 0) {
 						getStateController().getInfoBarController().handler(getStateModel().getLevelManager().getTimeAlarm());
@@ -52,32 +54,32 @@ public class PlayState extends State<LevelModelGroup> {
 						}
 						if(game.toExit()) break;
 					}
-					getStateController().getLevelController().handleLife();
+					if(!game.toExit())
+						getStateController().getLevelController().getLifeController().notifyObservers();
 				}
 			}
 		};
 		tick_second.start();
 
-		int physicsCounter = 0;
-		int enemiesCounter = 0;
-		while (!getStateController().isClose()) {
-			physicsCounter++;
-			enemiesCounter++;
+		//while (!getStateController().isClose()) {
+		while (!getStateModel().getLevelManager().isGameFinished()) {
+
 			try {
-				if(physicsCounter == 4){
-					physicsCounter = 0;
-					//levelController.handleKeyProgress();
-					levelControllerGroup.getLevelController().handlePhysics();
-				}
-				if(enemiesCounter == 6){
-					enemiesCounter = 0;
-					levelControllerGroup.getLevelController().moveEnemies();
-				}
-				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
-					levelControllerGroup.getLevelController().handleLife();
+
+				levelControllerGroup.getLevelController().handlePhysics();
+
+				levelControllerGroup.getLevelController().handleEnemies();
+
 				levelControllerGroup.getLevelController().handleAnimations();
 
+
+				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
+					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
+
 				levelModelGroupView.draw(levelModelGroup);
+
+
+				levelControllerGroup.getLevelController().handleLevelKey();
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {

@@ -1,30 +1,30 @@
 package com.asciiraider.g710.controller.level;
 
+import com.asciiraider.g710.controller.element.EnemyController;
 import com.asciiraider.g710.controller.element.LevelKeyController;
-import com.asciiraider.g710.model.element.Enemy;
-import com.asciiraider.g710.model.element.PhysicsElement;
+import com.asciiraider.g710.controller.element.PhysicsElementController;
+import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
+
+import java.util.List;
 
 public class LevelController {
 
 	private LevelManager levelManager;
 
-	// TODO: ver sitio para se por este controller
 	private LifeController lifeController = new LifeController();
 	private LevelKeyController levelKeyController = new LevelKeyController();
 	private LevelProgressionController levelProgressionController = new LevelProgressionController();
-	private PhysicsController physicsController = new PhysicsController(this);
-	private ExplosionController explosionsController = new ExplosionController(this);
-	private MovementController movementController = new MovementController(this);
-	private AnimationController animationController = new AnimationController(this);
 
 	public LevelController(LevelManager levelManager) {
 		this.levelManager = levelManager;
+
 		levelKeyController.addObserver(levelManager);
 
 		lifeController.addObserver(levelManager.getLifeManager());
 		lifeController.addObserver(levelManager.getTimeAlarm());
+		lifeController.addObserver(levelManager);
 
 		levelProgressionController.addObserver(levelManager.getTimeAlarm());
 	}
@@ -42,61 +42,74 @@ public class LevelController {
 	}
 
 	public void triggerExplosion(Position pos) {
-		explosionsController.handleExplosion(pos, levelManager.getCurrentLevelFacade());
+		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
+		List<Position> inRange = pos.getMatrix();
+		inRange.add(pos);
+
+		for (Position position : inRange) {
+			Element caught = levelFacade.findElement(position);
+			if (caught instanceof Player){
+				lifeController.notifyObservers();
+				return;
+			}
+
+			else if (caught == null || caught instanceof DestructibleElement) {
+				if(caught != null)
+					levelFacade.removeDestructibleElement(position);
+
+				levelFacade.addExplosion(position);
+
+				if (caught instanceof Explosive)
+					triggerExplosion(position);
+			}
+		}
 	}
+
+	//// -------------------------------------------------------------------------------------------------------- /////
 
 	public void handlePhysics() {
-		physicsController.handlePhysics(levelManager.getCurrentLevelFacade());
+		PhysicsElementController pec;
+		for (PhysicsElement physicsElement : levelManager.getCurrentLevelFacade().getPhysicsElements()){
+			 pec = new PhysicsElementController(physicsElement);
+			 pec.handleElementPhysics(this, levelManager.getCurrentLevelFacade());
+		}
 	}
 
-	public boolean handlePlayerPush(PhysicsElement element, Position delimPos) {
-		return physicsController.handlePlayerPush(element, delimPos, levelManager.getCurrentLevelFacade());
+	public void handleEnemies() {
+		EnemyController ec;
+		for (Enemy enemy : levelManager.getCurrentLevelFacade().getEnemies()){
+			ec = new EnemyController(enemy);
+			ec.handle(levelManager.getCurrentLevelFacade());
+		}
 	}
+
+	// TODO: classe à parte talvez no Group Controller?? ou por num controller o if e por igual às anteriores
+	public void handleAnimations(){
+		for(AnimatedElement animated : levelManager.getCurrentLevelFacade().getAnimatedElements())
+			if (!animated.updateAnimation())
+				levelManager.getCurrentLevelFacade().removeAnimation(animated);
+	}
+
+	//// -------------------------------------------------------------------------------------------------------- /////
+
 
 	public void handleLevelKey() {
 		levelKeyController.handler(levelManager.getCurrentLevelFacade());
 	}
 
 	public boolean movePlayer(Position newPos, Position delimPos, LevelFacade levelFacade) {
-		return movementController.handlePlayerMovement(newPos, delimPos, levelFacade);
-	}
+		if (newPos == null || !levelFacade.insideBounds(newPos)) return false;
+		Element element = levelFacade.findElement(newPos);
+		if(element == null) return true;
 
-	public void moveEnemies() {
-		movementController.moveEnemies(levelManager.getCurrentLevelFacade());
-	}
-
-	public void handleAnimations(){
-		animationController.handleAnimations(levelManager.getCurrentLevelFacade());
-	}
-
-	public boolean insideBounds(Position pos) {
-		return pos.getX() < levelManager.getCurrentLevelFacade().getWidth() && pos.getY() < levelManager.getCurrentLevelFacade().getHeight();
-	}
-
-	public void handleLife() {
-		lifeController.notifyObservers();
-		levelManager.restartLevel();
-		if(!levelManager.getLifeManager().hasLifes())
-			levelManager.finishGame();
-	}
-
-	public void catchDoorKey() {
-		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		levelFacade.removeDoorKey();
-		levelFacade.removeDoor();
+		return element.getPlayerInteraction().interact(this, delimPos);
 	}
 
 	public boolean isPlayerCollidingEnemy() {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
-		for (Enemy enemy : levelFacade.getEnemies())
-			if (enemy.getPosition().equals(levelFacade.getPlayer().getPosition()))
-				return true;
-
-		return false;
-	}
-
-	// TODO: provisorio
-	public boolean isGameOver(){
-		return levelManager.isGameFinished();
+		Enemy enemy = levelFacade.findEnemy(levelFacade.getPlayer().getPosition());
+		if(enemy == null)
+			return false;
+		return true;
 	}
 }

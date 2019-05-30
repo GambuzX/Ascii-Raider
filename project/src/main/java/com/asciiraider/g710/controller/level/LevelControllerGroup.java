@@ -10,9 +10,11 @@ import com.asciiraider.g710.view.Event;
 public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 	private LevelController levelController;
 	private InfoBarController infoBarController;
+	private boolean close;
 
 	public LevelControllerGroup(LevelModelGroup levelModelGroup){
 		super(levelModelGroup);
+		this.close = false;
 		this.levelController = new LevelController(levelModelGroup.getLevelManager());
 		this.infoBarController = new InfoBarController(levelController, levelModelGroup.getInfoBarModel());
 	}
@@ -53,7 +55,7 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 				else delimPos = newPos;
 				break;
 			case R_KEY:
-				levelController.handleLife();
+				levelController.getLifeController().notifyObservers();
 				return;
 			case EOF:
 			case Q_KEY:
@@ -61,17 +63,16 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 				return;
 		}
 
-		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade()))
+		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade())) {
 			model.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
+			levelController.handleLevelKey();
+		}
 
-		if (levelController.isPlayerCollidingEnemy())
-			levelController.handleLife();
-
-		levelController.getLevelProgressionController().handle(model.getLevelManager());
+		levelController.getLevelProgressionController().handler(model.getLevelManager());
 	}
 
 	@Override
 	public boolean isClose() {
-		return levelController.isGameOver();
+		return model.getLevelManager().isGameFinished();
 	}
 }

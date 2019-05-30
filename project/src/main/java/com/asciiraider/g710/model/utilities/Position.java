@@ -72,10 +72,33 @@ public class Position {
 		}
 		catch (Exception e){}
 
-		adjacent.add(this.getRightSide());
 		adjacent.add(this.getBelow());
 
+		adjacent.add(this.getRightSide());
+
 		return adjacent;
+	}
+
+	public List<Position> getMatrix(){
+		List<Position> matrix = getAdjacent();
+		try {
+			matrix.add(this.getLeftSide().getAbove());
+		}
+		catch (Exception e) {}
+
+		try{
+			matrix.add(this.getLeftSide().getBelow());
+		}
+		catch (Exception e) {}
+
+		try{
+			matrix.add(this.getRightSide().getAbove());
+		}
+		catch (Exception e) {}
+
+		matrix.add(this.getRightSide().getBelow());
+
+		return matrix;
 	}
 
 	public double distance(Position pos2){
