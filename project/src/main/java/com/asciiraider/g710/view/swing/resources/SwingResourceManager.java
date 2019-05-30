@@ -1,8 +1,4 @@
-package com.asciiraider.g710.view.swing;
-
-import com.asciiraider.g710.view.swing.resources.SwingMenuResources;
-import com.asciiraider.g710.view.swing.resources.SwingInfoBarResources;
-import com.asciiraider.g710.view.swing.resources.SwingLevelResources;
+package com.asciiraider.g710.view.swing.resources;
 
 public class SwingResourceManager {
 
