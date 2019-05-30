@@ -22,7 +22,7 @@ public class LevelManager implements LevelKeyObserver {
 	public LevelManager() throws InvalidParameterException {
 		this.lifeManager = new LifeManager(GlobalConfigs.PLAYER_HP);
 
-		currentLevelIndex = 4;
+		currentLevelIndex = 0;
 		gameFinished = false;
 		lvlBuilder = new LevelBuilder();
 		levelModels = lvlBuilder.buildAllLevels();

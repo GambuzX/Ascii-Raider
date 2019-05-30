@@ -21,7 +21,7 @@ public class LanternaFactory implements ViewFactory {
     private TerminalScreen screen;
 
     public LanternaFactory(int width, int height) throws IOException {
-        Font font = new Font(GlobalConfigs.LANTERNA_FONT, Font.PLAIN, GlobalConfigs.FONT_SIZE);
+        Font font = new Font(GlobalConfigs.LANTERNA_FONT, Font.PLAIN, GlobalConfigs.LANTERNA_FONT_SIZE);
         SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
         Terminal terminal = new DefaultTerminalFactory().setTerminalEmulatorFontConfiguration(cfg).setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);
