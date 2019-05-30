@@ -27,15 +27,14 @@ public class PhysicsElementController {
 				physicsElement.setFalling(true);
 		}
 		// TODO: tirar isto para fora
-		else if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
-			levelController.triggerExplosion(physicsElement.getPosition());
-		}
-		else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
-			levelController.triggerExplosion(belowEle.getPosition());
-		}
-		else if (physicsElement.isFalling()) {
+		else{
+			if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
+				levelController.triggerExplosion(physicsElement.getPosition());
+			}
+			else if (belowEle instanceof Explosive && physicsElement.isFalling()) {
+				levelController.triggerExplosion(belowEle.getPosition());
+			}
 			physicsElement.setFalling(false);
-			levelController.handleLevelKey();
 		}
 	}
 }

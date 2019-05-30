@@ -63,15 +63,16 @@ public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 				return;
 		}
 
-		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade()))
+		if (levelController.movePlayer(newPos, delimPos, model.getLevelManager().getCurrentLevelFacade())) {
 			model.getLevelManager().getCurrentLevelFacade().setElementPosition(player, newPos);
+			levelController.handleLevelKey();
+		}
 
-		close = levelController.getLevelProgressionController().handle(model.getLevelManager());
+		levelController.getLevelProgressionController().handler(model.getLevelManager());
 	}
 
 	@Override
 	public boolean isClose() {
-		//return close;
-		return levelController.isGameOver();
+		return model.getLevelManager().isGameFinished();
 	}
 }

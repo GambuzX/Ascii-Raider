@@ -6,7 +6,7 @@ public final class GlobalConfigs {
     public final static int PLAYER_HP = 3;
 
     public final static int GRAVITY = 4;
-    public final static double ENEMY_VELOCITY = 6.0;
+    public final static int ENEMY_VELOCITY = 6;
 
     public final static int FPS = 20;
     public final static int LEVEL_COUNT = 8;

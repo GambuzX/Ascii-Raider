@@ -53,10 +53,9 @@ public class LevelFacade {
 		return animatedElements;
 	}
 
-	public void removeAnimation(Position pos){
-		Element element = findElement(pos);
-		levelModel.getExplosions().remove(element);
-		clearMatrixPosition(element.getPosition());
+	public void removeAnimation(Element animation){
+		levelModel.getExplosions().remove(animation);
+		clearMatrixPosition(animation.getPosition());
 	}
 
 	public Explosion findExplosion(Position pos) {

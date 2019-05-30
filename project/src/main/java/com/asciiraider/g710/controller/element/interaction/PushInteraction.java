@@ -24,7 +24,6 @@ public class PushInteraction extends Interaction<PhysicsElement> {
 		levelFacade.setElementPosition(element, delimPos);
 
 		pec.handleElementPhysics(levelController, levelFacade);
-		levelController.handleLevelKey();
 		return true;
 	}
 }

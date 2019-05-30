@@ -54,30 +54,28 @@ public class PlayState extends State<LevelModelGroup> {
 						}
 						if(game.toExit()) break;
 					}
-					getStateController().getLevelController().getLifeController().notifyObservers();
+					if(!game.toExit())
+						getStateController().getLevelController().getLifeController().notifyObservers();
 				}
 			}
 		};
 		tick_second.start();
 
-		int physicsCounter = 0;
-		int enemiesCounter = 0;
 		//while (!getStateController().isClose()) {
 		while (!getStateModel().getLevelManager().isGameFinished()) {
-			physicsCounter++;
-			enemiesCounter++;
+
 			try {
-				//if(physicsCounter == 4){
-				//	physicsCounter = 0;
-					levelControllerGroup.getLevelController().handlePhysics();
-				//}
-				//if(enemiesCounter == 6){
-				//	enemiesCounter = 0;
-					levelControllerGroup.getLevelController().moveEnemies();
-				//}
+
+				levelControllerGroup.getLevelController().handlePhysics();
+
+				levelControllerGroup.getLevelController().handleLevelKey();
+
+				levelControllerGroup.getLevelController().handleEnemies();
+
+				levelControllerGroup.getLevelController().handleAnimations();
+
 				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
 					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
-				levelControllerGroup.getLevelController().handleAnimations();
 
 				levelModelGroupView.draw(levelModelGroup);
 

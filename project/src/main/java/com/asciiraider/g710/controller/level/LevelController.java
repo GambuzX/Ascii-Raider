@@ -60,13 +60,21 @@ public class LevelController {
 		}
 	}
 
-	public void moveEnemies() {
+	public void handleEnemies() {
 		EnemyController ec;
 		for (Enemy enemy : levelManager.getCurrentLevelFacade().getEnemies()){
 			ec = new EnemyController(enemy);
 			ec.handle(levelManager.getCurrentLevelFacade());
 		}
 	}
+
+	// TODO: classe à parte talvez no Group Controller?? ou por num controller o if e por igual às anteriores
+	public void handleAnimations(){
+		for(AnimatedElement animated : levelManager.getCurrentLevelFacade().getAnimatedElements())
+			if (!animated.updateAnimation())
+				levelManager.getCurrentLevelFacade().removeAnimation(animated);
+	}
+
 	//// -------------------------------------------------------------------------------------------------------- /////
 
 
@@ -79,21 +87,7 @@ public class LevelController {
 		Element element = levelFacade.findElement(newPos);
 		if(element == null) return true;
 
-		// TODO: ver porque e que as interactions dao load mal as vezes
-		if(element.getInteraction() == null) {
-			System.out.println("Interaction error: reloading level");
-			levelManager.restartLevel();
-			return false;
-		}
-
 		return element.getInteraction().interact(this, delimPos);
-	}
-
-	// TODO: classe à parte talvez no Group Controller??
-	public void handleAnimations(){
-		for(AnimatedElement animated : levelManager.getCurrentLevelFacade().getAnimatedElements())
-			if(!animated.updateAnimation())
-				levelManager.getCurrentLevelFacade().removeAnimation(animated.getPosition());
 	}
 
 	public boolean isPlayerCollidingEnemy() {
@@ -102,9 +96,5 @@ public class LevelController {
 		if(enemy == null)
 			return false;
 		return true;
-	}
-
-	public boolean isGameOver(){
-		return levelManager.isGameFinished();
 	}
 }

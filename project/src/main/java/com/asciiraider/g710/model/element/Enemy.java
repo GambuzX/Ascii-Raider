@@ -9,15 +9,12 @@ import java.util.List;
 
 public abstract class Enemy extends MovableElement implements Explosive{
     private MovementStrategy movementStrategy;
-    //private int velocity;
-    private double velocity = GlobalConfigs.ENEMY_VELOCITY;
+    private int velocity = GlobalConfigs.ENEMY_VELOCITY;
     private int frameCounter;
 
-    //public Enemy(Position position, Symbol symbol, int velocity) {
     public Enemy(Position position, Symbol symbol) {
         super(position, symbol);
         this.movementStrategy = createMovementStrategy();
-        //this.velocity = velocity;
         this.frameCounter = 0;
     }
 
