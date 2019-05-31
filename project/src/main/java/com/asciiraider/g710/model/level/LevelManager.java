@@ -1,6 +1,5 @@
 package com.asciiraider.g710.model.level;
 
-import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.LevelKeyObserver;
 import com.asciiraider.g710.controller.PlayerDeathObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
@@ -15,17 +14,17 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
 	private boolean gameFinished;
-	private LevelFacade currentLevelFacade;
+	//private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
 	private LifeManager lifeManager;
 	private LevelTimeAlarm timeAlarm;
 
-	public LevelManager() throws InvalidParameterException {
-		this.lifeManager = new LifeManager(GlobalConfigs.PLAYER_HP);
+	public LevelManager(LevelBuilder levelBuilder, LifeManager lifeManager) throws InvalidParameterException {
+		this.lifeManager = lifeManager;
 
 		currentLevelIndex = 0;
 		gameFinished = false;
-		lvlBuilder = new LevelBuilder();
+		lvlBuilder = levelBuilder;
 		levelModels = lvlBuilder.buildAllLevels();
 		timeAlarm = new LevelTimeAlarm(getCurrentLevel().getLevelTime());
 		updateLevelVariables();
@@ -40,7 +39,6 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	}
 
 	public void resetLevel(int levelIndex) {
-		levelModels.get(levelIndex).clear();
 		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
 		updateLevelVariables();
 	}
@@ -57,8 +55,7 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	}
 
 	private void updateLevelVariables() {
-		currentLevelFacade = new LevelFacade(getCurrentLevel());
-		currentLevelKeys = currentLevelFacade.getLevelKeys().size();
+		currentLevelKeys = getCurrentLevel().getLevelKeys().size();
 		timeAlarm.setTimer(getCurrentLevel().getLevelTime());
 	}
 
@@ -75,7 +72,7 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	}
 
 	public LevelFacade getCurrentLevelFacade() {
-		return currentLevelFacade;
+		return new LevelFacade(getCurrentLevel());
 	}
 
 	public void finishGame() {
