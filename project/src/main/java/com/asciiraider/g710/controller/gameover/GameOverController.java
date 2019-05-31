@@ -17,12 +17,13 @@ public class GameOverController extends ControllerState<GameOverModel>  {
 		if(event == null)
 			return;
 		switch (event){
-			case ENTER_KEY:
 			case EOF:
+				close = true;
+				break;
+			case ENTER_KEY:
 			case Q_KEY:
 				close = true;
-				model.getExitButton().getAction().execute();
-				return;
+				model.getRestartButton().getAction().execute();
 		}
 
 	}

@@ -31,8 +31,6 @@ public class MenuController extends ControllerState<MenuModel> {
 			case Q_KEY:
 				close = true;
 				model.getOptions().get(1).getAction().execute();
-				return;
-
 		}
 
 	}
