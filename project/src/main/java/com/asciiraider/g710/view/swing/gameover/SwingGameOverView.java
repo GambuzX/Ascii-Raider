@@ -17,13 +17,12 @@ public class SwingGameOverView extends SwingStateView<GameOverModel> {
         super(frame);
 
         gameOverComponent = new SwingGameOverComponent(resourceManager.getGameOverResources());
-        gameOverComponent.addKeyListener(new KeyAdapter() {
+        frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 eventQueue.add(KeyPressEvent.handleSwing(keyEvent));
             }
         });
-        gameOverComponent.setFocusable(true);
 
         frame.getContentPane().add(gameOverComponent, "cell 0 0, width " + gameOverComponent.WIDTH + ", height " + gameOverComponent.HEIGHT);
 

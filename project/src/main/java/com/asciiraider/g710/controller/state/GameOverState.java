@@ -56,7 +56,6 @@ public class GameOverState extends State {
 				}
 				game.exit();
 			}
-
 		};
 		tick_second.start();
 
