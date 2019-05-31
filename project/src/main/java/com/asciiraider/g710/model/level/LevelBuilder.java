@@ -18,34 +18,34 @@ public class LevelBuilder {
 	public List<LevelModel> buildAllLevels() {
 		List<LevelModel> levelModels = new ArrayList<>();
 		for (int i = 1; i <= GlobalConfigs.LEVEL_COUNT; i++) {
-			LevelModel newLevel = buildLevel(i);
-			if (newLevel != null)
+			LevelModel newLevel = new LevelModel();
+			try {
+				buildLevel(newLevel, i);
 				levelModels.add( newLevel );
-
+			} catch (InvalidLevelException e) {
+				System.out.println("Error building level " + i);
+			}
 		}
 		return levelModels;
 	}
 
-	public LevelModel buildLevel(int levelNumber){
+	public void buildLevel(LevelModel levelModel, int levelNumber) throws InvalidLevelException {
 		List<String> levelLines = null;
-		LevelModel levelModel = null;
 		try {
 			levelLines = readLevelFile(levelNumber);
-			levelModel = buildLevelFromFile(levelLines);
+			buildLevelFromFile(levelModel, levelLines);
 
-		} catch (IOException | InvalidLevelException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return levelModel;
 	}
 
-	private LevelModel buildLevelFromFile(List<String> levelLines) throws InvalidLevelException {
-		LevelModel newLevelModel = new LevelModel();
+	private void buildLevelFromFile(LevelModel newLevelModel, List<String> levelLines) throws InvalidLevelException {
 
 		// TODO make sure dimensions are okay
 		newLevelModel.setTime(Integer.parseInt(levelLines.get(0)));
 
-		int playerCount = 0, doorCount = 0, doorKeyCount = 0;
+		int playerCount = 0, doorCount = 0, doorKeyCount = 0, exitDoorCount = 0;
 		for (int row = 1; row < levelLines.size(); row++) {
 			for (int col = 0; col < levelLines.get(row).length(); col++) {
 
@@ -100,6 +100,7 @@ public class LevelBuilder {
 						ExitDoor exitDoor = new ExitDoor(pos);
 						exitDoor.setPlayerInteraction(new BarrierInteraction(exitDoor));
 						newLevelModel.setExitDoor(exitDoor);
+						exitDoorCount++;
 						break;
 					case 'd':
 						Door door = new Door(pos);
@@ -117,11 +118,8 @@ public class LevelBuilder {
 			}
 		}
 
-		if (playerCount != 1 || !((doorCount == 0 && doorKeyCount == 0) || (doorCount == 1 && doorKeyCount == 1))) {
+		if (playerCount != 1 || !(doorCount == 0 || doorCount == 1) || (doorCount != doorKeyCount) || (exitDoorCount != 1) )
 			throw new InvalidLevelException();
-		}
-
-		return newLevelModel;
 	}
 
 	private List<String> readLevelFile(int levelNumber) throws IOException {

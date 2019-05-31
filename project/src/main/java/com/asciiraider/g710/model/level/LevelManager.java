@@ -39,7 +39,13 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	}
 
 	public void resetLevel(int levelIndex) {
-		levelModels.set(levelIndex, lvlBuilder.buildLevel(levelIndex+1));
+		try {
+			LevelModel levelModel = new LevelModel();
+			lvlBuilder.buildLevel(levelModel, levelIndex+1);
+			levelModels.set(levelIndex, levelModel);
+		} catch (InvalidLevelException e) {
+			e.printStackTrace();
+		}
 		updateLevelVariables();
 	}
 

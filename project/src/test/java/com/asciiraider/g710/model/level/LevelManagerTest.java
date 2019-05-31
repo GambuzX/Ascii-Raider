@@ -43,6 +43,7 @@ public class LevelManagerTest {
 		levelMocks.add(lM2);
 		levelMocks.add(lM3);
 
+
 		when(mockLB.buildAllLevels()).thenReturn(levelMocks);
 
 		lifeManagerMock = mock(LifeManager.class);
@@ -119,7 +120,7 @@ public class LevelManagerTest {
 	}
 
 	@Test
-	public void resetLevels2(){
+	public void resetLevels2() {
 		LevelBuilder mockLB = mock(LevelBuilder.class);
 
 		when(mockLB.buildAllLevels()).thenReturn(levelMocks);
@@ -136,8 +137,8 @@ public class LevelManagerTest {
 		assertEquals(3, levelManager.getCurrentLevelKeys());
 	}
 
-	@Test
-	public void resetLevel(){
+	/*@Test
+	public void resetLevel() {
 		LevelBuilder mockLB = mock(LevelBuilder.class);
 
 		when(mockLB.buildAllLevels()).thenReturn(levelMocks);
@@ -147,7 +148,7 @@ public class LevelManagerTest {
 		verify(mockLB, times(1)).buildLevel(levelIndex+1);
 		verify(mockLB, times(0)).buildLevel(levelIndex);
 
-	}
+	}*/
 
 	@Test
 	public void getCurrentLevel(){

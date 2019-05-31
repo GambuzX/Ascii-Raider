@@ -1,5 +1,7 @@
 package com.asciiraider.g710.model.utilities;
 
+import java.util.Objects;
+
 public class Symbol {
 
     private char ascii;
@@ -43,5 +45,15 @@ public class Symbol {
 
     public void setBackgroundColor(HexColorString hexColor) {
         this.backgroundColor = hexColor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Symbol symbol = (Symbol) o;
+        return getAscii() == symbol.getAscii() &&
+                Objects.equals(foregroundColor, symbol.foregroundColor) &&
+                Objects.equals(backgroundColor, symbol.backgroundColor);
     }
 }
