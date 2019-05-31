@@ -9,7 +9,7 @@ application {
 }
 
 
-group 'com.asciiraider.g710.model.infobar'
+group 'com.asciiraider.g710.model'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

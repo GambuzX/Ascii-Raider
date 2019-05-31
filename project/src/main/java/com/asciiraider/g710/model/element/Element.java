@@ -40,11 +40,6 @@ abstract public class Element extends Model implements Cloneable {
 				getPosition().equals(element.getPosition());
 	}
 
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-
 	public Interaction getPlayerInteraction() {
 		return playerInteraction;
 	}
