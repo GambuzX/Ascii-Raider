@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class SwingFactory implements ViewFactory {
     private JFrame frame;
@@ -29,18 +30,27 @@ public class SwingFactory implements ViewFactory {
     @Override
     public SwingStateView<MenuModel> createMenuView() {
         frame.getContentPane().removeAll();
+        removeKeyListeners();
         return new SwingMenuView(frame, resourceManager);
     }
 
     @Override
     public SwingStateView<LevelModelGroup> createLevelView() {
         frame.getContentPane().removeAll();
+        removeKeyListeners();
         return new SwingGroupLevelView(frame, resourceManager);
     }
 
     @Override
     public SwingStateView<GameOverModel> createGameOverView() {
         frame.getContentPane().removeAll();
+        removeKeyListeners();
         return new SwingGameOverView(frame, resourceManager);
+    }
+
+    void removeKeyListeners() {
+        for (KeyListener kl : frame.getKeyListeners()) {
+            frame.removeKeyListener(kl);
+        }
     }
 }

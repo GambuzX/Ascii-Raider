@@ -17,13 +17,13 @@ public class SwingMenuView extends SwingStateView<MenuModel> {
         super(frame);
 
         menuComponent = new SwingMenuComponent(resourceManager.getMenuResources());
-        menuComponent.addKeyListener(new KeyAdapter() {
+        frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
                 eventQueue.add(KeyPressEvent.handleSwing(keyEvent));
             }
         });
-        menuComponent.setFocusable(true);
+        menuComponent.setFocusable(false);
 
         frame.getContentPane().add(menuComponent, "cell 0 0, width " + menuComponent.WIDTH + ", height " + menuComponent.HEIGHT);
 

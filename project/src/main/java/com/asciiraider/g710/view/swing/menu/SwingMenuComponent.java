@@ -28,6 +28,8 @@ public class SwingMenuComponent extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
+        if (menuModel == null) return;
+
         graphics.drawImage(menuResources.getMenuBackground(), 0, 0, null);
 
         Button playBtn = menuModel.getOptions().get(0);

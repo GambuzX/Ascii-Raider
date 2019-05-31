@@ -22,7 +22,6 @@ public class GameOverController extends ControllerState<GameOverModel>  {
 			case Q_KEY:
 				close = true;
 				model.getRestartButton().getAction().execute();
-				return;
 		}
 
 	}

@@ -50,9 +50,11 @@ public class GameOverState extends State {
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							return;
 						}
-					if(game.toExit()) break;
+						if (isInterrupted()) return;
+
+						if(game.toExit()) break;
 				}
 				game.exit();
 			}
@@ -63,7 +65,6 @@ public class GameOverState extends State {
 
 		while (!getStateController().isClose() && !game.toExit()) {
 			try {
-
 				gameOverView.draw(gameOverModel);
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
@@ -71,5 +72,7 @@ public class GameOverState extends State {
 				e.printStackTrace();
 			}
 		}
+
+		tick_second.interrupt();
 	}
 }
