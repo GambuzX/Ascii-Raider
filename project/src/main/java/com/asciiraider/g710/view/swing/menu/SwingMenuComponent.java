@@ -24,10 +24,11 @@ public class SwingMenuComponent extends JPanel {
         this.menuModel = menuModel;
     }
 
-
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+
+        if (menuModel == null) return;
 
         graphics.drawImage(menuResources.getMenuBackground(), 0, 0, null);
 

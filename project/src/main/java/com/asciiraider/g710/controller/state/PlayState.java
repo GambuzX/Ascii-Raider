@@ -50,8 +50,9 @@ public class PlayState extends State<LevelModelGroup> {
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							return;
 						}
+						if(isInterrupted()) return;
 						if(game.toExit()) break;
 					}
 					if(!game.toExit())
@@ -87,6 +88,7 @@ public class PlayState extends State<LevelModelGroup> {
 			}
 		}
 
+		tick_second.interrupt();
 		game.changeState(new GameOverState(game, getStateModel().getInfoBarModel().getScore()));
 	}
 

@@ -46,8 +46,9 @@ public class Application {
 			@Override
 			public void run(){
 				while (!game.toExit()) {
-					while (!game.getState().getStateController().isClose())
+					while (!game.getState().getStateController().isClose() && !game.toExit()) {
 						game.getState().getStateController().processEventList(game.getState().getStateView().getEventsList());
+					}
 					try {
 						Thread.sleep(10);
 					} catch (InterruptedException e) {

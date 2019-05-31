@@ -2,7 +2,7 @@ package com.asciiraider.g710.controller.state;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.Game;
-import com.asciiraider.g710.controller.command.ExitCommand;
+import com.asciiraider.g710.controller.command.RestartCommand;
 import com.asciiraider.g710.controller.gameover.GameOverController;
 import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.utilities.TimeAlarm;
@@ -18,7 +18,7 @@ public class GameOverState extends State {
 		this.game = game;
 		gameOverModel = new GameOverModel(score);
 		gameOverController = new GameOverController(gameOverModel);
-		gameOverModel.getExitButton().setAction(new ExitCommand(game));
+		gameOverModel.getRestartButton().setAction(new RestartCommand(game));
 		gameOverView = game.getViewFactory().createGameOverView();
 
 	}
@@ -50,13 +50,16 @@ public class GameOverState extends State {
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							return;
 						}
-					if(game.toExit()) break;
+						if (isInterrupted()) {
+							return;
+						}
+
+						if(game.toExit()) break;
 				}
 				game.exit();
 			}
-
 		};
 		tick_second.start();
 
@@ -64,7 +67,6 @@ public class GameOverState extends State {
 
 		while (!getStateController().isClose() && !game.toExit()) {
 			try {
-
 				gameOverView.draw(gameOverModel);
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
@@ -72,5 +74,7 @@ public class GameOverState extends State {
 				e.printStackTrace();
 			}
 		}
+
+		tick_second.interrupt();
 	}
 }

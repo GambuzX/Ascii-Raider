@@ -6,12 +6,14 @@ import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
 import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
+import com.asciiraider.g710.view.swing.gameover.SwingGameOverView;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
 import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class SwingFactory implements ViewFactory {
     private JFrame frame;
@@ -28,17 +30,27 @@ public class SwingFactory implements ViewFactory {
     @Override
     public SwingStateView<MenuModel> createMenuView() {
         frame.getContentPane().removeAll();
+        removeKeyListeners();
         return new SwingMenuView(frame, resourceManager);
     }
 
     @Override
     public SwingStateView<LevelModelGroup> createLevelView() {
         frame.getContentPane().removeAll();
+        removeKeyListeners();
         return new SwingGroupLevelView(frame, resourceManager);
     }
 
     @Override
     public SwingStateView<GameOverModel> createGameOverView() {
-        return null;
+        frame.getContentPane().removeAll();
+        removeKeyListeners();
+        return new SwingGameOverView(frame, resourceManager);
+    }
+
+    void removeKeyListeners() {
+        for (KeyListener kl : frame.getKeyListeners()) {
+            frame.removeKeyListener(kl);
+        }
     }
 }
