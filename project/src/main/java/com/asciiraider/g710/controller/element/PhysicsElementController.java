@@ -17,13 +17,14 @@ public class PhysicsElementController {
 
 	public void handleElementPhysics(LevelController levelController, LevelFacade levelFacade) {
 		Position nextPosition = physicsElement.moveDown();
-		levelFacade.setElementPosition(physicsElement, nextPosition);
 
 		Element belowEle = levelFacade.findElement(physicsElement.getPosition().getBelow());
 
 
-		if (belowEle == null )
+		if (belowEle == null ) {
 			physicsElement.setFalling(true);
+			levelFacade.setElementPosition(physicsElement, nextPosition);
+		}
 		// TODO: tirar isto para fora
 		else{
 			if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
