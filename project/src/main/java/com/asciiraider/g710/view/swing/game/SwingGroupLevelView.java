@@ -2,6 +2,7 @@ package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.KeyPressEvent;
+import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 import com.asciiraider.g710.view.swing.SwingStateView;
 
 import javax.swing.*;
@@ -13,14 +14,14 @@ public class SwingGroupLevelView extends SwingStateView<LevelModelGroup> {
     private SwingLevelComponent levelComponent;
     private SwingInfoBarComponent infoBarComponent;
 
-    public SwingGroupLevelView(JFrame frame) {
+    public SwingGroupLevelView(JFrame frame, SwingResourceManager resourceManager) {
         super(frame);
 
-        infoBarComponent = new SwingInfoBarComponent();
-        levelComponent = new SwingLevelComponent();
+        infoBarComponent = new SwingInfoBarComponent(resourceManager.getInfoBarResources());
+        levelComponent = new SwingLevelComponent(resourceManager.getLevelResources());
 
-        frame.getContentPane().add(infoBarComponent, "span 1, cell 0 0, width " + infoBarComponent.WIDTH + ", height " + infoBarComponent.HEIGHT);
-        frame.getContentPane().add(levelComponent, "span 1, cell 0 1, width " + levelComponent.WIDTH + ", height " + levelComponent.HEIGHT);
+        frame.getContentPane().add(infoBarComponent, "span 1, cell 0 0, width " + SwingInfoBarComponent.WIDTH + ", height " + SwingInfoBarComponent.HEIGHT);
+        frame.getContentPane().add(levelComponent, "span 1, cell 0 1, width " + SwingLevelComponent.WIDTH + ", height " + SwingLevelComponent.HEIGHT);
 
         frame.addKeyListener(new KeyAdapter() {
             @Override

@@ -2,6 +2,7 @@ package com.asciiraider.g710.view.swing.menu;
 
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.KeyPressEvent;
+import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 import com.asciiraider.g710.view.swing.SwingStateView;
 
 import javax.swing.*;
@@ -10,14 +11,12 @@ import java.awt.event.KeyEvent;
 
 public class SwingMenuView extends SwingStateView<MenuModel> {
 
-
     private SwingMenuComponent menuComponent;
 
-
-    public SwingMenuView(JFrame frame) {
+    public SwingMenuView(JFrame frame, SwingResourceManager resourceManager) {
         super(frame);
 
-        menuComponent = new SwingMenuComponent();
+        menuComponent = new SwingMenuComponent(resourceManager.getMenuResources());
         menuComponent.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {

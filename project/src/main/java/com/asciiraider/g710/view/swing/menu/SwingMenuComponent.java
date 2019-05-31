@@ -3,23 +3,24 @@ package com.asciiraider.g710.view.swing.menu;
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.model.utilities.Button;
+import com.asciiraider.g710.view.swing.resources.SwingMenuResources;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SwingMenuComponent extends JPanel {
 
-    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-    public final static int HEIGHT = (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int HEIGHT = (GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT) * GlobalConfigs.SWING_SIZE_FACTOR;
 
     private MenuModel menuModel;
     private SwingMenuResources menuResources;
 
-    public SwingMenuComponent() {
-        menuResources = new SwingMenuResources();
+    SwingMenuComponent(SwingMenuResources menuResources) {
+        this.menuResources = menuResources;
     }
 
-    public void setMenuModel(MenuModel menuModel) {
+    void setMenuModel(MenuModel menuModel) {
         this.menuModel = menuModel;
     }
 
@@ -28,7 +29,7 @@ public class SwingMenuComponent extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
-        graphics.drawImage(menuResources.getMenuImg(), 0, 0, null);
+        graphics.drawImage(menuResources.getMenuBackground(), 0, 0, null);
 
         Button playBtn = menuModel.getOptions().get(0);
         graphics.drawImage(

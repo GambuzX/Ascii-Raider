@@ -4,7 +4,7 @@ import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.element.Element;
 import com.asciiraider.g710.model.level.LevelModel;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.swing.utilities.SymbolMapper;
+import com.asciiraider.g710.view.swing.resources.SwingLevelResources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,16 +12,16 @@ import java.awt.*;
 public class SwingLevelComponent extends JPanel {
 
     private LevelModel levelModel;
-    private SymbolMapper symbolMapper;
+    private SwingLevelResources levelResources;
 
-    public final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
-    public final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
+    final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
 
-    public SwingLevelComponent() {
-        symbolMapper = new SymbolMapper();
+    SwingLevelComponent(SwingLevelResources levelResources) {
+        this.levelResources = levelResources;
     }
 
-    public void setLevelModel(LevelModel levelModel) {
+    void setLevelModel(LevelModel levelModel) {
         this.levelModel = levelModel;
     }
 
@@ -42,6 +42,6 @@ public class SwingLevelComponent extends JPanel {
 
     // TODO: se desse para fazer aqui refactoring e separar para SwingElementView como no Lanterna era fixe
     public void drawElement(Graphics graphics, Element ele, int x, int y) {
-        graphics.drawImage(symbolMapper.getElementImage(ele), x * GlobalConfigs.SWING_SIZE_FACTOR, y * GlobalConfigs.SWING_SIZE_FACTOR, null);
+        graphics.drawImage(levelResources.getElementImage(ele), x * GlobalConfigs.SWING_SIZE_FACTOR, y * GlobalConfigs.SWING_SIZE_FACTOR, null);
     }
 }
