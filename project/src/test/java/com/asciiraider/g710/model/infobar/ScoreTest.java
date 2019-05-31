@@ -29,6 +29,13 @@ public class ScoreTest {
 	}
 
 	@Test
+	public void constructor1(){
+		Score score = new Score(0);
+		assertEquals("0", score.toString());
+	}
+
+
+	@Test
 	public void getPontuation() {
 		assertEquals(1, scores.get(0).getPoints());
 	}

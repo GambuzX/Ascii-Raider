@@ -18,8 +18,6 @@ public class Score {
 		char[] digits = number.toCharArray();
 		char[] result = {'0', '0', '0'};
 		switch (digits.length){
-			case 0:
-				break;
 			case 1:
 				result[2] = digits[0];
 				break;
