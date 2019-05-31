@@ -28,10 +28,10 @@ public class LanternaGameOverView extends LanternaStateView<GameOverModel> {
 
 		graphics.putString(column, 4, gameOver);
 
-		String pontuation = model.getFinalScore().toString();
-		column  = (GlobalConfigs.LEVEL_WIDTH - pontuation.length()) / 2;
+		String score = model.getFinalScore().toString();
+		column  = (GlobalConfigs.LEVEL_WIDTH - score.length()) / 2;
 
-		graphics.putString(column, 6, pontuation);
+		graphics.putString(column, 6, score);
 
 
 		try {

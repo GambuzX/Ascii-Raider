@@ -29,6 +29,7 @@ public abstract class LanternaStateView<M extends Model> extends ViewState<M> {
 
 	@Override
 	public void exit() {
+		System.out.println("exiting");
 		try {
 			this.screen.close();
 		} catch (IOException e) {

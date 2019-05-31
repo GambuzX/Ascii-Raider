@@ -52,7 +52,9 @@ public class GameOverState extends State {
 						} catch (InterruptedException e) {
 							return;
 						}
-						if (isInterrupted()) return;
+						if (isInterrupted()) {
+							return;
+						}
 
 						if(game.toExit()) break;
 				}
