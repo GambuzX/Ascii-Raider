@@ -33,7 +33,6 @@ public class SwingMenuView extends SwingStateView<MenuModel> {
 
     @Override
     public void draw(MenuModel model) {
-
         menuComponent.setMenuModel(model);
 
         frame.repaint();
