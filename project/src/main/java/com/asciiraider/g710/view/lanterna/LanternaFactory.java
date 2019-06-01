@@ -18,7 +18,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class LanternaFactory implements ViewFactory {
-    private TerminalScreen screen;
+        private TerminalScreen screen;
 
     public LanternaFactory(int width, int height) throws IOException {
         Font font = new Font(GlobalConfigs.LANTERNA_FONT, Font.PLAIN, GlobalConfigs.LANTERNA_FONT_SIZE);
