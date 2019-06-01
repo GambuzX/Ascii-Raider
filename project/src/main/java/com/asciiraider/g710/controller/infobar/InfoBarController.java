@@ -16,7 +16,7 @@ public class InfoBarController {
 	}
 
 	public void handler(LevelTimeAlarm timeAlarm) {
-		this.infoBarModel.setTime(timeAlarm.getCurrentTime());
+		infoBarModel.setTime(timeAlarm.getCurrentTime());
 	}
 
 }

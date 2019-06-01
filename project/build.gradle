@@ -9,7 +9,7 @@ application {
 }
 
 
-group 'com.asciiraider.g710.controller.element'
+group 'com.asciiraider.g710.controller.menu'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
