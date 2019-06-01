@@ -5,9 +5,13 @@ import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
+import com.asciiraider.g710.view.lanterna.game.LanternaElementView;
+import com.asciiraider.g710.view.lanterna.game.LanternaInfoBarComponent;
+import com.asciiraider.g710.view.lanterna.game.LanternaLevelComponent;
 import com.asciiraider.g710.view.lanterna.game.LanternaLevelGroupView;
 import com.asciiraider.g710.view.lanterna.gameover.LanternaGameOverView;
 import com.asciiraider.g710.view.lanterna.menu.LanternaMenuView;
+import com.asciiraider.g710.view.lanterna.utilities.LanternaButtonView;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -33,12 +37,14 @@ public class LanternaFactory implements ViewFactory {
 
     @Override
     public LanternaStateView<MenuModel> createMenuView() {
-        return new LanternaMenuView(screen);
+        return new LanternaMenuView(screen, new LanternaButtonView(screen));
     }
 
     @Override
     public LanternaStateView<LevelModelGroup> createLevelView() {
-        return new LanternaLevelGroupView(screen);
+        LanternaLevelComponent levelView = new LanternaLevelComponent(screen, new LanternaElementView(screen));
+        LanternaInfoBarComponent infoBarView = new LanternaInfoBarComponent(screen);
+        return new LanternaLevelGroupView(screen, levelView, infoBarView);
     }
 
     @Override

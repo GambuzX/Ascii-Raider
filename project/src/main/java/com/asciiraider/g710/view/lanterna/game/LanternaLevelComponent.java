@@ -11,19 +11,45 @@ public class LanternaLevelComponent extends View<LevelModel> {
 	private TerminalScreen screen;
 	private LanternaElementView lanternaElementView;
 
-	public LanternaLevelComponent(TerminalScreen screen) {
+	public LanternaLevelComponent(TerminalScreen screen, LanternaElementView lanternaElementView) {
 		this.screen = screen;
-		this.lanternaElementView = new LanternaElementView(screen);
+		this.lanternaElementView = lanternaElementView;
 	}
 
 	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
 	public synchronized void draw(LevelModel levelModel) {
 
-		// TODO: ver isto
-		LevelFacade levelModelF = new LevelFacade(levelModel);
-
-		for (Element ele : levelModelF.getElements())
+		for (Element ele : levelModel.getBoulders())
 			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getWalls())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getStoneBlocks())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getSandBlocks())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getLevelKeys())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getTNT())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getEnemies())
+			lanternaElementView.draw(ele);
+
+		for (Element ele : levelModel.getExplosions())
+			lanternaElementView.draw(ele);
+
+		lanternaElementView.draw(levelModel.getPlayer());
+		lanternaElementView.draw(levelModel.getExitDoor());
+
+		if (levelModel.getDoor() != null) {
+			lanternaElementView.draw(levelModel.getExitDoor());
+			lanternaElementView.draw(levelModel.getDoorKey());
+		}
 	}
 
 }

@@ -14,10 +14,10 @@ import java.io.IOException;
 public class LanternaMenuView extends LanternaStateView<MenuModel> {
 	private LanternaButtonView lanternaButtonView;
 
-	public LanternaMenuView(TerminalScreen screen){
+	public LanternaMenuView(TerminalScreen screen, LanternaButtonView lanternaButtonView){
 
 		super(screen);
-		lanternaButtonView = new LanternaButtonView(screen);
+		this.lanternaButtonView = lanternaButtonView;
 	}
 
 	@Override

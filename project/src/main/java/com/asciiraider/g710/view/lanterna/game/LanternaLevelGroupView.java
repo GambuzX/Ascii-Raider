@@ -12,10 +12,10 @@ public class LanternaLevelGroupView extends LanternaStateView<LevelModelGroup> {
     LanternaInfoBarComponent infoBarView;
 
 
-    public LanternaLevelGroupView(TerminalScreen screen){
+    public LanternaLevelGroupView(TerminalScreen screen, LanternaLevelComponent lanternaLevelComponent, LanternaInfoBarComponent lanternaInfoBarComponent){
         super(screen);
-        levelView = new LanternaLevelComponent(screen);
-        infoBarView = new LanternaInfoBarComponent(screen);
+        this.levelView = lanternaLevelComponent;
+        this.infoBarView = lanternaInfoBarComponent;
     }
 
     @Override
