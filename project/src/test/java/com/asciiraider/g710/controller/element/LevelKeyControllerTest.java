@@ -128,7 +128,4 @@ public class LevelKeyControllerTest {
 
 		assertEquals(1, counter[0]);
 	}
-
-	public static class RandomMovementStrategyTest {
-	}
 }

@@ -43,27 +43,12 @@ public class LevelFacade {
 		return levelModel.getEnemies();
 	}
 
-	public boolean insideBounds(Position pos) {
-		return pos.getX() < GlobalConfigs.LEVEL_WIDTH && pos.getY() < GlobalConfigs.LEVEL_HEIGHT;
-	}
-
 	public List<AnimatedElement> getAnimatedElements(){
 		List<AnimatedElement> animatedElements =  new ArrayList<>();
 		animatedElements.addAll(levelModel.getExplosions());
 		return animatedElements;
 	}
 
-	public void removeAnimation(Element animation){
-		levelModel.getExplosions().remove(animation);
-		clearMatrixPosition(animation.getPosition());
-	}
-
-	public Explosion findExplosion(Position pos) {
-		Element element = findElement(pos);
-		if (element instanceof Explosion)
-			return (Explosion) element;
-		return null;
-	}
 	public List<Element> getElements() {
 		List<Element> elements = new ArrayList<>();
 		elements.add(levelModel.getPlayer());
@@ -83,6 +68,21 @@ public class LevelFacade {
 		return elements;
 	}
 
+	public boolean insideBounds(Position pos) {
+		return pos.getX() < GlobalConfigs.LEVEL_WIDTH && pos.getY() < GlobalConfigs.LEVEL_HEIGHT;
+	}
+
+	public void removeAnimation(Element animation){
+		levelModel.getExplosions().remove(animation);
+		clearMatrixPosition(animation.getPosition());
+	}
+	public Explosion findExplosion(Position pos) {
+		Element element = findElement(pos);
+		if (element instanceof Explosion)
+			return (Explosion) element;
+		return null;
+	}
+
 	public List<PhysicsElement> getPhysicsElements() {
 		List<PhysicsElement> physicsElements = new ArrayList<>();
 		physicsElements.addAll(levelModel.getBoulders());
@@ -93,21 +93,7 @@ public class LevelFacade {
 		return physicsElements;
 	}
 
-	public List<Position> getAdjacentEmptyPositions(Position pos) {
-		List<Position> adj = new ArrayList<>();
-
-		if (isEmptyPosition(pos.getAbove())) adj.add(pos.getAbove());
-
-		if (isEmptyPosition(pos.getBelow())) adj.add(pos.getBelow());
-
-		if (isEmptyPosition(pos.getLeftSide())) adj.add(pos.getLeftSide());
-
-		if (isEmptyPosition(pos.getRightSide())) adj.add(pos.getRightSide());
-
-		return adj;
-	}
-
-	// TODO: mudar nome e talvez sitio desta funcao
+		// TODO: mudar nome e talvez sitio desta funcao
 	public boolean isEmptyPosition(Position position) {
 		Element ele = findElement(position);
 		return (ele == null || ele.equals(getPlayer()));
@@ -259,11 +245,8 @@ public class LevelFacade {
 	}
 
 	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
-	// TODO rethink elements hierarchy
+	// TODO atencao aqui. se surgir bug foi linha removida
 	public void setElementPosition(MovableElement movable, Position newPos) {
-
-		if (movable instanceof Player && !getPlayer().getPosition().equals(movable.getPosition())) return;
-
 		clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);
 		updateMatrixPosition(movable);
