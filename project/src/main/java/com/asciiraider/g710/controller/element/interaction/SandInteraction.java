@@ -2,16 +2,15 @@ package com.asciiraider.g710.controller.element.interaction;
 
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.controller.level.LevelFacade;
-import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.level.LevelModel;
+import com.asciiraider.g710.model.element.Sand;
 import com.asciiraider.g710.model.utilities.Position;
 
-public class SandInteraction extends Interaction {
+public class SandInteraction extends Interaction<Sand> {
 	private LevelFacade levelFacade;
 
-	public SandInteraction(Element element, LevelModel levelModel) {
+	public SandInteraction(Sand element, LevelFacade levelFacade) {
 		super(element);
-		this.levelFacade = new LevelFacade(levelModel);
+		this.levelFacade = levelFacade;
 	}
 
 	@Override

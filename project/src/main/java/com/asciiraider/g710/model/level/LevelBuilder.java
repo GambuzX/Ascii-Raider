@@ -2,6 +2,7 @@ package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.element.interaction.*;
+import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.*;
 import com.asciiraider.g710.model.utilities.Position;
 
@@ -64,7 +65,7 @@ public class LevelBuilder {
 						break;
 					case 'B':
 						Boulder boulder = new Boulder(pos);
-						boulder.setPlayerInteraction(new PushInteraction(boulder,newLevelModel));
+						boulder.setPlayerInteraction(new PushInteraction(boulder, new LevelFacade(newLevelModel)));
 						newLevelModel.addBoulder(boulder);
 						break;
 					case 'P':
@@ -83,17 +84,17 @@ public class LevelBuilder {
 						break;
 					case 'T':
 						TNT tnt = new TNT(pos);
-						tnt.setPlayerInteraction(new PushInteraction(tnt, newLevelModel));
+						tnt.setPlayerInteraction(new PushInteraction(tnt, new LevelFacade(newLevelModel)));
 						newLevelModel.addTNT(tnt);
 						break;
 					case 's':
 						Sand sand = new Sand(pos);
-						sand.setPlayerInteraction(new SandInteraction(sand, newLevelModel));
+						sand.setPlayerInteraction(new SandInteraction(sand, new LevelFacade(newLevelModel)));
 						newLevelModel.addSandBlock(sand);
 						break;
 					case 'K':
 						LevelKey levelKey = new LevelKey(pos);
-						levelKey.setPlayerInteraction(new PushInteraction(levelKey, newLevelModel));
+						levelKey.setPlayerInteraction(new PushInteraction(levelKey, new LevelFacade(newLevelModel)));
 						newLevelModel.addLevelKey(levelKey);
 						break;
 					case 'D':
@@ -110,7 +111,7 @@ public class LevelBuilder {
 						break;
 					case 'k':
 						DoorKey doorKey = new DoorKey(pos);
-						doorKey.setPlayerInteraction(new DoorKeyInteraction(doorKey, newLevelModel));
+						doorKey.setPlayerInteraction(new DoorKeyInteraction(doorKey, new LevelFacade(newLevelModel)));
 						newLevelModel.setDoorKey(doorKey);
 						doorKeyCount++;
 						break;
