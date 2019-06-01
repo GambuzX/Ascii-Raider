@@ -14,11 +14,11 @@ public class SwingGroupLevelView extends SwingStateView<LevelModelGroup> {
     private SwingLevelComponent levelComponent;
     private SwingInfoBarComponent infoBarComponent;
 
-    public SwingGroupLevelView(JFrame frame, SwingResourceManager resourceManager) {
+    public SwingGroupLevelView(JFrame frame, SwingLevelComponent levelComponent, SwingInfoBarComponent infoBarComponent) {
         super(frame);
 
-        infoBarComponent = new SwingInfoBarComponent(resourceManager.getInfoBarResources());
-        levelComponent = new SwingLevelComponent(resourceManager.getLevelResources());
+        this.infoBarComponent = infoBarComponent;
+        this.levelComponent = levelComponent;
 
         frame.getContentPane().add(infoBarComponent, "span 1, cell 0 0, width " + SwingInfoBarComponent.WIDTH + ", height " + SwingInfoBarComponent.HEIGHT);
         frame.getContentPane().add(levelComponent, "span 1, cell 0 1, width " + SwingLevelComponent.WIDTH + ", height " + SwingLevelComponent.HEIGHT);

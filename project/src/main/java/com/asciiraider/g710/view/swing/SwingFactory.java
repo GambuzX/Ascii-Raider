@@ -6,8 +6,11 @@ import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.view.ViewFactory;
 import com.asciiraider.g710.view.swing.game.SwingGroupLevelView;
+import com.asciiraider.g710.view.swing.game.SwingInfoBarComponent;
+import com.asciiraider.g710.view.swing.game.SwingLevelComponent;
 import com.asciiraider.g710.view.swing.gameover.SwingGameOverComponent;
 import com.asciiraider.g710.view.swing.gameover.SwingGameOverView;
+import com.asciiraider.g710.view.swing.menu.SwingMenuComponent;
 import com.asciiraider.g710.view.swing.menu.SwingMenuView;
 import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 import net.miginfocom.swing.MigLayout;
@@ -32,22 +35,21 @@ public class SwingFactory implements ViewFactory {
     public SwingStateView<MenuModel> createMenuView() {
         frame.getContentPane().removeAll();
         removeKeyListeners();
-        return new SwingMenuView(frame, resourceManager);
+        return new SwingMenuView(frame, new SwingMenuComponent(resourceManager.getMenuResources()));
     }
 
     @Override
     public SwingStateView<LevelModelGroup> createLevelView() {
         frame.getContentPane().removeAll();
         removeKeyListeners();
-        return new SwingGroupLevelView(frame, resourceManager);
+        return new SwingGroupLevelView(frame, new SwingLevelComponent(resourceManager.getLevelResources()), new SwingInfoBarComponent(resourceManager.getInfoBarResources()));
     }
 
     @Override
     public SwingStateView<GameOverModel> createGameOverView() {
         frame.getContentPane().removeAll();
         removeKeyListeners();
-
-        return new SwingGameOverView(frame, resourceManager);
+        return new SwingGameOverView(frame, new SwingGameOverComponent(resourceManager.getGameOverResources()));
     }
 
     public void removeKeyListeners() {

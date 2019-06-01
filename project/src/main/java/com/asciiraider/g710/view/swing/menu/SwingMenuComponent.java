@@ -16,7 +16,7 @@ public class SwingMenuComponent extends JPanel {
     private MenuModel menuModel;
     private SwingMenuResources menuResources;
 
-    SwingMenuComponent(SwingMenuResources menuResources) {
+    public SwingMenuComponent(SwingMenuResources menuResources) {
         this.menuResources = menuResources;
     }
 

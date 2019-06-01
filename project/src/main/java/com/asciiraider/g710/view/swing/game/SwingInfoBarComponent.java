@@ -23,7 +23,7 @@ public class SwingInfoBarComponent extends JPanel {
 
     private SwingInfoBarResources infoBarResources;
 
-    SwingInfoBarComponent(SwingInfoBarResources infoBarResources) {
+    public SwingInfoBarComponent(SwingInfoBarResources infoBarResources) {
 
         this.infoBarResources = infoBarResources;
 

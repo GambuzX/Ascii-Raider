@@ -17,7 +17,7 @@ public class SwingLevelComponent extends JPanel {
     final static int WIDTH = GlobalConfigs.LEVEL_WIDTH * GlobalConfigs.SWING_SIZE_FACTOR;
     final static int HEIGHT = GlobalConfigs.LEVEL_HEIGHT * GlobalConfigs.SWING_SIZE_FACTOR;
 
-    SwingLevelComponent(SwingLevelResources levelResources) {
+    public SwingLevelComponent(SwingLevelResources levelResources) {
         this.levelResources = levelResources;
     }
 
