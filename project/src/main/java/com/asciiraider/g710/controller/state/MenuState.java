@@ -15,13 +15,13 @@ public class MenuState extends State<MenuModel> {
 	private ViewState<MenuModel> menuView;
 
 	// TODO: depois ver aqui
-	public MenuState(Game game) {
+	public MenuState(Game game, MenuModel menuModel) {
 		this.game = game;
-		menuModel = new MenuModel();
-		menuModel.getOptions().get(0).setAction(new StartCommand(game));
-		menuModel.getOptions().get(1).setAction(new ExitCommand(game));
-		menuController = new MenuController(menuModel);
-		menuView = game.getViewFactory().createMenuView();
+		this.menuModel = menuModel;
+		this.menuModel.getOptions().get(0).setAction(new StartCommand(game));
+		this.menuModel.getOptions().get(1).setAction(new ExitCommand(game));
+		this.menuController = new MenuController(menuModel);
+		this.menuView = game.getViewFactory().createMenuView();
 	}
 
 	@Override
@@ -42,10 +42,10 @@ public class MenuState extends State<MenuModel> {
 	@Override
 	public void run() {
 
-		while (!menuController.isClose()) {
+		while (!getStateController().isClose()) {
 			try {
 
-				menuView.draw(menuModel);
+				getStateView().draw(menuModel);
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {

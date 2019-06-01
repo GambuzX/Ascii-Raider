@@ -3,6 +3,7 @@ package com.asciiraider.g710.controller.state;
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.level.LevelControllerGroup;
+import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.ViewState;
 
@@ -11,12 +12,12 @@ public class PlayState extends State<LevelModelGroup> {
 	private LevelModelGroup levelModelGroup;
 	private ViewState<LevelModelGroup> levelModelGroupView;
 
-	public PlayState(Game game) {
+	public PlayState(Game game, LevelModelGroup levelModelGroup) {
 		this.game = game;
-		levelModelGroup = new LevelModelGroup();
-		levelControllerGroup = new LevelControllerGroup(levelModelGroup);
+		this.levelModelGroup = levelModelGroup;
+		this.levelControllerGroup = new LevelControllerGroup(this.levelModelGroup);
 
-		levelModelGroupView = game.getViewFactory().createLevelView();
+		this.levelModelGroupView = game.getViewFactory().createLevelView();
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class PlayState extends State<LevelModelGroup> {
 		}
 
 		tick_second.interrupt();
-		game.changeState(new GameOverState(game, getStateModel().getInfoBarModel().getScore()));
+		game.changeState(new GameOverState(game, new GameOverModel(getStateModel().getInfoBarModel().getScore())));
 	}
 
 }

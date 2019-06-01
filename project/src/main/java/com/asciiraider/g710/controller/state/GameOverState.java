@@ -13,13 +13,16 @@ public class GameOverState extends State {
 	private GameOverController gameOverController;
 	private GameOverModel gameOverModel;
 	private ViewState<GameOverModel> gameOverView;
+	private TimeAlarm alarm;
 
-	public GameOverState(Game game, int score) {
+	public GameOverState(Game game, GameOverModel gameOverModel) {
 		this.game = game;
-		gameOverModel = new GameOverModel(score);
-		gameOverController = new GameOverController(gameOverModel);
-		gameOverModel.getRestartButton().setAction(new RestartCommand(game));
-		gameOverView = game.getViewFactory().createGameOverView();
+		this.gameOverModel = gameOverModel;
+		this.gameOverController = new GameOverController(gameOverModel);
+		this.gameOverModel.getRestartButton().setAction(new RestartCommand(game));
+		this.gameOverView = game.getViewFactory().createGameOverView();
+		this.alarm =  new TimeAlarm(GlobalConfigs.GAMEOVER_SCREEN_DURATION);
+
 
 	}
 
@@ -38,25 +41,32 @@ public class GameOverState extends State {
 		return gameOverController;
 	}
 
+	public TimeAlarm getAlarm() {
+		return alarm;
+	}
+
 	@Override
 	public void run() {
-		TimeAlarm alarm =  new TimeAlarm(GlobalConfigs.GAMEOVER_SCREEN_DURATION);
+
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				alarm.start();
-				while (alarm.getCurrentTime() > 0) {
-						alarm.decTimer();
+				getAlarm().start();
+				while (getAlarm().getCurrentTime() > 0) {
+						getAlarm().decTimer();
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							return;
 						}
-						if (isInterrupted()) {
+
+					// TODO: confirmar que é preciso
+						/*if (isInterrupted()) {
 							return;
 						}
-
-						if(game.toExit()) break;
+*/
+						// TODO: confirmar que é preciso
+						//if(game.toExit()) break;
 				}
 				game.exit();
 			}
@@ -67,7 +77,7 @@ public class GameOverState extends State {
 
 		while (!getStateController().isClose() && !game.toExit()) {
 			try {
-				gameOverView.draw(gameOverModel);
+				getStateView().draw(gameOverModel);
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {
