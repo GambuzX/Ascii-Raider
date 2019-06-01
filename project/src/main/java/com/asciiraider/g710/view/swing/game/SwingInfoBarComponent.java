@@ -27,7 +27,7 @@ public class SwingInfoBarComponent extends JPanel {
 
         this.infoBarResources = infoBarResources;
 
-        this.setLayout(new MigLayout("wrap 17, insets 0 0, gap 0 0, fill", "[][][][][][][][][][][][][][][][][][]"));
+        this.setLayout(new MigLayout("wrap 35, insets 0 0, gap 0 0, fill", "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", "[]"));
 
         Font labelsFont = new Font("Serif", Font.PLAIN, GlobalConfigs.SWING_FONT_SIZE);
         UIManager.put("Label.font", labelsFont);
@@ -47,17 +47,17 @@ public class SwingInfoBarComponent extends JPanel {
         keysProgressBar.setFocusable(false);
         keysProgressBar.setStringPainted(true);
 
-        this.add(new JLabel("LEVEL  "), "span 1, cell 2 0, right");
-        this.add(levelValue, "span 1, cell 3 0, left");
+        this.add(new JLabel("LEVEL  "), "span 1, cell 4 0, right");
+        this.add(levelValue, "span 1, cell 5 0, left");
 
-        this.add(new JLabel("SCORE  "),  "span 1, cell 4 0, right");
-        this.add(scoreValue, "span 1, cell 5 0, left");
+        this.add(new JLabel("SCORE  "),  "span 1, cell 7 0, right");
+        this.add(scoreValue, "span 1, cell 8 0, left");
 
-        this.add(new JLabel("ENERGY  "), "span 1, cell 6 0, right");
-        this.add(keysProgressBar,  "span 1, cell 7 0, left, hmax " + HEIGHT);
+        this.add(new JLabel("ENERGY  "), "span 1, cell 11 0, right");
+        this.add(keysProgressBar,  "span 1, cell 12 0, left, hmax " + HEIGHT);
 
-        this.add(new JLabel("TIME  "), "span 1, cell 8 0, right");
-        this.add(timeValue, "span 1, cell 9 0, left");
+        this.add(new JLabel("TIME  "), "span 1, cell 15 0, right");
+        this.add(timeValue, "span 1, cell 16 0, left");
     }
 
     public void setInfoBarModel(InfoBarModel infoBarModel) {
