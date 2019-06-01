@@ -9,7 +9,7 @@ public final class GlobalConfigs {
     public final static int ENEMY_VELOCITY = 6;
 
     public final static int FPS = 20;
-    public final static int LEVEL_COUNT = 8;
+    public final static int LEVEL_COUNT = 20;
     public final static int LEVEL_WIDTH = 18;
     public final static int LEVEL_HEIGHT = 12;
     public final static int INFOBAR_HEIGHT = 1;
