@@ -1,7 +1,9 @@
 package com.asciiraider.g710.model.element;
 
 import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.controller.element.FollowMovementStrategy;
 import com.asciiraider.g710.controller.element.MovementStrategy;
+import com.asciiraider.g710.controller.element.RandomMovementStrategy;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 import org.junit.Before;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -66,6 +69,21 @@ public class EnemyTest {
 		for(int i = 0; i < GlobalConfigs.ENEMY_VELOCITY; i++)
 			enemyMock.move(positionsMock.get(1));
 		assertEquals(positionsMock.size(), enemyMock.move(positionsMock.get(1)).size());
+	}
+
+
+	@Test
+	public void skullEnemyTest(){
+		Position mockPosition = mock(Position.class);
+		SkullEnemy skullEnemy = new SkullEnemy(mockPosition);
+		assertTrue(skullEnemy.createMovementStrategy() instanceof RandomMovementStrategy);
+	}
+
+	@Test
+	public void mummyEnemyTest(){
+		Position mockPosition = mock(Position.class);
+		MummyEnemy mummyEnemy = new MummyEnemy(mockPosition);
+		assertTrue(mummyEnemy.createMovementStrategy() instanceof FollowMovementStrategy);
 	}
 
 }

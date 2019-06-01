@@ -99,7 +99,7 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	@Override
 	public void updateDeath() {
 		restartLevel();
-		if(!lifeManager.hasLifes())
+		if(!getLifeManager().hasLifes())
 			finishGame();
 	}
 

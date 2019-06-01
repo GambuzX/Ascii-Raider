@@ -33,12 +33,11 @@ abstract public class Element extends Model implements Cloneable {
 
 	@Override
 	public boolean equals(Object o) {
-		return true;
-		/*if (this == o) return true;
+		if (this == o) return true;
 		if (!(o instanceof Element)) return false;
 		Element element = (Element) o;
 		return getSymbol().equals(element.getSymbol())&&
-				getPosition().equals(element.getPosition());*/
+				getPosition().equals(element.getPosition());
 	}
 
 	public Interaction getPlayerInteraction() {

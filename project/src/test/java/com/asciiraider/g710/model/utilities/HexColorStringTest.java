@@ -8,8 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class HexColorStringTest {
 	private List<HexColorString> hexColors;
@@ -90,5 +89,39 @@ public class HexColorStringTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void hexColor1(){
 		HexColorString color = new HexColorString("qwe");
+	}
+
+	@Test
+	public void equals1(){
+		HexColorString color = new HexColorString("123");
+		assertTrue(color.equals(color));
+	}
+
+	@Test
+	public void equals2(){
+		HexColorString color = new HexColorString("123");
+		Position mockPosition = mock(Position.class);
+		assertFalse(color.equals(mockPosition));
+	}
+
+	@Test
+	public void equals3(){
+		HexColorString mockColor = mock(HexColorString.class);
+		when(mockColor.getColor()).thenReturn("ola");
+
+		HexColorString mockColor2 = mock(HexColorString.class);
+		when(mockColor2.getColor()).thenReturn("adeus");
+
+		assertFalse(mockColor.equals(mockColor2));
+	}
+
+	@Test
+	public void equals4(){
+		HexColorString colo1 = new HexColorString("123");
+		HexColorString colo2 = new HexColorString("123");
+
+		assertTrue(colo1.equals(colo2));
+
+
 	}
 }

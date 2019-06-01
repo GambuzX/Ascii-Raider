@@ -17,10 +17,11 @@ public class LevelManagerTest {
 	private List<LevelModel> levelMocks;
 	private LifeManager lifeManagerMock;
 	private List<LevelKey> levelKeys;
+	private LevelBuilder mockLB;
 
 	@Before
 	public void setUp(){
-		LevelBuilder mockLB = mock(LevelBuilder.class);
+		mockLB = mock(LevelBuilder.class);
 		levelKeys = new ArrayList<>();
 		LevelKey lk = mock(LevelKey.class);
 		levelKeys.add(lk);
@@ -137,18 +138,18 @@ public class LevelManagerTest {
 		assertEquals(3, levelManager.getCurrentLevelKeys());
 	}
 
-	/*@Test
-	public void resetLevel() {
+	@Test
+	public void resetLevel() throws InvalidLevelException {
 		LevelBuilder mockLB = mock(LevelBuilder.class);
 
 		when(mockLB.buildAllLevels()).thenReturn(levelMocks);
 		LevelManager levelManager1 = new LevelManager(mockLB, lifeManagerMock);
 		int levelIndex = 1;
 		levelManager1.resetLevel(levelIndex);
-		verify(mockLB, times(1)).buildLevel(levelIndex+1);
-		verify(mockLB, times(0)).buildLevel(levelIndex);
+		verify(mockLB, times(1)).buildLevel(any(),eq(levelIndex+1));
+		verify(mockLB, times(0)).buildLevel(any(), eq(levelIndex));
 
-	}*/
+	}
 
 	@Test
 	public void getCurrentLevel(){
@@ -201,5 +202,31 @@ public class LevelManagerTest {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		when(levelFacade.getLevelKeys()).thenReturn(levelKeys);
 		assertEquals(3, levelFacade.getLevelKeys().size());
+	}
+
+	@Test
+	public void updateDeath1(){
+		LevelManager levelManagerMock = spy(new LevelManager(mockLB, lifeManagerMock));
+		when(levelManagerMock.getLifeManager()).thenReturn(lifeManagerMock);
+		levelManagerMock.updateDeath();
+		assertTrue(levelManagerMock.isGameFinished());
+	}
+
+
+	@Test
+	public void updateDeath2(){
+		LifeManager newLife = mock(LifeManager.class);
+		when(newLife.getCurrentLife()).thenReturn(2);
+		when(newLife.hasLifes()).thenReturn(true);
+
+		LevelManager newLM = spy(new LevelManager(mockLB, newLife));
+
+		assertEquals(3, newLM.getCurrentLevelKeys());
+		newLM.updateLevelKey();
+		assertEquals(2, newLM.getCurrentLevelKeys());
+		when(newLM.getCurrentLevel()).thenReturn(levelMocks.get(0));
+		newLM.updateDeath();
+		assertEquals(3, newLM.getCurrentLevelKeys());
+
 	}
 }

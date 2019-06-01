@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class SymbolTest {
@@ -56,5 +56,75 @@ public class SymbolTest {
 	public void setForeColor(){
 		symbols.get(1).setForegroundColor(new HexColorString("456789"));
 		assertEquals(symbols.get(2).getForegroundColorString(), symbols.get(1).getForegroundColorString());
+	}
+
+	@Test
+	public void equals1(){
+		HexColorString mockColor1 = mock(HexColorString.class);
+		when(mockColor1.toString()).thenReturn("123");
+		Symbol symbol = new Symbol('a', mockColor1, mockColor1);
+		assertTrue(symbol.equals(symbol));
+	}
+
+	@Test
+	public void equals2(){
+		HexColorString mockColor1 = mock(HexColorString.class);
+		when(mockColor1.toString()).thenReturn("123");
+		Symbol symbol = new Symbol('a', mockColor1, mockColor1);
+
+		HexColorString hexColorString = mock(HexColorString.class);
+		assertFalse(symbol.equals(hexColorString));
+	}
+
+	@Test
+	public void equals3(){
+		Symbol symbol = mock(Symbol.class);
+		when(symbol.getAscii()).thenReturn('a');
+
+		Symbol symbol2 = mock(Symbol.class);
+		when(symbol2.getAscii()).thenReturn('b');
+
+		assertFalse(symbol.equals(symbol2));
+	}
+
+	@Test
+	public void equals4(){
+		Symbol symbol = mock(Symbol.class);
+		when(symbol.getAscii()).thenReturn('a');
+		when(symbol.getForegroundColorString()).thenReturn("1234");
+
+		Symbol symbol2 = mock(Symbol.class);
+		when(symbol2.getAscii()).thenReturn('a');
+		when(symbol2.getForegroundColorString()).thenReturn("123");
+
+
+		assertFalse(symbol.equals(symbol2));
+	}
+
+	@Test
+	public void equals5(){
+		Symbol symbol = mock(Symbol.class);
+		when(symbol.getAscii()).thenReturn('a');
+		when(symbol.getForegroundColorString()).thenReturn("123");
+		when(symbol.getBackgroundColorString()).thenReturn("123");
+
+
+		Symbol symbol2 = mock(Symbol.class);
+		when(symbol2.getAscii()).thenReturn('a');
+		when(symbol2.getForegroundColorString()).thenReturn("123");
+		when(symbol2.getBackgroundColorString()).thenReturn("1234");
+
+		assertFalse(symbol.equals(symbol2));
+	}
+
+	@Test
+	public void equal6(){
+		HexColorString mockColor1 = mock(HexColorString.class);
+		when(mockColor1.toString()).thenReturn("123");
+		Symbol symbol = new Symbol('a', mockColor1, mockColor1);
+		Symbol symbol2 = new Symbol('a', mockColor1, mockColor1);
+
+
+		assertTrue(symbol.equals(symbol2));
 	}
 }

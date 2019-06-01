@@ -1,7 +1,5 @@
 package com.asciiraider.g710.model.utilities;
 
-import java.util.Objects;
-
 public class HexColorString {
 	private String color;
 
@@ -39,6 +37,6 @@ public class HexColorString {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		HexColorString that = (HexColorString) o;
-		return Objects.equals(getColor(), that.getColor());
+		return getColor().equals(that.getColor());
 	}
 }
