@@ -43,11 +43,14 @@ public class LevelBuilder {
 
 	private void buildLevelFromFile(LevelModel newLevelModel, List<String> levelLines) throws InvalidLevelException {
 
-		// TODO make sure dimensions are okay
 		newLevelModel.setTime(Integer.parseInt(levelLines.get(0)));
+
+		if (levelLines.size() != GlobalConfigs.LEVEL_HEIGHT + 1) throw new InvalidLevelException();
 
 		int playerCount = 0, doorCount = 0, doorKeyCount = 0, exitDoorCount = 0;
 		for (int row = 1; row < levelLines.size(); row++) {
+
+			if (levelLines.get(row).length() != GlobalConfigs.LEVEL_WIDTH) throw new InvalidLevelException();
 			for (int col = 0; col < levelLines.get(row).length(); col++) {
 
 				char curr = levelLines.get(row).charAt(col);

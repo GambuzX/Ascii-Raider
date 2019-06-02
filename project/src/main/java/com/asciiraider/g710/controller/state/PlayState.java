@@ -41,7 +41,6 @@ public class PlayState extends State<LevelModelGroup> {
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				//while (!getStateController().isClose()) {
 				while (!getStateModel().getLevelManager().isGameFinished()) {
 
 					// TODO: refactoring??
@@ -64,7 +63,6 @@ public class PlayState extends State<LevelModelGroup> {
 		};
 		tick_second.start();
 
-		//while (!getStateController().isClose()) {
 		while (!levelModelGroup.getLevelManager().isGameFinished()) {
 
 			try {

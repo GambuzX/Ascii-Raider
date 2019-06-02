@@ -8,7 +8,6 @@ public abstract class MovableElement extends DestructibleElement{
         super(position, symbol);
     }
 
-    // TODO: ver se isto precisa de estar aqui. so o player e que esta a usar
     public Position moveUp() {
         try{
             return this.getPosition().getAbove();

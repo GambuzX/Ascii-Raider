@@ -59,14 +59,6 @@ public class GameOverState extends State {
 						} catch (InterruptedException e) {
 							return;
 						}
-
-					// TODO: confirmar que é preciso
-						/*if (isInterrupted()) {
-							return;
-						}
-*/
-						// TODO: confirmar que é preciso
-						//if(game.toExit()) break;
 				}
 				game.exit();
 			}

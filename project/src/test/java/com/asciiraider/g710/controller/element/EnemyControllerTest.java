@@ -50,7 +50,7 @@ public class EnemyControllerTest {
 		when(levelFacadeMock.insideBounds(mockPos.get(0))).thenReturn(false);
 		when(levelFacadeMock.insideBounds(mockPos.get(1))).thenReturn(true);
 
-		when(levelFacadeMock.isEmptyPosition(mockPos.get(1))).thenReturn(false);
+		when(levelFacadeMock.canEnemyMoveTo(mockPos.get(1))).thenReturn(false);
 
 		doThrow(new IllegalArgumentException()).when(levelFacadeMock).setElementPosition(any(), any());
 		enemyController.handle(levelFacadeMock);
@@ -68,7 +68,7 @@ public class EnemyControllerTest {
 		when(levelFacadeMock.insideBounds(mockPos.get(0))).thenReturn(false);
 		when(levelFacadeMock.insideBounds(mockPos.get(1))).thenReturn(true);
 
-		when(levelFacadeMock.isEmptyPosition(mockPos.get(1))).thenReturn(true);
+		when(levelFacadeMock.canEnemyMoveTo(mockPos.get(1))).thenReturn(true);
 
 		doThrow(new IllegalArgumentException()).when(levelFacadeMock).setElementPosition(enemyMock, mockPos.get(1));
 		enemyController.handle(levelFacadeMock);

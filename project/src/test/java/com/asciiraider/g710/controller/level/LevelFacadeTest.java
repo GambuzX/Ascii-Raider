@@ -372,7 +372,7 @@ public class LevelFacadeTest {
 
 		levelFacade = new LevelFacade(levelModelMock);
 
-		assertFalse(levelFacade.isEmptyPosition(position));
+		assertFalse(levelFacade.canEnemyMoveTo(position));
 	}
 
 	@Test
@@ -388,7 +388,7 @@ public class LevelFacadeTest {
 
 		levelFacade = new LevelFacade(levelModelMock);
 
-		assertTrue(levelFacade.isEmptyPosition(position));
+		assertTrue(levelFacade.canEnemyMoveTo(position));
 	}
 
 	@Test
@@ -407,7 +407,7 @@ public class LevelFacadeTest {
 
 		levelFacade = new LevelFacade(levelModelMock);
 
-		assertTrue(levelFacade.isEmptyPosition(position));
+		assertTrue(levelFacade.canEnemyMoveTo(position));
 	}
 
 	@Test
