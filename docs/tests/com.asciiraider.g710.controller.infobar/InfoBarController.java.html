@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>InfoBarController.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.asciiraider.g710.controller.infobar;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.asciiraider.g710.controller.level.LevelController;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.asciiraider.g710.model.infobar.InfoBarModel;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.asciiraider.g710.model.level.LevelTimeAlarm;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class InfoBarController {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private InfoBarModel infoBarModel;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;public InfoBarController(LevelController levelController, InfoBarModel infoBarModel){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.infoBarModel = infoBarModel;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_13'/>
+13
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_13'>1</a>
+<span>
+
+1. <init> : removed call to com/asciiraider/g710/controller/life/LifeController::addObserver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;levelController.getLifeController().addObserver(infoBarModel);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_14'/>
+14
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_14'>1</a>
+<span>
+
+1. <init> : removed call to com/asciiraider/g710/controller/element/LevelKeyController::addObserver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;levelController.getLevelKeyController().addObserver(infoBarModel);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_15'>1</a>
+<span>
+
+1. <init> : removed call to com/asciiraider/g710/controller/level/LevelProgressionController::addObserver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;levelController.getLevelProgressionController().addObserver(infoBarModel);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public void handler(LevelTimeAlarm timeAlarm) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_19'/>
+19
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_19'>1</a>
+<span>
+
+1. handler : removed call to com/asciiraider/g710/model/infobar/InfoBarModel::setTime &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;infoBarModel.setTime(timeAlarm.getCurrentTime());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@27f73e68_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@27f73e68_13'>13</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_13'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b><init><br/><b>Killed by : </b>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test2(com.asciiraider.g710.controller.infobar.InfoBarControllerTest)</span></span> removed call to com/asciiraider/g710/controller/life/LifeController::addObserver &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@27f73e68_14'>14</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_14'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b><init><br/><b>Killed by : </b>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test2(com.asciiraider.g710.controller.infobar.InfoBarControllerTest)</span></span> removed call to com/asciiraider/g710/controller/element/LevelKeyController::addObserver &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@27f73e68_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b><init><br/><b>Killed by : </b>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test2(com.asciiraider.g710.controller.infobar.InfoBarControllerTest)</span></span> removed call to com/asciiraider/g710/controller/level/LevelProgressionController::addObserver &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@27f73e68_19'>19</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@27f73e68_19'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handler<br/><b>Killed by : </b>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test1(com.asciiraider.g710.controller.infobar.InfoBarControllerTest)</span></span> removed call to com/asciiraider/g710/model/infobar/InfoBarModel::setTime &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler4(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (3 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.isClose(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (2 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.getStateController(com.asciiraider.g710.controller.state.PlayStateTest) (1 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.getInfoBarController(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (28 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler9(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (2 ms)</li><li>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test2(com.asciiraider.g710.controller.infobar.InfoBarControllerTest) (3 ms)</li><li>com.asciiraider.g710.controller.infobar.InfoBarControllerTest.test1(com.asciiraider.g710.controller.infobar.InfoBarControllerTest) (70 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.getStateView(com.asciiraider.g710.controller.state.PlayStateTest) (1 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.getLevelController(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (1 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler7(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (3 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler1(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (1 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler2(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (13 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler8(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (3 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler3(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (5 ms)</li><li>com.asciiraider.g710.controller.command.StartCommandTest.test1(com.asciiraider.g710.controller.command.StartCommandTest) (36 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler5(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (5 ms)</li><li>com.asciiraider.g710.controller.level.LevelControllerGroupTest.handler6(com.asciiraider.g710.controller.level.LevelControllerGroupTest) (5 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.getStateModel(com.asciiraider.g710.controller.state.PlayStateTest) (1 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.run2(com.asciiraider.g710.controller.state.PlayStateTest) (61 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.run1(com.asciiraider.g710.controller.state.PlayStateTest) (61 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.testClockNotFinish2(com.asciiraider.g710.controller.state.PlayStateTest) (1040 ms)</li><li>com.asciiraider.g710.controller.state.PlayStateTest.testClockNotFinish(com.asciiraider.g710.controller.state.PlayStateTest) (1062 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.4.3
+
+</body>
+</html>
