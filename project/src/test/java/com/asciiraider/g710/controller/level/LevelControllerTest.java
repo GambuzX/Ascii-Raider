@@ -120,7 +120,7 @@ public class LevelControllerTest {
 		LifeController lifeController = spy(levelControllerSpy.getLifeController());
 
 
-		levelControllerSpy.triggerExplosion(positionMock);
+		assertFalse(levelControllerSpy.triggerExplosion(positionMock));
 
 		verify(levelFacadeMock, times(1)).findElement(positionMock);
 
@@ -170,7 +170,7 @@ public class LevelControllerTest {
 
 		LifeController lifeController = spy(levelController2.getLifeController());
 
-		levelController2.triggerExplosion(initialPosition);
+		assertTrue(levelController2.triggerExplosion(initialPosition));
 
 		verify(levelFacadeMock, times(1)).findElement(any());
 
@@ -203,7 +203,7 @@ public class LevelControllerTest {
 		LifeController lifeController = spy(levelControllerSpy.getLifeController());
 
 
-		levelControllerSpy.triggerExplosion(positionMock);
+		assertFalse(levelControllerSpy.triggerExplosion(positionMock));
 
 		verify(levelFacadeMock, times(1)).findElement(any());
 
@@ -236,7 +236,7 @@ public class LevelControllerTest {
 		LifeController lifeController = spy(levelControllerSpy.getLifeController());
 
 
-		levelControllerSpy.triggerExplosion(positionMock);
+		assertFalse(levelControllerSpy.triggerExplosion(positionMock));
 
 		verify(levelFacadeMock, times(1)).findElement(any());
 
@@ -293,9 +293,9 @@ public class LevelControllerTest {
 		doAnswer(answer).when(levelControllerSpy).triggerExplosion(tntPosition);
 
 
-		levelControllerSpy.triggerExplosion(positionMock);
+		assertTrue(levelControllerSpy.triggerExplosion(positionMock));
 
-		verify(levelFacadeMock, times(2)).findElement(any());
+		verify(levelFacadeMock, times(1)).findElement(any());
 
 
 		verify(lifeController, never()).notifyObservers();

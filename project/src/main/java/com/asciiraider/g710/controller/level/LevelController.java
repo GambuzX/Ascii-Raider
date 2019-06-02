@@ -41,7 +41,7 @@ public class LevelController {
 		return  this.levelProgressionController;
 	}
 
-	public void triggerExplosion(Position pos) {
+	public boolean triggerExplosion(Position pos) {
 		LevelFacade levelFacade = levelManager.getCurrentLevelFacade();
 		List<Position> inRange = pos.getMatrix();
 		inRange.add(pos);
@@ -50,7 +50,7 @@ public class LevelController {
 			Element caught = levelFacade.findElement(position);
 			if (caught instanceof Player){
 				lifeController.notifyObservers();
-				return;
+				return true;
 			}
 
 			else if (caught == null || caught instanceof DestructibleElement) {
@@ -60,9 +60,11 @@ public class LevelController {
 				levelFacade.addExplosion(position);
 
 				if (caught instanceof Explosive)
-					triggerExplosion(position);
+					if(triggerExplosion(position))
+						return true;
 			}
 		}
+		return false;
 	}
 
 	//// -------------------------------------------------------------------------------------------------------- /////
