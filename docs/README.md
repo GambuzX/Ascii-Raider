@@ -239,6 +239,38 @@ By using the Abstract Factory, each target platform has its own isolated concret
 
 The composite pattern allowed us to compose simple Views in more complex ones, effectively creating new View objects that use them in different ways. Besides this, the program itself does not need to worry whether it is a simple or a composed view, only having to call *draw* at all times.
 
+
+### State (your business T***)
+
+#### Problem in Context
+
+It was advised to use this pattern MVC-style to create the various states of the game (Menu, Playing, GameOver...) so we didn't reach the point of having a problem. What we needed was an elegant way of switching between the different stages that would allow us enough flexibility to add or remove a new stage as the development of the game progressed.
+
+#### The Pattern
+
+To implement the different states of a game we used the State Pattern. 
+> This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass).
+> - André Restivo
+######
+We could not have put it better.
+#### Implementation
+
+The following diagram illustrates how this pattern was implemented:
+
+![Game State UML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/GameState.png)*Game Sate UML*
+
+These classes can be found in the following files:
+
+-   [Game](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
+-   [State](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/State.java)
+-   [MenuState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/MenuState.java)
+-   [PlayState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/PlayState.java)
+-   [GameOverState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/GameOverState.java)
+
+#### Consequences
+This pattern not only respects the Open - Closed Principle but also allows to easily add more stages to a game or quickly change the implementation of one state. Because each state is in the MVC Architectural Pattern, the flexibility is even higher allowing us to change the View of the GameOverState very easily if we weren't happy with it.
+
+
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
