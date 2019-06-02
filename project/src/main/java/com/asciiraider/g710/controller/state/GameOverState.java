@@ -51,21 +51,17 @@ public class GameOverState extends State {
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				getAlarm().start();
-				while (getAlarm().getCurrentTime() > 0) {
+				try {
+					getAlarm().start();
+					while (getAlarm().getCurrentTime() > 0) {
 						getAlarm().decTimer();
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							return;
-						}
-				}
-				game.exit();
+						Thread.sleep(1000);
+					}
+					game.exit();
+				} catch (InterruptedException ignored) {}
 			}
 		};
 		tick_second.start();
-
-
 
 		while (!getStateController().isClose() && !game.toExit()) {
 			try {
