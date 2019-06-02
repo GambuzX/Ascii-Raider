@@ -15,7 +15,6 @@ import java.util.List;
 
 public class LevelBuilder {
 
-	// TODO: ver isto de protected vs package-private
 	public List<LevelModel> buildAllLevels() {
 		List<LevelModel> levelModels = new ArrayList<>();
 		for (int i = 1; i <= GlobalConfigs.LEVEL_COUNT; i++) {

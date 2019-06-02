@@ -83,7 +83,6 @@ public class LevelController {
 		}
 	}
 
-	// TODO: classe à parte talvez no Group Controller?? ou por num controller o if e por igual às anteriores
 	public void handleAnimations(){
 		for(AnimatedElement animated : levelManager.getCurrentLevelFacade().getAnimatedElements())
 			if (!animated.updateAnimation())

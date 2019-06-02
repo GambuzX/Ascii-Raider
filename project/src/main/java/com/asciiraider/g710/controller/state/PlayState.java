@@ -43,7 +43,6 @@ public class PlayState extends State<LevelModelGroup> {
 			public void run() {
 				while (!getStateModel().getLevelManager().isGameFinished()) {
 
-					// TODO: refactoring??
 					while (getStateModel().getLevelManager().getTimeAlarm().getCurrentTime() > 0) {
 						getStateController().getInfoBarController().handler(getStateModel().getLevelManager().getTimeAlarm());
 						getStateModel().getLevelManager().getTimeAlarm().decTimer();

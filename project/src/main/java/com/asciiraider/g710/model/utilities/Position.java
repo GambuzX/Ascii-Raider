@@ -42,7 +42,6 @@ public class Position {
 		this.y = y;
 	}
 
-	// TODO: fazer controlo aqui do erro??
 	public Position getAbove() throws IllegalArgumentException{
 		return new Position(this.x, this.y - 1);
 	}

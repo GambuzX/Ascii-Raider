@@ -16,10 +16,8 @@ public class LanternaLevelComponent extends View<LevelModel> {
 		this.lanternaElementView = new LanternaElementView(screen);
 	}
 
-	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
 	public synchronized void draw(LevelModel levelModel) {
 
-		// TODO: ver isto
 		LevelFacade levelModelF = new LevelFacade(levelModel);
 
 		for (Element ele : levelModelF.getElements())

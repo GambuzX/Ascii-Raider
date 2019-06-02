@@ -14,7 +14,6 @@ public class MenuState extends State<MenuModel> {
 	private MenuModel menuModel;
 	private ViewState<MenuModel> menuView;
 
-	// TODO: depois ver aqui
 	public MenuState(Game game, MenuModel menuModel) {
 		this.game = game;
 		this.menuModel = menuModel;

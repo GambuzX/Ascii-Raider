@@ -17,7 +17,7 @@ public class Application {
 			System.out.println("Please specify View Platform");
 			return;
 		}
-		// TODO: refactor os valores aqui
+
 		if (args[0].equals(GlobalConfigs.LANTERNA_OPTION)) {
 			try {
 				viewFactory = new LanternaFactory(GlobalConfigs.LEVEL_WIDTH, GlobalConfigs.LEVEL_HEIGHT + GlobalConfigs.INFOBAR_HEIGHT);

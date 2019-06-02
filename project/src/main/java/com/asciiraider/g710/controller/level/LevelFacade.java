@@ -240,8 +240,6 @@ public class LevelFacade {
 		levelModel.addExplosion(explosion);
 	}
 
-	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
-	// TODO atencao aqui. se surgir bug foi linha removida
 	public void setElementPosition(MovableElement movable, Position newPos) {
 		clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);

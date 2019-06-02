@@ -40,7 +40,6 @@ public class SwingLevelComponent extends JPanel {
 
     }
 
-    // TODO: se desse para fazer aqui refactoring e separar para SwingElementView como no Lanterna era fixe
     public void drawElement(Graphics graphics, Element ele, int x, int y) {
         graphics.drawImage(levelResources.getElementImage(ele), x * GlobalConfigs.SWING_SIZE_FACTOR, y * GlobalConfigs.SWING_SIZE_FACTOR, null);
     }
