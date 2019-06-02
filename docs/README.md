@@ -77,23 +77,25 @@ We created a LevelBuilder class that decodes .lvl files in order to create a new
 
 There are many features yet to be implemented:
 
- - [ ] Main Menu: where the user may choose between begin a new game from scratch (level 1), go directly to a certain level or view the highscores ranking;
- - [ ] Score: in order to implement the highscore ranking, we will have to create a score that will be based on the cumulative time that the player needs to complete the different levels;
- - [ ] Information Bar: we want to add a bar to the top of the screen with different information: 
-	 - [ ] Time: a counter with the remaining time to finish the current level, which will be used to calculate the score;
-	 - [ ] Score: a number representing the current score that the player has already accumulated;
-	 - [ ] Level Number: parameter with information concerning the current level;
-	 - [ ] Number of Lifes: we will allow the player to die or restart levels two times (3 lifes) before completely loosing the game;
-	 - [ ] Progress Bar: indicates the number of level keys already put in the exit door and how many are missing;
-	 - [ ] Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
+ - [x] Main Menu: where the user may choose between begin a new game from scratch (level 1), go directly to a certain level or view the highscores ranking;
+ - [x] Score: in order to implement the highscore ranking, we will have to create a score that will be based on the cumulative time that the player needs to complete the different levels;
+ - [x] Information Bar: we want to add a bar to the top of the screen with different information: 
+	 - [x] Time: a counter with the remaining time to finish the current level, which will be used to calculate the score;
+	 - [x] Score: a number representing the current score that the player has already accumulated;
+	 - [x] Level Number: parameter with information concerning the current level;
+	 - [x] Number of Lifes: we will allow the player to die or restart levels two times (3 lifes) before completely loosing the game;
+	 - [x] Progress Bar: indicates the number of level keys already put in the exit door and how many are missing;
+	 - [x] Restart button: button or indication of the key that you have to press in order to restart a level. When you perform this action, you will loose one life.
 - [ ] New Enemies: 
 	- [ ] Improve the way the current enemy moves;
 	- [x] Add another kind of enemy, which follows the player;
-- [ ] Improved Lives system: add two other ways of loosing a life:
-	- [ ] Time: when the time counter reaches 0;
+- [x] Improved Lives system: add two other ways of loosing a life:
+	- [x] Time: when the time counter reaches 0;
 	- [x] Restart: when the user chooses to restart a level.
 - [x] Improved Explosions: Make the explosion have some kind of animation that lasts some time and doesn't just remove the surrounding elements, allowing elements to be destroyed by going through the explosion moments after it happens;
-- [ ] Swing compatibility: add a swing version of the game.
+- [x] Swing compatibility: add a swing version of the game.
+- [ ] Level Selector: Sub Menu that allows you to choose a level
+- [ ] Highscores Ranking: Ranking with the highest Scores
 
 ![Info Bar Prototype](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/info_bar.png)*Info Bar Prototype*
 
