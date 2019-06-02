@@ -181,6 +181,49 @@ The above classes are in the following files:
 #### Consequences
 The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain event happens. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers. But this little setback was not relevant when in comparison with the dependencies between classes that we solve, not only with the controller but also between themselves.
 
+### ViewFactory and ViewComposite
+#### Problem in Context
+Having decided we would make our game compatible with both Lanterna and Swing, we found ourselves in a situation where we had to create a similar set of Views for each platform. Both Lanterna and Swing options would require a MenuView, a LevelView and a GameOverView, with identical behaviours.
+
+In addition, for Lanterna we noticed that it would make sense to divide the highest level Views in smaller more specific classes, such as ElementView and ButtonView, while keeping the same behaviour through all of them.
+
+#### The Pattern
+To solve the first problem we implemented an Abstract Factory pattern which, depending on the target platform, creates Views specific for it.
+
+The second problem was solved with a Composite Pattern, creating Views which are composed of other Views.
+
+#### Implementation
+To implement the Abstract Factory we created an interface, ViewFactory, that specifies what each concrete factory must be able to create. Then, 2 concrete factories that implement this interface were created, LanternaFactory and SwingFactory. When the application starts, based on the target platform specified, the correct concrete factory is instanciated and used throughout the rest of the program, not having to worry with the specific type in use.
+
+The composite pattern was achieved by creating an abstract class *View*, with an abstract method *draw*. We then composed our Lanterna classes in a tree structure where both high level views, such as *LanternaLevelGroupView*, and more specific views, such as *LanternaElementView*, extend *View* and specify how to draw themselves. These higher level views are then composed of other Views and, when asked to draw themselves, call *draw* in each of their parts.
+
+The following diagram represents how the mentioned patterns were implemented:![ViewFactoryAndComposite](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/ViewFactory.png)*View Factory and Composite UML*
+
+The above classes are in the following files:
+-   [ViewFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewFactory.java)
+-   [LanternaFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaFactory.java)
+-   [SwingFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingFactory.java)
+-   [View](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/View.java)
+-   [ViewState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewState.java)
+-   [LanternaStateView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaStateView.java)
+-   [LanternaLevelGroupView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelGroupView.java)
+-   [LanternaGameOverView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/gameover/LanternaGameOverView.java)
+-   [LanternaMenuView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/menu/LanternaMenuView.java)
+-   [LanternaLevelComponent](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelComponent.java)
+-   [LanternaInfoBarComponent](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaInfoBarComponent.java)
+-   [LanternaElementView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaElementView.java)
+-   [LanternaButtonView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/utilities/LanternaButtonView.java)
+-   [SwingStateView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingStateView.java)
+-   [SwingLevelGroupView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/game/SwingLevelGroupView.java)
+-   [SwingGameOverView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/gameover/SwingGameOverView.java)
+-   [SwingMenuView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/menu/SwingMenuView.java)
+
+
+#### Consequences
+By using the Abstract Factory, each target platform has its own isolated concrete class, which can be implemented differently. As an example is the Composite pattern we used only in our Lanterna views. In Swing we had a completely different approach, using JPanels. In addition, it makes exchanging view target very easy, only needing to call a diferent constructor at the start of the program, since they implement the same interface.
+
+The composite pattern allowed us to compose simple Views in more complex ones, effectively creating new View objects that use them in different ways. Besides this, the program itself does not need to worry whether it is a simple or a composed view, only having to call *draw* at all times.
+
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
@@ -198,6 +241,8 @@ A possible improvement would be to create a method to, given an element, get its
 
 ### Data Class
 By following the MVC structure, our classes that represent the Models end up being Data Classes, which are a code smell. Since this topic is deeply related to the MVC architecture, we decided to include it in the 'Additional Topics' section, and so it is further developed there.
+
+However, apart from the MVC Model, we decided to create a data class *GlobalConfigs* to store all relevant information for the application in general, such as the name of the game or the size of each level. This was made due to the fact that we had many similar values spread throughout the program and were, at times, chaining values too deeply through classes so that one of them could get the information it needed. By using this data class we ensure that all information is consistent throughout the game and, in the case of needing to change any value, we only have to do it once at this specific place. 
 
 ## Additional Topics
 
