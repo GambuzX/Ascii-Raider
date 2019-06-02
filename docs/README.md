@@ -46,19 +46,22 @@ We already implemented the majority of the different kind of elements and its co
  - Physics Elements - all the non static elements (aside from the player and enemy) are affected by gravity and fall down when there's no ground under them. They can also be pushed along the map by the player. These include Boulders, Level Keys and TNT;
  - Movable Elements - elements that can move.
  - Explosive Elements - elements that can explode, destroying elements around it.
+ - Animated Elements - elements which possess an animation, changing image through time.
  
 #### Specific Elements
 
  - Wall - the wall is a static element without any behaviour or interaction that can not be destroyed.
  - Stone Block - this is a static element that differs from the walls in that they can be destroyed by explosions.
  - Boulder - element that has physics behaviour, used to fill in holes or kill enemies.
- - Enemy - there is already one enemy with random movement that explodes when some kind of stone falls on top of him. It also causes the player to die when they collide;
+ - SkullEnemy - enemy with random movement that explodes when something falls on top of him. It also causes the player to die when they collide.
+ - MummyEnemy - smarter enemy that "follows" the player instead of moving randomly.
  - Sand - static elements that can be dug by the player, disappearing when you visit their position;
  - TNT - this element generates an explosion in its neighbor cells when it hits the ground, some other element falls on top of it or fired by a nearby explosion;
  - Door - static element that must appear together with a Door Key. The player can't go through it until it catches the key, making this element disappear.
  - Door Key - static element that, when picked up, unlocks the Door on the same level.
  - Level Key - elements that must be pushed by the player to the exit door in order to unlock it and allow the level to be finished. Destroying them with explosions makes the level unwinnable.
  - Exit Door - this is the level exit door, meaning you must go through it to go the next level. However, this door only opens when all the level keys have already been put in there.
+ - Explosion - animated element that is instanciated whenever an Explosive explodes, destroying Destructible elements caught in its range until the animation finishes.
 
 ### Level Builder
 
@@ -66,9 +69,21 @@ We created a LevelBuilder class that decodes .lvl files in order to create a new
 
 ### Screenshots
 
-![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png) *Example from level 2*
+![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
 
-![Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented2.png) *Example from level 3*
+![Lanterna Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
+
+![Lanterna Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
+
+![Lanterna Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
+
+![Swing Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
+
+![Swing Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
+
+![Swing Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
+
+![Swing Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
 
 
 ## Planned Features
