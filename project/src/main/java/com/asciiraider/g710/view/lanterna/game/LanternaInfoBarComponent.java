@@ -48,49 +48,52 @@ public class LanternaInfoBarComponent extends View<InfoBarModel> {
             int value = -1;
             switch(i) {
                 case 0:
-                    value = model.getCurrentLevel();
+                    value = model.getCurrentLevel() / 10;
                     break;
-                case 1: case 9: case 12: case 5: case 16:
+                case 1:
+                    value = model.getCurrentLevel() % 10;
+                    break;
+                case 2: case 10: case 13: case 6:
                     graphics.setForegroundColor(TextColor.Factory.fromString(divideSectionColor.toString()));
                     toDraw = "│";
                     break;
-                case 2:
+                case 3:
                     toDraw = ""+scoreArray[0];
                     break;
-                case 3:
+                case 4:
                     toDraw = ""+scoreArray[1];
                     break;
-                case 4:
+                case 5:
                     toDraw = ""+scoreArray[2];
                     break;
-                case 6:
+                case 7:
                     value = model.getKeys();
                     break;
-                case 7:
+                case 8:
                     toDraw = "/";
                     break;
-                case 8:
+                case 9:
                     value = model.getMaxKeys();
                     break;
-                case 10:
+                case 11:
                     value = model.getTime() / 10;
                     break;
-                case 11:
+                case 12:
                     value = model.getTime() % 10;
                     break;
-                case 13:
+                case 14:
                     graphics.setForegroundColor(TextColor.Factory.fromString(divideSectionColor.toString()));
                     if(model.getLives() < 3)
                         graphics.setForegroundColor(TextColor.Factory.fromString(textColor.toString()));
                     toDraw = withLife;
                     break;
-                case 14:
+                case 15:
                     graphics.setForegroundColor(TextColor.Factory.fromString(divideSectionColor.toString()));
                     if(model.getLives() < 2)
                         graphics.setForegroundColor(TextColor.Factory.fromString(textColor.toString()));
                     toDraw = withLife;
                     break;
-                case 15:
+                case 16:
                     graphics.setForegroundColor(TextColor.Factory.fromString(divideSectionColor.toString()));
                     toDraw = withLife;
                     break;
