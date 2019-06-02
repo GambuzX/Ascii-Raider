@@ -27,4 +27,4 @@
 
 ## Install Instructions
 
-To install this game you simple have to download the source code, compile and run it using gradle or some similar tool. To run it you have to pass an argument to the terminal with one of two options: "lanterna" or "swing" corresponding to the graphics interface that you want to use. If you choose to run the lanterna version make sure that your OS has a font called Monospaced (or simply change the LANTERNA_FONT parameter in the GlobalConfigs class to another font of your choice).
+To install this game you simply have to download the source code, compile and run it using gradle or some similar tool. To run it you have to pass an argument to the terminal with one of two options: "lanterna" or "swing", corresponding to the graphics interface that you want to use. If you choose to run the lanterna version make sure that your OS has a font called Monospaced (or simply change the LANTERNA_FONT parameter in the GlobalConfigs class to another font of your choice).
