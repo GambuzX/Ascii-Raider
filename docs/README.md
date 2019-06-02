@@ -98,6 +98,27 @@ We already implemented the majority of the different kind of elements and its co
 
 We created a LevelBuilder class that decodes .lvl files in order to create a new level, allowing us to quickly generate new ones. These files contain the levels drawn with ASCII symbols, with each type of element having a specific symbol assigned.
 
+### Game States
+
+We added a Game over screen that shows the user score for 5 seconds and then proceeds to exit the game (if the user presses some key he/she is taken back to the main menu) and also the main menu where we can chose between exit the game and play it.
+
+### Timer
+
+We implemented level timers as promised that makes the game harder by setting a time limit to solve a certain level.
+
+### Life System
+
+There is a life system in place that keeps track of how many lifes the player has left and decrements it when the user dies or restarts the game.
+
+### Swing Version
+
+We made a new prettier version of the game using the swing interface from Java. The user can choose between this and the lanterna version using the terminal and passing "lanterna" or "swing" as arguments.
+
+### InfoBar
+
+Lastly we also added a bar on the top of the screen in the play state with relevant information about the status of the game.
+
+
 ### Screenshots
 
 ![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
