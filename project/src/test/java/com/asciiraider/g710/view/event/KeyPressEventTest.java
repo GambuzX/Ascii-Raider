@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view;
+package com.asciiraider.g710.view.event;
 
 import com.asciiraider.g710.view.event.Event;
 import com.asciiraider.g710.view.event.KeyPressEvent;

@@ -47,10 +47,10 @@ public class LanternaInfoBarComponentTest {
         infoBarComponent.draw(infoBarModelMock);
 
         verify(graphicsMock, times(1)).setBackgroundColor(TextColor.Factory.fromString(backgroundColor.toString()));
-        verify(graphicsMock, times(26)).setForegroundColor(any(TextColor.class));
+        verify(graphicsMock, times(25)).setForegroundColor(any(TextColor.class));
 
-        verify(graphicsMock, times(1)).putString(new TerminalPosition( 10, 0), "1");
-        verify(graphicsMock, times(1)).putString(new TerminalPosition( 11, 0), "0");
+        verify(graphicsMock, times(1)).putString(new TerminalPosition( 11, 0), "1");
+        verify(graphicsMock, times(1)).putString(new TerminalPosition( 12, 0), "0");
 
     }
 
@@ -63,7 +63,7 @@ public class LanternaInfoBarComponentTest {
         infoBarComponent.draw(infoBarModelMock);
 
         verify(graphicsMock, times(1)).setBackgroundColor(TextColor.Factory.fromString(backgroundColor.toString()));
-        verify(graphicsMock, times(27)).setForegroundColor(any(TextColor.class));
+        verify(graphicsMock, times(26)).setForegroundColor(any(TextColor.class));
 
     }
 
@@ -76,7 +76,21 @@ public class LanternaInfoBarComponentTest {
         infoBarComponent.draw(infoBarModelMock);
 
         verify(graphicsMock, times(1)).setBackgroundColor(TextColor.Factory.fromString(backgroundColor.toString()));
-        verify(graphicsMock, times(28)).setForegroundColor(any(TextColor.class));
+        verify(graphicsMock, times(27)).setForegroundColor(any(TextColor.class));
+
+    }
+
+    @Test
+    public void drawTestLevel() {
+        when(infoBarModelMock.getLives()).thenReturn(1);
+        when(infoBarModelMock.getCurrentLevel()).thenReturn(56);
+
+        LanternaInfoBarComponent infoBarComponent = new LanternaInfoBarComponent(screenMock);
+        infoBarComponent.draw(infoBarModelMock);
+
+        verify(graphicsMock, times(1)).putString(new TerminalPosition( 0, 0), "5");
+        verify(graphicsMock, times(1)).putString(new TerminalPosition( 1, 0), "6");
+
 
     }
 }
