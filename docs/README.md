@@ -136,26 +136,47 @@ These classes can be found in the following files:
 #### Consequences
 This pattern allowed to keep the model as dumb as possible and we don’t need to have a set of conditional if or switch statements in the controller associated with the different movements; instead, polimorphism is used to activate the right movement. The factory allows the sub classes to instantiate the correct movement without the upper class knowing anything about which enemy has which type of movement.
 
-### LevelCompletedObserver
+
+### Observers - I get an observer. You get an observer. Everyone gets an observer
 #### Problem in Context
-We had a problem almost since the first day in the controller class. It was becoming to much a god class and it was its job to moderate and keep all the logic of the game. Making all the classes to dependent on him. We could simple make the controller inform the different classes that it could possible had reach the end, making all of them responsible for the verification, however this solution is not good because it could lead to unsynchronized data floating around the program.
+We had a problem almost since the first day in the controller class. It was becoming to much a god class and it was its job to moderate and keep all the logic of the game. Making all the classes to dependent on him. We could simple make the controller inform the different classes that it could possible had reach the end/the player had died or there was some key progress, making all of them responsible for the verification, however this solution is not good because it could lead to unsynchronized data floating around the program. There was too much class dependency and the code was hard to maintain.
 #### The Pattern
-Starting with the same interface that we use to all our observers-controllers we implemented an Observer pattern that not only allows us to keep all the observers tightly together, but also notify them when some event (the end of a level in this case) was over.
+Starting with a simple interface that we use to all our observers-controllers we implemented not one, not two, but three Observer pattern that not only allows us to keep all the observers of each event tightly together, but also notify them when that same event happens.
 #### Implementation
-The following diagram represents our implementation of this pattern:
-// TODO: por  UML que está no messenger
+##### LevelCompletedObserver
+The following diagram represents our implementation of this pattern applied to the event representing when a level reaches his end:![LevelCompletedObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelCompletedObserver.png)*Level Completed Observer UML*
 The above classes are in the following files:
--   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/EventSubject.java)
+-   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
 -   [LevelProgressionController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelProgressionController.java)
--   [LevelControllerGroup](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelControllerGroup.java)
--   [LevelCompletedObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/LevelCompletedObserver.java)
+-   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [LevelCompletedObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelCompletedObserver.java)
 -   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
 -   [LevelTimeAlarm](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
 
-#### Consequences
-The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain level has reached the end. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers.
+##### LevelKeyObserver
+The following diagram represents our implementation of this pattern applied to the event that represents some level key reaching the final door:![LevelkeyObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelKeyObserver.png)*Level Key Observer UML*
+The above classes are in the following files:
+-   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
+-   [LevelKeyController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/LevelKeyController.java)
+-   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [LevelKeyObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelKeyObserver.java)
+-   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
+-   [LevelManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
 
-## Known Code Smells and Refactoring Suggestions
+##### PlayerDeathObserver
+The following diagram represents our implementation of this pattern applied to the event that represents the death of the player:![PlayerDeathObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/PlayerDeathObserver.png)*Player Death Observer UML*
+The above classes are in the following files:
+-   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
+-   [LifeController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/life/LifeController.java)
+-   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [PlayerDeathObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/PlayerDeathObserver.java)
+-   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
+-   [LevelTimeAlarm](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
+-   [LifeManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/life/LifeManager.java)
+-   [LevelManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
+
+#### Consequences
+The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain event happens. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers. But this little setback was not relevant when in comparison with the dependencies between classes that we solve, not only with the controller but also between themselves.## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
