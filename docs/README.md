@@ -145,6 +145,7 @@ Starting with a simple interface that we use to all our observers-controllers we
 #### Implementation
 ##### LevelCompletedObserver
 The following diagram represents our implementation of this pattern applied to the event representing when a level reaches his end:![LevelCompletedObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelCompletedObserver.png)*Level Completed Observer UML*
+
 The above classes are in the following files:
 -   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
 -   [LevelProgressionController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelProgressionController.java)
@@ -155,6 +156,7 @@ The above classes are in the following files:
 
 ##### LevelKeyObserver
 The following diagram represents our implementation of this pattern applied to the event that represents some level key reaching the final door:![LevelkeyObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelKeyObserver.png)*Level Key Observer UML*
+
 The above classes are in the following files:
 -   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
 -   [LevelKeyController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/LevelKeyController.java)
@@ -165,6 +167,7 @@ The above classes are in the following files:
 
 ##### PlayerDeathObserver
 The following diagram represents our implementation of this pattern applied to the event that represents the death of the player:![PlayerDeathObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/PlayerDeathObserver.png)*Player Death Observer UML*
+
 The above classes are in the following files:
 -   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
 -   [LifeController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/life/LifeController.java)
@@ -176,7 +179,9 @@ The above classes are in the following files:
 -   [LevelManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
 
 #### Consequences
-The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain event happens. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers. But this little setback was not relevant when in comparison with the dependencies between classes that we solve, not only with the controller but also between themselves.## Known Code Smells and Refactoring Suggestions
+The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain event happens. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers. But this little setback was not relevant when in comparison with the dependencies between classes that we solve, not only with the controller but also between themselves.
+
+## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
