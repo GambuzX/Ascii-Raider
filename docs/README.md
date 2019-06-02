@@ -136,17 +136,19 @@ This class serves as the medium of communication between any other class (except
 Hard coding the movement  in the Enemy class had two problems: the first one was that the model (the enemy element) would have to know too much about the logic of the game which is a controller property not a model one; the second one was that it would make the modulation difficult, that is, creating a new enemy that only differed from the first one in one parameter (the movement logic) would became a problem more complex than it needed to be.
 #### The Pattern
 To solve this problem we used the Strategy Pattern. This pattern allows us to isolate the algorithms into one class away from the object, making them interchangeable. This was exactly what we pretended: separating the movement algorithm from the enemy object so we can easily switch their behaviors. We had to implement also a factory method so that each object could create the correct MovementStrategy.
-#### Implementation
-The following diagram illustrates how this pattern was implemented:
-// TODO: por aqui o UML no messenger
 
+#### Implementation
+
+The following diagram illustrates how this pattern was implemented: 
+![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/MovementStrategy.png) *Lanterna Menu*
 These classes can be found in the following files:
--   [MovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/MovementStrategy.java)
--   [FollowMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/FollowMovementStrategy.java)
--   [RandomMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/RandomMovementStrategy.java)
+
+-   [MovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/MovementStrategy.java)
+-   [FollowMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/FollowMovementStrategy.java)
+-   [RandomMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/RandomMovementStrategy.java)
 -   [Enemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Enemy.java)
 -   [SkullEnemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/SkullEnemy.java)
--  [MummyEnemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/MummyEnemy.java)
+-   [MummyEnemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/MummyEnemy.java)
 
 #### Consequences
 This pattern allowed to keep the model as dumb as possible and we don’t need to have a set of conditional if or switch statements in the controller associated with the different movements; instead, polimorphism is used to activate the right movement. The factory allows the sub classes to instantiate the correct movement without the upper class knowing anything about which enemy has which type of movement.
