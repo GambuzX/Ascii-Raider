@@ -272,6 +272,32 @@ These classes can be found in the following files:
 #### Consequences
 This pattern not only respects the Open - Closed Principle but also allows to easily add more stages to a game or quickly change the implementation of one state. Because each state is in the MVC Architectural Pattern, the flexibility is even higher allowing us to change the View of the GameOverState very easily if we weren't happy with it.
 
+### ButtonCommand
+#### Problem in Context
+When implementing the Menu, we found ourselves in a situation where the MenuController had to interact with the buttons in the Model and somehow change the Game state. However, neither the Models nor the View Controllers should know how to handle Game states.
+
+#### The Pattern
+To solve this problem we implemented the Command pattern, encapsulating the Game state changes in the Buttons themselves.
+
+
+#### Implementation
+This pattern was conceived by creating an abstract class *ButtonCommand* that receives a *Game* instance and operates on it. This class has a method *execute* that is implemented by each concrete ButtonCommand and is called to perform the defined operation. We defined 3 commands, Start, Restart and Exit. These are called by the View Controllers to change the Game State accordingly, without having to know how they are implemented and what they do.
+
+The following diagram represents how the mentioned pattern was implemented:![ButtonCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/ButtonsCommand.png)*View Factory and Composite UML*
+
+The above classes are in the following files:
+-   [ButtonCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ButtonCommand.java)
+-   [StartCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/StartCommand.java)
+-   [RestartCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/RestartCommand.java)
+-   [ExitCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ExitCommand.java)
+-   [Game](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
+-   [MenuController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/menu/MenuController.java)
+-   [MenuModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/menu/MenuModel.java)
+-   [Button](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/utilities/Button.java)
+
+#### Consequences
+With the Command pattern we effectively decouple the View Controllers, which invoke the operations, from the objects that know how to perform them. We can easily add new Button Commands to our views, with the defined behaviour encapsulated inside them, without having to change anything in the View Controllers.
+
 
 ## Known Code Smells and Refactoring Suggestions
 
