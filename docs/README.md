@@ -470,7 +470,14 @@ There were other examples, some more flagrant than the ones mentioned but, to ke
 
 ## Testing Results
 
-We made an effort to fully cover our code with Unit Tests. Besides the *Application* class, which is ruining our results, we were able to achieve a high test and mutation coverage. The results can be seen below:
+We made an effort to fully cover our code with Unit Tests. Besides the *Application* class, which is ruining our results, we were able to achieve a high test and mutation coverage. 
+
+There are some tests that were made purely for OCD reasons (even though the final result was far from perfect), because the class only had a static funciton (Explosions i.e.) and we couldn't respect the "Unit" principle.
+
+There was an interesting (if I say so myself) thought that arose during the testing of the program. Does less dependency means more vulnerability in the code?? 
+Bear with me for one second: what we are doing essentially when we are testing the code with mocks is exploiting the code from the inside. One way to remove dependency an make it easier for testing the code is to, instead of making new object inside the constructor, receive them as an argument. This makes it easier to test using mocks, that, if the first premise is true, then makes the code more vulnerable.
+
+The test results can be seen below:
 
 ![Pitest results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/TestResults.PNG)*Final test results*
 
