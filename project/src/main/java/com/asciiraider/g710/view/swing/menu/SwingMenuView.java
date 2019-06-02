@@ -13,10 +13,10 @@ public class SwingMenuView extends SwingStateView<MenuModel> {
 
     private SwingMenuComponent menuComponent;
 
-    public SwingMenuView(JFrame frame, SwingResourceManager resourceManager) {
+    public SwingMenuView(JFrame frame, SwingMenuComponent menuComponent) {
         super(frame);
 
-        menuComponent = new SwingMenuComponent(resourceManager.getMenuResources());
+        this.menuComponent = menuComponent;
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {

@@ -13,10 +13,9 @@ public class SwingGameOverView extends SwingStateView<GameOverModel> {
 
     private SwingGameOverComponent gameOverComponent;
 
-    public SwingGameOverView(JFrame frame, SwingResourceManager resourceManager) {
+    public SwingGameOverView(JFrame frame, SwingGameOverComponent gameOverComponent) {
         super(frame);
-
-        gameOverComponent = new SwingGameOverComponent(resourceManager.getGameOverResources());
+        this.gameOverComponent = gameOverComponent;
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {

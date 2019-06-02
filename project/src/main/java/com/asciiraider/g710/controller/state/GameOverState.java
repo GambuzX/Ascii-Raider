@@ -75,6 +75,7 @@ public class GameOverState extends State {
 			}
 		}
 
-		tick_second.interrupt();
+		if(!game.toExit())
+			tick_second.interrupt();
 	}
 }
