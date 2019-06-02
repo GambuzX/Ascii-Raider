@@ -21,7 +21,6 @@ public class LevelModel extends Model {
 	private List<TNT> tnt = new ArrayList<>();
 	private List<Enemy> enemies = new ArrayList<>();
 	private List<Explosion> explosions = new ArrayList<>();
-	//private Position bottomRightCorner;
 	private Element[][] elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
 
 	private int remainingTime;
@@ -172,7 +171,6 @@ public class LevelModel extends Model {
 		this.tnt = new ArrayList<>();
 		this.enemies = new ArrayList<>();
 		this.explosions = new ArrayList<>();
-		//private Position bottomRightCorner;
 		this.elementsMatrix = new Element[GlobalConfigs.LEVEL_WIDTH][GlobalConfigs.LEVEL_HEIGHT];
 	}
 }

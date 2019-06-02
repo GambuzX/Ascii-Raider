@@ -35,9 +35,8 @@ public class PhysicsElementControllerTest {
 		physicsElementController = new PhysicsElementController(physicsElementMock);
 	}
 
-	// belowEle = null
 	@Test
-	public void handler1(){
+	public void testBelowEleIsNull(){
 		when(physicsElementMock.moveDown()).thenReturn(positionMock);
 		when(levelFacade.findElement(positionMock)).thenReturn(null);
 
@@ -59,9 +58,8 @@ public class PhysicsElementControllerTest {
 		assertEquals(2, counter[0]);
 	}
 
-	// TNT not Falling
 	@Test
-	public void handler2(){
+	public void testTNTNotFalling(){
 		TNT tntMock = mock(TNT.class);
 
 		when(physicsElementMock.moveDown()).thenReturn(positionMock);
@@ -90,9 +88,8 @@ public class PhysicsElementControllerTest {
 		assertEquals(1, counter[0]);
 	}
 
-	// TNT falling
 	@Test
-	public void handler3(){
+	public void testTNTFalling(){
 		TNT tntMock = mock(TNT.class);
 
 		when(physicsElementMock.moveDown()).thenReturn(positionMock);
@@ -120,9 +117,8 @@ public class PhysicsElementControllerTest {
 		assertEquals(2, counter[0]);
 	}
 
-	//Boulder Falling in Tnt
 	@Test
-	public void handler4(){
+	public void testBoulderFallingInTNT(){
 		TNT tntMock = mock(TNT.class);
 		when(tntMock.getPosition()).thenReturn(positionMock);
 
@@ -153,9 +149,8 @@ public class PhysicsElementControllerTest {
 		assertEquals(2, counter[0]);
 	}
 
-	// Boulder Not Falling
 	@Test
-	public void handler6(){
+	public void testBoulderNotFalling(){
 		TNT tntMock = mock(TNT.class);
 		when(tntMock.getPosition()).thenReturn(positionMock);
 
@@ -186,9 +181,8 @@ public class PhysicsElementControllerTest {
 		assertEquals(1, counter[0]);
 	}
 
-	//Boulder Falling in Boulder
 	@Test
-	public void handler5(){
+	public void testBoulderFallingInBoulder(){
 
 		Boulder boulder = mock(Boulder.class);
 		when(boulder.getPosition()).thenReturn(positionMock);

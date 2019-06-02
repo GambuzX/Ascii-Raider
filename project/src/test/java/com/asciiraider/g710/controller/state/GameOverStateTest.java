@@ -169,8 +169,8 @@ public class GameOverStateTest {
 		verify(lanternaGameOverView, never()).draw(gameOverModel);
 	}
 
-	@Test //Alarm closing
-	public void run4(){
+	@Test
+	public void testAlarmClosing(){
 		LanternaGameOverView lanternaGameOverView = mock(LanternaGameOverView.class);
 
 		viewFactory = mock(ViewFactory.class);

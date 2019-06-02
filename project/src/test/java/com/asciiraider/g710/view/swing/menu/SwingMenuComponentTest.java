@@ -61,9 +61,7 @@ public class SwingMenuComponentTest {
         menuComponent.paintComponent(graphicsMock);
 
         verify(menuResourcesMock, times(1)).getExitButton();
-        //verify(menuResourcesMock, times(1)).getExitButtonHovered();
         verify(menuResourcesMock, times(1)).getMenuBackground();
-        //verify(menuResourcesMock, times(1)).getPlayButton();
         verify(menuResourcesMock, times(1)).getPlayButtonHovered();
         verify(positionMock, times(2)).getX();
         verify(buttonMock, times(2)).getUpperLeft();

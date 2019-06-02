@@ -14,7 +14,6 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 	private List<LevelModel> levelModels;
 	private int currentLevelIndex;
 	private boolean gameFinished;
-	//private LevelFacade currentLevelFacade;
 	private int currentLevelKeys;
 	private LifeManager lifeManager;
 	private LevelTimeAlarm timeAlarm;
@@ -98,7 +97,6 @@ public class LevelManager implements LevelKeyObserver, PlayerDeathObserver {
 
 	@Override
 	public void updateDeath() {
-		System.out.println("ola");
 		restartLevel();
 		if(!getLifeManager().hasLifes())
 			finishGame();

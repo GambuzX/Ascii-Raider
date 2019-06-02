@@ -98,8 +98,8 @@ public class LevelControllerTest {
 
 	}
 
-	@Test // Find Wall
-	public void triggerExplosion1(){
+	@Test
+	public void triggerExplosionFindWall(){
 		Wall wallMock = mock(Wall.class);
 
 		Position positionMock = mock(Position.class);
@@ -132,8 +132,8 @@ public class LevelControllerTest {
 		verify(levelControllerSpy, times(1)).triggerExplosion(positionMock);
 	}
 
-	@Test // Find Player
-	public void triggerExplosion2(){
+	@Test
+	public void triggerExplosionFindPlayer(){
 
 
 		Answer<Boolean> answer = new Answer<Boolean>() {
@@ -182,8 +182,8 @@ public class LevelControllerTest {
 
 	}
 
-	@Test // Caught null
-	public void triggerExplosion3(){
+	@Test
+	public void triggerExplosionCatchNull(){
 
 		Position positionMock = mock(Position.class);
 
@@ -215,8 +215,8 @@ public class LevelControllerTest {
 		verify(levelControllerSpy, times(1)).triggerExplosion(any());
 	}
 
-	@Test // Caught Destructible non Explosive
-	public void triggerExplosion4(){
+	@Test
+	public void triggerExplosionOnDestructibleNonExplosive(){
 		StoneBlock stoneBlock = mock(StoneBlock.class);
 		Position positionMock = mock(Position.class);
 
@@ -248,13 +248,12 @@ public class LevelControllerTest {
 		verify(levelControllerSpy, times(1)).triggerExplosion(any());
 	}
 
-	@Test // Caught TNT
-	public void triggerExplosion5(){
+	@Test
+	public void triggerExplosionOnTNT(){
 		TNT tntMock = mock(TNT.class);
 		Position tntPosition = mock(Position.class);
 
 		Wall wallMock = mock(Wall.class);
-		Position wallPosition = mock(Position.class);
 
 		Position positionMock = mock(Position.class);
 
@@ -407,7 +406,6 @@ public class LevelControllerTest {
 
 	@Test
 	public void movePlayer1(){
-		Position newPos = mock(Position.class);
 		Position delimPos = mock(Position.class);
 		LevelFacade levelFacade = mock(LevelFacade.class);
 

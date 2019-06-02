@@ -157,8 +157,8 @@ public class PlayStateTest {
 		assertTrue(argument.getValue() instanceof GameOverState);
 	}
 
-	@Test //Clock not finish
-	public  void run3(){
+	@Test
+	public void testClockNotFinish(){
 		LanternaLevelGroupView lanternaLevelGroupView = mock(LanternaLevelGroupView.class);
 
 		viewFactory = mock(ViewFactory.class);
@@ -216,8 +216,8 @@ public class PlayStateTest {
 
 	}
 
-	@Test //Clock not finish
-	public  void run4(){
+	@Test
+	public void testClockNotFinish2(){
 		LanternaLevelGroupView lanternaLevelGroupView = mock(LanternaLevelGroupView.class);
 
 		viewFactory = mock(ViewFactory.class);
