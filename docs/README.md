@@ -1,7 +1,5 @@
  # LPOO_710 ASCII RIDER
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.  
-
 This project is a puzzle game based on 'Crypt Raider', where your objective in each level is to push one or more 'keys' to the 'exit door'. In order to travel through the different chambers, you must push boulders along the map, escape all the enemies and avoid the explosions that may be triggered by interacting with explosive elements.
  Think fast, think smart, and try to beat the timer to gain more points in each completed level.
 
@@ -66,7 +64,6 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
 ## Implemented Features
 
 We already implemented the majority of the different kind of elements and its corresponding behaviors and interactions:
-
 
 ### Elements
 #### Generic Behaviours
@@ -164,8 +161,6 @@ There are many features yet to be implemented:
 
 
 ## Design
-
->TODO: Not that sure about what it is to write in the different parts of each chapter. 
 
 ### LevelFacade
 #### Problem in Context
@@ -387,8 +382,6 @@ With this pattern we kept all the elements as dumb as possible, by making them n
 
 ## Known Code Smells and Refactoring Suggestions
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
-
 ### Large Class
 This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
 
@@ -457,7 +450,8 @@ One other problem that we found was the difficulty to make the design patterns f
 
 We could use the Command Pattern to make a Drawable Interface that each Element would implement, allowing each one to know how to draw itself (like the solution for the SOLID exercises) and the LevelView would know how to draw a Level as a whole, but as noted, by our professor, this would destroy partially the MVC architecture, making this pattern unusable in this case (there were other similar cases where this could be implemented but the result was the same: the Model class knowing too much about itself and its behavior).
 
-Other interesting example was the Strategy Pattern. We would like to use different strategies to implement the distinct movements that enemies could make (follow the player, random, in "circles"...). However, this would have to be a function in an element subclass, and we would run the risk of the Model gaining more knowledge over the Controller.
+Other interesting example was the Strategy Pattern. We used different strategies to implement the distinct movements that enemies can make (follow the player, random, in "circles"...). However, at first thought this would have to be a function in an element subclass, and we would run the risk of the Model gaining more knowledge over the Controller.
+
 There were other examples, some more flagrant than the ones mentioned but, to keep this brief, we will wrap up this sub-chapter here.
 
 ## Testing Results
