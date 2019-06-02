@@ -73,6 +73,7 @@ public class LevelFacade {
 		levelModel.getExplosions().remove(animation);
 		clearMatrixPosition(animation.getPosition());
 	}
+
 	public Explosion findExplosion(Position pos) {
 		Element element = findElement(pos);
 		if (element instanceof Explosion)
