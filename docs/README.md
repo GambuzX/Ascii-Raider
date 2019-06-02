@@ -65,8 +65,6 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
 
 ## Implemented Features
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-
 We already implemented the majority of the different kind of elements and its corresponding behaviors and interactions:
 
 
@@ -140,8 +138,6 @@ Lastly we also added a bar on the top of the screen in the play state with relev
 
 ## Planned Features
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-
 There are many features yet to be implemented:
 
  - [x] Main Menu: where the user may choose between begin a new game from scratch (level 1), go directly to a certain level or view the highscores ranking;
@@ -168,8 +164,6 @@ There are many features yet to be implemented:
 
 
 ## Design
-
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
 >TODO: Not that sure about what it is to write in the different parts of each chapter. 
 
@@ -468,8 +462,6 @@ There were other examples, some more flagrant than the ones mentioned but, to ke
 
 ## Testing Results
 
-> This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
-
 
 We realized soon that making final tests for the classes we were working in was not a smart idea, due to the high volatility of our code and the constant changing of approach and solution for the same problem.
 Therefore, the only classes fully tested that it is worth mentioning are the low-level ones, those in the model.utilities package that we consider to be final.
@@ -479,4 +471,4 @@ We achieve 100% line and mutation coverage in every one of them, as shown in the
 
 ## Self-evaluation
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
+The work was divided properly between both of us, meaning that each one did 50% of the work with 100% of the effort!!
