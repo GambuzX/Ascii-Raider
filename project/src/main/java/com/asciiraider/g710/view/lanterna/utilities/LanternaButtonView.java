@@ -38,7 +38,6 @@ public class LanternaButtonView extends View<Button> {
 
 	}
 
-	//TODO: refactor para button
 	public void drawRectangle(TextGraphics graphics, Position upperLeft, Position lowerRight){
 		for(int i = upperLeft.getX(); i < lowerRight.getX(); i++ )
 			for(int j = upperLeft.getY(); j < lowerRight.getY(); j++)

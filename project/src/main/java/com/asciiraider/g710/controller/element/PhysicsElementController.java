@@ -25,7 +25,6 @@ public class PhysicsElementController {
 			physicsElement.setFalling(true);
 			levelFacade.setElementPosition(physicsElement, nextPosition);
 		}
-		// TODO: tirar isto para fora
 		else{
 			if (physicsElement instanceof Explosive && physicsElement.isFalling()) {
 				levelController.triggerExplosion(physicsElement.getPosition());

@@ -1,9 +1,9 @@
 package com.asciiraider.g710.model.utilities;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-// TODO: ver se faz sentido X e Y n poder ser menor que 0
 public class Position {
 	private int x, y;
 
@@ -42,7 +42,6 @@ public class Position {
 		this.y = y;
 	}
 
-	// TODO: fazer controlo aqui do erro??
 	public Position getAbove() throws IllegalArgumentException{
 		return new Position(this.x, this.y - 1);
 	}
@@ -116,4 +115,13 @@ public class Position {
 				getY() == position.getY();
 	}
 
+	public static Comparator<Position> createComparator(Position centralPosition)
+	{
+		final Position centerPosition =  centralPosition;
+		return (p1, p2) -> {
+			double d1 = (p1.distance(centerPosition));
+			double d2 = (p2.distance(centerPosition));
+			return Double.compare(d1, d2);
+		};
+	}
 }

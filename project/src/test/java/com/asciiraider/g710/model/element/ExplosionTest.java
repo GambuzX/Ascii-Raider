@@ -7,7 +7,6 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 
-// TODO: ver este teste
 public class ExplosionTest {
 	@Test
 	public void explosionAnimation(){

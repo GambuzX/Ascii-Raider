@@ -3,6 +3,7 @@ package com.asciiraider.g710.controller.state;
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.level.LevelControllerGroup;
+import com.asciiraider.g710.model.gameover.GameOverModel;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.view.ViewState;
 
@@ -11,12 +12,12 @@ public class PlayState extends State<LevelModelGroup> {
 	private LevelModelGroup levelModelGroup;
 	private ViewState<LevelModelGroup> levelModelGroupView;
 
-	public PlayState(Game game) {
+	public PlayState(Game game, LevelModelGroup levelModelGroup) {
 		this.game = game;
-		levelModelGroup = new LevelModelGroup();
-		levelControllerGroup = new LevelControllerGroup(levelModelGroup);
+		this.levelModelGroup = levelModelGroup;
+		this.levelControllerGroup = new LevelControllerGroup(this.levelModelGroup);
 
-		levelModelGroupView = game.getViewFactory().createLevelView();
+		this.levelModelGroupView = game.getViewFactory().createLevelView();
 	}
 
 	@Override
@@ -40,10 +41,8 @@ public class PlayState extends State<LevelModelGroup> {
 		Thread tick_second = new Thread() {
 			@Override
 			public void run() {
-				//while (!getStateController().isClose()) {
 				while (!getStateModel().getLevelManager().isGameFinished()) {
 
-					// TODO: refactoring??
 					while (getStateModel().getLevelManager().getTimeAlarm().getCurrentTime() > 0) {
 						getStateController().getInfoBarController().handler(getStateModel().getLevelManager().getTimeAlarm());
 						getStateModel().getLevelManager().getTimeAlarm().decTimer();
@@ -55,6 +54,7 @@ public class PlayState extends State<LevelModelGroup> {
 						if(isInterrupted()) return;
 						if(game.toExit()) break;
 					}
+
 					if(!game.toExit())
 						getStateController().getLevelController().getLifeController().notifyObservers();
 				}
@@ -62,25 +62,24 @@ public class PlayState extends State<LevelModelGroup> {
 		};
 		tick_second.start();
 
-		//while (!getStateController().isClose()) {
-		while (!getStateModel().getLevelManager().isGameFinished()) {
+		while (!levelModelGroup.getLevelManager().isGameFinished()) {
 
 			try {
 
-				levelControllerGroup.getLevelController().handlePhysics();
+				getStateController().getLevelController().handlePhysics();
 
-				levelControllerGroup.getLevelController().handleEnemies();
+				getStateController().getLevelController().handleEnemies();
 
-				levelControllerGroup.getLevelController().handleAnimations();
-
-
-				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
-					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
-
-				levelModelGroupView.draw(levelModelGroup);
+				getStateController().getLevelController().handleAnimations();
 
 
-				levelControllerGroup.getLevelController().handleLevelKey();
+				if (getStateController().getLevelController().isPlayerCollidingEnemy())
+					getStateController().getLevelController().getLifeController().notifyObservers();
+
+				getStateView().draw(levelModelGroup);
+
+
+				getStateController().getLevelController().handleLevelKey();
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {
@@ -89,7 +88,7 @@ public class PlayState extends State<LevelModelGroup> {
 		}
 
 		tick_second.interrupt();
-		game.changeState(new GameOverState(game, getStateModel().getInfoBarModel().getScore()));
+		game.changeState(new GameOverState(game, new GameOverModel(getStateModel().getInfoBarModel().getScore())));
 	}
 
 }

@@ -16,9 +16,6 @@ public class LevelFacade {
 		this.levelModel = levelModel;
 	}
 
-
-	// TODO: deixar o repetido ??
-
 	public Player getPlayer() {
 		return levelModel.getPlayer();
 	}
@@ -93,8 +90,7 @@ public class LevelFacade {
 		return physicsElements;
 	}
 
-		// TODO: mudar nome e talvez sitio desta funcao
-	public boolean isEmptyPosition(Position position) {
+	public boolean canEnemyMoveTo(Position position) {
 		Element ele = findElement(position);
 		return (ele == null || ele.equals(getPlayer()));
 	}
@@ -244,8 +240,6 @@ public class LevelFacade {
 		levelModel.addExplosion(explosion);
 	}
 
-	// TODO Initially instead of Element the first parameter was a Movable, but boulders also need to be moved
-	// TODO atencao aqui. se surgir bug foi linha removida
 	public void setElementPosition(MovableElement movable, Position newPos) {
 		clearMatrixPosition(movable.getPosition());
 		movable.setPosition(newPos);

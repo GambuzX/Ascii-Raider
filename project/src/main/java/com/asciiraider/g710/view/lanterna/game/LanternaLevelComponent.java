@@ -16,7 +16,6 @@ public class LanternaLevelComponent extends View<LevelModel> {
 		this.lanternaElementView = lanternaElementView;
 	}
 
-	// TODO: synchronized adicionado aqui e ao physics ver melhor o efeito
 	public synchronized void draw(LevelModel levelModel) {
 
 		for (Element ele : levelModel.getBoulders())

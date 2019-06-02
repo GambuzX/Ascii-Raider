@@ -24,7 +24,7 @@ public class Application {
 			System.out.println("Please specify View Platform");
 			return;
 		}
-		// TODO: refactor os valores aqui
+
 		if (args[0].equals(GlobalConfigs.LANTERNA_OPTION)) {
 			try {
 				Font font = new Font(GlobalConfigs.LANTERNA_FONT, Font.PLAIN, GlobalConfigs.LANTERNA_FONT_SIZE);

@@ -90,7 +90,6 @@ public class LevelModel extends Model {
 		return enemies;
 	}
 
-	// TODO: ver se nao ha aqui um factory a ser feito
 	public void addExplosion(Explosion explosion) {
 		this.getExplosions().add(explosion);
 		updateMatrixPosition(explosion);
