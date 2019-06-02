@@ -8,10 +8,23 @@
 
 > Some screenshots that illustrate the game.
 
-![Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented1.png) *Example from level 2*
+![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
 
-![Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/implemented2.png) *Example from level 3*
+![Lanterna Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
+
+![Lanterna Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
+
+![Lanterna Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
+
+![Swing Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
+
+![Swing Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
+
+![Swing Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
+
+![Swing Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
+
 
 ## Install Instructions
 
-> How can someone install the game in their computer.
+To install this game you simple have to download the source code, compile and run it using gradle or some similar tool. To run it you have to pass an argument to the terminal with one of two options: "lanterna" or "swing" corresponding to the graphics interface that you want to use. If you choose to run the lanterna version make sure that your OS has a font called Monospaced (or simply change the LANTERNA_FONT parameter in the GlobalConfigs class to another font of your choice).
