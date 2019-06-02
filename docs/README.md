@@ -74,7 +74,7 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
 
 ## Implemented Features
 
-We already implemented the majority of the different kind of elements and its corresponding behaviors and interactions:
+We implemented all relevant features with success, such that our Swing version can actually be mistaken for the real game, since we even based ourselves in the original levels and assets.
 
 ### Elements
 #### Generic Behaviours
@@ -106,11 +106,11 @@ We created a LevelBuilder class that decodes .lvl files in order to create a new
 
 ### Game States
 
-We added a Game over screen that shows the user score for 5 seconds and then proceeds to exit the game (if the user presses some key he/she is taken back to the main menu) and also the main menu where we can chose between exit the game and play it.
+We added a Game over screen that shows the user score for 5 seconds and then proceeds to exit the game (if the user presses some key he/she is taken back to the main menu) and also the main menu where we can chose between playing the game and exiting it.
 
 ### Timer
 
-We implemented level timers as promised that makes the game harder by setting a time limit to solve a certain level.
+We implemented level timers as we planned, making the game harder by setting a time limit to solve each level.
 
 ### Life System
 
@@ -122,7 +122,7 @@ We made a new prettier version of the game using the swing interface from Java. 
 
 ### InfoBar
 
-Lastly we also added a bar on the top of the screen in the play state with relevant information about the status of the game.
+Lastly we also added a bar on the top of the screen in the Play State with relevant information about the status of the game, such as current level, score, number of lifes, among others.
 
 
 ### Screenshots
