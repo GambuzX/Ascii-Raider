@@ -449,6 +449,9 @@ Our program is composed by two threads, one for the user input and another to de
 
 This method allows us to do everything in only 2 threads, makes the code more compact and prevents synchronicity problems.
 
+**Solution Update:**  we end up solving this "problem" by asserting a velocity to the physics elements and to the enemies making them return a new position each X frames. This solution lead to a much cleaner code in the main loop of the Play State. Each State is runnable so that we can run it and put it in a thread parallel to the user input one.
+
+
 ### Builder Pattern vs Read From File
 
 This was other permutation that our code suffered and the reason why the LevelBuilder is called that way. We had first implemented a #Builder #Pattern in order to build the different levels, with a parent class with methods to create every kind of element. Each level would have a class extending the LevelBuilder, that would know how to build it.
