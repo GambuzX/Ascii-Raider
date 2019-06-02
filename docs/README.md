@@ -462,12 +462,11 @@ There were other examples, some more flagrant than the ones mentioned but, to ke
 
 ## Testing Results
 
+We made an effort to fully cover our code with Unit Tests. Besides the *Application* class, which is ruining our results, we were able to achieve a high test and mutation coverage. The results can be seen below:
 
-We realized soon that making final tests for the classes we were working in was not a smart idea, due to the high volatility of our code and the constant changing of approach and solution for the same problem.
-Therefore, the only classes fully tested that it is worth mentioning are the low-level ones, those in the model.utilities package that we consider to be final.
-We achieve 100% line and mutation coverage in every one of them, as shown in the following picture.
+![Pitest results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/TestResults.PNG)*Final test results*
 
-![First pitest results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/PITest1.png)*Preliminary test results*
+ [Link to test reports](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/tests)
 
 ## Self-evaluation
 
