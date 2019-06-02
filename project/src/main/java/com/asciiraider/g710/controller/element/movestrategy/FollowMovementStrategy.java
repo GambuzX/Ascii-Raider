@@ -1,9 +1,7 @@
-package com.asciiraider.g710.controller.element;
+package com.asciiraider.g710.controller.element.movestrategy;
 
 import com.asciiraider.g710.model.utilities.Position;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class FollowMovementStrategy implements MovementStrategy {

@@ -1,9 +1,9 @@
 package com.asciiraider.g710.controller.element;
 
+import com.asciiraider.g710.controller.element.behaviour.Explosive;
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.Element;
-import com.asciiraider.g710.model.element.Explosive;
 import com.asciiraider.g710.model.element.PhysicsElement;
 import com.asciiraider.g710.model.utilities.Position;
 

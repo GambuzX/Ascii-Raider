@@ -1,4 +1,4 @@
-package com.asciiraider.g710.view;
+package com.asciiraider.g710.view.event;
 
 public enum Event {
 	UP_KEY,

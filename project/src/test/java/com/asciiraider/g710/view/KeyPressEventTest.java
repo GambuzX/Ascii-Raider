@@ -1,5 +1,7 @@
 package com.asciiraider.g710.view;
 
+import com.asciiraider.g710.view.event.Event;
+import com.asciiraider.g710.view.event.KeyPressEvent;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import org.junit.Before;

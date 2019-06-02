@@ -1,13 +1,14 @@
 package com.asciiraider.g710.model.element;
 
 import com.asciiraider.g710.GlobalConfigs;
-import com.asciiraider.g710.controller.element.MovementStrategy;
+import com.asciiraider.g710.controller.element.behaviour.Explosive;
+import com.asciiraider.g710.controller.element.movestrategy.MovementStrategy;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;
 
 import java.util.List;
 
-public abstract class Enemy extends MovableElement implements Explosive{
+public abstract class Enemy extends MovableElement implements Explosive {
     private MovementStrategy movementStrategy;
     private int velocity = GlobalConfigs.ENEMY_VELOCITY;
     private int frameCounter;

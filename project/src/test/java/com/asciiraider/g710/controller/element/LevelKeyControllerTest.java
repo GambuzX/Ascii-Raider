@@ -1,6 +1,6 @@
 package com.asciiraider.g710.controller.element;
 
-import com.asciiraider.g710.controller.LevelKeyObserver;
+import com.asciiraider.g710.controller.observer.LevelKeyObserver;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.ExitDoor;
 import com.asciiraider.g710.model.utilities.Position;

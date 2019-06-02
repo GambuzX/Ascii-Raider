@@ -2,7 +2,7 @@ package com.asciiraider.g710.controller.gameover;
 
 import com.asciiraider.g710.controller.ControllerState;
 import com.asciiraider.g710.model.gameover.GameOverModel;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 
 public class GameOverController extends ControllerState<GameOverModel>  {
 	private boolean close = false;

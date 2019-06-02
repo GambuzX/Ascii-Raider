@@ -1,12 +1,13 @@
 package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.controller.infobar.InfoBarController;
+import com.asciiraider.g710.controller.life.LifeController;
 import com.asciiraider.g710.model.element.Player;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;

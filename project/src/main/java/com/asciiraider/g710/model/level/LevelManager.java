@@ -1,9 +1,10 @@
 package com.asciiraider.g710.model.level;
 
-import com.asciiraider.g710.controller.LevelKeyObserver;
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.observer.LevelKeyObserver;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
+import com.asciiraider.g710.controller.level.LevelBuilder;
 import com.asciiraider.g710.controller.level.LevelFacade;
-import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.life.LifeManager;
 
 import java.security.InvalidParameterException;
 import java.util.List;

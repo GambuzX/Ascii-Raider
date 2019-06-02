@@ -1,11 +1,11 @@
-package com.asciiraider.g710.view;
+package com.asciiraider.g710.view.event;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
 import java.awt.event.KeyEvent;
 
-import static com.asciiraider.g710.view.Event.*;
+import static com.asciiraider.g710.view.event.Event.*;
 
 public class KeyPressEvent {
 

@@ -1,8 +1,7 @@
 package com.asciiraider.g710.view.swing.game;
 
 import com.asciiraider.g710.model.level.LevelModelGroup;
-import com.asciiraider.g710.view.KeyPressEvent;
-import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
+import com.asciiraider.g710.view.event.KeyPressEvent;
 import com.asciiraider.g710.view.swing.SwingStateView;
 
 import javax.swing.*;

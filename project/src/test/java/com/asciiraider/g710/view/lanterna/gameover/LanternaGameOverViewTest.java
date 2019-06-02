@@ -2,7 +2,7 @@ package com.asciiraider.g710.view.lanterna.gameover;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.model.gameover.GameOverModel;
-import com.asciiraider.g710.model.infobar.Score;
+import com.asciiraider.g710.model.utilities.Score;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.Test;

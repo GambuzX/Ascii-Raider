@@ -1,8 +1,8 @@
 package com.asciiraider.g710.view.lanterna;
 
 import com.asciiraider.g710.model.Model;
-import com.asciiraider.g710.view.Event;
-import com.asciiraider.g710.view.KeyPressEvent;
+import com.asciiraider.g710.view.event.Event;
+import com.asciiraider.g710.view.event.KeyPressEvent;
 import com.asciiraider.g710.view.ViewState;
 import com.googlecode.lanterna.screen.TerminalScreen;
 

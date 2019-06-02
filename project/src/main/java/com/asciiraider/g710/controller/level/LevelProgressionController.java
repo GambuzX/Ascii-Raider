@@ -1,7 +1,7 @@
 package com.asciiraider.g710.controller.level;
 
-import com.asciiraider.g710.controller.EventSubject;
-import com.asciiraider.g710.controller.LevelCompletedObserver;
+import com.asciiraider.g710.controller.observer.EventSubject;
+import com.asciiraider.g710.controller.observer.LevelCompletedObserver;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.utilities.Position;
 

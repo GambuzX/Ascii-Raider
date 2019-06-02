@@ -1,6 +1,7 @@
-package com.asciiraider.g710.controller.level;
+package com.asciiraider.g710.controller.life;
 
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.life.LifeController;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
 import org.junit.Before;
 import org.junit.Test;
 

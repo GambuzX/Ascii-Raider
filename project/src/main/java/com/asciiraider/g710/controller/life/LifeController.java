@@ -1,7 +1,7 @@
-package com.asciiraider.g710.controller.level;
+package com.asciiraider.g710.controller.life;
 
-import com.asciiraider.g710.controller.EventSubject;
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.observer.EventSubject;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
 
 import java.util.ArrayList;
 import java.util.List;

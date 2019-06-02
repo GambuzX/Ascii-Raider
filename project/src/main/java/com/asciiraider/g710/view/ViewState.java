@@ -1,6 +1,7 @@
 package com.asciiraider.g710.view;
 
 import com.asciiraider.g710.model.Model;
+import com.asciiraider.g710.view.event.Event;
 
 import java.util.List;
 

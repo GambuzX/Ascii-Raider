@@ -4,7 +4,7 @@ import com.asciiraider.g710.controller.Game;
 import com.asciiraider.g710.controller.infobar.InfoBarController;
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.controller.level.LevelControllerGroup;
-import com.asciiraider.g710.controller.level.LifeController;
+import com.asciiraider.g710.controller.life.LifeController;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.level.LevelModelGroup;

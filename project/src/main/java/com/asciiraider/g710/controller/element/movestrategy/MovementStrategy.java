@@ -1,4 +1,4 @@
-package com.asciiraider.g710.controller.element;
+package com.asciiraider.g710.controller.element.movestrategy;
 
 import com.asciiraider.g710.model.utilities.Position;
 

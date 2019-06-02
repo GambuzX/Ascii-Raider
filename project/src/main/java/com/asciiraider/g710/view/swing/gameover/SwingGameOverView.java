@@ -1,9 +1,8 @@
 package com.asciiraider.g710.view.swing.gameover;
 
 import com.asciiraider.g710.model.gameover.GameOverModel;
-import com.asciiraider.g710.view.KeyPressEvent;
+import com.asciiraider.g710.view.event.KeyPressEvent;
 import com.asciiraider.g710.view.swing.SwingStateView;
-import com.asciiraider.g710.view.swing.resources.SwingResourceManager;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;

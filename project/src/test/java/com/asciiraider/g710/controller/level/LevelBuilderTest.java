@@ -1,8 +1,11 @@
-package com.asciiraider.g710.model.level;
+package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.GlobalConfigs;
 import com.asciiraider.g710.controller.element.interaction.*;
+import com.asciiraider.g710.controller.level.LevelBuilder;
 import com.asciiraider.g710.model.element.*;
+import com.asciiraider.g710.model.level.InvalidLevelException;
+import com.asciiraider.g710.model.level.LevelModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

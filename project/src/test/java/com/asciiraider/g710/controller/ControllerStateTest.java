@@ -1,7 +1,7 @@
 package com.asciiraider.g710.controller;
 
 import com.asciiraider.g710.model.Model;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.asciiraider.g710.model.element;
 
-import com.asciiraider.g710.controller.element.FollowMovementStrategy;
-import com.asciiraider.g710.controller.element.MovementStrategy;
+import com.asciiraider.g710.controller.element.movestrategy.FollowMovementStrategy;
+import com.asciiraider.g710.controller.element.movestrategy.MovementStrategy;
 import com.asciiraider.g710.model.utilities.HexColorString;
 import com.asciiraider.g710.model.utilities.Position;
 import com.asciiraider.g710.model.utilities.Symbol;

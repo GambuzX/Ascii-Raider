@@ -1,9 +1,10 @@
 package com.asciiraider.g710.model.level;
 
 import com.asciiraider.g710.GlobalConfigs;
+import com.asciiraider.g710.controller.level.LevelBuilder;
 import com.asciiraider.g710.model.Model;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
-import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.life.LifeManager;
 
 public class LevelModelGroup extends Model {
     private LevelManager levelManager;

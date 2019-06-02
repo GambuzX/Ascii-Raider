@@ -1,6 +1,6 @@
-package com.asciiraider.g710.model.infobar;
+package com.asciiraider.g710.model.life;
 
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
 
 import java.security.InvalidParameterException;
 

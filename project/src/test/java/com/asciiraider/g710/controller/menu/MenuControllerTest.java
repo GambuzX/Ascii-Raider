@@ -4,7 +4,7 @@ import com.asciiraider.g710.controller.command.RestartCommand;
 import com.asciiraider.g710.controller.command.StartCommand;
 import com.asciiraider.g710.model.menu.MenuModel;
 import com.asciiraider.g710.model.utilities.Button;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 import org.junit.Before;
 import org.junit.Test;
 

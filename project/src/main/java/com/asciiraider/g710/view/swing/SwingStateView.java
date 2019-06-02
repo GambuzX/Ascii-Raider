@@ -1,7 +1,7 @@
 package com.asciiraider.g710.view.swing;
 
 import com.asciiraider.g710.model.Model;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 import com.asciiraider.g710.view.ViewState;
 
 import javax.swing.*;

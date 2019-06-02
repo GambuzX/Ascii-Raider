@@ -3,7 +3,7 @@ package com.asciiraider.g710.controller.infobar;
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.controller.level.LevelController;
 import com.asciiraider.g710.controller.level.LevelProgressionController;
-import com.asciiraider.g710.controller.level.LifeController;
+import com.asciiraider.g710.controller.life.LifeController;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
 import com.asciiraider.g710.model.level.LevelTimeAlarm;
 import org.junit.Test;

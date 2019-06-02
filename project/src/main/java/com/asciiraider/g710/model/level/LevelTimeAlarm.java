@@ -1,7 +1,7 @@
 package com.asciiraider.g710.model.level;
 
-import com.asciiraider.g710.controller.LevelCompletedObserver;
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.observer.LevelCompletedObserver;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
 import com.asciiraider.g710.model.utilities.TimeAlarm;
 
 import java.security.InvalidParameterException;

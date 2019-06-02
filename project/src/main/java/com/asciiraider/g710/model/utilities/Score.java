@@ -1,4 +1,4 @@
-package com.asciiraider.g710.model.infobar;
+package com.asciiraider.g710.model.utilities;
 
 public class Score {
 	private int points;

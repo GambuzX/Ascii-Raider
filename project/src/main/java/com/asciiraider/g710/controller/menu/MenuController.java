@@ -2,7 +2,7 @@ package com.asciiraider.g710.controller.menu;
 
 import com.asciiraider.g710.controller.ControllerState;
 import com.asciiraider.g710.model.menu.MenuModel;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 
 public class MenuController extends ControllerState<MenuModel> {
 	private boolean close = false;

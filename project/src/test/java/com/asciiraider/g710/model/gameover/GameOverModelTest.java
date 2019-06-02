@@ -1,6 +1,6 @@
 package com.asciiraider.g710.model.gameover;
 
-import com.asciiraider.g710.model.infobar.Score;
+import com.asciiraider.g710.model.utilities.Score;
 import com.asciiraider.g710.model.utilities.Button;
 import org.junit.Test;
 

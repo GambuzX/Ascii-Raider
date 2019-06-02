@@ -1,8 +1,9 @@
 package com.asciiraider.g710.model.level;
 
+import com.asciiraider.g710.controller.level.LevelBuilder;
 import com.asciiraider.g710.controller.level.LevelFacade;
 import com.asciiraider.g710.model.element.LevelKey;
-import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.life.LifeManager;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -5,7 +5,7 @@ import com.asciiraider.g710.controller.infobar.InfoBarController;
 import com.asciiraider.g710.model.element.Player;
 import com.asciiraider.g710.model.level.LevelModelGroup;
 import com.asciiraider.g710.model.utilities.Position;
-import com.asciiraider.g710.view.Event;
+import com.asciiraider.g710.view.event.Event;
 
 public class LevelControllerGroup extends ControllerState<LevelModelGroup> {
 	private LevelController levelController;

@@ -1,5 +1,7 @@
-package com.asciiraider.g710.model.infobar;
+package com.asciiraider.g710.model.utilities;
 
+import com.asciiraider.g710.model.utilities.IllegalConversionException;
+import com.asciiraider.g710.model.utilities.Score;
 import org.junit.Before;
 import org.junit.Test;
 

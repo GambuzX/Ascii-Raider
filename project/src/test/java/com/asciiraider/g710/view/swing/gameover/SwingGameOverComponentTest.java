@@ -1,7 +1,7 @@
 package com.asciiraider.g710.view.swing.gameover;
 
 import com.asciiraider.g710.model.gameover.GameOverModel;
-import com.asciiraider.g710.model.infobar.Score;
+import com.asciiraider.g710.model.utilities.Score;
 import com.asciiraider.g710.view.swing.resources.SwingGameOverResources;
 import org.junit.Before;
 import org.junit.Test;

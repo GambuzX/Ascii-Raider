@@ -1,9 +1,9 @@
 package com.asciiraider.g710.view.lanterna.game;
 
 import com.asciiraider.g710.GlobalConfigs;
-import com.asciiraider.g710.model.infobar.IllegalConversionException;
+import com.asciiraider.g710.model.utilities.IllegalConversionException;
 import com.asciiraider.g710.model.infobar.InfoBarModel;
-import com.asciiraider.g710.model.infobar.Score;
+import com.asciiraider.g710.model.utilities.Score;
 import com.asciiraider.g710.model.utilities.HexColorString;
 import com.asciiraider.g710.view.View;
 import com.googlecode.lanterna.TerminalPosition;

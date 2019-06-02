@@ -1,9 +1,9 @@
 package com.asciiraider.g710.model.infobar;
 
 import com.asciiraider.g710.GlobalConfigs;
-import com.asciiraider.g710.controller.LevelCompletedObserver;
-import com.asciiraider.g710.controller.LevelKeyObserver;
-import com.asciiraider.g710.controller.PlayerDeathObserver;
+import com.asciiraider.g710.controller.observer.LevelCompletedObserver;
+import com.asciiraider.g710.controller.observer.LevelKeyObserver;
+import com.asciiraider.g710.controller.observer.PlayerDeathObserver;
 import com.asciiraider.g710.model.Model;
 
 public class InfoBarModel extends Model implements LevelKeyObserver, PlayerDeathObserver, LevelCompletedObserver {

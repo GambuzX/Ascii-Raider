@@ -2,8 +2,9 @@ package com.asciiraider.g710.controller.level;
 
 import com.asciiraider.g710.controller.element.LevelKeyController;
 import com.asciiraider.g710.controller.element.interaction.Interaction;
+import com.asciiraider.g710.controller.life.LifeController;
 import com.asciiraider.g710.model.element.*;
-import com.asciiraider.g710.model.infobar.LifeManager;
+import com.asciiraider.g710.model.life.LifeManager;
 import com.asciiraider.g710.model.level.LevelManager;
 import com.asciiraider.g710.model.level.LevelTimeAlarm;
 import com.asciiraider.g710.model.utilities.Position;
