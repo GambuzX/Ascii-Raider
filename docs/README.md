@@ -51,6 +51,12 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
     	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-6)
 	
 4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
+    1. [Large Class](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#large-class)
+    2. [Switch Statement](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#switch-statement)
+    3. [Data Class](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#data-class)
+    4. [Refused Bequest](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#refused-bequest)
+    5. [Dead Code](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#dead-code)
+
 5. [Additional Topics](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#additional-topics)
     1. [Data Class Smell and MVC](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#data-class-smell-and-mvc)
     2. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#save-data-in-model-and-efficiency)
