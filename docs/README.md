@@ -299,6 +299,35 @@ The above classes are in the following files:
 With the Command pattern we effectively decouple the View Controllers, which invoke the operations, from the objects that know how to perform them. We can easily add new Button Commands to our views, with the defined behaviour encapsulated inside them, without having to change anything in the View Controllers.
 
 
+### (Do not) Interact
+
+#### Problem in Context
+
+The problem that we had was that each time a player would make a move there were lots of if statements to assert whether the player had collided with another element and if so, which type of element it was so it could call another function in the LevelController class (same problem again - LevelController becoming a God Class).
+
+#### The Pattern
+
+To solve this problem we used the Command Pattern. This pattern normally encapsulates one behavior into a stand alone object allowing to parametrize clients (the other elements in our case) with different interactions.  
+
+#### Implementation
+
+The following diagram illustrates how this pattern was implemented: 
+![Interactions UML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/InteractionCommand.png) *Interaction Command UML*
+These classes can be found in the following files:
+
+-   [Interaction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/Interaction.java)
+-   [SandInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/SandInteraction.java)
+-   [PushInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/PushInteraction.java)
+-   [BarrierInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/BarrierInteraction.java)
+-   [DeathInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DeathInteraction.java)
+-   [DoorKeyInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DoorKeyInteraction.java)
+-   [Element](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Element.java)
+-   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+
+#### Consequences
+With this pattern we kept all the elements as dumb as possible, by making them not know how these interactions are processed and we clean up our could by making full use of polymorphism capacities. This also lead to more classes but the SOLID principles were respected.
+
+
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
