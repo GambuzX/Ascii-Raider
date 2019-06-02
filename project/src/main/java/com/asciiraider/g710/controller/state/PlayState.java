@@ -56,6 +56,7 @@ public class PlayState extends State<LevelModelGroup> {
 						if(isInterrupted()) return;
 						if(game.toExit()) break;
 					}
+
 					if(!game.toExit())
 						getStateController().getLevelController().getLifeController().notifyObservers();
 				}
@@ -64,24 +65,24 @@ public class PlayState extends State<LevelModelGroup> {
 		tick_second.start();
 
 		//while (!getStateController().isClose()) {
-		while (!getStateModel().getLevelManager().isGameFinished()) {
+		while (!levelModelGroup.getLevelManager().isGameFinished()) {
 
 			try {
 
-				levelControllerGroup.getLevelController().handlePhysics();
+				getStateController().getLevelController().handlePhysics();
 
-				levelControllerGroup.getLevelController().handleEnemies();
+				getStateController().getLevelController().handleEnemies();
 
-				levelControllerGroup.getLevelController().handleAnimations();
-
-
-				if (levelControllerGroup.getLevelController().isPlayerCollidingEnemy())
-					levelControllerGroup.getLevelController().getLifeController().notifyObservers();
-
-				levelModelGroupView.draw(levelModelGroup);
+				getStateController().getLevelController().handleAnimations();
 
 
-				levelControllerGroup.getLevelController().handleLevelKey();
+				if (getStateController().getLevelController().isPlayerCollidingEnemy())
+					getStateController().getLevelController().getLifeController().notifyObservers();
+
+				getStateView().draw(levelModelGroup);
+
+
+				getStateController().getLevelController().handleLevelKey();
 
 				Thread.sleep(1000/ GlobalConfigs.FPS);
 			} catch (InterruptedException e) {
