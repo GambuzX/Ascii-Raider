@@ -363,10 +363,6 @@ With this pattern we kept all the elements as dumb as possible, by making them n
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
 
-### Large Class
-This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
-
-
 ### Switch Statement
 Our removeDestructibleElement method in LevelFacade has a complex sequence of if statements with similar behaviours. This happens because almost every element is a Destructible Element and we need to check all the lists inside the levelModel in order to find and delete it. The sequence of if statements to determine a specific element type is, in the way we are devising our project, unavoidable, because we are storing each element type in its own list. 
 
