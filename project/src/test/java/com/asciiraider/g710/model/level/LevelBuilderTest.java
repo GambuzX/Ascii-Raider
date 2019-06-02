@@ -31,9 +31,9 @@ public class LevelBuilderTest {
 	public void testWall() throws InvalidLevelException {
 		levelBuilder.buildLevel(levelMock,1);
 		ArgumentCaptor<Wall> argument = ArgumentCaptor.forClass(Wall.class);
-		verify(levelMock, times(1)).addWall(argument.capture());
-		assertEquals(0, argument.getValue().getPosition().getX());
-		assertTrue(argument.getValue().getPlayerInteraction() instanceof BarrierInteraction);
+		verify(levelMock, times(45)).addWall(argument.capture());
+		assertEquals(0, argument.getAllValues().get(0).getPosition().getX());
+		assertTrue(argument.getAllValues().get(0).getPlayerInteraction() instanceof BarrierInteraction);
 	}
 
 	@Test
@@ -212,7 +212,7 @@ public class LevelBuilderTest {
 
 	@Test
 	public void buildAllLevels2(){
-		assertEquals(1, levelBuilder.buildAllLevels().size());
+		assertEquals(12, levelBuilder.buildAllLevels().size());
 	}
 
 
