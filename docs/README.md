@@ -158,7 +158,15 @@ After dividing our code into Model, View and Controller following the Architectu
 #### The Pattern
 To solve this problem we used the Facade Pattern.
 #### Implementation
-To implement this pattern, we created a new class that takes a LevelModel as an argument in its constructor and has all the methods that you would need to interact with it: find an element, return a group of elements of a specified superclass after regrouping them, remove an element of a specified superclass. We then added it to the Controller package. 
+To implement this pattern, we created a new class that takes a LevelModel as an argument in its constructor and has all the methods that you would need to interact with it: find an element, return a group of elements of a specified superclass after regrouping them, remove an element of a specified superclass. We then added it to the Controller package.
+
+The following diagram illustrates how this pattern was implemented: 
+![Level Facade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelFacade.png) *Level Facade*
+These classes can be found in the following files:
+
+- [LevelFacade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelFacade.java)
+- [LevelModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelModel.java)
+
 #### Consequences
 This class serves as the medium of communication between any other class (except the LevelBuilder, because it's him who builds the LevelModel, so it makes sense to make it interact directly with the Model), be it Controller, View or Model, making the interaction easier and more intelligible. This pattern allowed us to keep the Level Model as a place to only store data, adding to it a beautiful dress to make it a more pleasant experience to interact with.
 
@@ -171,7 +179,9 @@ To solve this problem we used the Strategy Pattern. This pattern allows us to is
 #### Implementation
 
 The following diagram illustrates how this pattern was implemented: 
-![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/MovementStrategy.png) *Lanterna Menu*
+![Movement Strategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/MovementStrategy.png) *Movement Strategy*
+
+
 These classes can be found in the following files:
 
 -   [MovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/MovementStrategy.java)
@@ -193,6 +203,7 @@ Starting with a simple interface that we use to all our observers-controllers we
 #### Implementation
 ##### LevelCompletedObserver
 The following diagram represents our implementation of this pattern applied to the event representing when a level reaches his end:![LevelCompletedObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelCompletedObserver.png)*Level Completed Observer UML*
+
 
 The above classes are in the following files:
 -   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
@@ -362,6 +373,10 @@ With this pattern we kept all the elements as dumb as possible, by making them n
 ## Known Code Smells and Refactoring Suggestions
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
+
+### Large Class
+This is a code smell present in our LevelController that also results in a violation of the first of the SOLID principles: the LevelController class does too much and although we could argue that it "only" controls the Level, we should refactor it and divide the code into smaller classes with less responsibilities.
+
 
 ### Switch Statement
 Our removeDestructibleElement method in LevelFacade has a complex sequence of if statements with similar behaviours. This happens because almost every element is a Destructible Element and we need to check all the lists inside the levelModel in order to find and delete it. The sequence of if statements to determine a specific element type is, in the way we are devising our project, unavoidable, because we are storing each element type in its own list. 
