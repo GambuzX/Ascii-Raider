@@ -8,21 +8,21 @@
 
 > Some screenshots that illustrate the game.
 
-![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
+![Lanterna Menu](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
 
-![Lanterna Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
+![Lanterna Level Example 1](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
 
-![Lanterna Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
+![Lanterna Level Example 2](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
 
-![Lanterna Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
+![Lanterna Game Over](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
 
-![Swing Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
+![Swing Menu](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
 
-![Swing Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
+![Swing Level Example 1](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
 
-![Swing Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
+![Swing Level Example 2](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
 
-![Swing Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
+![Swing Game Over](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
 
 
 ## Install Instructions
