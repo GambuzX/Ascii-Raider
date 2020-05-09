@@ -6,70 +6,70 @@ This project is a puzzle game based on 'Crypt Raider', where your objective in e
  Developed by [Manuel Coutinho](https://github.com/ManelCoutinho "ManelCoutinho") and [Mário Gil](https://github.com/GambuzX "GambuzX").
 
 ## Table of contents
-1. [Implemented Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#implemented-features)
-    1. [Elements](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#elements)
-    	1. [Generic Behaviours](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#generic-behaviours)
-    	2. [Specific Elements](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#specific-elements)
-    2. [Level Builder](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#level-builder)
-    3. [Game States](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#game-states)
-    4. [Timer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#timer)
-    5. [Life System](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#life-system)
-    6. [Swing Version](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#swing-version)
-    7. [Infobar](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#infobar)
-    8. [Screenshots](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs#screenshots)
-2. [Planned Features](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#planned-features)
-3. [Design](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#design)
-    1. [LevelFacade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#levelfacade)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences)
-    2. [MovementStrategy with Factory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#movementstrategy-with-factory)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-1) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-1) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-1)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-1)
-    3. [Observers - I get an observer. You get an observer. Everyone gets an observer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#user-content-observers---i-get-an-observer-you-get-an-observer-everyone-gets-an-observer)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-2) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-2) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-2)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-2)
-    4. [ViewFactory and ViewComposite](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#viewfactory-and-viewcomposite)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-3) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-3) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-3)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-3)
-    5. [State (your business T***)](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#user-content-state-your-business-t)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-4) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-4) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-4)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-4)
-    6. [ButtonCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#buttoncommand)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-5) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-5) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-5)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-5)
-    7. [(Do not) Interact](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#user-content-do-not-interact)
-    	1. [Problem in Context](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#problem-in-context-6) 
-    	2. [The Pattern](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#the-pattern-6) 
-    	3. [Implementation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#implementation-6)
-    	4. [Consequences](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#consequences-6)
+1. [Implemented Features](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#implemented-features)
+    1. [Elements](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#elements)
+    	1. [Generic Behaviours](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#generic-behaviours)
+    	2. [Specific Elements](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#specific-elements)
+    2. [Level Builder](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#level-builder)
+    3. [Game States](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#game-states)
+    4. [Timer](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#timer)
+    5. [Life System](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#life-system)
+    6. [Swing Version](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#swing-version)
+    7. [Infobar](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#infobar)
+    8. [Screenshots](https://github.com/GambuzX/Ascii-Raider/blob/master/docs#screenshots)
+2. [Planned Features](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#planned-features)
+3. [Design](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#design)
+    1. [LevelFacade](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#levelfacade)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences)
+    2. [MovementStrategy with Factory](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#movementstrategy-with-factory)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-1) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-1) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-1)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-1)
+    3. [Observers - I get an observer. You get an observer. Everyone gets an observer](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#user-content-observers---i-get-an-observer-you-get-an-observer-everyone-gets-an-observer)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-2) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-2) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-2)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-2)
+    4. [ViewFactory and ViewComposite](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#viewfactory-and-viewcomposite)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-3) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-3) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-3)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-3)
+    5. [State (your business T***)](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#user-content-state-your-business-t)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-4) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-4) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-4)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-4)
+    6. [ButtonCommand](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#buttoncommand)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-5) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-5) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-5)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-5)
+    7. [(Do not) Interact](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#user-content-do-not-interact)
+    	1. [Problem in Context](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#problem-in-context-6) 
+    	2. [The Pattern](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#the-pattern-6) 
+    	3. [Implementation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#implementation-6)
+    	4. [Consequences](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#consequences-6)
 	
-4. [Known Code Smells and Refactoring Suggestions](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#known-code-smells-and-refactoring-suggestions)
-    1. [Large Class](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#large-class)
-    2. [Switch Statement](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#switch-statement)
-    3. [Data Class](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#data-class)
-    4. [Refused Bequest](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#refused-bequest)
-    5. [Dead Code](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#dead-code)
+4. [Known Code Smells and Refactoring Suggestions](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#known-code-smells-and-refactoring-suggestions)
+    1. [Large Class](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#large-class)
+    2. [Switch Statement](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#switch-statement)
+    3. [Data Class](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#data-class)
+    4. [Refused Bequest](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#refused-bequest)
+    5. [Dead Code](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#dead-code)
 
-5. [Additional Topics](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#additional-topics)
-    1. [Data Class Smell and MVC](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#data-class-smell-and-mvc)
-    2. [Save Data in Model and Efficiency](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/README.md#save-data-in-model-and-efficiency)
-    3. [Multiple Threads vs Two Threads with Count](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#multiple-threads-vs-two-threads-with-count)
-    4. [Builder Pattern vs Read From File](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#builder-pattern-vs-read-from-file)
-    5. [Architectural Pattern - The Design Pattern Killer](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#architectural-pattern---the-design-pattern-killer)
-6. [Testing Results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#testing-results)
-7. [Self-Evaluation](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/tree/master/docs#self-evaluation)
+5. [Additional Topics](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#additional-topics)
+    1. [Data Class Smell and MVC](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#data-class-smell-and-mvc)
+    2. [Save Data in Model and Efficiency](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/README.md#save-data-in-model-and-efficiency)
+    3. [Multiple Threads vs Two Threads with Count](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#multiple-threads-vs-two-threads-with-count)
+    4. [Builder Pattern vs Read From File](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#builder-pattern-vs-read-from-file)
+    5. [Architectural Pattern - The Design Pattern Killer](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#architectural-pattern---the-design-pattern-killer)
+6. [Testing Results](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#testing-results)
+7. [Self-Evaluation](https://github.com/GambuzX/Ascii-Raider/tree/master/docs#self-evaluation)
 
 
 ## Implemented Features
@@ -127,21 +127,21 @@ Lastly we also added a bar on the top of the screen in the Play State with relev
 
 ### Screenshots
 
-![Lanterna Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
+![Lanterna Menu](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaMenu.png) *Lanterna Menu*
 
-![Lanterna Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
+![Lanterna Level Example 1](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaLevel6.png) *Example from level 6 in Lanterna*
 
-![Lanterna Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
+![Lanterna Level Example 2](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaLevel12.png) *Example from level 12 in Lanterna*
 
-![Lanterna Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
+![Lanterna Game Over](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LanternaGameOver.png) *Lanterna Game Over*
 
-![Swing Menu](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
+![Swing Menu](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingMenu.png) *Swing Menu*
 
-![Swing Level Example 1](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
+![Swing Level Example 1](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingLevel6.png) *Example from level 6 in Swing*
 
-![Swing Level Example 2](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
+![Swing Level Example 2](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingLevel12.png) *Example from level 12 in Swing*
 
-![Swing Game Over](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
+![Swing Game Over](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/SwingGameOver.png) *Swing Game Over*
 
 
 ## Planned Features
@@ -168,7 +168,7 @@ There are many features yet to be implemented:
 - [ ] Level Selector: Sub Menu that allows you to choose a level
 - [ ] Highscores Ranking: Ranking with the highest Scores
 
-![Info Bar Prototype](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/info_bar.png)*Info Bar Prototype*
+![Info Bar Prototype](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/info_bar.png)*Info Bar Prototype*
 
 
 ## Design
@@ -182,11 +182,11 @@ To solve this problem we used the Facade Pattern.
 To implement this pattern, we created a new class that takes a LevelModel as an argument in its constructor and has all the methods that you would need to interact with it: find an element, return a group of elements of a specified superclass after regrouping them, remove an element of a specified superclass. We then added it to the Controller package.
 
 The following diagram illustrates how this pattern was implemented: 
-![Level Facade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelFacade.png) *Level Facade*
+![Level Facade](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LevelFacade.png) *Level Facade*
 These classes can be found in the following files:
 
-- [LevelFacade](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelFacade.java)
-- [LevelModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelModel.java)
+- [LevelFacade](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelFacade.java)
+- [LevelModel](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelModel.java)
 
 #### Consequences
 This class serves as the medium of communication between any other class (except the LevelBuilder, because it's him who builds the LevelModel, so it makes sense to make it interact directly with the Model), be it Controller, View or Model, making the interaction easier and more intelligible. This pattern allowed us to keep the Level Model as a place to only store data, adding to it a beautiful dress to make it a more pleasant experience to interact with.
@@ -200,17 +200,17 @@ To solve this problem we used the Strategy Pattern. This pattern allows us to is
 #### Implementation
 
 The following diagram illustrates how this pattern was implemented: 
-![Movement Strategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/MovementStrategy.png) *Movement Strategy*
+![Movement Strategy](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/MovementStrategy.png) *Movement Strategy*
 
 
 These classes can be found in the following files:
 
--   [MovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/MovementStrategy.java)
--   [FollowMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/FollowMovementStrategy.java)
--   [RandomMovementStrategy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/RandomMovementStrategy.java)
--   [Enemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Enemy.java)
--   [SkullEnemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/SkullEnemy.java)
--   [MummyEnemy](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/MummyEnemy.java)
+-   [MovementStrategy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/MovementStrategy.java)
+-   [FollowMovementStrategy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/FollowMovementStrategy.java)
+-   [RandomMovementStrategy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/movestrategy/RandomMovementStrategy.java)
+-   [Enemy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Enemy.java)
+-   [SkullEnemy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/element/SkullEnemy.java)
+-   [MummyEnemy](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/element/MummyEnemy.java)
 
 #### Consequences
 This pattern allowed to keep the model as dumb as possible and we don’t need to have a set of conditional if or switch statements in the controller associated with the different movements; instead, polimorphism is used to activate the right movement. The factory allows the sub classes to instantiate the correct movement without the upper class knowing anything about which enemy has which type of movement.
@@ -223,40 +223,40 @@ We had a problem almost since the first day in the controller class. It was beco
 Starting with a simple interface that we use to all our observers-controllers we implemented not one, not two, but three Observer pattern that not only allows us to keep all the observers of each event tightly together, but also notify them when that same event happens.
 #### Implementation
 ##### LevelCompletedObserver
-The following diagram represents our implementation of this pattern applied to the event representing when a level reaches his end:![LevelCompletedObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelCompletedObserver.png)*Level Completed Observer UML*
+The following diagram represents our implementation of this pattern applied to the event representing when a level reaches his end:![LevelCompletedObserverUML](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LevelCompletedObserver.png)*Level Completed Observer UML*
 
 
 The above classes are in the following files:
--   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
--   [LevelProgressionController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelProgressionController.java)
--   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
--   [LevelCompletedObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelCompletedObserver.java)
--   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
--   [LevelTimeAlarm](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
+-   [EventSubject](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
+-   [LevelProgressionController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelProgressionController.java)
+-   [LevelController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [LevelCompletedObserver](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelCompletedObserver.java)
+-   [InfoBarModel](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
+-   [LevelTimeAlarm](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
 
 ##### LevelKeyObserver
-The following diagram represents our implementation of this pattern applied to the event that represents some level key reaching the final door:![LevelkeyObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/LevelKeyObserver.png)*Level Key Observer UML*
+The following diagram represents our implementation of this pattern applied to the event that represents some level key reaching the final door:![LevelkeyObserverUML](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/LevelKeyObserver.png)*Level Key Observer UML*
 
 The above classes are in the following files:
--   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
--   [LevelKeyController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/LevelKeyController.java)
--   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
--   [LevelKeyObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelKeyObserver.java)
--   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
--   [LevelManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
+-   [EventSubject](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
+-   [LevelKeyController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/LevelKeyController.java)
+-   [LevelController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [LevelKeyObserver](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/LevelKeyObserver.java)
+-   [InfoBarModel](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
+-   [LevelManager](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
 
 ##### PlayerDeathObserver
-The following diagram represents our implementation of this pattern applied to the event that represents the death of the player:![PlayerDeathObserverUML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/PlayerDeathObserver.png)*Player Death Observer UML*
+The following diagram represents our implementation of this pattern applied to the event that represents the death of the player:![PlayerDeathObserverUML](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/PlayerDeathObserver.png)*Player Death Observer UML*
 
 The above classes are in the following files:
--   [EventSubject](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
--   [LifeController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/life/LifeController.java)
--   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
--   [PlayerDeathObserver](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/PlayerDeathObserver.java)
--   [InfoBarModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
--   [LevelTimeAlarm](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
--   [LifeManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/life/LifeManager.java)
--   [LevelManager](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
+-   [EventSubject](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/EventSubject.java)
+-   [LifeController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/life/LifeController.java)
+-   [LevelController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [PlayerDeathObserver](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/observer/PlayerDeathObserver.java)
+-   [InfoBarModel](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/infobar/InfoBarModel.java)
+-   [LevelTimeAlarm](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelTimeAlarm.java)
+-   [LifeManager](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/life/LifeManager.java)
+-   [LevelManager](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/level/LevelManager.java)
 
 #### Consequences
 The main consequence of this solution is that it uncouples the classes previously strongly dependent which is precisely what we needed. It also facilitates the addition of a new element that has to know when a certain event happens. Our implementation had a few problems, namely the limitation of parameters to be passed to the observers. But this little setback was not relevant when in comparison with the dependencies between classes that we solve, not only with the controller but also between themselves.
@@ -277,26 +277,26 @@ To implement the Abstract Factory we created an interface, ViewFactory, that spe
 
 The composite pattern was achieved by creating an abstract class *View*, with an abstract method *draw*. We then composed our Lanterna classes in a tree structure where both high level views, such as *LanternaLevelGroupView*, and more specific views, such as *LanternaElementView*, extend *View* and specify how to draw themselves. These higher level views are then composed of other Views and, when asked to draw themselves, call *draw* in each of their parts.
 
-The following diagram represents how the mentioned patterns were implemented:![ViewFactoryAndComposite](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/ViewFactory.png)*View Factory and Composite UML*
+The following diagram represents how the mentioned patterns were implemented:![ViewFactoryAndComposite](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/ViewFactory.png)*View Factory and Composite UML*
 
 The above classes are in the following files:
--   [ViewFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewFactory.java)
--   [LanternaFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaFactory.java)
--   [SwingFactory](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingFactory.java)
--   [View](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/View.java)
--   [ViewState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewState.java)
--   [LanternaStateView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaStateView.java)
--   [LanternaLevelGroupView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelGroupView.java)
--   [LanternaGameOverView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/gameover/LanternaGameOverView.java)
--   [LanternaMenuView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/menu/LanternaMenuView.java)
--   [LanternaLevelComponent](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelComponent.java)
--   [LanternaInfoBarComponent](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaInfoBarComponent.java)
--   [LanternaElementView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaElementView.java)
--   [LanternaButtonView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/utilities/LanternaButtonView.java)
--   [SwingStateView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingStateView.java)
--   [SwingLevelGroupView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/game/SwingLevelGroupView.java)
--   [SwingGameOverView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/gameover/SwingGameOverView.java)
--   [SwingMenuView](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/menu/SwingMenuView.java)
+-   [ViewFactory](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewFactory.java)
+-   [LanternaFactory](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaFactory.java)
+-   [SwingFactory](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingFactory.java)
+-   [View](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/View.java)
+-   [ViewState](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/ViewState.java)
+-   [LanternaStateView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/LanternaStateView.java)
+-   [LanternaLevelGroupView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelGroupView.java)
+-   [LanternaGameOverView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/gameover/LanternaGameOverView.java)
+-   [LanternaMenuView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/menu/LanternaMenuView.java)
+-   [LanternaLevelComponent](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaLevelComponent.java)
+-   [LanternaInfoBarComponent](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaInfoBarComponent.java)
+-   [LanternaElementView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/game/LanternaElementView.java)
+-   [LanternaButtonView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/lanterna/utilities/LanternaButtonView.java)
+-   [SwingStateView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/SwingStateView.java)
+-   [SwingLevelGroupView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/game/SwingLevelGroupView.java)
+-   [SwingGameOverView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/gameover/SwingGameOverView.java)
+-   [SwingMenuView](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/view/swing/menu/SwingMenuView.java)
 
 
 #### Consequences
@@ -322,15 +322,15 @@ We could not have put it better.
 
 The following diagram illustrates how this pattern was implemented:
 
-![Game State UML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/GameState.png)*Game Sate UML*
+![Game State UML](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/GameState.png)*Game Sate UML*
 
 These classes can be found in the following files:
 
--   [Game](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
--   [State](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/State.java)
--   [MenuState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/MenuState.java)
--   [PlayState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/PlayState.java)
--   [GameOverState](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/GameOverState.java)
+-   [Game](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
+-   [State](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/State.java)
+-   [MenuState](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/MenuState.java)
+-   [PlayState](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/PlayState.java)
+-   [GameOverState](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/state/GameOverState.java)
 
 #### Consequences
 This pattern not only respects the Open - Closed Principle but also allows to easily add more stages to a game or quickly change the implementation of one state. Because each state is in the MVC Architectural Pattern, the flexibility is even higher allowing us to change the View of the GameOverState very easily if we weren't happy with it.
@@ -346,17 +346,17 @@ To solve this problem we implemented the Command pattern, encapsulating the Game
 #### Implementation
 This pattern was conceived by creating an abstract class *ButtonCommand* that receives a *Game* instance and operates on it. This class has a method *execute* that is implemented by each concrete ButtonCommand and is called to perform the defined operation. We defined 3 commands, Start, Restart and Exit. These are called by the View Controllers to change the Game State accordingly, without having to know how they are implemented and what they do.
 
-The following diagram represents how the mentioned pattern was implemented:![ButtonCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/ButtonsCommand.png)*View Factory and Composite UML*
+The following diagram represents how the mentioned pattern was implemented:![ButtonCommand](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/ButtonsCommand.png)*View Factory and Composite UML*
 
 The above classes are in the following files:
--   [ButtonCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ButtonCommand.java)
--   [StartCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/StartCommand.java)
--   [RestartCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/RestartCommand.java)
--   [ExitCommand](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ExitCommand.java)
--   [Game](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
--   [MenuController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/menu/MenuController.java)
--   [MenuModel](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/menu/MenuModel.java)
--   [Button](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/utilities/Button.java)
+-   [ButtonCommand](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ButtonCommand.java)
+-   [StartCommand](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/StartCommand.java)
+-   [RestartCommand](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/RestartCommand.java)
+-   [ExitCommand](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/command/ExitCommand.java)
+-   [Game](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/Game.java)
+-   [MenuController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/menu/MenuController.java)
+-   [MenuModel](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/menu/MenuModel.java)
+-   [Button](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/utilities/Button.java)
 
 #### Consequences
 With the Command pattern we effectively decouple the View Controllers, which invoke the operations, from the objects that know how to perform them. We can easily add new Button Commands to our views, with the defined behaviour encapsulated inside them, without having to change anything in the View Controllers.
@@ -375,17 +375,17 @@ To solve this problem we used the Command Pattern. This pattern normally encapsu
 #### Implementation
 
 The following diagram illustrates how this pattern was implemented: 
-![Interactions UML](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/InteractionCommand.png) *Interaction Command UML*
+![Interactions UML](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/InteractionCommand.png) *Interaction Command UML*
 These classes can be found in the following files:
 
--   [Interaction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/Interaction.java)
--   [SandInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/SandInteraction.java)
--   [PushInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/PushInteraction.java)
--   [BarrierInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/BarrierInteraction.java)
--   [DeathInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DeathInteraction.java)
--   [DoorKeyInteraction](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DoorKeyInteraction.java)
--   [Element](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Element.java)
--   [LevelController](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
+-   [Interaction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/Interaction.java)
+-   [SandInteraction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/SandInteraction.java)
+-   [PushInteraction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/PushInteraction.java)
+-   [BarrierInteraction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/BarrierInteraction.java)
+-   [DeathInteraction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DeathInteraction.java)
+-   [DoorKeyInteraction](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/element/interaction/DoorKeyInteraction.java)
+-   [Element](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/model/element/Element.java)
+-   [LevelController](https://github.com/GambuzX/Ascii-Raider/blob/master/project/src/main/java/com/asciiraider/g710/controller/level/LevelController.java)
 
 #### Consequences
 With this pattern we kept all the elements as dumb as possible, by making them not know how these interactions are processed and we clean up our could by making full use of polymorphism capacities. This also lead to more classes but the SOLID principles were respected.
@@ -479,9 +479,9 @@ Bear with me for one second: what we are doing essentially when we are testing t
 
 The test results can be seen below:
 
-![Pitest results](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/Images/TestResults.PNG)*Final test results*
+![Pitest results](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/Images/TestResults.PNG)*Final test results*
 
- [Link to test reports](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_710/blob/master/docs/tests)
+ [Link to test reports](https://github.com/GambuzX/Ascii-Raider/blob/master/docs/tests)
 
 ## Self-evaluation
 
